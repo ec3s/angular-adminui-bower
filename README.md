@@ -1,0 +1,2 @@
+angular-adminui-bower
+=====================
