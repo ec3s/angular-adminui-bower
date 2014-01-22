@@ -12,6 +12,7 @@
     "es5-shim": "~2.0.11",
     "json3": "~3.2.4",
     "jquery": "2.0.2",
+    "angular-bootstrap3": "*",
     "jquery.easy-pie-chart": "~1.2.5",
     "bootstrap-datepicker": "~1.1.2",
     "bootstrap-timepicker": "~0.2.3",
@@ -19,7 +20,8 @@
     "d3": "~3.1.5",
     "footable": "~0.5.0",
     "chosen": "https://github.com/harvesthq/chosen/releases/download/0.13.0/chosen_v0.13.0.zip",
-    "angular-route":"*"
+    "angular-route":"*",
+    "angular-ui-bootstrap3":"*"
   },
   "devDependencies": {
     "angular-mocks": "~1.0.5",
