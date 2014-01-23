@@ -7607,6 +7607,22 @@ td.visible-print {
   height: auto;
 }
 
+@media (max-width: 768px) {
+  /* line 105, ../../app/styles/ntd-admin-ui.scss */
+  .collapse {
+    display: none;
+  }
+
+  /* line 108, ../../app/styles/ntd-admin-ui.scss */
+  .nav.pull-right {
+    float: none !important;
+  }
+
+  /* line 112, ../../app/styles/ntd-admin-ui.scss */
+  .chzn-container {
+    margin-bottom: 15px;
+  }
+}
 @font-face {
   font-family: 'admin_uiregular';
   src: url("fonts/adminui-regular.eot");
@@ -8655,7 +8671,7 @@ form.form-horizontal .help-block {
 }
 
 /* line 958, ../../app/styles/ntd-main.scss */
-[class*="span"] .chzn-container {
+[class*="col-md-"] .chzn-container {
   width: 100% !important;
 }
 
