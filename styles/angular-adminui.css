@@ -8693,6 +8693,28 @@ form.form-horizontal .help-block {
     position: relative;
   }
 }
+/* line 980, ../../app/styles/ntd-main.scss */
+.chzn-container-single .chzn-single {
+  background: none;
+}
+
+/* line 987, ../../app/styles/ntd-main.scss */
+.chzn-container .chzn-results li.highlighted,
+.chzn-container-multi .chzn-choices,
+.chzn-container-multi .chzn-choices li.search-choice-disabled,
+.chzn-container-active.chzn-with-drop .chzn-single,
+.chzn-rtl .chzn-search input {
+  background-image: none;
+  box-shadow: none;
+}
+
+/* line 991, ../../app/styles/ntd-main.scss */
+.chzn-container-multi .chzn-choices li.search-choice {
+  background-color: #fff;
+  background-image: none;
+  box-shadow: none;
+}
+
 /* line 5, ../../app/styles/ntd-table.scss */
 .table-normal thead {
   background-color: whitesmoke;
