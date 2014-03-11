@@ -527,8 +527,8 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
     var currItem = getItem($scope.ngModel);
     var level = parentItem ? parentItem.level + 1 : 0;
     var list = $('<ul></ul>').css('margin-left', level * 33 + '%').attr('cl-id', parent);
-    for (var i in $tree) {
-      var item = $tree[i];
+
+    angular.forEach($tree, function(item) {
       if (item.parent == parent) {
         var li = $('<li cl-value="' + item.value + '">' + item.text + '</li>').click(onItemClick);
         if (item.children().length > 0) {
@@ -542,7 +542,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
         }
         list.append(li);
       }
-    }
+    });
     return list;
   }
   function onItemClick(e) {
