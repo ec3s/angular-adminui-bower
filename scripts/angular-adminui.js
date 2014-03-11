@@ -596,8 +596,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
   }
   var TreeData = function (data, options) {
     var ret = [];
-    for (var i in data) {
-      var item = data[i];
+    angular.forEach(data, function(item) {
       var path = item[options.path].split('/').slice(1, -1);
       ret.push({
         value: item[options.value],
@@ -613,7 +612,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           return son;
         }
       });
-    }
+    });
     return ret;
   };
   function cascadeListDirective($parse) {
