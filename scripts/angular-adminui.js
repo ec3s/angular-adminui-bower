@@ -526,9 +526,8 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
     var parentItem = getItem(parent);
     var currItem = getItem($scope.ngModel);
     var level = parentItem ? parentItem.level + 1 : 0;
-    var list = $('<ul></ul>').css('margin-left', level * 33 + '%').attr('cl-id', parent);
-
-    angular.forEach($tree, function(item) {
+    var list = $('<ul></ul>').css('margin-left', level * 30 + '%').attr('cl-id', parent);
+    angular.forEach($tree, function (item) {
       if (item.parent == parent) {
         var li = $('<li cl-value="' + item.value + '">' + item.text + '</li>').click(onItemClick);
         if (item.children().length > 0) {
@@ -596,7 +595,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
   }
   var TreeData = function (data, options) {
     var ret = [];
-    angular.forEach(data, function(item) {
+    angular.forEach(data, function (item) {
       var path = item[options.path].split('/').slice(1, -1);
       ret.push({
         value: item[options.value],
@@ -625,7 +624,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
       },
       link: function (scope, element, attrs) {
         $scope = scope;
-        $element = $('<div class="cascade-list-inner"></div>').css('width', attrs.width || '400px').css('height', attrs.height || '120px');
+        $element = $('<div class="cascade-list-inner"></div>').css('width', attrs.width || '100%').css('height', attrs.height || '220px');
         element.append($element).addClass('cascade-list');
         var options = {
             name: attrs.name,
