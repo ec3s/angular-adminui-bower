@@ -1042,8 +1042,8 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           });
           angular.element(elem.find('li')[index]).popover('show');
           elem.find('#pop_inp_' + index).focus().bind('keypress', function (e) {
-            e.preventDefault();
             if (e.keyCode == 13) {
+              e.preventDefault();
               useEdit(index)(e);
             }
           }).val(scope.tags[index].name);
