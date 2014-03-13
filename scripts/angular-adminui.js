@@ -976,7 +976,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           return angular.isUndefined(tag.deletable) || tag.deletable;
         };
         var isEditable = function (tag) {
-          return !angular.isUndefined(tag.editable) || tag.editable;
+          return !angular.isUndefined(tag.editable) && tag.editable;
         };
         var setTagAttribute = function (tag, index) {
           if (!angular.isObject(tagsAttribute[index])) {
@@ -1043,7 +1043,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           scope.tags.push(tag);
           tagsAttribute.push({
             'deletable': true,
-            'editable': true
+            'editable': false
           });
         };
         elem.find('input').bind('focus', function () {
