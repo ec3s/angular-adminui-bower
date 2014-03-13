@@ -943,7 +943,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
         placeholder: '@',
         id: '@'
       },
-      template: '<div class="tag-input-container">' + '<ul data-ng-class="{true: \'focus\'}[isFocus]">' + '<li class="tag" data-ng-repeat="tag in tags">' + '<span>{{tag.name}}</span>' + '<i data-ng-show="tag.deletable" data-ng-click="remove($index)"' + ' class="ico-remove"></i></li><li class="input-li">' + '<input id="{{id}}" class="form-control input-sm"' + ' data-ng-model="tagInput"' + ' placeholder="{{placeholder}}" type="text" autocomplete="false" />' + '</li>' + '</ul>' + '</div>',
+      template: '<div class="tag-input-container">' + '<ul data-ng-class="{true: \'focus\'}[isFocus]">' + '<li class="tag" data-ng-repeat="tag in tags">' + '<span>{{tag.name}}</span>' + '<i data-ng-show="tagsAttribute[$index].editable"' + ' class="glyphicon glyphicon-pencil"' + ' data-ng-click="editTag($index, $event)"></i>' + ' <i data-ng-show="tagsAttribute[$index].deletable"' + ' data-ng-click="removeTag($index)"' + ' class="glyphicon glyphicon-remove"></i></li><li class="input-li">' + '<input id="{{id}}" class="form-control input-sm"' + ' data-ng-model="tagInput"' + ' placeholder="{{placeholder}}" type="text" autocomplete="false" />' + '</li>' + '</ul>' + '</div>',
       link: function (scope, elem, attrs) {
         var placeholder = attrs.placeholder;
         var caseSensitive = attrs.caseSensitive || false;
@@ -951,24 +951,57 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
         var unique = scope.$eval(attrs.unique) || true;
         var uniqueTags = [];
         var oldInput;
+        var tagsAttribute = scope.tagsAttribute = [];
+        var getPopHtml = function (index) {
+          return '<div id="pop_' + index + '" >' + '<p><input id="pop_inp_' + index + '"' + ' type="text" class="form-control input-sm"/></p>' + ' <button type="button"' + ' class="btn btn-primary btn-sm">' + ' \u786e\u5b9a</button>\n<button type="button"' + ' class="btn btn-default btn-sm">' + ' \u53d6\u6d88</button>' + '</div>';
+        };
+        var cancelEdit = function (index) {
+          return function (e) {
+            angular.element(elem.find('li')[index]).popover('destroy');
+          };
+        };
+        var useEdit = function (index) {
+          return function (e) {
+            scope.tags[index].name = elem.find('#pop_inp_' + index).val();
+            scope.$apply();
+            angular.element(elem.find('li')[index]).popover('destroy');
+          };
+        };
+        var closeAllPop = function () {
+          elem.find('li').each(function (index, item) {
+            angular.element(item).popover('destroy');
+          });
+        };
+        var isDeletable = function (tag) {
+          return angular.isUndefined(tag.deletable) || tag.deletable;
+        };
+        var isEditable = function (tag) {
+          return !angular.isUndefined(tag.editable) || tag.editable;
+        };
+        var setTagAttribute = function (tag, index) {
+          if (!angular.isObject(tagsAttribute[index])) {
+            tagsAttribute[index] = {
+              'deletable': isDeletable(tag) ? true : false,
+              'editable': isEditable(tag) ? true : false
+            };
+          }
+          delete tag.deletable;
+          delete tag.editable;
+        };
         var unifyItemInTags = function (tags) {
           angular.forEach(tags, function (tag, index) {
             if (angular.isString(tag)) {
-              tags[index] = {
-                'name': tag,
-                'deletable': true
-              };
-            } else if (angular.isObject(tag) && !tag.hasOwnProperty('deletable')) {
-              tag.deletable = true;
+              tags[index] = { 'name': tag };
             }
+            setTagAttribute(tags[index], index);
           });
         };
         unifyItemInTags(scope.tags);
         var indexOf = function (tags, tag) {
           if (!caseSensitive) {
             var tagName = tag.name.toLowerCase();
-            var allNames = tags.map(function (item) {
-                return item.name.toLowerCase();
+            var allNames = tags.map(function (tag) {
+                return tag.name.toLowerCase();
               });
           }
           return allNames.indexOf(tagName);
@@ -977,15 +1010,41 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           scope.tags = [];
         }
         if (unique) {
-          angular.forEach(scope.tags, function (item) {
-            if (indexOf(uniqueTags, item) === -1) {
-              uniqueTags.push(item);
+          angular.forEach(scope.tags, function (tag) {
+            if (indexOf(uniqueTags, tag) === -1) {
+              uniqueTags.push(tag);
             }
           });
           scope.tags = uniqueTags;
         }
-        scope.remove = function (index) {
+        scope.removeTag = function (index) {
+          closeAllPop();
           scope.tags.splice(index, 1);
+          tagsAttribute.splice(index, 1);
+        };
+        scope.editTag = function (index, event) {
+          event.stopPropagation();
+          closeAllPop();
+          angular.element(elem.find('li')[index]).popover({
+            content: getPopHtml(index),
+            html: true,
+            placement: 'top',
+            trigger: 'manual',
+            title: '\u4fee\u6539'
+          });
+          angular.element(elem.find('li')[index]).popover('show');
+          elem.find('#pop_' + index).find('.btn-primary').bind('click', useEdit(index));
+          elem.find('#pop_' + index).find('.btn-default').bind('click', cancelEdit(index));
+          elem.find('.popover').bind('click', function (e) {
+            e.stopPropagation();
+          });
+        };
+        var addTag = function (tag) {
+          scope.tags.push(tag);
+          tagsAttribute.push({
+            'deletable': true,
+            'editable': true
+          });
         };
         elem.find('input').bind('focus', function () {
           scope.isFocus = true;
@@ -995,13 +1054,10 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           scope.isFocus = false;
           var oldValue = $(this).val();
           if (oldValue) {
-            var item = {
-                'name': oldValue,
-                'deletable': true
-              };
-            var index = indexOf(scope.tags, item);
+            var item = { 'name': oldValue };
+            var index = indexOf(scope.tags, tag);
             if (!unique || index === -1) {
-              scope.tags.push(item);
+              addTag(tag);
             } else {
               angular.element(elem.find('li')[index]).fadeTo('fast', 0.2).fadeTo('fast', 1);
             }
@@ -1009,7 +1065,8 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           scope.tagInput = '';
           scope.$apply();
         });
-        elem.bind('click', function () {
+        elem.bind('click', function (e) {
+          closeAllPop();
           elem.find('input').focus();
         });
         elem.find('input').bind('keyup', function (e) {
@@ -1017,9 +1074,9 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             oldInput = scope.tagInput;
           } else if (e.keyCode == 8 && scope.tags.length > 0) {
             if (oldInput == scope.tagInput) {
-              var item = scope.tags[scope.tags.length - 1];
-              if (item.deletable === true) {
-                scope.tags.pop();
+              var tagAttribute = tagsAttribute[scope.tags.length - 1];
+              if (tagAttribute.deletable === true) {
+                scope.removeTag(scope.tags.length - 1);
                 scope.$apply();
               } else {
                 angular.element(elem.find('li')[scope.tags.length - 1]).stop().fadeTo('fast', 0.2).fadeTo('fast', 1);
@@ -1042,13 +1099,10 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             var lastChar = newValue.substr(-1, 1);
             if (lastChar == ';' || lastChar == '\uff1b') {
               if (oldValue) {
-                var item = {
-                    'name': oldValue,
-                    'deletable': true
-                  };
-                var index = indexOf(scope.tags, item);
+                var tag = { 'name': oldValue };
+                var index = indexOf(scope.tags, tag);
                 if (!unique || index === -1) {
-                  scope.tags.push(item);
+                  addTag(tag);
                 } else {
                   angular.element(elem.find('li')[index]).fadeTo('fast', 0.2).fadeTo('fast', 1);
                 }
