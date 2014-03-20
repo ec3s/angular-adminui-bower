@@ -1077,7 +1077,9 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             }
           }
           scope.tagInput = '';
-          scope.$apply();
+          if (scope.$root.$$phase != '$apply' && scope.$root.$$phase != '$digest') {
+            scope.$apply();
+          }
         });
         elem.bind('click', function (e) {
           closeAllPop();
