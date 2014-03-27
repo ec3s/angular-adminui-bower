@@ -1414,7 +1414,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
         name: '@',
         ngModel: '=',
         ngChange: '&',
-        click: '&click'
+        click: '&'
       },
       template: '<label class="checkbox toggle">' + '<input id="{{id}}" name="{{name}}"' + ' type="checkbox" ng-model="checked">' + '<p>' + '<span>{{ngTrueTitle}}</span>' + '<span>{{ngFalseTitle}}</span>' + '</p>' + '<a class="btn slide-button"></a>' + '</label>',
       link: function (scope, element, attrs) {
