@@ -39,6 +39,10 @@ angular.module('ntd.directives', ['ntd.config']);
       restrict: 'A',
       templateUrl: 'templates/adminui-frame.html',
       transclude: true,
+      scope: {
+        userInfo: '=',
+        messages: '='
+      },
       link: function (scope, elem, attrs) {
         scope.isSubMenuShow = adminuiFrameProvider.defaultShowSubmenu;
         scope.isMessageBoxShow = adminuiFrameProvider.showMessageBox;
