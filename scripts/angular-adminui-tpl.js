@@ -1,4 +1,4 @@
-angular.module('ntd-directives').run(['$templateCache', function($templateCache) {
+angular.module('ntd.directives').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('templates/adminui-frame.html',

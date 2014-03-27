@@ -34,7 +34,7 @@ angular.module('ntd.config', []).value('$ntdConfig', {});
 angular.module('ntd.directives', ['ntd.config']);
 (function (ng) {
   'use strict';
-  var AdminuiFrame = function (adminuiFrameProvider, $location, $timeout) {
+  var AdminuiFrame = function (adminuiFrameProvider, $rootScope, $location, $timeout) {
     return {
       restrict: 'A',
       templateUrl: 'templates/adminui-frame.html',
@@ -55,6 +55,9 @@ angular.module('ntd.directives', ['ntd.config']);
           }
         }, scope.userInfo);
         init(scope.navigation);
+        $rootScope.$on('$routeChangeStart', function () {
+          selectPath(scope, $location.path());
+        });
         scope.select = ng.bind(scope, select, $timeout, elem);
         scope.toggleSubMenu = ng.bind(scope, toggleSubMenu);
         scope.selectNav = ng.bind(scope, selectNav);
@@ -189,6 +192,7 @@ angular.module('ntd.directives', ['ntd.config']);
   ng.module('ntd.directives').provider('adminuiFrame', [AdminuiFrameProvider]);
   ng.module('ntd.directives').directive('adminuiFrame', [
     'adminuiFrame',
+    '$rootScope',
     '$location',
     '$timeout',
     AdminuiFrame
