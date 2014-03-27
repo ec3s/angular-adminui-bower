@@ -336,8 +336,9 @@ table {
   }
 
   /* line 87, ../../app/components/bootstrap-sass/lib/_print.scss */
-  .btn > .caret,
-  .dropup > .btn > .caret {
+  .btn > .caret, .navbar .main-nav .btn > .active:after,
+  .dropup > .btn > .caret,
+  .navbar .main-nav .dropup > .btn > .active:after {
     border-top-color: #000 !important;
   }
 
@@ -674,7 +675,7 @@ ol ol {
 }
 
 /* line 152, ../../app/components/bootstrap-sass/lib/_type.scss */
-.list-unstyled, .list-inline, .sub-nav li ul {
+.list-unstyled, .list-inline, .side-nav .side-nav-menu li ul {
   padding-left: 0;
   list-style: none;
 }
@@ -4062,7 +4063,7 @@ input[type="button"].btn-block {
 }
 
 /* line 7, ../../app/components/bootstrap-sass/lib/_dropdowns.scss */
-.caret {
+.caret, .navbar .main-nav .active:after {
   display: inline-block;
   width: 0;
   height: 0;
@@ -4192,8 +4193,10 @@ input[type="button"].btn-block {
 }
 
 /* line 165, ../../app/components/bootstrap-sass/lib/_dropdowns.scss */
-.dropup .caret,
-.navbar-fixed-bottom .dropdown .caret {
+.dropup .caret, .dropup .navbar .main-nav .active:after, .navbar .main-nav .dropup .active:after,
+.navbar-fixed-bottom .dropdown .caret,
+.navbar-fixed-bottom .dropdown .navbar .main-nav .active:after,
+.navbar .main-nav .navbar-fixed-bottom .dropdown .active:after {
   border-top: 0 dotted;
   border-bottom: 4px solid black;
   content: "";
@@ -4214,24 +4217,32 @@ input[type="button"].btn-block {
   }
 }
 /* line 10, ../../app/components/bootstrap-sass/lib/_button-groups.scss */
-.btn-default .caret {
+.btn-default .caret, .btn-default .navbar .main-nav .active:after, .navbar .main-nav .btn-default .active:after {
   border-top-color: #333333;
 }
 /* line 17, ../../app/components/bootstrap-sass/lib/_button-groups.scss */
-.btn-primary .caret, .btn-success .caret, .btn-warning .caret, .btn-danger .caret, .btn-info .caret {
+.btn-primary .caret, .btn-primary .navbar .main-nav .active:after, .navbar .main-nav .btn-primary .active:after, .btn-success .caret, .btn-success .navbar .main-nav .active:after, .navbar .main-nav .btn-success .active:after, .btn-warning .caret, .btn-warning .navbar .main-nav .active:after, .navbar .main-nav .btn-warning .active:after, .btn-danger .caret, .btn-danger .navbar .main-nav .active:after, .navbar .main-nav .btn-danger .active:after, .btn-info .caret, .btn-info .navbar .main-nav .active:after, .navbar .main-nav .btn-info .active:after {
   border-top-color: #fff;
 }
 
 /* line 22, ../../app/components/bootstrap-sass/lib/_button-groups.scss */
-.dropup .btn-default .caret {
+.dropup .btn-default .caret, .dropup .btn-default .navbar .main-nav .active:after, .navbar .main-nav .dropup .btn-default .active:after {
   border-bottom-color: #333333;
 }
 /* line 30, ../../app/components/bootstrap-sass/lib/_button-groups.scss */
-.dropup .btn-primary .caret,
+.dropup .btn-primary .caret, .dropup .btn-primary .navbar .main-nav .active:after, .navbar .main-nav .dropup .btn-primary .active:after,
 .dropup .btn-success .caret,
+.dropup .btn-success .navbar .main-nav .active:after,
+.navbar .main-nav .dropup .btn-success .active:after,
 .dropup .btn-warning .caret,
+.dropup .btn-warning .navbar .main-nav .active:after,
+.navbar .main-nav .dropup .btn-warning .active:after,
 .dropup .btn-danger .caret,
-.dropup .btn-info .caret {
+.dropup .btn-danger .navbar .main-nav .active:after,
+.navbar .main-nav .dropup .btn-danger .active:after,
+.dropup .btn-info .caret,
+.dropup .btn-info .navbar .main-nav .active:after,
+.navbar .main-nav .dropup .btn-info .active:after {
   border-bottom-color: #fff;
 }
 
@@ -4368,18 +4379,18 @@ input[type="button"].btn-block {
 }
 
 /* line 162, ../../app/components/bootstrap-sass/lib/_button-groups.scss */
-.btn .caret {
+.btn .caret, .btn .navbar .main-nav .active:after, .navbar .main-nav .btn .active:after {
   margin-left: 0;
 }
 
 /* line 166, ../../app/components/bootstrap-sass/lib/_button-groups.scss */
-.btn-lg .caret, .btn-group-lg > .btn .caret {
+.btn-lg .caret, .btn-group-lg > .btn .caret, .btn-lg .navbar .main-nav .active:after, .navbar .main-nav .btn-lg .active:after, .btn-group-lg > .btn .navbar .main-nav .active:after, .navbar .main-nav .btn-group-lg > .btn .active:after {
   border-width: 5px 5px 0;
   border-bottom-width: 0;
 }
 
 /* line 171, ../../app/components/bootstrap-sass/lib/_button-groups.scss */
-.dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret {
+.dropup .btn-lg .caret, .dropup .btn-group-lg > .btn .caret, .dropup .btn-lg .navbar .main-nav .active:after, .navbar .main-nav .dropup .btn-lg .active:after, .dropup .btn-group-lg > .btn .navbar .main-nav .active:after, .navbar .main-nav .dropup .btn-group-lg > .btn .active:after {
   border-width: 0 5px 5px;
 }
 
@@ -4601,68 +4612,68 @@ input[type="button"].btn-block {
 }
 
 /* line 9, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav {
+.nav, .navbar .sub-navbar {
   margin-bottom: 0;
   padding-left: 0;
   list-style: none;
 }
 /* line 21, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.nav:before, .nav:after {
+.nav:before, .navbar .sub-navbar:before, .nav:after, .navbar .sub-navbar:after {
   content: " ";
   /* 1 */
   display: table;
   /* 2 */
 }
 /* line 25, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.nav:after {
+.nav:after, .navbar .sub-navbar:after {
   clear: both;
 }
 /* line 15, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav > li {
+.nav > li, .navbar .sub-navbar > li {
   position: relative;
   display: block;
 }
 /* line 19, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav > li > a {
+.nav > li > a, .navbar .sub-navbar > li > a {
   position: relative;
   display: block;
   padding: 10px 15px;
 }
 /* line 24, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav > li > a:hover, .nav > li > a:focus {
+.nav > li > a:hover, .navbar .sub-navbar > li > a:hover, .nav > li > a:focus, .navbar .sub-navbar > li > a:focus {
   text-decoration: none;
   background-color: #eeeeee;
 }
 /* line 31, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav > li.disabled > a {
+.nav > li.disabled > a, .navbar .sub-navbar > li.disabled > a {
   color: #999999;
 }
 /* line 35, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav > li.disabled > a:hover, .nav > li.disabled > a:focus {
+.nav > li.disabled > a:hover, .navbar .sub-navbar > li.disabled > a:hover, .nav > li.disabled > a:focus, .navbar .sub-navbar > li.disabled > a:focus {
   color: #999999;
   text-decoration: none;
   background-color: transparent;
   cursor: not-allowed;
 }
 /* line 48, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+.nav .open > a, .navbar .sub-navbar .open > a, .nav .open > a:hover, .navbar .sub-navbar .open > a:hover, .nav .open > a:focus, .navbar .sub-navbar .open > a:focus {
   background-color: #eeeeee;
   border-color: #428bca;
 }
 /* line 52, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav .open > a .caret, .nav .open > a:hover .caret, .nav .open > a:focus .caret {
+.nav .open > a .caret, .navbar .sub-navbar .open > a .caret, .nav .open > a .navbar .main-nav .active:after, .navbar .main-nav .nav .open > a .active:after, .navbar .sub-navbar .open > a .main-nav .active:after, .navbar .main-nav .sub-navbar .open > a .active:after, .nav .open > a:hover .caret, .navbar .sub-navbar .open > a:hover .caret, .nav .open > a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav .open > a:hover .active:after, .navbar .sub-navbar .open > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar .open > a:hover .active:after, .nav .open > a:focus .caret, .navbar .sub-navbar .open > a:focus .caret, .nav .open > a:focus .navbar .main-nav .active:after, .navbar .main-nav .nav .open > a:focus .active:after, .navbar .sub-navbar .open > a:focus .main-nav .active:after, .navbar .main-nav .sub-navbar .open > a:focus .active:after {
   border-top-color: #2a6496;
   border-bottom-color: #2a6496;
 }
 /* line 64, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav .nav-divider {
+.nav .nav-divider, .navbar .sub-navbar .nav-divider {
   height: 1px;
   margin: 9px 0;
   overflow: hidden;
   background-color: #e5e5e5;
 }
 /* line 71, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav > li > a > img {
+.nav > li > a > img, .navbar .sub-navbar > li > a > img {
   max-width: none;
 }
 
@@ -4713,7 +4724,7 @@ input[type="button"].btn-block {
   background-color: #428bca;
 }
 /* line 142, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav-pills > li.active > a .caret, .nav-pills > li.active > a:hover .caret, .nav-pills > li.active > a:focus .caret {
+.nav-pills > li.active > a .caret, .nav-pills > li.active > a .navbar .main-nav .active:after, .navbar .main-nav .nav-pills > li.active > a .active:after, .nav-pills > li.active > a:hover .caret, .nav-pills > li.active > a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav-pills > li.active > a:hover .active:after, .nav-pills > li.active > a:focus .caret, .nav-pills > li.active > a:focus .navbar .main-nav .active:after, .navbar .main-nav .nav-pills > li.active > a:focus .active:after {
   border-top-color: white;
   border-bottom-color: white;
 }
@@ -4801,13 +4812,13 @@ input[type="button"].btn-block {
 }
 
 /* line 247, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav .caret {
+.nav .caret, .navbar .sub-navbar .caret, .nav .navbar .main-nav .active:after, .navbar .main-nav .nav .active:after, .navbar .sub-navbar .main-nav .active:after, .navbar .main-nav .sub-navbar .active:after {
   border-top-color: #428bca;
   border-bottom-color: #428bca;
 }
 
 /* line 251, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav a:hover .caret {
+.nav a:hover .caret, .navbar .sub-navbar a:hover .caret, .nav a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav a:hover .active:after, .navbar .sub-navbar a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar a:hover .active:after {
   border-top-color: #2a6496;
   border-bottom-color: #2a6496;
 }
@@ -4906,11 +4917,11 @@ input[type="button"].btn-block {
     overflow-y: auto;
   }
   /* line 81, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-collapse .navbar-nav.navbar-left:first-child {
+  .navbar-collapse .navbar-nav.navbar-left:first-child, .navbar-collapse .navbar .navbar-left.sub-navbar:first-child, .navbar .navbar-collapse .navbar-left.sub-navbar:first-child {
     margin-left: -15px;
   }
   /* line 84, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-collapse .navbar-nav.navbar-right:last-child {
+  .navbar-collapse .navbar-nav.navbar-right:last-child, .navbar-collapse .navbar .navbar-right.sub-navbar:last-child, .navbar .navbar-collapse .navbar-right.sub-navbar:last-child {
     margin-right: -15px;
   }
   /* line 87, ../../app/components/bootstrap-sass/lib/_navbar.scss */
@@ -4935,13 +4946,13 @@ input[type="button"].btn-block {
 }
 
 /* line 117, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-static-top {
+.navbar-static-top, .navbar .sub-navbar-back {
   z-index: 1000;
   border-width: 0 0 1px;
 }
 @media (min-width: 768px) {
   /* line 117, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-static-top {
+  .navbar-static-top, .navbar .sub-navbar-back {
     border-radius: 0;
   }
 }
@@ -5024,18 +5035,18 @@ input[type="button"].btn-block {
 }
 
 /* line 208, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-nav {
+.navbar-nav, .navbar .sub-navbar {
   margin: 7.5px -15px;
 }
 /* line 211, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-nav > li > a {
+.navbar-nav > li > a, .navbar .sub-navbar > li > a {
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 20px;
 }
 @media (max-width: 767px) {
   /* line 219, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-nav .open .dropdown-menu {
+  .navbar-nav .open .dropdown-menu, .navbar .sub-navbar .open .dropdown-menu {
     position: static;
     float: none;
     width: auto;
@@ -5045,31 +5056,32 @@ input[type="button"].btn-block {
     box-shadow: none;
   }
   /* line 228, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-nav .open .dropdown-menu > li > a,
-  .navbar-nav .open .dropdown-menu .dropdown-header {
+  .navbar-nav .open .dropdown-menu > li > a, .navbar .sub-navbar .open .dropdown-menu > li > a,
+  .navbar-nav .open .dropdown-menu .dropdown-header,
+  .navbar .sub-navbar .open .dropdown-menu .dropdown-header {
     padding: 5px 15px 5px 25px;
   }
   /* line 231, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-nav .open .dropdown-menu > li > a {
+  .navbar-nav .open .dropdown-menu > li > a, .navbar .sub-navbar .open .dropdown-menu > li > a {
     line-height: 20px;
   }
   /* line 234, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-menu > li > a:focus {
+  .navbar-nav .open .dropdown-menu > li > a:hover, .navbar .sub-navbar .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-menu > li > a:focus, .navbar .sub-navbar .open .dropdown-menu > li > a:focus {
     background-image: none;
   }
 }
 @media (min-width: 768px) {
   /* line 208, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-nav {
+  .navbar-nav, .navbar .sub-navbar {
     float: left;
     margin: 0;
   }
   /* line 246, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-nav > li {
+  .navbar-nav > li, .navbar .sub-navbar > li {
     float: left;
   }
   /* line 248, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-nav > li > a {
+  .navbar-nav > li > a, .navbar .sub-navbar > li > a {
     padding-top: 15px;
     padding-bottom: 15px;
   }
@@ -5119,21 +5131,22 @@ input[type="button"].btn-block {
 }
 
 /* line 316, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-nav > li > .dropdown-menu {
+.navbar-nav > li > .dropdown-menu, .navbar .sub-navbar > li > .dropdown-menu {
   margin-top: 0;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
 
 /* line 321, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
+.navbar-fixed-bottom .navbar-nav > li > .dropdown-menu, .navbar-fixed-bottom .navbar .sub-navbar > li > .dropdown-menu, .navbar .navbar-fixed-bottom .sub-navbar > li > .dropdown-menu {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
 /* line 327, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-nav.pull-right > li > .dropdown-menu,
-.navbar-nav > li > .dropdown-menu.pull-right {
+.navbar-nav.pull-right > li > .dropdown-menu, .navbar .pull-right.sub-navbar > li > .dropdown-menu,
+.navbar-nav > li > .dropdown-menu.pull-right,
+.navbar .sub-navbar > li > .dropdown-menu.pull-right {
   left: auto;
   right: 0;
 }
@@ -5159,107 +5172,122 @@ input[type="button"].btn-block {
 }
 
 /* line 360, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default {
+.navbar-default, .navbar .sub-navbar-back {
   background-color: #f8f8f8;
   border-color: #e7e7e7;
 }
 /* line 364, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-brand {
+.navbar-default .navbar-brand, .navbar .sub-navbar-back .navbar-brand {
   color: #777777;
 }
 /* line 367, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+.navbar-default .navbar-brand:hover, .navbar .sub-navbar-back .navbar-brand:hover, .navbar-default .navbar-brand:focus, .navbar .sub-navbar-back .navbar-brand:focus {
   color: #5e5e5e;
   background-color: transparent;
 }
 /* line 373, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-text {
+.navbar-default .navbar-text, .navbar .sub-navbar-back .navbar-text {
   color: #777777;
 }
 /* line 378, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > li > a {
+.navbar-default .navbar-nav > li > a, .navbar .sub-navbar-back .navbar-nav > li > a, .navbar-default .navbar .sub-navbar > li > a, .navbar .navbar-default .sub-navbar > li > a, .navbar .sub-navbar-back .sub-navbar > li > a {
   color: #777777;
 }
 /* line 382, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+.navbar-default .navbar-nav > li > a:hover, .navbar .sub-navbar-back .navbar-nav > li > a:hover, .navbar-default .navbar .sub-navbar > li > a:hover, .navbar .navbar-default .sub-navbar > li > a:hover, .navbar .sub-navbar-back .sub-navbar > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar .sub-navbar-back .navbar-nav > li > a:focus, .navbar-default .navbar .sub-navbar > li > a:focus, .navbar .navbar-default .sub-navbar > li > a:focus, .navbar .sub-navbar-back .sub-navbar > li > a:focus {
   color: #333333;
   background-color: transparent;
 }
 /* line 390, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+.navbar-default .navbar-nav > .active > a, .navbar .sub-navbar-back .navbar-nav > .active > a, .navbar-default .navbar .sub-navbar > .active > a, .navbar .navbar-default .sub-navbar > .active > a, .navbar .sub-navbar-back .sub-navbar > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar .sub-navbar-back .navbar-nav > .active > a:hover, .navbar-default .navbar .sub-navbar > .active > a:hover, .navbar .navbar-default .sub-navbar > .active > a:hover, .navbar .sub-navbar-back .sub-navbar > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar .sub-navbar-back .navbar-nav > .active > a:focus, .navbar-default .navbar .sub-navbar > .active > a:focus, .navbar .navbar-default .sub-navbar > .active > a:focus, .navbar .sub-navbar-back .sub-navbar > .active > a:focus {
   color: #555555;
   background-color: #e7e7e7;
 }
 /* line 398, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > .disabled > a, .navbar-default .navbar-nav > .disabled > a:hover, .navbar-default .navbar-nav > .disabled > a:focus {
+.navbar-default .navbar-nav > .disabled > a, .navbar .sub-navbar-back .navbar-nav > .disabled > a, .navbar-default .navbar .sub-navbar > .disabled > a, .navbar .navbar-default .sub-navbar > .disabled > a, .navbar .sub-navbar-back .sub-navbar > .disabled > a, .navbar-default .navbar-nav > .disabled > a:hover, .navbar .sub-navbar-back .navbar-nav > .disabled > a:hover, .navbar-default .navbar .sub-navbar > .disabled > a:hover, .navbar .navbar-default .sub-navbar > .disabled > a:hover, .navbar .sub-navbar-back .sub-navbar > .disabled > a:hover, .navbar-default .navbar-nav > .disabled > a:focus, .navbar .sub-navbar-back .navbar-nav > .disabled > a:focus, .navbar-default .navbar .sub-navbar > .disabled > a:focus, .navbar .navbar-default .sub-navbar > .disabled > a:focus, .navbar .sub-navbar-back .sub-navbar > .disabled > a:focus {
   color: #cccccc;
   background-color: transparent;
 }
 /* line 405, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-toggle {
+.navbar-default .navbar-toggle, .navbar .sub-navbar-back .navbar-toggle {
   border-color: #dddddd;
 }
 /* line 408, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+.navbar-default .navbar-toggle:hover, .navbar .sub-navbar-back .navbar-toggle:hover, .navbar-default .navbar-toggle:focus, .navbar .sub-navbar-back .navbar-toggle:focus {
   background-color: #dddddd;
 }
 /* line 411, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-toggle .icon-bar {
+.navbar-default .navbar-toggle .icon-bar, .navbar .sub-navbar-back .navbar-toggle .icon-bar {
   background-color: #cccccc;
 }
 /* line 417, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-collapse,
-.navbar-default .navbar-form {
+.navbar-default .navbar-collapse, .navbar .sub-navbar-back .navbar-collapse,
+.navbar-default .navbar-form,
+.navbar .sub-navbar-back .navbar-form {
   border-color: #e7e7e7;
 }
 /* line 425, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > .dropdown > a:hover .caret,
-.navbar-default .navbar-nav > .dropdown > a:focus .caret {
+.navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar .sub-navbar-back .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar .sub-navbar > .dropdown > a:hover .caret, .navbar .navbar-default .sub-navbar > .dropdown > a:hover .caret, .navbar .sub-navbar-back .sub-navbar > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .dropdown > a:hover .active:after, .navbar .sub-navbar-back .navbar-nav > .dropdown > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .dropdown > a:hover .active:after, .navbar-default .navbar .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .dropdown > a:hover .active:after, .navbar .navbar-default .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .dropdown > a:hover .active:after, .navbar .sub-navbar-back .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .dropdown > a:hover .active:after,
+.navbar-default .navbar-nav > .dropdown > a:focus .caret,
+.navbar .sub-navbar-back .navbar-nav > .dropdown > a:focus .caret,
+.navbar-default .navbar .sub-navbar > .dropdown > a:focus .caret,
+.navbar .navbar-default .sub-navbar > .dropdown > a:focus .caret,
+.navbar .sub-navbar-back .sub-navbar > .dropdown > a:focus .caret,
+.navbar-default .navbar-nav > .dropdown > a:focus .navbar .main-nav .active:after,
+.navbar .main-nav .navbar-default .navbar-nav > .dropdown > a:focus .active:after,
+.navbar .sub-navbar-back .navbar-nav > .dropdown > a:focus .main-nav .active:after,
+.navbar .main-nav .sub-navbar-back .navbar-nav > .dropdown > a:focus .active:after,
+.navbar-default .navbar .sub-navbar > .dropdown > a:focus .main-nav .active:after,
+.navbar-default .navbar .main-nav .sub-navbar > .dropdown > a:focus .active:after,
+.navbar .navbar-default .sub-navbar > .dropdown > a:focus .main-nav .active:after,
+.navbar .main-nav .navbar-default .sub-navbar > .dropdown > a:focus .active:after,
+.navbar .sub-navbar-back .sub-navbar > .dropdown > a:focus .main-nav .active:after,
+.navbar .main-nav .sub-navbar-back .sub-navbar > .dropdown > a:focus .active:after {
   border-top-color: #333333;
   border-bottom-color: #333333;
 }
 /* line 434, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+.navbar-default .navbar-nav > .open > a, .navbar .sub-navbar-back .navbar-nav > .open > a, .navbar-default .navbar .sub-navbar > .open > a, .navbar .navbar-default .sub-navbar > .open > a, .navbar .sub-navbar-back .sub-navbar > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar .sub-navbar-back .navbar-nav > .open > a:hover, .navbar-default .navbar .sub-navbar > .open > a:hover, .navbar .navbar-default .sub-navbar > .open > a:hover, .navbar .sub-navbar-back .sub-navbar > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, .navbar .sub-navbar-back .navbar-nav > .open > a:focus, .navbar-default .navbar .sub-navbar > .open > a:focus, .navbar .navbar-default .sub-navbar > .open > a:focus, .navbar .sub-navbar-back .sub-navbar > .open > a:focus {
   background-color: #e7e7e7;
   color: #555555;
 }
 /* line 437, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > .open > a .caret, .navbar-default .navbar-nav > .open > a:hover .caret, .navbar-default .navbar-nav > .open > a:focus .caret {
+.navbar-default .navbar-nav > .open > a .caret, .navbar .sub-navbar-back .navbar-nav > .open > a .caret, .navbar-default .navbar .sub-navbar > .open > a .caret, .navbar .navbar-default .sub-navbar > .open > a .caret, .navbar .sub-navbar-back .sub-navbar > .open > a .caret, .navbar-default .navbar-nav > .open > a .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .open > a .active:after, .navbar .sub-navbar-back .navbar-nav > .open > a .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .open > a .active:after, .navbar-default .navbar .sub-navbar > .open > a .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .open > a .active:after, .navbar .navbar-default .sub-navbar > .open > a .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .open > a .active:after, .navbar .sub-navbar-back .sub-navbar > .open > a .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .open > a .active:after, .navbar-default .navbar-nav > .open > a:hover .caret, .navbar .sub-navbar-back .navbar-nav > .open > a:hover .caret, .navbar-default .navbar .sub-navbar > .open > a:hover .caret, .navbar .navbar-default .sub-navbar > .open > a:hover .caret, .navbar .sub-navbar-back .sub-navbar > .open > a:hover .caret, .navbar-default .navbar-nav > .open > a:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .open > a:hover .active:after, .navbar .sub-navbar-back .navbar-nav > .open > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .open > a:hover .active:after, .navbar-default .navbar .sub-navbar > .open > a:hover .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .open > a:hover .active:after, .navbar .navbar-default .sub-navbar > .open > a:hover .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .open > a:hover .active:after, .navbar .sub-navbar-back .sub-navbar > .open > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .open > a:hover .active:after, .navbar-default .navbar-nav > .open > a:focus .caret, .navbar .sub-navbar-back .navbar-nav > .open > a:focus .caret, .navbar-default .navbar .sub-navbar > .open > a:focus .caret, .navbar .navbar-default .sub-navbar > .open > a:focus .caret, .navbar .sub-navbar-back .sub-navbar > .open > a:focus .caret, .navbar-default .navbar-nav > .open > a:focus .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .open > a:focus .active:after, .navbar .sub-navbar-back .navbar-nav > .open > a:focus .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .open > a:focus .active:after, .navbar-default .navbar .sub-navbar > .open > a:focus .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .open > a:focus .active:after, .navbar .navbar-default .sub-navbar > .open > a:focus .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .open > a:focus .active:after, .navbar .sub-navbar-back .sub-navbar > .open > a:focus .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .open > a:focus .active:after {
   border-top-color: #555555;
   border-bottom-color: #555555;
 }
 /* line 443, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > .dropdown > a .caret {
+.navbar-default .navbar-nav > .dropdown > a .caret, .navbar .sub-navbar-back .navbar-nav > .dropdown > a .caret, .navbar-default .navbar .sub-navbar > .dropdown > a .caret, .navbar .navbar-default .sub-navbar > .dropdown > a .caret, .navbar .sub-navbar-back .sub-navbar > .dropdown > a .caret, .navbar-default .navbar-nav > .dropdown > a .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .dropdown > a .active:after, .navbar .sub-navbar-back .navbar-nav > .dropdown > a .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .dropdown > a .active:after, .navbar-default .navbar .sub-navbar > .dropdown > a .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .dropdown > a .active:after, .navbar .navbar-default .sub-navbar > .dropdown > a .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .dropdown > a .active:after, .navbar .sub-navbar-back .sub-navbar > .dropdown > a .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .dropdown > a .active:after {
   border-top-color: #777777;
   border-bottom-color: #777777;
 }
 @media (max-width: 767px) {
   /* line 452, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > li > a, .navbar-default .navbar .sub-navbar .open .dropdown-menu > li > a, .navbar .navbar-default .sub-navbar .open .dropdown-menu > li > a, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > li > a {
     color: #777777;
   }
   /* line 455, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar .sub-navbar .open .dropdown-menu > li > a:hover, .navbar .navbar-default .sub-navbar .open .dropdown-menu > li > a:hover, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > li > a:focus, .navbar-default .navbar .sub-navbar .open .dropdown-menu > li > a:focus, .navbar .navbar-default .sub-navbar .open .dropdown-menu > li > a:focus, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > li > a:focus {
     color: #333333;
     background-color: transparent;
   }
   /* line 463, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .active > a, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .active > a, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .active > a:focus, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .active > a:focus, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .active > a:focus, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .active > a:focus {
     color: #555555;
     background-color: #e7e7e7;
   }
   /* line 471, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .disabled > a, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .disabled > a, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .disabled > a, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .disabled > a:focus, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .disabled > a:focus, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .disabled > a:focus, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .disabled > a:focus {
     color: #cccccc;
     background-color: transparent;
   }
 }
 /* line 485, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-link {
+.navbar-default .navbar-link, .navbar .sub-navbar-back .navbar-link {
   color: #777777;
 }
 /* line 487, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-link:hover {
+.navbar-default .navbar-link:hover, .navbar .sub-navbar-back .navbar-link:hover {
   color: #333333;
 }
 
@@ -5282,21 +5310,21 @@ input[type="button"].btn-block {
   color: #999999;
 }
 /* line 514, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > li > a {
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar .sub-navbar > li > a, .navbar .navbar-inverse .sub-navbar > li > a {
   color: #999999;
 }
 /* line 518, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar .sub-navbar > li > a:hover, .navbar .navbar-inverse .sub-navbar > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar .sub-navbar > li > a:focus, .navbar .navbar-inverse .sub-navbar > li > a:focus {
   color: white;
   background-color: transparent;
 }
 /* line 526, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar .sub-navbar > .active > a, .navbar .navbar-inverse .sub-navbar > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar .sub-navbar > .active > a:hover, .navbar .navbar-inverse .sub-navbar > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar .sub-navbar > .active > a:focus, .navbar .navbar-inverse .sub-navbar > .active > a:focus {
   color: white;
   background-color: #090909;
 }
 /* line 534, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > .disabled > a, .navbar-inverse .navbar-nav > .disabled > a:hover, .navbar-inverse .navbar-nav > .disabled > a:focus {
+.navbar-inverse .navbar-nav > .disabled > a, .navbar-inverse .navbar .sub-navbar > .disabled > a, .navbar .navbar-inverse .sub-navbar > .disabled > a, .navbar-inverse .navbar-nav > .disabled > a:hover, .navbar-inverse .navbar .sub-navbar > .disabled > a:hover, .navbar .navbar-inverse .sub-navbar > .disabled > a:hover, .navbar-inverse .navbar-nav > .disabled > a:focus, .navbar-inverse .navbar .sub-navbar > .disabled > a:focus, .navbar .navbar-inverse .sub-navbar > .disabled > a:focus {
   color: #444444;
   background-color: transparent;
 }
@@ -5318,46 +5346,46 @@ input[type="button"].btn-block {
   border-color: #101010;
 }
 /* line 563, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar .sub-navbar > .open > a, .navbar .navbar-inverse .sub-navbar > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar .sub-navbar > .open > a:hover, .navbar .navbar-inverse .sub-navbar > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar .sub-navbar > .open > a:focus, .navbar .navbar-inverse .sub-navbar > .open > a:focus {
   background-color: #090909;
   color: white;
 }
 /* line 568, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > .dropdown > a:hover .caret {
+.navbar-inverse .navbar-nav > .dropdown > a:hover .caret, .navbar-inverse .navbar .sub-navbar > .dropdown > a:hover .caret, .navbar .navbar-inverse .sub-navbar > .dropdown > a:hover .caret, .navbar-inverse .navbar-nav > .dropdown > a:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .dropdown > a:hover .active:after, .navbar-inverse .navbar .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .dropdown > a:hover .active:after, .navbar .navbar-inverse .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .dropdown > a:hover .active:after {
   border-top-color: white;
   border-bottom-color: white;
 }
 /* line 572, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > .dropdown > a .caret {
+.navbar-inverse .navbar-nav > .dropdown > a .caret, .navbar-inverse .navbar .sub-navbar > .dropdown > a .caret, .navbar .navbar-inverse .sub-navbar > .dropdown > a .caret, .navbar-inverse .navbar-nav > .dropdown > a .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .dropdown > a .active:after, .navbar-inverse .navbar .sub-navbar > .dropdown > a .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .dropdown > a .active:after, .navbar .navbar-inverse .sub-navbar > .dropdown > a .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .dropdown > a .active:after {
   border-top-color: #999999;
   border-bottom-color: #999999;
 }
 /* line 580, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > .open > a .caret, .navbar-inverse .navbar-nav > .open > a:hover .caret, .navbar-inverse .navbar-nav > .open > a:focus .caret {
+.navbar-inverse .navbar-nav > .open > a .caret, .navbar-inverse .navbar .sub-navbar > .open > a .caret, .navbar .navbar-inverse .sub-navbar > .open > a .caret, .navbar-inverse .navbar-nav > .open > a .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .open > a .active:after, .navbar-inverse .navbar .sub-navbar > .open > a .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .open > a .active:after, .navbar .navbar-inverse .sub-navbar > .open > a .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .open > a .active:after, .navbar-inverse .navbar-nav > .open > a:hover .caret, .navbar-inverse .navbar .sub-navbar > .open > a:hover .caret, .navbar .navbar-inverse .sub-navbar > .open > a:hover .caret, .navbar-inverse .navbar-nav > .open > a:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .open > a:hover .active:after, .navbar-inverse .navbar .sub-navbar > .open > a:hover .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .open > a:hover .active:after, .navbar .navbar-inverse .sub-navbar > .open > a:hover .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .open > a:hover .active:after, .navbar-inverse .navbar-nav > .open > a:focus .caret, .navbar-inverse .navbar .sub-navbar > .open > a:focus .caret, .navbar .navbar-inverse .sub-navbar > .open > a:focus .caret, .navbar-inverse .navbar-nav > .open > a:focus .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .open > a:focus .active:after, .navbar-inverse .navbar .sub-navbar > .open > a:focus .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .open > a:focus .active:after, .navbar .navbar-inverse .sub-navbar > .open > a:focus .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .open > a:focus .active:after {
   border-top-color: white;
   border-bottom-color: white;
 }
 @media (max-width: 767px) {
   /* line 590, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .dropdown-header, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .dropdown-header {
     border-color: #090909;
   }
   /* line 593, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > li > a, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > li > a {
     color: #999999;
   }
   /* line 596, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > li > a:hover, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > li > a:focus, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > li > a:focus {
     color: white;
     background-color: transparent;
   }
   /* line 604, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .active > a, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .active > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .active > a:focus, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .active > a:focus {
     color: white;
     background-color: #090909;
   }
   /* line 612, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .disabled > a, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .disabled > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .disabled > a:focus, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .disabled > a:focus {
     color: #444444;
     background-color: transparent;
   }
@@ -6024,13 +6052,13 @@ a.thumbnail.active {
 }
 
 /* line 8, ../../app/components/bootstrap-sass/lib/_list-group.scss */
-.list-group, .sub-nav {
+.list-group, .side-nav .side-nav-menu {
   margin-bottom: 20px;
   padding-left: 0;
 }
 
 /* line 17, ../../app/components/bootstrap-sass/lib/_list-group.scss */
-.list-group-item, .sub-nav li {
+.list-group-item, .side-nav h4, .side-nav .side-nav-menu li {
   position: relative;
   display: block;
   padding: 10px 15px;
@@ -6039,22 +6067,22 @@ a.thumbnail.active {
   border: 1px solid #dddddd;
 }
 /* line 27, ../../app/components/bootstrap-sass/lib/_list-group.scss */
-.list-group-item:first-child, .sub-nav li:first-child {
+.list-group-item:first-child, .side-nav h4:first-child, .side-nav .side-nav-menu li:first-child {
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
 }
 /* line 30, ../../app/components/bootstrap-sass/lib/_list-group.scss */
-.list-group-item:last-child, .sub-nav li:last-child {
+.list-group-item:last-child, .side-nav h4:last-child, .side-nav .side-nav-menu li:last-child {
   margin-bottom: 0;
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
 /* line 36, ../../app/components/bootstrap-sass/lib/_list-group.scss */
-.list-group-item > .badge, .sub-nav li > .badge {
+.list-group-item > .badge, .side-nav h4 > .badge, .side-nav .side-nav-menu li > .badge {
   float: right;
 }
 /* line 39, ../../app/components/bootstrap-sass/lib/_list-group.scss */
-.list-group-item > .badge + .badge, .sub-nav li > .badge + .badge {
+.list-group-item > .badge + .badge, .side-nav h4 > .badge + .badge, .side-nav .side-nav-menu li > .badge + .badge {
   margin-right: 5px;
 }
 
@@ -6126,25 +6154,25 @@ a.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .
 }
 
 /* line 28, ../../app/components/bootstrap-sass/lib/_panels.scss */
-.panel > .list-group, .info-box .stat > .list-group, .panel > .sub-nav, .info-box .stat > .sub-nav {
+.panel > .list-group, .info-box .stat > .list-group, .side-nav .panel > .side-nav-menu, .info-box .side-nav .stat > .side-nav-menu, .side-nav .info-box .stat > .side-nav-menu {
   margin-bottom: 0;
 }
 /* line 31, ../../app/components/bootstrap-sass/lib/_panels.scss */
-.panel > .list-group .list-group-item, .info-box .stat > .list-group .list-group-item, .panel > .sub-nav .list-group-item, .info-box .stat > .sub-nav .list-group-item, .sub-nav .panel > .list-group li, .sub-nav .info-box .stat > .list-group li, .panel > .sub-nav li, .info-box .stat > .sub-nav li {
+.panel > .list-group .list-group-item, .info-box .stat > .list-group .list-group-item, .side-nav .panel > .side-nav-menu .list-group-item, .info-box .side-nav .stat > .side-nav-menu .list-group-item, .side-nav .info-box .stat > .side-nav-menu .list-group-item, .panel > .list-group .side-nav h4, .side-nav .panel > .list-group h4, .info-box .stat > .list-group .side-nav h4, .side-nav .info-box .stat > .list-group h4, .side-nav .panel > .side-nav-menu h4, .info-box .side-nav .stat > .side-nav-menu h4, .side-nav .info-box .stat > .side-nav-menu h4, .panel > .list-group .side-nav .side-nav-menu li, .side-nav .side-nav-menu .panel > .list-group li, .info-box .stat > .list-group .side-nav .side-nav-menu li, .side-nav .side-nav-menu .info-box .stat > .list-group li, .side-nav .panel > .side-nav-menu li, .info-box .side-nav .stat > .side-nav-menu li, .side-nav .info-box .stat > .side-nav-menu li {
   border-width: 1px 0;
 }
 /* line 35, ../../app/components/bootstrap-sass/lib/_panels.scss */
-.panel > .list-group .list-group-item:first-child, .info-box .stat > .list-group .list-group-item:first-child, .panel > .sub-nav .list-group-item:first-child, .info-box .stat > .sub-nav .list-group-item:first-child, .sub-nav .panel > .list-group li:first-child, .sub-nav .info-box .stat > .list-group li:first-child, .panel > .sub-nav li:first-child, .info-box .stat > .sub-nav li:first-child {
+.panel > .list-group .list-group-item:first-child, .info-box .stat > .list-group .list-group-item:first-child, .side-nav .panel > .side-nav-menu .list-group-item:first-child, .info-box .side-nav .stat > .side-nav-menu .list-group-item:first-child, .side-nav .info-box .stat > .side-nav-menu .list-group-item:first-child, .panel > .list-group .side-nav h4:first-child, .side-nav .panel > .list-group h4:first-child, .info-box .stat > .list-group .side-nav h4:first-child, .side-nav .info-box .stat > .list-group h4:first-child, .side-nav .panel > .side-nav-menu h4:first-child, .info-box .side-nav .stat > .side-nav-menu h4:first-child, .side-nav .info-box .stat > .side-nav-menu h4:first-child, .panel > .list-group .side-nav .side-nav-menu li:first-child, .side-nav .side-nav-menu .panel > .list-group li:first-child, .info-box .stat > .list-group .side-nav .side-nav-menu li:first-child, .side-nav .side-nav-menu .info-box .stat > .list-group li:first-child, .side-nav .panel > .side-nav-menu li:first-child, .info-box .side-nav .stat > .side-nav-menu li:first-child, .side-nav .info-box .stat > .side-nav-menu li:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
 /* line 39, ../../app/components/bootstrap-sass/lib/_panels.scss */
-.panel > .list-group .list-group-item:last-child, .info-box .stat > .list-group .list-group-item:last-child, .panel > .sub-nav .list-group-item:last-child, .info-box .stat > .sub-nav .list-group-item:last-child, .sub-nav .panel > .list-group li:last-child, .sub-nav .info-box .stat > .list-group li:last-child, .panel > .sub-nav li:last-child, .info-box .stat > .sub-nav li:last-child {
+.panel > .list-group .list-group-item:last-child, .info-box .stat > .list-group .list-group-item:last-child, .side-nav .panel > .side-nav-menu .list-group-item:last-child, .info-box .side-nav .stat > .side-nav-menu .list-group-item:last-child, .side-nav .info-box .stat > .side-nav-menu .list-group-item:last-child, .panel > .list-group .side-nav h4:last-child, .side-nav .panel > .list-group h4:last-child, .info-box .stat > .list-group .side-nav h4:last-child, .side-nav .info-box .stat > .list-group h4:last-child, .side-nav .panel > .side-nav-menu h4:last-child, .info-box .side-nav .stat > .side-nav-menu h4:last-child, .side-nav .info-box .stat > .side-nav-menu h4:last-child, .panel > .list-group .side-nav .side-nav-menu li:last-child, .side-nav .side-nav-menu .panel > .list-group li:last-child, .info-box .stat > .list-group .side-nav .side-nav-menu li:last-child, .side-nav .side-nav-menu .info-box .stat > .list-group li:last-child, .side-nav .panel > .side-nav-menu li:last-child, .info-box .side-nav .stat > .side-nav-menu li:last-child, .side-nav .info-box .stat > .side-nav-menu li:last-child {
   border-bottom: 0;
 }
 
 /* line 47, ../../app/components/bootstrap-sass/lib/_panels.scss */
-.panel-heading + .list-group .list-group-item:first-child, .panel-heading + .sub-nav .list-group-item:first-child, .sub-nav .panel-heading + .list-group li:first-child, .panel-heading + .sub-nav li:first-child {
+.panel-heading + .list-group .list-group-item:first-child, .side-nav .panel-heading + .side-nav-menu .list-group-item:first-child, .panel-heading + .list-group .side-nav h4:first-child, .side-nav .panel-heading + .list-group h4:first-child, .side-nav .panel-heading + .side-nav-menu h4:first-child, .panel-heading + .list-group .side-nav .side-nav-menu li:first-child, .side-nav .side-nav-menu .panel-heading + .list-group li:first-child, .side-nav .panel-heading + .side-nav-menu li:first-child {
   border-top-width: 0;
 }
 
@@ -6385,7 +6413,7 @@ a.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .
   border-top-color: #dddddd;
 }
 /* line 404, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.panel-default > .panel-heading > .dropdown .caret, .info-box .stat > .panel-heading > .dropdown .caret {
+.panel-default > .panel-heading > .dropdown .caret, .info-box .stat > .panel-heading > .dropdown .caret, .panel-default > .panel-heading > .dropdown .navbar .main-nav .active:after, .navbar .main-nav .panel-default > .panel-heading > .dropdown .active:after, .info-box .stat > .panel-heading > .dropdown .navbar .main-nav .active:after, .navbar .main-nav .info-box .stat > .panel-heading > .dropdown .active:after {
   border-color: #333333 transparent;
 }
 /* line 409, ../../app/components/bootstrap-sass/lib/_mixins.scss */
@@ -6408,7 +6436,7 @@ a.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .
   border-top-color: #428bca;
 }
 /* line 404, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.panel-primary > .panel-heading > .dropdown .caret {
+.panel-primary > .panel-heading > .dropdown .caret, .panel-primary > .panel-heading > .dropdown .navbar .main-nav .active:after, .navbar .main-nav .panel-primary > .panel-heading > .dropdown .active:after {
   border-color: white transparent;
 }
 /* line 409, ../../app/components/bootstrap-sass/lib/_mixins.scss */
@@ -6431,7 +6459,7 @@ a.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .
   border-top-color: #d6e9c6;
 }
 /* line 404, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.panel-success > .panel-heading > .dropdown .caret {
+.panel-success > .panel-heading > .dropdown .caret, .panel-success > .panel-heading > .dropdown .navbar .main-nav .active:after, .navbar .main-nav .panel-success > .panel-heading > .dropdown .active:after {
   border-color: #468847 transparent;
 }
 /* line 409, ../../app/components/bootstrap-sass/lib/_mixins.scss */
@@ -6454,7 +6482,7 @@ a.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .
   border-top-color: #faebcc;
 }
 /* line 404, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.panel-warning > .panel-heading > .dropdown .caret {
+.panel-warning > .panel-heading > .dropdown .caret, .panel-warning > .panel-heading > .dropdown .navbar .main-nav .active:after, .navbar .main-nav .panel-warning > .panel-heading > .dropdown .active:after {
   border-color: #c09853 transparent;
 }
 /* line 409, ../../app/components/bootstrap-sass/lib/_mixins.scss */
@@ -6477,7 +6505,7 @@ a.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .
   border-top-color: #ebccd1;
 }
 /* line 404, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.panel-danger > .panel-heading > .dropdown .caret {
+.panel-danger > .panel-heading > .dropdown .caret, .panel-danger > .panel-heading > .dropdown .navbar .main-nav .active:after, .navbar .main-nav .panel-danger > .panel-heading > .dropdown .active:after {
   border-color: #b94a48 transparent;
 }
 /* line 409, ../../app/components/bootstrap-sass/lib/_mixins.scss */
@@ -6500,7 +6528,7 @@ a.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .
   border-top-color: #bce8f1;
 }
 /* line 404, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.panel-info > .panel-heading > .dropdown .caret {
+.panel-info > .panel-heading > .dropdown .caret, .panel-info > .panel-heading > .dropdown .navbar .main-nav .active:after, .navbar .main-nav .panel-info > .panel-heading > .dropdown .active:after {
   border-color: #3a87ad transparent;
 }
 /* line 409, ../../app/components/bootstrap-sass/lib/_mixins.scss */
@@ -7808,67 +7836,88 @@ td.visible-print {
     display: none !important;
   }
 }
+/* line 20, ../../app/styles/ntd-admin-ui.scss */
+h1 {
+  font: 24px/30px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
+}
+
+/* line 24, ../../app/styles/ntd-admin-ui.scss */
+body {
+  font: 12px/18px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
+}
+
+/* line 28, ../../app/styles/ntd-admin-ui.scss */
+.navbar {
+  font: 14px/20px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
+}
+
+/* line 32, ../../app/styles/ntd-admin-ui.scss */
+.glyphicon {
+  top: 2px;
+  line-height: 1.2;
+}
+
 @-webkit-keyframes rotate {
-  /* line 73, ../../app/styles/ntd-admin-ui.scss */
+  /* line 70, ../../app/styles/ntd-admin-ui.scss */
   from {
     -webkit-transform: rotate(0deg);
   }
 
-  /* line 74, ../../app/styles/ntd-admin-ui.scss */
+  /* line 71, ../../app/styles/ntd-admin-ui.scss */
   to {
     -webkit-transform: rotate(360deg);
   }
 }
 
 @-webkit-keyframes rotate {
-  /* line 93, ../../app/styles/ntd-admin-ui.scss */
+  /* line 90, ../../app/styles/ntd-admin-ui.scss */
   from {
     -webkit-transform: rotate(0deg);
   }
 
-  /* line 94, ../../app/styles/ntd-admin-ui.scss */
+  /* line 91, ../../app/styles/ntd-admin-ui.scss */
   to {
     -webkit-transform: rotate(360deg);
   }
 }
 
 @-moz-keyframes rotate {
-  /* line 93, ../../app/styles/ntd-admin-ui.scss */
+  /* line 90, ../../app/styles/ntd-admin-ui.scss */
   from {
     -webkit-transform: rotate(0deg);
   }
 
-  /* line 94, ../../app/styles/ntd-admin-ui.scss */
+  /* line 91, ../../app/styles/ntd-admin-ui.scss */
   to {
     -webkit-transform: rotate(360deg);
   }
 }
 
 @-ms-keyframes rotate {
-  /* line 93, ../../app/styles/ntd-admin-ui.scss */
+  /* line 90, ../../app/styles/ntd-admin-ui.scss */
   from {
     -webkit-transform: rotate(0deg);
   }
 
-  /* line 94, ../../app/styles/ntd-admin-ui.scss */
+  /* line 91, ../../app/styles/ntd-admin-ui.scss */
   to {
     -webkit-transform: rotate(360deg);
   }
 }
 
 @keyframes rotate {
-  /* line 93, ../../app/styles/ntd-admin-ui.scss */
+  /* line 90, ../../app/styles/ntd-admin-ui.scss */
   from {
     -webkit-transform: rotate(0deg);
   }
 
-  /* line 94, ../../app/styles/ntd-admin-ui.scss */
+  /* line 91, ../../app/styles/ntd-admin-ui.scss */
   to {
     -webkit-transform: rotate(360deg);
   }
 }
 
-/* line 98, ../../app/styles/ntd-admin-ui.scss */
+/* line 95, ../../app/styles/ntd-admin-ui.scss */
 .collapse {
   display: block;
   overflow: hidden;
@@ -7876,17 +7925,17 @@ td.visible-print {
 }
 
 @media (max-width: 768px) {
-  /* line 105, ../../app/styles/ntd-admin-ui.scss */
+  /* line 102, ../../app/styles/ntd-admin-ui.scss */
   .collapse {
     display: none;
   }
 
-  /* line 108, ../../app/styles/ntd-admin-ui.scss */
-  .nav.pull-right {
+  /* line 105, ../../app/styles/ntd-admin-ui.scss */
+  .nav.pull-right, .navbar .pull-right.sub-navbar {
     float: none !important;
   }
 
-  /* line 112, ../../app/styles/ntd-admin-ui.scss */
+  /* line 109, ../../app/styles/ntd-admin-ui.scss */
   .chzn-container {
     margin-bottom: 15px;
   }
@@ -7910,45 +7959,49 @@ td.visible-print {
 /* line 24, ../../app/styles/ntd-main.scss */
 body {
   position: relative;
-  padding-top: 60px;
+  padding-top: 90px;
 }
 
 /* line 29, ../../app/styles/ntd-main.scss */
-.full-container {
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: auto;
-  margin-right: auto;
+.container-full {
+  padding: 0 15px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-/* line 36, ../../app/styles/ntd-main.scss */
+/* line 34, ../../app/styles/ntd-main.scss */
+.fix-row {
+  margin: auto 0;
+}
+
+/* line 38, ../../app/styles/ntd-main.scss */
 .well h3 {
   margin-top: 10px;
 }
 
-/* line 40, ../../app/styles/ntd-main.scss */
+/* line 42, ../../app/styles/ntd-main.scss */
 h1, h2, h3, h4, h5, h6, legend {
   font-weight: normal;
 }
 
-/* line 43, ../../app/styles/ntd-main.scss */
+/* line 45, ../../app/styles/ntd-main.scss */
 input[readonly] {
   cursor: default;
 }
 
-/* line 46, ../../app/styles/ntd-main.scss */
+/* line 48, ../../app/styles/ntd-main.scss */
 a {
   cursor: pointer;
 }
 
-/* line 50, ../../app/styles/ntd-main.scss */
+/* line 52, ../../app/styles/ntd-main.scss */
 select {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
 
-/* line 57, ../../app/styles/ntd-main.scss */
+/* line 59, ../../app/styles/ntd-main.scss */
 .label,
 .badge,
 .btn-small {
@@ -7956,173 +8009,46 @@ select {
   font-weight: normal;
 }
 
-/* line 64, ../../app/styles/ntd-main.scss */
+/* line 66, ../../app/styles/ntd-main.scss */
 form .form-column {
   display: inline-block;
 }
-/* line 68, ../../app/styles/ntd-main.scss */
+/* line 70, ../../app/styles/ntd-main.scss */
 form.form-horizontal .control-text {
   margin-bottom: 5px;
   padding-top: 5px;
 }
-/* line 72, ../../app/styles/ntd-main.scss */
+/* line 74, ../../app/styles/ntd-main.scss */
 form.form-horizontal .help-block {
   margin-top: 10px;
 }
 
-/* line 78, ../../app/styles/ntd-main.scss */
-.nav li.dropdown.open .caret, .nav li.dropdown.open.active .caret, .nav li.dropdown.open a:hover .caret {
-  opacity: 0.4;
-}
-
-/* line 82, ../../app/styles/ntd-main.scss */
-.navbar .navbar-brand {
-  font-family: 'good_timesregular';
-  font-size: 20px;
-  margin-right: 20px;
-  color: #000;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(255, 255, 255, 0.125);
-  -webkit-transition-property: all;
-  transition-property: all;
-  -webkit-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  -webkit-transition-timing-function: linear;
-  -moz-transition-timing-function: linear;
-  -o-transition-timing-function: linear;
-  transition-timing-function: linear;
-}
-/* line 83, ../../app/styles/ntd-main.scss */
-.navbar .navbar-brand:before {
-  margin-right: 5px;
-  font-family: 'admin_uiregular';
-  font-size: 25px;
-  content: '\F000';
-}
-/* line 101, ../../app/styles/ntd-main.scss */
-.navbar .navbar-brand:hover {
-  text-decoration: none;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(255, 255, 255, 0.4);
-  background-position: 20px -46px;
-  opacity: .6;
-}
-/* line 108, ../../app/styles/ntd-main.scss */
-.navbar .badge {
-  background-color: #d9534f;
-}
-
-/* line 115, ../../app/styles/ntd-main.scss */
-.sub-nav li {
-  padding: 0;
-  cursor: pointer;
-}
-/* line 119, ../../app/styles/ntd-main.scss */
-.sub-nav li a {
-  padding: 10px 15px;
-  display: block;
-  color: #555555;
-}
-/* line 123, ../../app/styles/ntd-main.scss */
-.sub-nav li a .glyphicon-chevron-down {
-  opacity: .25;
-}
-/* line 126, ../../app/styles/ntd-main.scss */
-.sub-nav li a:hover {
-  background-color: whitesmoke;
-  text-decoration: none;
-}
-/* line 129, ../../app/styles/ntd-main.scss */
-.sub-nav li a:hover .glyphicon-chevron-down {
-  opacity: .5;
-}
-/* line 135, ../../app/styles/ntd-main.scss */
-.sub-nav li.active a {
-  color: white;
-  background-color: #428bca;
-  border-color: #428bca;
-}
-/* line 142, ../../app/styles/ntd-main.scss */
-.sub-nav li.active ul li:hover {
-  border-color: #dddddd;
-}
-/* line 145, ../../app/styles/ntd-main.scss */
-.sub-nav li.active ul li a {
-  background-color: #fff;
-  color: #555555;
-}
-/* line 148, ../../app/styles/ntd-main.scss */
-.sub-nav li.active ul li a:hover {
-  background-color: whitesmoke;
-  text-decoration: none;
-}
-/* line 156, ../../app/styles/ntd-main.scss */
-.sub-nav li ul {
-  display: none;
-  margin: -1px;
-  font-size: 12px;
-}
-/* line 162, ../../app/styles/ntd-main.scss */
-.sub-nav li ul li:first-child {
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-}
-/* line 165, ../../app/styles/ntd-main.scss */
-.sub-nav li ul li:last-child {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-/* line 168, ../../app/styles/ntd-main.scss */
-.sub-nav li ul li a {
-  padding-left: 25px;
-}
-/* line 170, ../../app/styles/ntd-main.scss */
-.sub-nav li ul li a:hover {
-  border-color: #dddddd !important;
-  background: whitesmoke url("../images/menu_sprites.png") no-repeat 15px 14px;
-}
-/* line 175, ../../app/styles/ntd-main.scss */
-.sub-nav li ul li.active {
-  border-color: #dddddd;
-}
-/* line 177, ../../app/styles/ntd-main.scss */
-.sub-nav li ul li.active a {
-  background: white url("../images/menu_sprites.png") no-repeat 15px -22px;
-}
-/* line 179, ../../app/styles/ntd-main.scss */
-.sub-nav li ul li.active a:hover {
-  border-color: #dddddd !important;
-  background: whitesmoke url("../images/menu_sprites.png") no-repeat 15px -22px;
-}
-/* line 188, ../../app/styles/ntd-main.scss */
-.sub-nav li ul:last-child li:last-child {
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
-}
-
-/* line 282, ../../app/styles/ntd-main.scss */
+/* line 81, ../../app/styles/ntd-main.scss */
 .info-box {
   overflow: hidden;
 }
-/* line 284, ../../app/styles/ntd-main.scss */
+/* line 83, ../../app/styles/ntd-main.scss */
 .info-box .stat {
   padding: 10px;
   background-color: whitesmoke;
   text-align: center;
 }
-/* line 292, ../../app/styles/ntd-main.scss */
+/* line 91, ../../app/styles/ntd-main.scss */
 .info-box .stat strong {
   display: block;
   font-weight: normal;
   font-size: 32px;
+  line-height: 28px;
   color: #0088cc;
 }
 
-/* line 302, ../../app/styles/ntd-main.scss */
+/* line 102, ../../app/styles/ntd-main.scss */
 .panel .panel-heading .btn-group, .info-box .stat .panel-heading .btn-group {
   position: relative;
   margin-top: -2px;
 }
 
-/* line 308, ../../app/styles/ntd-main.scss */
+/* line 108, ../../app/styles/ntd-main.scss */
 .div-stacked {
   border: 1px solid #ddd;
   -webkit-border-radius: 4px;
@@ -8131,43 +8057,43 @@ form.form-horizontal .help-block {
   -o-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 311, ../../app/styles/ntd-main.scss */
+/* line 111, ../../app/styles/ntd-main.scss */
 .div-stacked .stacked-item {
   border-bottom: 1px solid #ddd;
 }
-/* line 313, ../../app/styles/ntd-main.scss */
+/* line 113, ../../app/styles/ntd-main.scss */
 .div-stacked .stacked-item:last-child {
   border: none;
 }
-/* line 317, ../../app/styles/ntd-main.scss */
+/* line 117, ../../app/styles/ntd-main.scss */
 .div-stacked .stacked-item-hd {
   padding: 8px;
   overflow: hidden;
 }
-/* line 321, ../../app/styles/ntd-main.scss */
+/* line 121, ../../app/styles/ntd-main.scss */
 .div-stacked .stacked-item-bd {
   padding: 8px;
   border-top: 1px solid #ddd;
 }
-/* line 324, ../../app/styles/ntd-main.scss */
+/* line 124, ../../app/styles/ntd-main.scss */
 .div-stacked .stacked-item-bd .table-normal {
   margin: 0;
 }
 
-/* line 330, ../../app/styles/ntd-main.scss */
+/* line 130, ../../app/styles/ntd-main.scss */
 .page-header .page-action {
   float: right;
   margin-top: 10px;
 }
 
-/* line 335, ../../app/styles/ntd-main.scss */
-.user-infomation {
+/* line 135, ../../app/styles/ntd-main.scss */
+.user-information {
   padding-top: 5px;
   text-align: center;
   overflow: hidden;
 }
-/* line 340, ../../app/styles/ntd-main.scss */
-.user-infomation img {
+/* line 140, ../../app/styles/ntd-main.scss */
+.user-information img {
   margin-bottom: 10px;
   border: 3px solid #fff;
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
@@ -8176,12 +8102,12 @@ form.form-horizontal .help-block {
   -moz-border-radius: 500px / 500px;
   border-radius: 500px / 500px;
 }
-/* line 346, ../../app/styles/ntd-main.scss */
-.user-infomation .user-content {
+/* line 146, ../../app/styles/ntd-main.scss */
+.user-information .user-content {
   overflow: hidden;
 }
 
-/* line 352, ../../app/styles/ntd-main.scss */
+/* line 152, ../../app/styles/ntd-main.scss */
 .advance-search-filter {
   min-height: 20px;
   padding: 19px;
@@ -8195,34 +8121,34 @@ form.form-horizontal .help-block {
   border-radius: 4px;
   position: relative;
 }
-/* line 360, ../../app/styles/ntd-main.scss */
+/* line 160, ../../app/styles/ntd-main.scss */
 .advance-search-filter .form-group {
   margin-bottom: 10px;
 }
-/* line 364, ../../app/styles/ntd-main.scss */
+/* line 164, ../../app/styles/ntd-main.scss */
 .advance-search-filter .skeleton label, .advance-search-filter .skeleton .help-inline, .advance-search-filter .skeleton .help-block {
   display: none;
 }
-/* line 367, ../../app/styles/ntd-main.scss */
+/* line 167, ../../app/styles/ntd-main.scss */
 .advance-search-filter .skeleton .form-group {
   display: inline-block;
   margin: 0;
 }
-/* line 370, ../../app/styles/ntd-main.scss */
+/* line 170, ../../app/styles/ntd-main.scss */
 .advance-search-filter .skeleton .form-group .controls {
   margin: 0;
 }
-/* line 375, ../../app/styles/ntd-main.scss */
+/* line 175, ../../app/styles/ntd-main.scss */
 .advance-search-filter form {
   margin-bottom: 0;
 }
-/* line 377, ../../app/styles/ntd-main.scss */
+/* line 177, ../../app/styles/ntd-main.scss */
 .advance-search-filter form .form-actions {
   margin-bottom: 0;
   padding-bottom: 0;
   background: none;
 }
-/* line 383, ../../app/styles/ntd-main.scss */
+/* line 183, ../../app/styles/ntd-main.scss */
 .advance-search-filter .more {
   margin-left: 50%;
   text-align: center;
@@ -8236,35 +8162,35 @@ form.form-horizontal .help-block {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-/* line 394, ../../app/styles/ntd-main.scss */
+/* line 194, ../../app/styles/ntd-main.scss */
 .advance-search-filter .more a {
   display: block;
   padding: 0 0 5px;
   width: 60px;
   height: 15px;
 }
-/* line 399, ../../app/styles/ntd-main.scss */
+/* line 199, ../../app/styles/ntd-main.scss */
 .advance-search-filter .more a:hover {
   background: #e3e3e3;
 }
-/* line 402, ../../app/styles/ntd-main.scss */
+/* line 202, ../../app/styles/ntd-main.scss */
 .advance-search-filter .more a [class^="icon-"], .advance-search-filter .more a [class*=" icon-"] {
   margin-top: -2px;
 }
-/* line 405, ../../app/styles/ntd-main.scss */
+/* line 205, ../../app/styles/ntd-main.scss */
 .advance-search-filter .more a .icon-chevron-up {
   background-position: -288px -120px;
 }
 
-/* line 414, ../../app/styles/ntd-main.scss */
+/* line 214, ../../app/styles/ntd-main.scss */
 .box {
   margin-bottom: 1.42857;
 }
-/* line 416, ../../app/styles/ntd-main.scss */
+/* line 216, ../../app/styles/ntd-main.scss */
 .box .opts {
   float: right;
 }
-/* line 419, ../../app/styles/ntd-main.scss */
+/* line 219, ../../app/styles/ntd-main.scss */
 .box .box-hd {
   padding: 8px;
   line-height: 1.42857;
@@ -8275,13 +8201,13 @@ form.form-horizontal .help-block {
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
 }
-/* line 425, ../../app/styles/ntd-main.scss */
+/* line 225, ../../app/styles/ntd-main.scss */
 .box .box-hd h3 {
   margin: 0;
   font-size: 14px;
   line-height: 1.42857;
 }
-/* line 431, ../../app/styles/ntd-main.scss */
+/* line 231, ../../app/styles/ntd-main.scss */
 .box .box-bd {
   padding: 8px;
   border: solid #ddd;
@@ -8290,12 +8216,12 @@ form.form-horizontal .help-block {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-/* line 437, ../../app/styles/ntd-main.scss */
+/* line 237, ../../app/styles/ntd-main.scss */
 .box .box-bd .alert {
   margin-bottom: 0;
 }
 
-/* line 444, ../../app/styles/ntd-main.scss */
+/* line 244, ../../app/styles/ntd-main.scss */
 .tag-input-container ul {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -8309,7 +8235,7 @@ form.form-horizontal .help-block {
   border: 1px solid #cccccc;
 }
 
-/* line 452, ../../app/styles/ntd-main.scss */
+/* line 252, ../../app/styles/ntd-main.scss */
 .tag-input-container ul.focus {
   border-color: rgba(82, 168, 236, 0.8);
   outline: 0;
@@ -8317,7 +8243,7 @@ form.form-horizontal .help-block {
   /* IE6-9 */
 }
 
-/* line 461, ../../app/styles/ntd-main.scss */
+/* line 261, ../../app/styles/ntd-main.scss */
 .tag-input-container ul .tag {
   padding: 0 2px;
   margin: 2px 0 0 2px;
@@ -8332,20 +8258,20 @@ form.form-horizontal .help-block {
   float: left;
 }
 
-/* line 470, ../../app/styles/ntd-main.scss */
+/* line 270, ../../app/styles/ntd-main.scss */
 .tag-input-container ul .tag span {
   padding: 3px 2px 2px;
   float: left;
 }
 
-/* line 474, ../../app/styles/ntd-main.scss */
+/* line 274, ../../app/styles/ntd-main.scss */
 .tag-input-container ul .tag i {
   cursor: pointer;
   margin: 3px 3px 0;
   float: left;
 }
 
-/* line 479, ../../app/styles/ntd-main.scss */
+/* line 279, ../../app/styles/ntd-main.scss */
 .tag-input-container ul .input-li input {
   border: none;
   width: 80px;
@@ -8356,58 +8282,58 @@ form.form-horizontal .help-block {
   box-shadow: none;
 }
 
-/* line 488, ../../app/styles/ntd-main.scss */
+/* line 288, ../../app/styles/ntd-main.scss */
 .tag-input-container ul .input-li input:focus {
   outline: none;
 }
 
-/* line 494, ../../app/styles/ntd-main.scss */
+/* line 294, ../../app/styles/ntd-main.scss */
 .chosen {
   width: 220px;
 }
 
-/* line 497, ../../app/styles/ntd-main.scss */
+/* line 297, ../../app/styles/ntd-main.scss */
 .chosen-mini {
   width: 70px;
 }
 
-/* line 500, ../../app/styles/ntd-main.scss */
+/* line 300, ../../app/styles/ntd-main.scss */
 .chosen-small {
   width: 100px;
 }
 
-/* line 503, ../../app/styles/ntd-main.scss */
+/* line 303, ../../app/styles/ntd-main.scss */
 .chosen-medium {
   width: 160px;
 }
 
-/* line 506, ../../app/styles/ntd-main.scss */
+/* line 306, ../../app/styles/ntd-main.scss */
 .chosen-large {
   width: 220px;
 }
 
-/* line 509, ../../app/styles/ntd-main.scss */
+/* line 309, ../../app/styles/ntd-main.scss */
 .chosen-xlarge {
   width: 280px;
 }
 
-/* line 512, ../../app/styles/ntd-main.scss */
+/* line 312, ../../app/styles/ntd-main.scss */
 .chosen-xxlarge {
   width: 540px;
 }
 
-/* line 515, ../../app/styles/ntd-main.scss */
+/* line 315, ../../app/styles/ntd-main.scss */
 .chzn-container {
   *display: inline;
   /* IE7 inline-block hack */
   *zoom: 1;
+  font: 12px/18px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
   display: inline-block;
-  font-size: 14px;
   position: relative;
   vertical-align: middle;
 }
 
-/* line 524, ../../app/styles/ntd-main.scss */
+/* line 324, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-drop {
   background: #ffffff;
   border: 1px solid #999999;
@@ -8431,12 +8357,12 @@ form.form-horizontal .help-block {
   z-index: 1060;
 }
 
-/* line 546, ../../app/styles/ntd-main.scss */
+/* line 346, ../../app/styles/ntd-main.scss */
 .chzn-container.chzn-with-drop .chzn-drop {
   left: 0;
 }
 
-/* line 549, ../../app/styles/ntd-main.scss */
+/* line 349, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results {
   color: #555555;
   margin: 0 4px 4px 0;
@@ -8448,7 +8374,7 @@ form.form-horizontal .help-block {
   -webkit-overflow-scrolling: touch;
 }
 
-/* line 559, ../../app/styles/ntd-main.scss */
+/* line 359, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results li {
   display: none;
   line-height: 20px;
@@ -8457,48 +8383,48 @@ form.form-horizontal .help-block {
   padding: 5px 6px;
 }
 
-/* line 566, ../../app/styles/ntd-main.scss */
+/* line 366, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results li em {
   background: #feffde;
   font-style: normal;
 }
 
-/* line 570, ../../app/styles/ntd-main.scss */
+/* line 370, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results .active-result {
   cursor: pointer;
   display: list-item;
 }
 
-/* line 574, ../../app/styles/ntd-main.scss */
+/* line 374, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results .highlighted {
   background-color: #0088cc;
   color: #ffffff;
 }
 
-/* line 578, ../../app/styles/ntd-main.scss */
+/* line 378, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results .highlighted em {
   background: transparent;
 }
 
-/* line 581, ../../app/styles/ntd-main.scss */
+/* line 381, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results .no-results {
   background: #eeeeee;
   display: list-item;
 }
 
-/* line 585, ../../app/styles/ntd-main.scss */
+/* line 385, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results .group-result {
   cursor: default;
   color: #999;
   font-weight: bold;
 }
 
-/* line 590, ../../app/styles/ntd-main.scss */
+/* line 390, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results .group-option {
   padding-left: 15px;
 }
 
-/* line 593, ../../app/styles/ntd-main.scss */
+/* line 393, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results-scroll {
   background: #ffffff;
   margin: 0 4px;
@@ -8508,7 +8434,7 @@ form.form-horizontal .help-block {
   z-index: 1;
 }
 
-/* line 601, ../../app/styles/ntd-main.scss */
+/* line 401, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results-scroll span {
   display: inline-block;
   height: 20px;
@@ -8516,28 +8442,28 @@ form.form-horizontal .help-block {
   width: 9px;
 }
 
-/* line 607, ../../app/styles/ntd-main.scss */
+/* line 407, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results-scroll-down {
   bottom: 0;
 }
 
-/* line 610, ../../app/styles/ntd-main.scss */
+/* line 410, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results-scroll-down span {
   background: url("../images/chosen-sprite.png") no-repeat -4px -3px;
 }
 
-/* line 613, ../../app/styles/ntd-main.scss */
+/* line 413, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results-scroll-up span {
   background: url("../images/chosen-sprite.png") no-repeat -22px -3px;
 }
 
-/* line 616, ../../app/styles/ntd-main.scss */
+/* line 416, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-single {
   display: block;
   /*@include ctb-ie7-inline-block();*/
-  padding: 4px 12px 1px;
+  padding: 6px 12px 1px;
   margin-bottom: 0;
-  font-size: 14px;
+  font: 12px/18px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
   line-height: 1.42857;
   vertical-align: middle;
   cursor: pointer;
@@ -8556,7 +8482,7 @@ form.form-horizontal .help-block {
   white-space: nowrap;
 }
 
-/* line 640, ../../app/styles/ntd-main.scss */
+/* line 440, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-single span {
   display: block;
   margin-right: 26px;
@@ -8565,7 +8491,7 @@ form.form-horizontal .help-block {
   white-space: nowrap;
 }
 
-/* line 647, ../../app/styles/ntd-main.scss */
+/* line 447, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-single abbr {
   background: url("../images/chosen-sprite.png") right top no-repeat;
   display: block;
@@ -8577,17 +8503,17 @@ form.form-horizontal .help-block {
   width: 12px;
 }
 
-/* line 657, ../../app/styles/ntd-main.scss */
+/* line 457, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-single abbr:hover {
   background-position: right -11px;
 }
 
-/* line 660, ../../app/styles/ntd-main.scss */
+/* line 460, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-single.chzn-disabled .chzn-single abbr:hover {
   background-position: right 2px;
 }
 
-/* line 663, ../../app/styles/ntd-main.scss */
+/* line 463, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-single div {
   display: block;
   height: 100%;
@@ -8597,7 +8523,7 @@ form.form-horizontal .help-block {
   width: 18px;
 }
 
-/* line 671, ../../app/styles/ntd-main.scss */
+/* line 471, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-single div b {
   background: url("../images/chosen-sprite.png") no-repeat 0 5px;
   display: block;
@@ -8605,12 +8531,12 @@ form.form-horizontal .help-block {
   width: 100%;
 }
 
-/* line 677, ../../app/styles/ntd-main.scss */
+/* line 477, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-default {
   color: #999999;
 }
 
-/* line 680, ../../app/styles/ntd-main.scss */
+/* line 480, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-search {
   margin: 0;
   padding: 3px 4px;
@@ -8619,7 +8545,7 @@ form.form-horizontal .help-block {
   z-index: 1000;
 }
 
-/* line 687, ../../app/styles/ntd-main.scss */
+/* line 487, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-search input {
   height: 30px;
   background: url("../images/chosen-sprite.png") no-repeat 100% -20px, white;
@@ -8634,12 +8560,12 @@ form.form-horizontal .help-block {
   padding: 4px 20px 4px 4px;
 }
 
-/* line 700, ../../app/styles/ntd-main.scss */
+/* line 500, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-search input.loading {
   background: url("../images/loading.gif") no-repeat 98% 6px;
 }
 
-/* line 703, ../../app/styles/ntd-main.scss */
+/* line 503, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-drop {
   margin-top: -1px;
   -webkit-border-radius: 4px;
@@ -8656,18 +8582,18 @@ form.form-horizontal .help-block {
   background-clip: padding-box;
 }
 
-/* line 718, ../../app/styles/ntd-main.scss */
+/* line 518, ../../app/styles/ntd-main.scss */
 .chzn-container-single-nosearch .chzn-search input {
   position: absolute;
   left: -9000px;
 }
 
-/* line 722, ../../app/styles/ntd-main.scss */
+/* line 522, ../../app/styles/ntd-main.scss */
 .chzn-container-single-nosearch .chzn-results {
   padding: 4px 0 0 4px;
 }
 
-/* line 725, ../../app/styles/ntd-main.scss */
+/* line 525, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-choices {
   background-color: #ffffff;
   border: 1px solid #cccccc;
@@ -8686,20 +8612,20 @@ form.form-horizontal .help-block {
   position: relative;
 }
 
-/* line 742, ../../app/styles/ntd-main.scss */
+/* line 542, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-choices li {
   float: left;
   list-style: none;
 }
 
-/* line 746, ../../app/styles/ntd-main.scss */
+/* line 546, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-choices .search-field {
   margin: 0;
   padding: 0;
   white-space: nowrap;
 }
 
-/* line 751, ../../app/styles/ntd-main.scss */
+/* line 551, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-choices li.search-field input {
   background: transparent !important;
   border: 0 !important;
@@ -8713,12 +8639,12 @@ form.form-horizontal .help-block {
   outline: 0;
 }
 
-/* line 764, ../../app/styles/ntd-main.scss */
+/* line 564, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-choices .search-field .default {
   color: #999;
 }
 
-/* line 767, ../../app/styles/ntd-main.scss */
+/* line 567, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-choices .search-choice {
   border: 1px solid #cccccc;
   -webkit-border-radius: 4px;
@@ -8733,7 +8659,7 @@ form.form-horizontal .help-block {
   position: relative;
 }
 
-/* line 794, ../../app/styles/ntd-main.scss */
+/* line 594, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-choices .search-choice .search-choice-close {
   background: url("../images/chosen-sprite.png") right top no-repeat;
   display: block;
@@ -8745,33 +8671,33 @@ form.form-horizontal .help-block {
   width: 12px;
 }
 
-/* line 804, ../../app/styles/ntd-main.scss */
+/* line 604, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-choices .search-choice .search-choice-close:hover {
   background-position: right -11px;
 }
 
-/* line 807, ../../app/styles/ntd-main.scss */
+/* line 607, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-choices .search-choice-focus {
   background: #d4d4d4;
 }
 
-/* line 810, ../../app/styles/ntd-main.scss */
+/* line 610, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-choices .search-choice-focus .search-choice-close {
   background-position: right -11px;
 }
 
-/* line 813, ../../app/styles/ntd-main.scss */
+/* line 613, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-results {
   margin: 0 0 0 0;
   padding: 0;
 }
 
-/* line 817, ../../app/styles/ntd-main.scss */
+/* line 617, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-drop .result-selected {
   display: none;
 }
 
-/* line 820, ../../app/styles/ntd-main.scss */
+/* line 620, ../../app/styles/ntd-main.scss */
 .chzn-container-active .chzn-single {
   border: 1px solid rgba(82, 168, 236, 0.8);
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
@@ -8783,7 +8709,7 @@ form.form-horizontal .help-block {
   transition: border linear .2s, box-shadow linear .2s;
 }
 
-/* line 830, ../../app/styles/ntd-main.scss */
+/* line 630, ../../app/styles/ntd-main.scss */
 .chzn-container-active.chzn-with-drop .chzn-single {
   border: 1px solid rgba(82, 168, 236, 0.8);
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
@@ -8795,18 +8721,18 @@ form.form-horizontal .help-block {
   transition: border linear .2s, box-shadow linear .2s;
 }
 
-/* line 841, ../../app/styles/ntd-main.scss */
+/* line 641, ../../app/styles/ntd-main.scss */
 .chzn-container-active.chzn-with-drop .chzn-single div {
   background: transparent;
   border-left: none;
 }
 
-/* line 845, ../../app/styles/ntd-main.scss */
+/* line 645, ../../app/styles/ntd-main.scss */
 .chzn-container-active.chzn-with-drop .chzn-single div b {
   background-position: -18px 5px;
 }
 
-/* line 848, ../../app/styles/ntd-main.scss */
+/* line 648, ../../app/styles/ntd-main.scss */
 .chzn-container-active .chzn-choices {
   background-color: white;
   border: 1px solid #cccccc;
@@ -8815,7 +8741,7 @@ form.form-horizontal .help-block {
   -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
   transition: border linear 0.2s, box-shadow linear 0.2s;
 }
-/* line 855, ../../app/styles/ntd-main.scss */
+/* line 655, ../../app/styles/ntd-main.scss */
 .chzn-container-active .chzn-choices:focus {
   border-color: rgba(82, 168, 236, 0.8);
   outline: 0;
@@ -8825,143 +8751,143 @@ form.form-horizontal .help-block {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
 
-/* line 862, ../../app/styles/ntd-main.scss */
+/* line 662, ../../app/styles/ntd-main.scss */
 .chzn-container-active .chzn-choices .search-field input {
   color: #111 !important;
 }
 
-/* line 865, ../../app/styles/ntd-main.scss */
+/* line 665, ../../app/styles/ntd-main.scss */
 .chzn-disabled {
   cursor: default;
   opacity: 0.5 !important;
 }
 
-/* line 869, ../../app/styles/ntd-main.scss */
+/* line 669, ../../app/styles/ntd-main.scss */
 .chzn-disabled .chzn-single {
   cursor: default;
 }
 
-/* line 872, ../../app/styles/ntd-main.scss */
+/* line 672, ../../app/styles/ntd-main.scss */
 .chzn-disabled .chzn-choices .search-choice .search-choice-close {
   cursor: default;
 }
 
-/* line 875, ../../app/styles/ntd-main.scss */
+/* line 675, ../../app/styles/ntd-main.scss */
 .chzn-rtl {
   text-align: right;
 }
 
-/* line 878, ../../app/styles/ntd-main.scss */
+/* line 678, ../../app/styles/ntd-main.scss */
 .chzn-rtl .chzn-single {
   padding: 0 8px 0 0;
   overflow: visible;
 }
 
-/* line 882, ../../app/styles/ntd-main.scss */
+/* line 682, ../../app/styles/ntd-main.scss */
 .chzn-rtl .chzn-single span {
   margin-left: 26px;
   margin-right: 0;
   direction: rtl;
 }
 
-/* line 887, ../../app/styles/ntd-main.scss */
+/* line 687, ../../app/styles/ntd-main.scss */
 .chzn-rtl .chzn-single div {
   left: 3px;
   right: auto;
 }
 
-/* line 891, ../../app/styles/ntd-main.scss */
+/* line 691, ../../app/styles/ntd-main.scss */
 .chzn-rtl .chzn-single abbr {
   left: 26px;
   right: auto;
 }
 
-/* line 895, ../../app/styles/ntd-main.scss */
+/* line 695, ../../app/styles/ntd-main.scss */
 .chzn-rtl .chzn-choices .search-field input {
   direction: rtl;
 }
 
-/* line 898, ../../app/styles/ntd-main.scss */
+/* line 698, ../../app/styles/ntd-main.scss */
 .chzn-rtl .chzn-choices li {
   float: right;
 }
 
-/* line 901, ../../app/styles/ntd-main.scss */
+/* line 701, ../../app/styles/ntd-main.scss */
 .chzn-rtl .chzn-choices .search-choice {
   margin: 3px 5px 3px 0;
   padding: 3px 5px 3px 19px;
 }
 
-/* line 905, ../../app/styles/ntd-main.scss */
+/* line 705, ../../app/styles/ntd-main.scss */
 .chzn-rtl .chzn-choices .search-choice .search-choice-close {
   background-position: right top;
   left: 4px;
   right: auto;
 }
 
-/* line 910, ../../app/styles/ntd-main.scss */
+/* line 710, ../../app/styles/ntd-main.scss */
 .chzn-rtl.chzn-container-single .chzn-results {
   margin: 0 0 4px 4px;
   padding: 0 4px 0 0;
 }
 
-/* line 914, ../../app/styles/ntd-main.scss */
+/* line 714, ../../app/styles/ntd-main.scss */
 .chzn-rtl .chzn-results .group-option {
   padding-left: 0;
   padding-right: 15px;
 }
 
-/* line 918, ../../app/styles/ntd-main.scss */
+/* line 718, ../../app/styles/ntd-main.scss */
 .chzn-rtl.chzn-container-active.chzn-with-drop .chzn-single div {
   border-right: none;
 }
 
-/* line 921, ../../app/styles/ntd-main.scss */
+/* line 721, ../../app/styles/ntd-main.scss */
 .chzn-rtl.chzn-container-single.chzn-with-drop .chzn-single div b {
   background-position: -12px 5px;
 }
 
-/* line 924, ../../app/styles/ntd-main.scss */
+/* line 724, ../../app/styles/ntd-main.scss */
 .chzn-rtl.chzn-container-single .chzn-single div b {
   background-position: 6px 5px;
 }
 
-/* line 927, ../../app/styles/ntd-main.scss */
+/* line 727, ../../app/styles/ntd-main.scss */
 .chzn-rtl .chzn-search input {
   background: url("../images/chosen-sprite.png") no-repeat -28px -20px, white;
   direction: rtl;
   padding: 4px 5px 4px 20px;
 }
 
-/* line 934, ../../app/styles/ntd-main.scss */
+/* line 734, ../../app/styles/ntd-main.scss */
 [class*="col-md-"] .chzn-container {
   width: 100% !important;
 }
 
-/* line 939, ../../app/styles/ntd-main.scss */
+/* line 739, ../../app/styles/ntd-main.scss */
 .help-inline {
   display: inline-block;
   margin-top: 15px;
   padding-left: 5px;
 }
 
-/* line 945, ../../app/styles/ntd-main.scss */
+/* line 745, ../../app/styles/ntd-main.scss */
 .nav-tabs > li a {
   height: 40px;
 }
 
 @media (max-width: 992px) {
-  /* line 951, ../../app/styles/ntd-main.scss */
+  /* line 751, ../../app/styles/ntd-main.scss */
   #J_subMenu .affix {
     position: relative;
   }
 }
-/* line 956, ../../app/styles/ntd-main.scss */
+/* line 756, ../../app/styles/ntd-main.scss */
 .chzn-container-single .chzn-single {
   background: none;
 }
 
-/* line 963, ../../app/styles/ntd-main.scss */
+/* line 763, ../../app/styles/ntd-main.scss */
 .chzn-container .chzn-results li.highlighted,
 .chzn-container-multi .chzn-choices,
 .chzn-container-multi .chzn-choices li.search-choice-disabled,
@@ -8971,11 +8897,224 @@ form.form-horizontal .help-block {
   box-shadow: none;
 }
 
-/* line 967, ../../app/styles/ntd-main.scss */
+/* line 767, ../../app/styles/ntd-main.scss */
 .chzn-container-multi .chzn-choices li.search-choice {
   background-color: #fff;
   background-image: none;
   box-shadow: none;
+}
+
+/* line 2, ../../app/styles/ntd-nav.scss */
+.nav li.dropdown.open .caret, .navbar .sub-navbar li.dropdown.open .caret, .nav li.dropdown.open .navbar .main-nav .active:after, .navbar .main-nav .nav li.dropdown.open .active:after, .navbar .sub-navbar li.dropdown.open .main-nav .active:after, .navbar .main-nav .sub-navbar li.dropdown.open .active:after, .nav li.dropdown.open.active .caret, .navbar .sub-navbar li.dropdown.open.active .caret, .nav li.dropdown.open.active .navbar .main-nav .active:after, .navbar .main-nav .nav li.dropdown.open.active .active:after, .navbar .sub-navbar li.dropdown.open.active .main-nav .active:after, .navbar .main-nav .sub-navbar li.dropdown.open.active .active:after, .nav li.dropdown.open a:hover .caret, .navbar .sub-navbar li.dropdown.open a:hover .caret, .nav li.dropdown.open a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav li.dropdown.open a:hover .active:after, .navbar .sub-navbar li.dropdown.open a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar li.dropdown.open a:hover .active:after {
+  opacity: 0.4;
+}
+
+/* line 5, ../../app/styles/ntd-nav.scss */
+.navbar {
+  border-bottom-width: 0;
+}
+/* line 7, ../../app/styles/ntd-nav.scss */
+.navbar .navbar-brand {
+  font-family: 'good_timesregular';
+  font-size: 20px;
+  margin-right: 20px;
+  color: #000;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(255, 255, 255, 0.125);
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: linear;
+  -moz-transition-timing-function: linear;
+  -o-transition-timing-function: linear;
+  transition-timing-function: linear;
+}
+/* line 8, ../../app/styles/ntd-nav.scss */
+.navbar .navbar-brand:before {
+  margin-right: 5px;
+  font-family: 'admin_uiregular';
+  font-size: 25px;
+  content: '\F000';
+}
+/* line 26, ../../app/styles/ntd-nav.scss */
+.navbar .navbar-brand:hover {
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(255, 255, 255, 0.4);
+  background-position: 20px -46px;
+  opacity: .6;
+}
+/* line 34, ../../app/styles/ntd-nav.scss */
+.navbar .badge {
+  background-color: #d9534f;
+}
+/* line 39, ../../app/styles/ntd-nav.scss */
+.navbar .main-nav li {
+  position: static;
+}
+/* line 43, ../../app/styles/ntd-nav.scss */
+.navbar .main-nav .active:after {
+  margin: 0 auto -5px;
+  position: relative;
+  z-index: 501;
+  display: block;
+  content: ' ';
+  border-top-color: #000 !important;
+  border-bottom-color: #000 !important;
+}
+/* line 56, ../../app/styles/ntd-nav.scss */
+.navbar .sub-navbar {
+  font: 12px/18px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  padding: 3px 0 0;
+  margin-bottom: 0;
+  z-index: 500;
+}
+/* line 68, ../../app/styles/ntd-nav.scss */
+.navbar .sub-navbar li.active a {
+  color: #428bcb;
+}
+/* line 71, ../../app/styles/ntd-nav.scss */
+.navbar .sub-navbar li.active:after {
+  content: none;
+}
+/* line 75, ../../app/styles/ntd-nav.scss */
+.navbar .sub-navbar li a {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #666;
+}
+/* line 82, ../../app/styles/ntd-nav.scss */
+.navbar .sub-navbar-back {
+  border-bottom: 1px solid #ddd;
+  height: 35px;
+}
+
+/* line 93, ../../app/styles/ntd-nav.scss */
+.side-nav h4 {
+  font: bold 14px/20px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
+  background-color: whitesmoke;
+  border-bottom-width: 2px;
+  padding: 8px 15px;
+}
+/* line 100, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu {
+  font: 12px/18px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
+}
+/* line 103, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li {
+  padding: 0;
+  cursor: pointer;
+}
+/* line 107, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li a {
+  padding: 8px 15px;
+  display: block;
+  color: #555555;
+}
+/* line 111, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li a .glyphicon-chevron-down {
+  opacity: .25;
+}
+/* line 114, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li a:hover {
+  background-color: whitesmoke;
+  text-decoration: none;
+}
+/* line 117, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li a:hover .glyphicon-chevron-down {
+  opacity: .5;
+}
+/* line 122, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li.active {
+  border-color: #428bca;
+}
+/* line 124, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li.active a {
+  color: white;
+  background-color: #428bca;
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+/* line 131, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li.active ul li:hover {
+  border-color: #dddddd;
+}
+/* line 134, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li.active ul li a {
+  background-color: #fff;
+  color: #555555;
+}
+/* line 137, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li.active ul li a:hover {
+  text-decoration: none;
+}
+/* line 144, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li:first-child {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+/* line 148, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li:last-child a {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+/* line 154, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li:last-child ul:last-child li:last-child {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+/* line 156, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li:last-child ul:last-child li:last-child a {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+/* line 164, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li a.has-sub-menu {
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+/* line 167, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li ul {
+  display: none;
+  margin: -1px;
+  font-size: 12px;
+}
+/* line 173, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li ul li:first-child {
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+/* line 176, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li ul li:last-child {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+/* line 179, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li ul li a {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  padding-left: 25px;
+}
+/* line 182, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li ul li a:hover {
+  border-color: #dddddd !important;
+  background: whitesmoke url("../images/menu_sprites.png") no-repeat 15px 14px;
+}
+/* line 187, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li ul li.active {
+  border-color: #dddddd;
+}
+/* line 189, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li ul li.active a {
+  color: #428bcb;
+  background: white url("../images/menu_sprites.png") no-repeat 15px -22px;
+}
+/* line 192, ../../app/styles/ntd-nav.scss */
+.side-nav .side-nav-menu li ul li.active a:hover {
+  border-color: #dddddd !important;
+  background: whitesmoke url("../images/menu_sprites.png") no-repeat 15px -22px;
 }
 
 /* line 5, ../../app/styles/ntd-table.scss */
@@ -9050,30 +9189,29 @@ i[tooltip-popup-delay] {
   padding-left: 5px;
 }
 
-/* line 2, ../../app/styles/ntd-cascade-list.scss */
+/* line 5, ../../app/styles/ntd-cascade-list.scss */
 .cascade-list {
   margin-bottom: 0;
   vertical-align: middle;
   background-color: #fff;
   border: 1px solid #ccc;
-  font-size: 14px;
   font-weight: normal;
-  font-family: "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
-  line-height: 1.42857;
-  color: #555555;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+  -webkit-transition: border linear, box-shadow linear;
+  -webkit-transition-delay: 0.2s, 0.2s;
   -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
   -o-transition: border linear 0.2s, box-shadow linear 0.2s;
   transition: border linear 0.2s, box-shadow linear 0.2s;
 }
 
-/* line 27, ../../app/styles/ntd-cascade-list.scss */
+/* line 18, ../../app/styles/ntd-cascade-list.scss */
 .cascade-list-inner {
   width: 100%;
   height: 100px;
@@ -9083,27 +9221,20 @@ i[tooltip-popup-delay] {
   position: relative;
 }
 
-/* line 37, ../../app/styles/ntd-cascade-list.scss */
+/* line 28, ../../app/styles/ntd-cascade-list.scss */
 .cascade-list ul {
   margin: 0;
   padding: 4px 6px;
   width: 30%;
   height: 100%;
   display: block;
-  /*float: left;*/
   position: absolute;
   list-style: none;
   border-right: 1px solid #eeeeee;
   overflow: auto;
 }
 
-/*
-.sprite-arrow-disabled{ background-position: 0 0; width: 7px; height: 8px; } 
-.sprite-arrow-gradient{ background-position: 0 -26px; width: 7px; height: 8px; } 
-.sprite-arrow-solidgrey{ background-position: 0 -52px; width: 7px; height: 8px; } 
-.sprite-arrow-white{ background-position: 0 -78px; width: 7px; height: 8px; } 
-*/
-/* line 57, ../../app/styles/ntd-cascade-list.scss */
+/* line 41, ../../app/styles/ntd-cascade-list.scss */
 .cascade-list li {
   background-image: url("../images/cascadelist_arrows.png");
   background-repeat: no-repeat;
@@ -9113,87 +9244,67 @@ i[tooltip-popup-delay] {
   cursor: pointer;
 }
 
-/* line 65, ../../app/styles/ntd-cascade-list.scss */
+/* line 49, ../../app/styles/ntd-cascade-list.scss */
 .cascade-list .form-control {
   display: inline-block;
 }
 
-/* line 71, ../../app/styles/ntd-cascade-list.scss */
+/* line 55, ../../app/styles/ntd-cascade-list.scss */
 .cascade-list li.has-child {
   background-position: 98% -21px;
 }
 
-/* line 76, ../../app/styles/ntd-cascade-list.scss */
+/* line 60, ../../app/styles/ntd-cascade-list.scss */
 .cascade-list li.selective {
   background-color: #eeeeee;
 }
 
-/* line 81, ../../app/styles/ntd-cascade-list.scss */
+/* line 65, ../../app/styles/ntd-cascade-list.scss */
 .cascade-list li.selective.has-child {
   background-color: #eeeeee;
   background-position: 98% -47px;
 }
 
-/* line 87, ../../app/styles/ntd-cascade-list.scss */
+/* line 71, ../../app/styles/ntd-cascade-list.scss */
 .cascade-list ul.selective li.selective {
   background-color: #049cdb;
   color: #fff;
 }
 
-/* line 93, ../../app/styles/ntd-cascade-list.scss */
+/* line 77, ../../app/styles/ntd-cascade-list.scss */
 .cascade-list ul.selective li.selective.has-child {
   background-position: 98% -73px;
 }
 
 /* line 2, ../../app/styles/ntd-login.scss */
-.login-page {
-  background: #999999 url(../images/login_bg.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  background-size: cover;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-/* line 12, ../../app/styles/ntd-login.scss */
-.login-wrapper {
+.login-box {
+  padding: 20px 40px;
   margin: 90px auto 0;
   width: 470px;
 }
-
-/* line 16, ../../app/styles/ntd-login.scss */
-.login-box {
-  padding: 20px 40px;
-  border-radius: 10px;
-  box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.65);
-}
-/* line 22, ../../app/styles/ntd-login.scss */
+/* line 7, ../../app/styles/ntd-login.scss */
 .login-box h3 {
-  color: #fff;
+  color: #666;
   font-weight: normal;
-  text-shadow: 0px 0px 3px #999;
 }
-/* line 28, ../../app/styles/ntd-login.scss */
+/* line 12, ../../app/styles/ntd-login.scss */
 .login-box input[type="text"], .login-box input[type="password"] {
   margin-bottom: 20px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-/* line 34, ../../app/styles/ntd-login.scss */
+/* line 18, ../../app/styles/ntd-login.scss */
 .login-box .login-actions {
   font-size: 12px;
   color: #666;
   margin-bottom: 10px;
 }
-/* line 39, ../../app/styles/ntd-login.scss */
+/* line 23, ../../app/styles/ntd-login.scss */
 .login-box .login-actions label {
   font-size: 12px;
 }
-/* line 42, ../../app/styles/ntd-login.scss */
+/* line 26, ../../app/styles/ntd-login.scss */
 .login-box .login-actions input[type="checkbox"] {
   margin: 0 5px 0 0;
   vertical-align: middle;
@@ -9274,6 +9385,82 @@ i[tooltip-popup-delay] {
   text-shadow: 0 1px 0 #fff;
 }
 
+@media (max-width: 768px) {
+  /* line 3, ../../app/styles/ntd-responsive.scss */
+  body {
+    padding-top: 90px;
+  }
+
+  /* line 7, ../../app/styles/ntd-responsive.scss */
+  .easy-pie-chart-widget {
+    text-align: center;
+  }
+
+  /* line 11, ../../app/styles/ntd-responsive.scss */
+  .info-box .stat {
+    margin: 10px 0;
+  }
+
+  /* line 15, ../../app/styles/ntd-responsive.scss */
+  .page-404 {
+    width: auto;
+  }
+
+  /* line 20, ../../app/styles/ntd-responsive.scss */
+  .table-widget .pull-right {
+    clear: both;
+    float: none;
+  }
+
+  /* line 27, ../../app/styles/ntd-responsive.scss */
+  .page-header .page-action {
+    float: none;
+    margin-top: 0;
+  }
+
+  /* line 33, ../../app/styles/ntd-responsive.scss */
+  .sub-navbar {
+    width: 768px;
+  }
+}
+@media (max-width: 992px) {
+  /* line 41, ../../app/styles/ntd-responsive.scss */
+  .side-nav.affix {
+    position: relative;
+  }
+
+  /* line 45, ../../app/styles/ntd-responsive.scss */
+  .sub-navbar {
+    width: 990px;
+  }
+}
+@media (max-width: 767px) {
+  /* line 54, ../../app/styles/ntd-responsive.scss */
+  .navbar .main-nav .active:after {
+    content: none;
+  }
+  /* line 59, ../../app/styles/ntd-responsive.scss */
+  .navbar .main-nav a:hover {
+    background-color: transparent !important;
+  }
+  /* line 64, ../../app/styles/ntd-responsive.scss */
+  .navbar .sub-navbar {
+    position: relative;
+    left: 0;
+    right: 0;
+    padding: 0 15px;
+    width: 100%;
+    margin: 5px 0;
+  }
+  /* line 72, ../../app/styles/ntd-responsive.scss */
+  .navbar .sub-navbar li.active a {
+    color: #fff;
+  }
+  /* line 78, ../../app/styles/ntd-responsive.scss */
+  .navbar .sub-navbar-back {
+    display: none;
+  }
+}
 /* ------------------------------------------
 CSS TOGGLE SWITCHES (Ionuț Colceriu)
 Licensed under Unlicense 
@@ -9597,9 +9784,10 @@ https://github.com/ghinda/css-toggle-switch
   .toggle.disabled a.slide-button {
     cursor: default;
     background-color: #E6E6E6;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65);
     opacity: 0.65;
-    filter: alpha(opacity=65);
     -webkit-box-shadow: none;
+    -moz-box-shadow: none;
     box-shadow: none;
   }
   /* line 309, ../../app/styles/ntd-toggle-switch.scss */

@@ -32,6 +32,168 @@
 'use strict';
 angular.module('ntd.config', []).value('$ntdConfig', {});
 angular.module('ntd.directives', ['ntd.config']);
+(function (ng) {
+  'use strict';
+  var AdminuiFrame = function (adminuiFrameProvider, $location, $timeout) {
+    return {
+      restrict: 'A',
+      templateUrl: 'templates/adminui-frame.html',
+      transclude: true,
+      link: function (scope, elem, attrs) {
+        scope.isSubMenuShow = adminuiFrameProvider.defaultShowSubmenu;
+        scope.isMessageBoxShow = adminuiFrameProvider.showMessageBox;
+        scope.navigation = adminuiFrameProvider.navigation;
+        scope.messages = scope.messages ? scope.messages : [];
+        scope.userInfo = ng.extend({
+          'username': 'N/A',
+          'avatar': '../images/avatar.jpg',
+          'logout': function () {
+            console.log('logout');
+          },
+          'changePwd': function () {
+            console.log('change password');
+          }
+        }, scope.userInfo);
+        init(scope.navigation);
+        scope.select = ng.bind(scope, select, $timeout, elem);
+        scope.toggleSubMenu = ng.bind(scope, toggleSubMenu);
+        scope.selectNav = ng.bind(scope, selectNav);
+        scope.selectMenu = ng.bind(scope, selectMenu);
+        scope.isSelected = ng.bind(scope, isSelected);
+        scope.setSideMenu = ng.bind(scope, setSideMenu, elem);
+        scope.logout = ng.bind(scope, logout);
+        scope.changePwd = ng.bind(scope, changePwd);
+        selectPath(scope, $location.path());
+      }
+    };
+  };
+  var logout = function (evt) {
+    evt.preventDefault();
+    this.userInfo.logout();
+  };
+  var changePwd = function (evt) {
+    evt.preventDefault();
+    this.userInfo.changePwd();
+  };
+  var init = function (navigation) {
+    var parentNav = arguments[1] === undefined ? null : arguments[1];
+    var level = arguments[2] === undefined ? 0 : arguments[2];
+    ng.forEach(navigation, function (nav) {
+      nav.parentNav = parentNav;
+      nav.level = level + 1;
+      if (nav.children != null) {
+        init(nav.children, nav, nav.level);
+      }
+    });
+  };
+  var getEndChildren = function (navigation) {
+    var endChildren = arguments[1] ? arguments[1] : [];
+    ng.forEach(navigation, function (nav) {
+      if (nav.children == null) {
+        endChildren.push(nav);
+      } else {
+        getEndChildren(nav.children, endChildren);
+      }
+    });
+    return generateMatch(endChildren);
+  };
+  var generateMatch = function (endChildren) {
+    ng.forEach(endChildren, function (child) {
+      if (ng.isUndefined(child.match) && child.url != null) {
+        child.match = child.url.replace('#', '');
+      }
+    });
+    return endChildren;
+  };
+  var selectPath = function (scope, path) {
+    clearSelected(scope.navigation);
+    var endChildren = getEndChildren(scope.navigation);
+    for (var i = 0; i < endChildren.length; i++) {
+      var regexp = new RegExp('^' + endChildren[i].match + '$', ['i']);
+      if (regexp.test(path)) {
+        scope.select(endChildren[i]);
+        break;
+      }
+    }
+  };
+  var select = function ($timeout, elem, nav) {
+    nav.selected = true;
+    if (nav.level == 2) {
+      this.setSideMenu(nav.children, nav.name);
+    } else if (nav.level == 4) {
+      $timeout(function () {
+        var collapse = elem.find('.side-nav-menu').find('.active>.has-sub-menu').parent('li').find('ul');
+        collapse.show();
+      });
+    }
+    if (nav.parentNav != null) {
+      this.select(nav.parentNav);
+    }
+  };
+  var isSelected = function (item) {
+    return item.selected ? true : false;
+  };
+  var setSideMenu = function (elem, menu, name) {
+    if (menu == null || menu.length == 0) {
+      this.hasSideMenu = false;
+    } else {
+      this.hasSideMenu = true;
+      this.sideMenuName = name;
+      this.menu = menu;
+    }
+  };
+  var toggleSubMenu = function (e) {
+    this.isSubMenuShow = !this.isSubMenuShow;
+  };
+  var clearSelected = function (item) {
+    for (var i = 0; i < item.length; i++) {
+      item[i].selected = false;
+      if (item[i].children != null) {
+        clearSelected(item[i].children);
+      }
+    }
+  };
+  var selectNav = function (nav) {
+    clearSelected(this.navigation);
+    if (nav.url != null) {
+      selectPath(this, nav.url.replace('#', ''));
+    } else {
+      this.select(nav);
+    }
+    this.setSideMenu(nav.children, nav.name);
+  };
+  var selectMenu = function (menu, evt) {
+    if (menu.children != null) {
+      ng.element(evt.target).parent('li').find('ul').toggle();
+    } else {
+      clearSelected(this.menu);
+      if (menu.url != null) {
+        selectPath(this, menu.url.replace('#', ''));
+      } else {
+        this.select(menu);
+      }
+    }
+  };
+  var AdminuiFrameProvider = function () {
+    this.config = {
+      defaultShowSubmenu: false,
+      showMessageBox: false
+    };
+    this.$get = function () {
+      return this.config;
+    };
+    this.setConfig = function (config) {
+      this.config = ng.extend(this.config, config);
+    };
+  };
+  ng.module('ntd.directives').provider('adminuiFrame', [AdminuiFrameProvider]);
+  ng.module('ntd.directives').directive('adminuiFrame', [
+    'adminuiFrame',
+    '$location',
+    '$timeout',
+    AdminuiFrame
+  ]);
+}(angular));
 (function () {
   'use strict';
   var fieldsets, showFilterBtn, primaryFieldset, secondaryFieldset, template = '<div class="advance-search-filter">' + '<div ng-transclude></div>' + '<div class="more">' + '<a data-class="J_toggleShowFilterBtn">' + '<i class="glyphicon glyphicon-chevron-down"></i>' + '</a>' + '</div>' + '</div>';
@@ -850,7 +1012,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
   var Linkage = function ($parse) {
     return {
       restrict: 'AC',
-      template: '<span><span' + ' data-ng-repeat="linkage in linkages">' + ' <select class="col-lg-3" data-ntd-chosen' + ' data-placeholder="\u8bf7\u9009\u62e9"' + ' data-disable-search-threshold="10"' + ' data-ng-change="change($index)"' + ' data-ng-model="values[$index]"' + ' data-allow-single-deselect="true"' + ' data-ng-options="option as option.name' + ' for option in linkage">' + ' <option value=""></option>' + '</select></span></span>',
+      template: '<span><span' + ' data-ng-repeat="linkage in linkages">' + ' <select class="col-sm-3" data-ntd-chosen' + ' data-placeholder="\u8bf7\u9009\u62e9"' + ' data-disable-search-threshold="10"' + ' data-ng-change="change($index)"' + ' data-ng-model="values[$index]"' + ' data-allow-single-deselect="true"' + ' data-ng-options="option as option.name' + ' for option in linkage">' + ' <option value=""></option>' + '</select></span></span>',
       scope: {
         source: '=',
         ngModel: '='
@@ -1252,7 +1414,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
         name: '@',
         ngModel: '=',
         ngChange: '&',
-        ngClick: '&'
+        click: '&click'
       },
       template: '<label class="checkbox toggle">' + '<input id="{{id}}" name="{{name}}"' + ' type="checkbox" ng-model="checked">' + '<p>' + '<span>{{ngTrueTitle}}</span>' + '<span>{{ngFalseTitle}}</span>' + '</p>' + '<a class="btn slide-button"></a>' + '</label>',
       link: function (scope, element, attrs) {
@@ -1267,7 +1429,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
               target: element,
               type: 'click'
             };
-            scope.ngClick(eventModel);
+            scope.click(eventModel);
           }
         });
         scope.$watch('checked', function (value, oldValue) {
