@@ -48,18 +48,19 @@ body {
 }
 
 /* line 88, ../../app/components/bootstrap-sass/lib/_normalize.scss */
-a {
+a, .dropdown-checkbox-group .dropdown-menu li label {
   background: transparent;
 }
 
 /* line 96, ../../app/components/bootstrap-sass/lib/_normalize.scss */
-a:focus {
+a:focus, .dropdown-checkbox-group .dropdown-menu li label:focus {
   outline: thin dotted;
 }
 
 /* line 105, ../../app/components/bootstrap-sass/lib/_normalize.scss */
-a:active,
-a:hover {
+a:active, .dropdown-checkbox-group .dropdown-menu li label:active,
+a:hover,
+.dropdown-checkbox-group .dropdown-menu li label:hover {
   outline: 0;
 }
 
@@ -256,13 +257,14 @@ table {
   }
 
   /* line 16, ../../app/components/bootstrap-sass/lib/_print.scss */
-  a,
-  a:visited {
+  a, .dropdown-checkbox-group .dropdown-menu li label,
+  a:visited,
+  .dropdown-checkbox-group .dropdown-menu li label:visited {
     text-decoration: underline;
   }
 
   /* line 20, ../../app/components/bootstrap-sass/lib/_print.scss */
-  a[href]:after {
+  a[href]:after, .dropdown-checkbox-group .dropdown-menu li label[href]:after {
     content: " (" attr(href) ")";
   }
 
@@ -272,8 +274,9 @@ table {
   }
 
   /* line 30, ../../app/components/bootstrap-sass/lib/_print.scss */
-  a[href^="javascript:"]:after,
-  a[href^="#"]:after {
+  a[href^="javascript:"]:after, .dropdown-checkbox-group .dropdown-menu li label[href^="javascript:"]:after,
+  a[href^="#"]:after,
+  .dropdown-checkbox-group .dropdown-menu li label[href^="#"]:after {
     content: "";
   }
 
@@ -394,17 +397,17 @@ textarea {
 }
 
 /* line 43, ../../app/components/bootstrap-sass/lib/_scaffolding.scss */
-a {
+a, .dropdown-checkbox-group .dropdown-menu li label {
   color: #428bca;
   text-decoration: none;
 }
 /* line 48, ../../app/components/bootstrap-sass/lib/_scaffolding.scss */
-a:hover, a:focus {
+a:hover, .dropdown-checkbox-group .dropdown-menu li label:hover, a:focus, .dropdown-checkbox-group .dropdown-menu li label:focus {
   color: #2a6496;
   text-decoration: underline;
 }
 /* line 53, ../../app/components/bootstrap-sass/lib/_scaffolding.scss */
-a:focus {
+a:focus, .dropdown-checkbox-group .dropdown-menu li label:focus {
   outline: thin dotted #333;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
@@ -4119,7 +4122,7 @@ input[type="button"].btn-block {
   background-color: #e5e5e5;
 }
 /* line 63, ../../app/components/bootstrap-sass/lib/_dropdowns.scss */
-.dropdown-menu > li > a {
+.dropdown-menu > li > a, .dropdown-checkbox-group .dropdown-menu > li > label {
   display: block;
   padding: 3px 20px;
   clear: both;
@@ -4130,14 +4133,14 @@ input[type="button"].btn-block {
 }
 
 /* line 77, ../../app/components/bootstrap-sass/lib/_dropdowns.scss */
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+.dropdown-menu > li > a:hover, .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-menu > li > a:focus, .dropdown-checkbox-group .dropdown-menu > li > label:focus {
   text-decoration: none;
   color: #262626;
   background-color: whitesmoke;
 }
 
 /* line 88, ../../app/components/bootstrap-sass/lib/_dropdowns.scss */
-.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+.dropdown-menu > .active > a, .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label, .dropdown-menu > .active > a:hover, .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:hover, .dropdown-menu > .active > a:focus, .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:focus {
   color: white;
   text-decoration: none;
   outline: 0;
@@ -4145,12 +4148,12 @@ input[type="button"].btn-block {
 }
 
 /* line 103, ../../app/components/bootstrap-sass/lib/_dropdowns.scss */
-.dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {
+.dropdown-menu > .disabled > a, .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label, .dropdown-menu > .disabled > a:hover, .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:hover, .dropdown-menu > .disabled > a:focus, .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:focus {
   color: #999999;
 }
 
 /* line 110, ../../app/components/bootstrap-sass/lib/_dropdowns.scss */
-.dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {
+.dropdown-menu > .disabled > a:hover, .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:hover, .dropdown-menu > .disabled > a:focus, .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:focus {
   text-decoration: none;
   background-color: transparent;
   background-image: none;
@@ -4163,7 +4166,7 @@ input[type="button"].btn-block {
   display: block;
 }
 /* line 127, ../../app/components/bootstrap-sass/lib/_dropdowns.scss */
-.open > a {
+.open > a, .dropdown-checkbox-group .dropdown-menu li .open > label {
   outline: 0;
 }
 
@@ -4634,34 +4637,34 @@ input[type="button"].btn-block {
   display: block;
 }
 /* line 19, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav > li > a, .navbar .sub-navbar > li > a {
+.nav > li > a, .navbar .sub-navbar > li > a, .dropdown-checkbox-group .dropdown-menu .nav > li > label, .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar > li > label {
   position: relative;
   display: block;
   padding: 10px 15px;
 }
 /* line 24, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav > li > a:hover, .navbar .sub-navbar > li > a:hover, .nav > li > a:focus, .navbar .sub-navbar > li > a:focus {
+.nav > li > a:hover, .navbar .sub-navbar > li > a:hover, .dropdown-checkbox-group .dropdown-menu .nav > li > label:hover, .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label:hover, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar > li > label:hover, .nav > li > a:focus, .navbar .sub-navbar > li > a:focus, .dropdown-checkbox-group .dropdown-menu .nav > li > label:focus, .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label:focus, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar > li > label:focus {
   text-decoration: none;
   background-color: #eeeeee;
 }
 /* line 31, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav > li.disabled > a, .navbar .sub-navbar > li.disabled > a {
+.nav > li.disabled > a, .navbar .sub-navbar > li.disabled > a, .dropdown-checkbox-group .dropdown-menu .nav > li.disabled > label, .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li.disabled > label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar > li.disabled > label {
   color: #999999;
 }
 /* line 35, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav > li.disabled > a:hover, .navbar .sub-navbar > li.disabled > a:hover, .nav > li.disabled > a:focus, .navbar .sub-navbar > li.disabled > a:focus {
+.nav > li.disabled > a:hover, .navbar .sub-navbar > li.disabled > a:hover, .dropdown-checkbox-group .dropdown-menu .nav > li.disabled > label:hover, .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li.disabled > label:hover, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar > li.disabled > label:hover, .nav > li.disabled > a:focus, .navbar .sub-navbar > li.disabled > a:focus, .dropdown-checkbox-group .dropdown-menu .nav > li.disabled > label:focus, .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li.disabled > label:focus, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar > li.disabled > label:focus {
   color: #999999;
   text-decoration: none;
   background-color: transparent;
   cursor: not-allowed;
 }
 /* line 48, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav .open > a, .navbar .sub-navbar .open > a, .nav .open > a:hover, .navbar .sub-navbar .open > a:hover, .nav .open > a:focus, .navbar .sub-navbar .open > a:focus {
+.nav .open > a, .navbar .sub-navbar .open > a, .nav .dropdown-checkbox-group .dropdown-menu li .open > label, .dropdown-checkbox-group .dropdown-menu li .nav .open > label, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li .open > label, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar .open > label, .nav .open > a:hover, .navbar .sub-navbar .open > a:hover, .nav .dropdown-checkbox-group .dropdown-menu li .open > label:hover, .dropdown-checkbox-group .dropdown-menu li .nav .open > label:hover, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li .open > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar .open > label:hover, .nav .open > a:focus, .navbar .sub-navbar .open > a:focus, .nav .dropdown-checkbox-group .dropdown-menu li .open > label:focus, .dropdown-checkbox-group .dropdown-menu li .nav .open > label:focus, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li .open > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar .open > label:focus {
   background-color: #eeeeee;
   border-color: #428bca;
 }
 /* line 52, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav .open > a .caret, .navbar .sub-navbar .open > a .caret, .nav .open > a .navbar .main-nav .active:after, .navbar .main-nav .nav .open > a .active:after, .navbar .sub-navbar .open > a .main-nav .active:after, .navbar .main-nav .sub-navbar .open > a .active:after, .nav .open > a:hover .caret, .navbar .sub-navbar .open > a:hover .caret, .nav .open > a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav .open > a:hover .active:after, .navbar .sub-navbar .open > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar .open > a:hover .active:after, .nav .open > a:focus .caret, .navbar .sub-navbar .open > a:focus .caret, .nav .open > a:focus .navbar .main-nav .active:after, .navbar .main-nav .nav .open > a:focus .active:after, .navbar .sub-navbar .open > a:focus .main-nav .active:after, .navbar .main-nav .sub-navbar .open > a:focus .active:after {
+.nav .open > a .caret, .navbar .sub-navbar .open > a .caret, .nav .dropdown-checkbox-group .dropdown-menu li .open > label .caret, .dropdown-checkbox-group .dropdown-menu li .nav .open > label .caret, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li .open > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar .open > label .caret, .nav .open > a .navbar .main-nav .active:after, .navbar .main-nav .nav .open > a .active:after, .navbar .sub-navbar .open > a .main-nav .active:after, .navbar .main-nav .sub-navbar .open > a .active:after, .nav .dropdown-checkbox-group .dropdown-menu li .open > label .navbar .main-nav .active:after, .navbar .main-nav .nav .dropdown-checkbox-group .dropdown-menu li .open > label .active:after, .dropdown-checkbox-group .dropdown-menu li .nav .open > label .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .nav .open > label .active:after, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li .open > label .main-nav .active:after, .navbar .main-nav .sub-navbar .dropdown-checkbox-group .dropdown-menu li .open > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar .open > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar .open > label .active:after, .nav .open > a:hover .caret, .navbar .sub-navbar .open > a:hover .caret, .nav .dropdown-checkbox-group .dropdown-menu li .open > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .nav .open > label:hover .caret, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li .open > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar .open > label:hover .caret, .nav .open > a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav .open > a:hover .active:after, .navbar .sub-navbar .open > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar .open > a:hover .active:after, .nav .dropdown-checkbox-group .dropdown-menu li .open > label:hover .navbar .main-nav .active:after, .navbar .main-nav .nav .dropdown-checkbox-group .dropdown-menu li .open > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .nav .open > label:hover .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .nav .open > label:hover .active:after, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li .open > label:hover .main-nav .active:after, .navbar .main-nav .sub-navbar .dropdown-checkbox-group .dropdown-menu li .open > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar .open > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar .open > label:hover .active:after, .nav .open > a:focus .caret, .navbar .sub-navbar .open > a:focus .caret, .nav .dropdown-checkbox-group .dropdown-menu li .open > label:focus .caret, .dropdown-checkbox-group .dropdown-menu li .nav .open > label:focus .caret, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li .open > label:focus .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar .open > label:focus .caret, .nav .open > a:focus .navbar .main-nav .active:after, .navbar .main-nav .nav .open > a:focus .active:after, .navbar .sub-navbar .open > a:focus .main-nav .active:after, .navbar .main-nav .sub-navbar .open > a:focus .active:after, .nav .dropdown-checkbox-group .dropdown-menu li .open > label:focus .navbar .main-nav .active:after, .navbar .main-nav .nav .dropdown-checkbox-group .dropdown-menu li .open > label:focus .active:after, .dropdown-checkbox-group .dropdown-menu li .nav .open > label:focus .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .nav .open > label:focus .active:after, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li .open > label:focus .main-nav .active:after, .navbar .main-nav .sub-navbar .dropdown-checkbox-group .dropdown-menu li .open > label:focus .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar .open > label:focus .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar .open > label:focus .active:after {
   border-top-color: #2a6496;
   border-bottom-color: #2a6496;
 }
@@ -4673,7 +4676,7 @@ input[type="button"].btn-block {
   background-color: #e5e5e5;
 }
 /* line 71, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav > li > a > img, .navbar .sub-navbar > li > a > img {
+.nav > li > a > img, .navbar .sub-navbar > li > a > img, .dropdown-checkbox-group .dropdown-menu .nav > li > label > img, .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label > img, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar > li > label > img {
   max-width: none;
 }
 
@@ -4687,18 +4690,18 @@ input[type="button"].btn-block {
   margin-bottom: -1px;
 }
 /* line 89, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav-tabs > li > a {
+.nav-tabs > li > a, .dropdown-checkbox-group .dropdown-menu .nav-tabs > li > label {
   margin-right: 2px;
   line-height: 1.42857;
   border: 1px solid transparent;
   border-radius: 4px 4px 0 0;
 }
 /* line 94, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav-tabs > li > a:hover {
+.nav-tabs > li > a:hover, .dropdown-checkbox-group .dropdown-menu .nav-tabs > li > label:hover {
   border-color: #eeeeee #eeeeee #dddddd;
 }
 /* line 103, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+.nav-tabs > li.active > a, .dropdown-checkbox-group .dropdown-menu .nav-tabs > li.active > label, .nav-tabs > li.active > a:hover, .dropdown-checkbox-group .dropdown-menu .nav-tabs > li.active > label:hover, .nav-tabs > li.active > a:focus, .dropdown-checkbox-group .dropdown-menu .nav-tabs > li.active > label:focus {
   color: #555555;
   background-color: #fdfdfd;
   border: 1px solid #dddddd;
@@ -4711,7 +4714,7 @@ input[type="button"].btn-block {
   float: left;
 }
 /* line 127, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav-pills > li > a {
+.nav-pills > li > a, .dropdown-checkbox-group .dropdown-menu .nav-pills > li > label {
   border-radius: 4px;
 }
 /* line 130, ../../app/components/bootstrap-sass/lib/_navs.scss */
@@ -4719,12 +4722,12 @@ input[type="button"].btn-block {
   margin-left: 2px;
 }
 /* line 138, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+.nav-pills > li.active > a, .dropdown-checkbox-group .dropdown-menu .nav-pills > li.active > label, .nav-pills > li.active > a:hover, .dropdown-checkbox-group .dropdown-menu .nav-pills > li.active > label:hover, .nav-pills > li.active > a:focus, .dropdown-checkbox-group .dropdown-menu .nav-pills > li.active > label:focus {
   color: white;
   background-color: #428bca;
 }
 /* line 142, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav-pills > li.active > a .caret, .nav-pills > li.active > a .navbar .main-nav .active:after, .navbar .main-nav .nav-pills > li.active > a .active:after, .nav-pills > li.active > a:hover .caret, .nav-pills > li.active > a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav-pills > li.active > a:hover .active:after, .nav-pills > li.active > a:focus .caret, .nav-pills > li.active > a:focus .navbar .main-nav .active:after, .navbar .main-nav .nav-pills > li.active > a:focus .active:after {
+.nav-pills > li.active > a .caret, .dropdown-checkbox-group .dropdown-menu .nav-pills > li.active > label .caret, .nav-pills > li.active > a .navbar .main-nav .active:after, .navbar .main-nav .nav-pills > li.active > a .active:after, .dropdown-checkbox-group .dropdown-menu .nav-pills > li.active > label .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu .nav-pills > li.active > label .active:after, .nav-pills > li.active > a:hover .caret, .dropdown-checkbox-group .dropdown-menu .nav-pills > li.active > label:hover .caret, .nav-pills > li.active > a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav-pills > li.active > a:hover .active:after, .dropdown-checkbox-group .dropdown-menu .nav-pills > li.active > label:hover .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu .nav-pills > li.active > label:hover .active:after, .nav-pills > li.active > a:focus .caret, .dropdown-checkbox-group .dropdown-menu .nav-pills > li.active > label:focus .caret, .nav-pills > li.active > a:focus .navbar .main-nav .active:after, .navbar .main-nav .nav-pills > li.active > a:focus .active:after, .dropdown-checkbox-group .dropdown-menu .nav-pills > li.active > label:focus .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu .nav-pills > li.active > label:focus .active:after {
   border-top-color: white;
   border-bottom-color: white;
 }
@@ -4748,7 +4751,7 @@ input[type="button"].btn-block {
   float: none;
 }
 /* line 175, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav-justified > li > a, .nav-tabs.nav-justified > li > a {
+.nav-justified > li > a, .nav-tabs.nav-justified > li > a, .dropdown-checkbox-group .dropdown-menu .nav-justified > li > label {
   text-align: center;
   margin-bottom: 5px;
 }
@@ -4764,7 +4767,7 @@ input[type="button"].btn-block {
     width: 1%;
   }
   /* line 190, ../../app/components/bootstrap-sass/lib/_navs.scss */
-  .nav-justified > li > a, .nav-tabs.nav-justified > li > a {
+  .nav-justified > li > a, .nav-tabs.nav-justified > li > a, .dropdown-checkbox-group .dropdown-menu .nav-justified > li > label {
     margin-bottom: 0;
   }
 }
@@ -4774,30 +4777,38 @@ input[type="button"].btn-block {
   border-bottom: 0;
 }
 /* line 203, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a {
+.nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a, .dropdown-checkbox-group .dropdown-menu .nav-tabs-justified > li > label, .dropdown-checkbox-group .dropdown-menu .nav-tabs.nav-justified > li > label {
   margin-right: 0;
   border-radius: 4px;
 }
 /* line 211, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a,
+.nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a, .dropdown-checkbox-group .dropdown-menu li .nav-tabs-justified > .active > label, .dropdown-checkbox-group .dropdown-menu li .nav-tabs.nav-justified > .active > label,
 .nav-tabs-justified > .active > a:hover,
 .nav-tabs.nav-justified > .active > a:hover,
+.dropdown-checkbox-group .dropdown-menu li .nav-tabs-justified > .active > label:hover,
+.dropdown-checkbox-group .dropdown-menu li .nav-tabs.nav-justified > .active > label:hover,
 .nav-tabs-justified > .active > a:focus,
-.nav-tabs.nav-justified > .active > a:focus {
+.nav-tabs.nav-justified > .active > a:focus,
+.dropdown-checkbox-group .dropdown-menu li .nav-tabs-justified > .active > label:focus,
+.dropdown-checkbox-group .dropdown-menu li .nav-tabs.nav-justified > .active > label:focus {
   border: 1px solid #dddddd;
 }
 @media (min-width: 768px) {
   /* line 216, ../../app/components/bootstrap-sass/lib/_navs.scss */
-  .nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a {
+  .nav-tabs-justified > li > a, .nav-tabs.nav-justified > li > a, .dropdown-checkbox-group .dropdown-menu .nav-tabs-justified > li > label, .dropdown-checkbox-group .dropdown-menu .nav-tabs.nav-justified > li > label {
     border-bottom: 1px solid #dddddd;
     border-radius: 4px 4px 0 0;
   }
   /* line 222, ../../app/components/bootstrap-sass/lib/_navs.scss */
-  .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a,
+  .nav-tabs-justified > .active > a, .nav-tabs.nav-justified > .active > a, .dropdown-checkbox-group .dropdown-menu li .nav-tabs-justified > .active > label, .dropdown-checkbox-group .dropdown-menu li .nav-tabs.nav-justified > .active > label,
   .nav-tabs-justified > .active > a:hover,
   .nav-tabs.nav-justified > .active > a:hover,
+  .dropdown-checkbox-group .dropdown-menu li .nav-tabs-justified > .active > label:hover,
+  .dropdown-checkbox-group .dropdown-menu li .nav-tabs.nav-justified > .active > label:hover,
   .nav-tabs-justified > .active > a:focus,
-  .nav-tabs.nav-justified > .active > a:focus {
+  .nav-tabs.nav-justified > .active > a:focus,
+  .dropdown-checkbox-group .dropdown-menu li .nav-tabs-justified > .active > label:focus,
+  .dropdown-checkbox-group .dropdown-menu li .nav-tabs.nav-justified > .active > label:focus {
     border-bottom-color: #fdfdfd;
   }
 }
@@ -4818,7 +4829,7 @@ input[type="button"].btn-block {
 }
 
 /* line 251, ../../app/components/bootstrap-sass/lib/_navs.scss */
-.nav a:hover .caret, .navbar .sub-navbar a:hover .caret, .nav a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav a:hover .active:after, .navbar .sub-navbar a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar a:hover .active:after {
+.nav a:hover .caret, .navbar .sub-navbar a:hover .caret, .nav .dropdown-checkbox-group .dropdown-menu li label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .nav label:hover .caret, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar label:hover .caret, .nav a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav a:hover .active:after, .navbar .sub-navbar a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar a:hover .active:after, .nav .dropdown-checkbox-group .dropdown-menu li label:hover .navbar .main-nav .active:after, .navbar .main-nav .nav .dropdown-checkbox-group .dropdown-menu li label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .nav label:hover .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .nav label:hover .active:after, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li label:hover .main-nav .active:after, .navbar .main-nav .sub-navbar .dropdown-checkbox-group .dropdown-menu li label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar label:hover .active:after {
   border-top-color: #2a6496;
   border-bottom-color: #2a6496;
 }
@@ -5039,7 +5050,7 @@ input[type="button"].btn-block {
   margin: 7.5px -15px;
 }
 /* line 211, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-nav > li > a, .navbar .sub-navbar > li > a {
+.navbar-nav > li > a, .navbar .sub-navbar > li > a, .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label, .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar > li > label {
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 20px;
@@ -5056,17 +5067,17 @@ input[type="button"].btn-block {
     box-shadow: none;
   }
   /* line 228, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-nav .open .dropdown-menu > li > a, .navbar .sub-navbar .open .dropdown-menu > li > a,
+  .navbar-nav .open .dropdown-menu > li > a, .navbar .sub-navbar .open .dropdown-menu > li > a, .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar-nav .open .dropdown-menu > li > label, .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar .sub-navbar .open .dropdown-menu > li > label,
   .navbar-nav .open .dropdown-menu .dropdown-header,
   .navbar .sub-navbar .open .dropdown-menu .dropdown-header {
     padding: 5px 15px 5px 25px;
   }
   /* line 231, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-nav .open .dropdown-menu > li > a, .navbar .sub-navbar .open .dropdown-menu > li > a {
+  .navbar-nav .open .dropdown-menu > li > a, .navbar .sub-navbar .open .dropdown-menu > li > a, .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar-nav .open .dropdown-menu > li > label, .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar .sub-navbar .open .dropdown-menu > li > label {
     line-height: 20px;
   }
   /* line 234, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-nav .open .dropdown-menu > li > a:hover, .navbar .sub-navbar .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-menu > li > a:focus, .navbar .sub-navbar .open .dropdown-menu > li > a:focus {
+  .navbar-nav .open .dropdown-menu > li > a:hover, .navbar .sub-navbar .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-checkbox-group .navbar-nav .open .dropdown-menu > li > label:hover, .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-checkbox-group .navbar .sub-navbar .open .dropdown-menu > li > label:hover, .navbar-nav .open .dropdown-menu > li > a:focus, .navbar .sub-navbar .open .dropdown-menu > li > a:focus, .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label:focus, .dropdown-checkbox-group .navbar-nav .open .dropdown-menu > li > label:focus, .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:focus, .dropdown-checkbox-group .navbar .sub-navbar .open .dropdown-menu > li > label:focus {
     background-image: none;
   }
 }
@@ -5081,7 +5092,7 @@ input[type="button"].btn-block {
     float: left;
   }
   /* line 248, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-nav > li > a, .navbar .sub-navbar > li > a {
+  .navbar-nav > li > a, .navbar .sub-navbar > li > a, .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label, .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar > li > label {
     padding-top: 15px;
     padding-bottom: 15px;
   }
@@ -5190,21 +5201,21 @@ input[type="button"].btn-block {
   color: #777777;
 }
 /* line 378, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > li > a, .navbar .sub-navbar-back .navbar-nav > li > a, .navbar-default .navbar .sub-navbar > li > a, .navbar .navbar-default .sub-navbar > li > a, .navbar .sub-navbar-back .sub-navbar > li > a {
+.navbar-default .navbar-nav > li > a, .navbar .sub-navbar-back .navbar-nav > li > a, .navbar-default .navbar .sub-navbar > li > a, .navbar .navbar-default .sub-navbar > li > a, .navbar .sub-navbar-back .sub-navbar > li > a, .navbar-default .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label, .dropdown-checkbox-group .dropdown-menu .navbar-default .navbar-nav > li > label, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar-back .navbar-nav > li > label, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label, .dropdown-checkbox-group .dropdown-menu .navbar-default .navbar .sub-navbar > li > label, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label, .dropdown-checkbox-group .dropdown-menu .navbar .navbar-default .sub-navbar > li > label, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar-back .sub-navbar > li > label {
   color: #777777;
 }
 /* line 382, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > li > a:hover, .navbar .sub-navbar-back .navbar-nav > li > a:hover, .navbar-default .navbar .sub-navbar > li > a:hover, .navbar .navbar-default .sub-navbar > li > a:hover, .navbar .sub-navbar-back .sub-navbar > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar .sub-navbar-back .navbar-nav > li > a:focus, .navbar-default .navbar .sub-navbar > li > a:focus, .navbar .navbar-default .sub-navbar > li > a:focus, .navbar .sub-navbar-back .sub-navbar > li > a:focus {
+.navbar-default .navbar-nav > li > a:hover, .navbar .sub-navbar-back .navbar-nav > li > a:hover, .navbar-default .navbar .sub-navbar > li > a:hover, .navbar .navbar-default .sub-navbar > li > a:hover, .navbar .sub-navbar-back .sub-navbar > li > a:hover, .navbar-default .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label:hover, .dropdown-checkbox-group .dropdown-menu .navbar-default .navbar-nav > li > label:hover, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label:hover, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar-back .navbar-nav > li > label:hover, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label:hover, .dropdown-checkbox-group .dropdown-menu .navbar-default .navbar .sub-navbar > li > label:hover, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label:hover, .dropdown-checkbox-group .dropdown-menu .navbar .navbar-default .sub-navbar > li > label:hover, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label:hover, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar-back .sub-navbar > li > label:hover, .navbar-default .navbar-nav > li > a:focus, .navbar .sub-navbar-back .navbar-nav > li > a:focus, .navbar-default .navbar .sub-navbar > li > a:focus, .navbar .navbar-default .sub-navbar > li > a:focus, .navbar .sub-navbar-back .sub-navbar > li > a:focus, .navbar-default .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label:focus, .dropdown-checkbox-group .dropdown-menu .navbar-default .navbar-nav > li > label:focus, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label:focus, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar-back .navbar-nav > li > label:focus, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label:focus, .dropdown-checkbox-group .dropdown-menu .navbar-default .navbar .sub-navbar > li > label:focus, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label:focus, .dropdown-checkbox-group .dropdown-menu .navbar .navbar-default .sub-navbar > li > label:focus, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label:focus, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar-back .sub-navbar > li > label:focus {
   color: #333333;
   background-color: transparent;
 }
 /* line 390, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > .active > a, .navbar .sub-navbar-back .navbar-nav > .active > a, .navbar-default .navbar .sub-navbar > .active > a, .navbar .navbar-default .sub-navbar > .active > a, .navbar .sub-navbar-back .sub-navbar > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar .sub-navbar-back .navbar-nav > .active > a:hover, .navbar-default .navbar .sub-navbar > .active > a:hover, .navbar .navbar-default .sub-navbar > .active > a:hover, .navbar .sub-navbar-back .sub-navbar > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar .sub-navbar-back .navbar-nav > .active > a:focus, .navbar-default .navbar .sub-navbar > .active > a:focus, .navbar .navbar-default .sub-navbar > .active > a:focus, .navbar .sub-navbar-back .sub-navbar > .active > a:focus {
+.navbar-default .navbar-nav > .active > a, .navbar .sub-navbar-back .navbar-nav > .active > a, .navbar-default .navbar .sub-navbar > .active > a, .navbar .navbar-default .sub-navbar > .active > a, .navbar .sub-navbar-back .sub-navbar > .active > a, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .active > label, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .active > label, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .active > label, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .active > label, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .active > label, .navbar-default .navbar-nav > .active > a:hover, .navbar .sub-navbar-back .navbar-nav > .active > a:hover, .navbar-default .navbar .sub-navbar > .active > a:hover, .navbar .navbar-default .sub-navbar > .active > a:hover, .navbar .sub-navbar-back .sub-navbar > .active > a:hover, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .active > label:hover, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .active > label:hover, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .active > label:hover, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .active > label:hover, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .active > label:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar .sub-navbar-back .navbar-nav > .active > a:focus, .navbar-default .navbar .sub-navbar > .active > a:focus, .navbar .navbar-default .sub-navbar > .active > a:focus, .navbar .sub-navbar-back .sub-navbar > .active > a:focus, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .active > label:focus, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .active > label:focus, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .active > label:focus, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .active > label:focus, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .active > label:focus {
   color: #555555;
   background-color: #e7e7e7;
 }
 /* line 398, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > .disabled > a, .navbar .sub-navbar-back .navbar-nav > .disabled > a, .navbar-default .navbar .sub-navbar > .disabled > a, .navbar .navbar-default .sub-navbar > .disabled > a, .navbar .sub-navbar-back .sub-navbar > .disabled > a, .navbar-default .navbar-nav > .disabled > a:hover, .navbar .sub-navbar-back .navbar-nav > .disabled > a:hover, .navbar-default .navbar .sub-navbar > .disabled > a:hover, .navbar .navbar-default .sub-navbar > .disabled > a:hover, .navbar .sub-navbar-back .sub-navbar > .disabled > a:hover, .navbar-default .navbar-nav > .disabled > a:focus, .navbar .sub-navbar-back .navbar-nav > .disabled > a:focus, .navbar-default .navbar .sub-navbar > .disabled > a:focus, .navbar .navbar-default .sub-navbar > .disabled > a:focus, .navbar .sub-navbar-back .sub-navbar > .disabled > a:focus {
+.navbar-default .navbar-nav > .disabled > a, .navbar .sub-navbar-back .navbar-nav > .disabled > a, .navbar-default .navbar .sub-navbar > .disabled > a, .navbar .navbar-default .sub-navbar > .disabled > a, .navbar .sub-navbar-back .sub-navbar > .disabled > a, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .disabled > label, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .disabled > label, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .disabled > label, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .disabled > label, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .disabled > label, .navbar-default .navbar-nav > .disabled > a:hover, .navbar .sub-navbar-back .navbar-nav > .disabled > a:hover, .navbar-default .navbar .sub-navbar > .disabled > a:hover, .navbar .navbar-default .sub-navbar > .disabled > a:hover, .navbar .sub-navbar-back .sub-navbar > .disabled > a:hover, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .disabled > label:hover, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .disabled > label:hover, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .disabled > label:hover, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .disabled > label:hover, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .disabled > label:hover, .navbar-default .navbar-nav > .disabled > a:focus, .navbar .sub-navbar-back .navbar-nav > .disabled > a:focus, .navbar-default .navbar .sub-navbar > .disabled > a:focus, .navbar .navbar-default .sub-navbar > .disabled > a:focus, .navbar .sub-navbar-back .sub-navbar > .disabled > a:focus, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .disabled > label:focus, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .disabled > label:focus, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .disabled > label:focus, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .disabled > label:focus, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .disabled > label:focus {
   color: #cccccc;
   background-color: transparent;
 }
@@ -5227,12 +5238,22 @@ input[type="button"].btn-block {
   border-color: #e7e7e7;
 }
 /* line 425, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar .sub-navbar-back .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar .sub-navbar > .dropdown > a:hover .caret, .navbar .navbar-default .sub-navbar > .dropdown > a:hover .caret, .navbar .sub-navbar-back .sub-navbar > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .dropdown > a:hover .active:after, .navbar .sub-navbar-back .navbar-nav > .dropdown > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .dropdown > a:hover .active:after, .navbar-default .navbar .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .dropdown > a:hover .active:after, .navbar .navbar-default .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .dropdown > a:hover .active:after, .navbar .sub-navbar-back .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .dropdown > a:hover .active:after,
+.navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar .sub-navbar-back .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar .sub-navbar > .dropdown > a:hover .caret, .navbar .navbar-default .sub-navbar > .dropdown > a:hover .caret, .navbar .sub-navbar-back .sub-navbar > .dropdown > a:hover .caret, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .dropdown > label:hover .caret, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .dropdown > label:hover .caret, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .dropdown > label:hover .caret, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .dropdown > label:hover .caret, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .dropdown > label:hover .caret, .navbar-default .navbar-nav > .dropdown > a:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .dropdown > a:hover .active:after, .navbar .sub-navbar-back .navbar-nav > .dropdown > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .dropdown > a:hover .active:after, .navbar-default .navbar .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .dropdown > a:hover .active:after, .navbar .navbar-default .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .dropdown > a:hover .active:after, .navbar .sub-navbar-back .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .dropdown > a:hover .active:after, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .dropdown > label:hover .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .dropdown > label:hover .active:after, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .dropdown > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar-back .navbar-nav > .dropdown > label:hover .active:after, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .main-nav .active:after, .navbar-default .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .dropdown > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .main-nav .sub-navbar > .dropdown > label:hover .active:after, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .main-nav .active:after, .navbar .main-nav .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .dropdown > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .navbar-default .sub-navbar > .dropdown > label:hover .active:after, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .dropdown > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar-back .sub-navbar > .dropdown > label:hover .active:after,
 .navbar-default .navbar-nav > .dropdown > a:focus .caret,
 .navbar .sub-navbar-back .navbar-nav > .dropdown > a:focus .caret,
 .navbar-default .navbar .sub-navbar > .dropdown > a:focus .caret,
 .navbar .navbar-default .sub-navbar > .dropdown > a:focus .caret,
 .navbar .sub-navbar-back .sub-navbar > .dropdown > a:focus .caret,
+.navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:focus .caret,
+.dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .dropdown > label:focus .caret,
+.navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:focus .caret,
+.dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .dropdown > label:focus .caret,
+.navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:focus .caret,
+.dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .dropdown > label:focus .caret,
+.navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:focus .caret,
+.dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .dropdown > label:focus .caret,
+.navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:focus .caret,
+.dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .dropdown > label:focus .caret,
 .navbar-default .navbar-nav > .dropdown > a:focus .navbar .main-nav .active:after,
 .navbar .main-nav .navbar-default .navbar-nav > .dropdown > a:focus .active:after,
 .navbar .sub-navbar-back .navbar-nav > .dropdown > a:focus .main-nav .active:after,
@@ -5242,42 +5263,62 @@ input[type="button"].btn-block {
 .navbar .navbar-default .sub-navbar > .dropdown > a:focus .main-nav .active:after,
 .navbar .main-nav .navbar-default .sub-navbar > .dropdown > a:focus .active:after,
 .navbar .sub-navbar-back .sub-navbar > .dropdown > a:focus .main-nav .active:after,
-.navbar .main-nav .sub-navbar-back .sub-navbar > .dropdown > a:focus .active:after {
+.navbar .main-nav .sub-navbar-back .sub-navbar > .dropdown > a:focus .active:after,
+.navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:focus .navbar .main-nav .active:after,
+.navbar .main-nav .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:focus .active:after,
+.dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .dropdown > label:focus .navbar .main-nav .active:after,
+.navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .dropdown > label:focus .active:after,
+.navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:focus .main-nav .active:after,
+.navbar .main-nav .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:focus .active:after,
+.dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .dropdown > label:focus .main-nav .active:after,
+.dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar-back .navbar-nav > .dropdown > label:focus .active:after,
+.navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:focus .main-nav .active:after,
+.navbar-default .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:focus .active:after,
+.dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .dropdown > label:focus .main-nav .active:after,
+.dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .main-nav .sub-navbar > .dropdown > label:focus .active:after,
+.navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:focus .main-nav .active:after,
+.navbar .main-nav .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:focus .active:after,
+.dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .dropdown > label:focus .main-nav .active:after,
+.dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .navbar-default .sub-navbar > .dropdown > label:focus .active:after,
+.navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:focus .main-nav .active:after,
+.navbar .main-nav .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:focus .active:after,
+.dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .dropdown > label:focus .main-nav .active:after,
+.dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar-back .sub-navbar > .dropdown > label:focus .active:after {
   border-top-color: #333333;
   border-bottom-color: #333333;
 }
 /* line 434, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > .open > a, .navbar .sub-navbar-back .navbar-nav > .open > a, .navbar-default .navbar .sub-navbar > .open > a, .navbar .navbar-default .sub-navbar > .open > a, .navbar .sub-navbar-back .sub-navbar > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar .sub-navbar-back .navbar-nav > .open > a:hover, .navbar-default .navbar .sub-navbar > .open > a:hover, .navbar .navbar-default .sub-navbar > .open > a:hover, .navbar .sub-navbar-back .sub-navbar > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus, .navbar .sub-navbar-back .navbar-nav > .open > a:focus, .navbar-default .navbar .sub-navbar > .open > a:focus, .navbar .navbar-default .sub-navbar > .open > a:focus, .navbar .sub-navbar-back .sub-navbar > .open > a:focus {
+.navbar-default .navbar-nav > .open > a, .navbar .sub-navbar-back .navbar-nav > .open > a, .navbar-default .navbar .sub-navbar > .open > a, .navbar .navbar-default .sub-navbar > .open > a, .navbar .sub-navbar-back .sub-navbar > .open > a, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .open > label, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .open > label, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .open > label, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .open > label, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .open > label, .navbar-default .navbar-nav > .open > a:hover, .navbar .sub-navbar-back .navbar-nav > .open > a:hover, .navbar-default .navbar .sub-navbar > .open > a:hover, .navbar .navbar-default .sub-navbar > .open > a:hover, .navbar .sub-navbar-back .sub-navbar > .open > a:hover, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .open > label:hover, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .open > label:hover, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .open > label:hover, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .open > label:hover, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .open > label:hover, .navbar-default .navbar-nav > .open > a:focus, .navbar .sub-navbar-back .navbar-nav > .open > a:focus, .navbar-default .navbar .sub-navbar > .open > a:focus, .navbar .navbar-default .sub-navbar > .open > a:focus, .navbar .sub-navbar-back .sub-navbar > .open > a:focus, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .open > label:focus, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .open > label:focus, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .open > label:focus, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .open > label:focus, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .open > label:focus {
   background-color: #e7e7e7;
   color: #555555;
 }
 /* line 437, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > .open > a .caret, .navbar .sub-navbar-back .navbar-nav > .open > a .caret, .navbar-default .navbar .sub-navbar > .open > a .caret, .navbar .navbar-default .sub-navbar > .open > a .caret, .navbar .sub-navbar-back .sub-navbar > .open > a .caret, .navbar-default .navbar-nav > .open > a .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .open > a .active:after, .navbar .sub-navbar-back .navbar-nav > .open > a .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .open > a .active:after, .navbar-default .navbar .sub-navbar > .open > a .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .open > a .active:after, .navbar .navbar-default .sub-navbar > .open > a .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .open > a .active:after, .navbar .sub-navbar-back .sub-navbar > .open > a .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .open > a .active:after, .navbar-default .navbar-nav > .open > a:hover .caret, .navbar .sub-navbar-back .navbar-nav > .open > a:hover .caret, .navbar-default .navbar .sub-navbar > .open > a:hover .caret, .navbar .navbar-default .sub-navbar > .open > a:hover .caret, .navbar .sub-navbar-back .sub-navbar > .open > a:hover .caret, .navbar-default .navbar-nav > .open > a:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .open > a:hover .active:after, .navbar .sub-navbar-back .navbar-nav > .open > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .open > a:hover .active:after, .navbar-default .navbar .sub-navbar > .open > a:hover .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .open > a:hover .active:after, .navbar .navbar-default .sub-navbar > .open > a:hover .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .open > a:hover .active:after, .navbar .sub-navbar-back .sub-navbar > .open > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .open > a:hover .active:after, .navbar-default .navbar-nav > .open > a:focus .caret, .navbar .sub-navbar-back .navbar-nav > .open > a:focus .caret, .navbar-default .navbar .sub-navbar > .open > a:focus .caret, .navbar .navbar-default .sub-navbar > .open > a:focus .caret, .navbar .sub-navbar-back .sub-navbar > .open > a:focus .caret, .navbar-default .navbar-nav > .open > a:focus .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .open > a:focus .active:after, .navbar .sub-navbar-back .navbar-nav > .open > a:focus .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .open > a:focus .active:after, .navbar-default .navbar .sub-navbar > .open > a:focus .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .open > a:focus .active:after, .navbar .navbar-default .sub-navbar > .open > a:focus .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .open > a:focus .active:after, .navbar .sub-navbar-back .sub-navbar > .open > a:focus .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .open > a:focus .active:after {
+.navbar-default .navbar-nav > .open > a .caret, .navbar .sub-navbar-back .navbar-nav > .open > a .caret, .navbar-default .navbar .sub-navbar > .open > a .caret, .navbar .navbar-default .sub-navbar > .open > a .caret, .navbar .sub-navbar-back .sub-navbar > .open > a .caret, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .open > label .caret, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .open > label .caret, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .open > label .caret, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .open > label .caret, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .open > label .caret, .navbar-default .navbar-nav > .open > a .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .open > a .active:after, .navbar .sub-navbar-back .navbar-nav > .open > a .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .open > a .active:after, .navbar-default .navbar .sub-navbar > .open > a .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .open > a .active:after, .navbar .navbar-default .sub-navbar > .open > a .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .open > a .active:after, .navbar .sub-navbar-back .sub-navbar > .open > a .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .open > a .active:after, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .open > label .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .open > label .active:after, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label .main-nav .active:after, .navbar .main-nav .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .open > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar-back .navbar-nav > .open > label .active:after, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .main-nav .active:after, .navbar-default .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .open > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .main-nav .sub-navbar > .open > label .active:after, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .main-nav .active:after, .navbar .main-nav .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .open > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .navbar-default .sub-navbar > .open > label .active:after, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .main-nav .active:after, .navbar .main-nav .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .open > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar-back .sub-navbar > .open > label .active:after, .navbar-default .navbar-nav > .open > a:hover .caret, .navbar .sub-navbar-back .navbar-nav > .open > a:hover .caret, .navbar-default .navbar .sub-navbar > .open > a:hover .caret, .navbar .navbar-default .sub-navbar > .open > a:hover .caret, .navbar .sub-navbar-back .sub-navbar > .open > a:hover .caret, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .open > label:hover .caret, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .open > label:hover .caret, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .open > label:hover .caret, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .open > label:hover .caret, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .open > label:hover .caret, .navbar-default .navbar-nav > .open > a:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .open > a:hover .active:after, .navbar .sub-navbar-back .navbar-nav > .open > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .open > a:hover .active:after, .navbar-default .navbar .sub-navbar > .open > a:hover .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .open > a:hover .active:after, .navbar .navbar-default .sub-navbar > .open > a:hover .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .open > a:hover .active:after, .navbar .sub-navbar-back .sub-navbar > .open > a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .open > a:hover .active:after, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .open > label:hover .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .open > label:hover .active:after, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .open > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar-back .navbar-nav > .open > label:hover .active:after, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .main-nav .active:after, .navbar-default .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .open > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .main-nav .sub-navbar > .open > label:hover .active:after, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .main-nav .active:after, .navbar .main-nav .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .open > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .navbar-default .sub-navbar > .open > label:hover .active:after, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .main-nav .active:after, .navbar .main-nav .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .open > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar-back .sub-navbar > .open > label:hover .active:after, .navbar-default .navbar-nav > .open > a:focus .caret, .navbar .sub-navbar-back .navbar-nav > .open > a:focus .caret, .navbar-default .navbar .sub-navbar > .open > a:focus .caret, .navbar .navbar-default .sub-navbar > .open > a:focus .caret, .navbar .sub-navbar-back .sub-navbar > .open > a:focus .caret, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:focus .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .open > label:focus .caret, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:focus .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .open > label:focus .caret, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .open > label:focus .caret, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .open > label:focus .caret, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .open > label:focus .caret, .navbar-default .navbar-nav > .open > a:focus .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .open > a:focus .active:after, .navbar .sub-navbar-back .navbar-nav > .open > a:focus .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .open > a:focus .active:after, .navbar-default .navbar .sub-navbar > .open > a:focus .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .open > a:focus .active:after, .navbar .navbar-default .sub-navbar > .open > a:focus .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .open > a:focus .active:after, .navbar .sub-navbar-back .sub-navbar > .open > a:focus .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .open > a:focus .active:after, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:focus .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:focus .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .open > label:focus .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .open > label:focus .active:after, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:focus .main-nav .active:after, .navbar .main-nav .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:focus .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .open > label:focus .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar-back .navbar-nav > .open > label:focus .active:after, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .main-nav .active:after, .navbar-default .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .open > label:focus .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .main-nav .sub-navbar > .open > label:focus .active:after, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .main-nav .active:after, .navbar .main-nav .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .open > label:focus .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .navbar-default .sub-navbar > .open > label:focus .active:after, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .main-nav .active:after, .navbar .main-nav .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .open > label:focus .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar-back .sub-navbar > .open > label:focus .active:after {
   border-top-color: #555555;
   border-bottom-color: #555555;
 }
 /* line 443, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-default .navbar-nav > .dropdown > a .caret, .navbar .sub-navbar-back .navbar-nav > .dropdown > a .caret, .navbar-default .navbar .sub-navbar > .dropdown > a .caret, .navbar .navbar-default .sub-navbar > .dropdown > a .caret, .navbar .sub-navbar-back .sub-navbar > .dropdown > a .caret, .navbar-default .navbar-nav > .dropdown > a .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .dropdown > a .active:after, .navbar .sub-navbar-back .navbar-nav > .dropdown > a .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .dropdown > a .active:after, .navbar-default .navbar .sub-navbar > .dropdown > a .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .dropdown > a .active:after, .navbar .navbar-default .sub-navbar > .dropdown > a .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .dropdown > a .active:after, .navbar .sub-navbar-back .sub-navbar > .dropdown > a .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .dropdown > a .active:after {
+.navbar-default .navbar-nav > .dropdown > a .caret, .navbar .sub-navbar-back .navbar-nav > .dropdown > a .caret, .navbar-default .navbar .sub-navbar > .dropdown > a .caret, .navbar .navbar-default .sub-navbar > .dropdown > a .caret, .navbar .sub-navbar-back .sub-navbar > .dropdown > a .caret, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .dropdown > label .caret, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .dropdown > label .caret, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .dropdown > label .caret, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .dropdown > label .caret, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .dropdown > label .caret, .navbar-default .navbar-nav > .dropdown > a .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .navbar-nav > .dropdown > a .active:after, .navbar .sub-navbar-back .navbar-nav > .dropdown > a .main-nav .active:after, .navbar .main-nav .sub-navbar-back .navbar-nav > .dropdown > a .active:after, .navbar-default .navbar .sub-navbar > .dropdown > a .main-nav .active:after, .navbar-default .navbar .main-nav .sub-navbar > .dropdown > a .active:after, .navbar .navbar-default .sub-navbar > .dropdown > a .main-nav .active:after, .navbar .main-nav .navbar-default .sub-navbar > .dropdown > a .active:after, .navbar .sub-navbar-back .sub-navbar > .dropdown > a .main-nav .active:after, .navbar .main-nav .sub-navbar-back .sub-navbar > .dropdown > a .active:after, .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label .navbar .main-nav .active:after, .navbar .main-nav .navbar-default .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .dropdown > label .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav > .dropdown > label .active:after, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label .main-nav .active:after, .navbar .main-nav .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav > .dropdown > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar-back .navbar-nav > .dropdown > label .active:after, .navbar-default .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .main-nav .active:after, .navbar-default .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar > .dropdown > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .main-nav .sub-navbar > .dropdown > label .active:after, .navbar .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .main-nav .active:after, .navbar .main-nav .navbar-default .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar > .dropdown > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .navbar-default .sub-navbar > .dropdown > label .active:after, .navbar .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .main-nav .active:after, .navbar .main-nav .sub-navbar-back .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar > .dropdown > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .sub-navbar-back .sub-navbar > .dropdown > label .active:after {
   border-top-color: #777777;
   border-bottom-color: #777777;
 }
 @media (max-width: 767px) {
   /* line 452, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > li > a, .navbar-default .navbar .sub-navbar .open .dropdown-menu > li > a, .navbar .navbar-default .sub-navbar .open .dropdown-menu > li > a, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > li > a {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > li > a, .navbar-default .navbar .sub-navbar .open .dropdown-menu > li > a, .navbar .navbar-default .sub-navbar .open .dropdown-menu > li > a, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > li > a, .navbar-default .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar-default .navbar-nav .open .dropdown-menu > li > label, .navbar .sub-navbar-back .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > li > label, .navbar-default .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar-default .navbar .sub-navbar .open .dropdown-menu > li > label, .navbar .navbar-default .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar .navbar-default .sub-navbar .open .dropdown-menu > li > label, .navbar .sub-navbar-back .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > li > label {
     color: #777777;
   }
   /* line 455, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar .sub-navbar .open .dropdown-menu > li > a:hover, .navbar .navbar-default .sub-navbar .open .dropdown-menu > li > a:hover, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > li > a:focus, .navbar-default .navbar .sub-navbar .open .dropdown-menu > li > a:focus, .navbar .navbar-default .sub-navbar .open .dropdown-menu > li > a:focus, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > li > a:focus {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar .sub-navbar .open .dropdown-menu > li > a:hover, .navbar .navbar-default .sub-navbar .open .dropdown-menu > li > a:hover, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-checkbox-group .navbar-default .navbar-nav .open .dropdown-menu > li > label:hover, .navbar .sub-navbar-back .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-checkbox-group .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > li > label:hover, .navbar-default .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-checkbox-group .navbar-default .navbar .sub-navbar .open .dropdown-menu > li > label:hover, .navbar .navbar-default .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-checkbox-group .navbar .navbar-default .sub-navbar .open .dropdown-menu > li > label:hover, .navbar .sub-navbar-back .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-checkbox-group .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > li > label:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > li > a:focus, .navbar-default .navbar .sub-navbar .open .dropdown-menu > li > a:focus, .navbar .navbar-default .sub-navbar .open .dropdown-menu > li > a:focus, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > li > a:focus, .navbar-default .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label:focus, .dropdown-checkbox-group .navbar-default .navbar-nav .open .dropdown-menu > li > label:focus, .navbar .sub-navbar-back .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label:focus, .dropdown-checkbox-group .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > li > label:focus, .navbar-default .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:focus, .dropdown-checkbox-group .navbar-default .navbar .sub-navbar .open .dropdown-menu > li > label:focus, .navbar .navbar-default .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:focus, .dropdown-checkbox-group .navbar .navbar-default .sub-navbar .open .dropdown-menu > li > label:focus, .navbar .sub-navbar-back .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:focus, .dropdown-checkbox-group .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > li > label:focus {
     color: #333333;
     background-color: transparent;
   }
   /* line 463, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .active > a, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .active > a, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .active > a:focus, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .active > a:focus, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .active > a:focus, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .active > a:focus {
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .active > a, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .active > a, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav .open .dropdown-menu > .active > label, .navbar .sub-navbar-back .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .active > label, .navbar-default .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar .open .dropdown-menu > .active > label, .navbar .navbar-default .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar .open .dropdown-menu > .active > label, .navbar .sub-navbar-back .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .active > label, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav .open .dropdown-menu > .active > label:hover, .navbar .sub-navbar-back .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .active > label:hover, .navbar-default .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar .open .dropdown-menu > .active > label:hover, .navbar .navbar-default .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar .open .dropdown-menu > .active > label:hover, .navbar .sub-navbar-back .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .active > label:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .active > a:focus, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .active > a:focus, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .active > a:focus, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .active > a:focus, .navbar-default .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav .open .dropdown-menu > .active > label:focus, .navbar .sub-navbar-back .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .active > label:focus, .navbar-default .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar .open .dropdown-menu > .active > label:focus, .navbar .navbar-default .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar .open .dropdown-menu > .active > label:focus, .navbar .sub-navbar-back .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .active > label:focus {
     color: #555555;
     background-color: #e7e7e7;
   }
   /* line 471, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .disabled > a, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .disabled > a, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .disabled > a, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .disabled > a:focus, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .disabled > a:focus, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .disabled > a:focus, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .disabled > a:focus {
+  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .disabled > a, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .disabled > a, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .disabled > a, .navbar-default .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav .open .dropdown-menu > .disabled > label, .navbar .sub-navbar-back .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .disabled > label, .navbar-default .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar .open .dropdown-menu > .disabled > label, .navbar .navbar-default .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar .open .dropdown-menu > .disabled > label, .navbar .sub-navbar-back .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .disabled > label, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar-default .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav .open .dropdown-menu > .disabled > label:hover, .navbar .sub-navbar-back .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .disabled > label:hover, .navbar-default .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar .open .dropdown-menu > .disabled > label:hover, .navbar .navbar-default .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar .open .dropdown-menu > .disabled > label:hover, .navbar .sub-navbar-back .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .disabled > label:hover, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus, .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .disabled > a:focus, .navbar-default .navbar .sub-navbar .open .dropdown-menu > .disabled > a:focus, .navbar .navbar-default .sub-navbar .open .dropdown-menu > .disabled > a:focus, .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .disabled > a:focus, .navbar-default .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar-nav .open .dropdown-menu > .disabled > label:focus, .navbar .sub-navbar-back .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .navbar-nav .open .dropdown-menu > .disabled > label:focus, .navbar-default .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-default .navbar .sub-navbar .open .dropdown-menu > .disabled > label:focus, .navbar .navbar-default .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-default .sub-navbar .open .dropdown-menu > .disabled > label:focus, .navbar .sub-navbar-back .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .sub-navbar-back .sub-navbar .open .dropdown-menu > .disabled > label:focus {
     color: #cccccc;
     background-color: transparent;
   }
@@ -5310,21 +5351,21 @@ input[type="button"].btn-block {
   color: #999999;
 }
 /* line 514, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar .sub-navbar > li > a, .navbar .navbar-inverse .sub-navbar > li > a {
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar .sub-navbar > li > a, .navbar .navbar-inverse .sub-navbar > li > a, .navbar-inverse .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label, .dropdown-checkbox-group .dropdown-menu .navbar-inverse .navbar-nav > li > label, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label, .dropdown-checkbox-group .dropdown-menu .navbar-inverse .navbar .sub-navbar > li > label, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label, .dropdown-checkbox-group .dropdown-menu .navbar .navbar-inverse .sub-navbar > li > label {
   color: #999999;
 }
 /* line 518, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar .sub-navbar > li > a:hover, .navbar .navbar-inverse .sub-navbar > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar .sub-navbar > li > a:focus, .navbar .navbar-inverse .sub-navbar > li > a:focus {
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar .sub-navbar > li > a:hover, .navbar .navbar-inverse .sub-navbar > li > a:hover, .navbar-inverse .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label:hover, .dropdown-checkbox-group .dropdown-menu .navbar-inverse .navbar-nav > li > label:hover, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label:hover, .dropdown-checkbox-group .dropdown-menu .navbar-inverse .navbar .sub-navbar > li > label:hover, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label:hover, .dropdown-checkbox-group .dropdown-menu .navbar .navbar-inverse .sub-navbar > li > label:hover, .navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar .sub-navbar > li > a:focus, .navbar .navbar-inverse .sub-navbar > li > a:focus, .navbar-inverse .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label:focus, .dropdown-checkbox-group .dropdown-menu .navbar-inverse .navbar-nav > li > label:focus, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label:focus, .dropdown-checkbox-group .dropdown-menu .navbar-inverse .navbar .sub-navbar > li > label:focus, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label:focus, .dropdown-checkbox-group .dropdown-menu .navbar .navbar-inverse .sub-navbar > li > label:focus {
   color: white;
   background-color: transparent;
 }
 /* line 526, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar .sub-navbar > .active > a, .navbar .navbar-inverse .sub-navbar > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar .sub-navbar > .active > a:hover, .navbar .navbar-inverse .sub-navbar > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar .sub-navbar > .active > a:focus, .navbar .navbar-inverse .sub-navbar > .active > a:focus {
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar .sub-navbar > .active > a, .navbar .navbar-inverse .sub-navbar > .active > a, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .active > label, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .active > label, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .active > label, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar .sub-navbar > .active > a:hover, .navbar .navbar-inverse .sub-navbar > .active > a:hover, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .active > label:hover, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .active > label:hover, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .active > label:hover, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar .sub-navbar > .active > a:focus, .navbar .navbar-inverse .sub-navbar > .active > a:focus, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .active > label:focus, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .active > label:focus, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .active > label:focus {
   color: white;
   background-color: #090909;
 }
 /* line 534, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > .disabled > a, .navbar-inverse .navbar .sub-navbar > .disabled > a, .navbar .navbar-inverse .sub-navbar > .disabled > a, .navbar-inverse .navbar-nav > .disabled > a:hover, .navbar-inverse .navbar .sub-navbar > .disabled > a:hover, .navbar .navbar-inverse .sub-navbar > .disabled > a:hover, .navbar-inverse .navbar-nav > .disabled > a:focus, .navbar-inverse .navbar .sub-navbar > .disabled > a:focus, .navbar .navbar-inverse .sub-navbar > .disabled > a:focus {
+.navbar-inverse .navbar-nav > .disabled > a, .navbar-inverse .navbar .sub-navbar > .disabled > a, .navbar .navbar-inverse .sub-navbar > .disabled > a, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .disabled > label, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .disabled > label, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .disabled > label, .navbar-inverse .navbar-nav > .disabled > a:hover, .navbar-inverse .navbar .sub-navbar > .disabled > a:hover, .navbar .navbar-inverse .sub-navbar > .disabled > a:hover, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .disabled > label:hover, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .disabled > label:hover, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .disabled > label:hover, .navbar-inverse .navbar-nav > .disabled > a:focus, .navbar-inverse .navbar .sub-navbar > .disabled > a:focus, .navbar .navbar-inverse .sub-navbar > .disabled > a:focus, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .disabled > label:focus, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .disabled > label:focus, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .disabled > label:focus {
   color: #444444;
   background-color: transparent;
 }
@@ -5346,22 +5387,22 @@ input[type="button"].btn-block {
   border-color: #101010;
 }
 /* line 563, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar .sub-navbar > .open > a, .navbar .navbar-inverse .sub-navbar > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar .sub-navbar > .open > a:hover, .navbar .navbar-inverse .sub-navbar > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar .sub-navbar > .open > a:focus, .navbar .navbar-inverse .sub-navbar > .open > a:focus {
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar .sub-navbar > .open > a, .navbar .navbar-inverse .sub-navbar > .open > a, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .open > label, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .open > label, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .open > label, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar .sub-navbar > .open > a:hover, .navbar .navbar-inverse .sub-navbar > .open > a:hover, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .open > label:hover, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .open > label:hover, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .open > label:hover, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar .sub-navbar > .open > a:focus, .navbar .navbar-inverse .sub-navbar > .open > a:focus, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .open > label:focus, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .open > label:focus, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .open > label:focus {
   background-color: #090909;
   color: white;
 }
 /* line 568, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > .dropdown > a:hover .caret, .navbar-inverse .navbar .sub-navbar > .dropdown > a:hover .caret, .navbar .navbar-inverse .sub-navbar > .dropdown > a:hover .caret, .navbar-inverse .navbar-nav > .dropdown > a:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .dropdown > a:hover .active:after, .navbar-inverse .navbar .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .dropdown > a:hover .active:after, .navbar .navbar-inverse .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .dropdown > a:hover .active:after {
+.navbar-inverse .navbar-nav > .dropdown > a:hover .caret, .navbar-inverse .navbar .sub-navbar > .dropdown > a:hover .caret, .navbar .navbar-inverse .sub-navbar > .dropdown > a:hover .caret, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .dropdown > label:hover .caret, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .dropdown > label:hover .caret, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .dropdown > label:hover .caret, .navbar-inverse .navbar-nav > .dropdown > a:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .dropdown > a:hover .active:after, .navbar-inverse .navbar .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .dropdown > a:hover .active:after, .navbar .navbar-inverse .sub-navbar > .dropdown > a:hover .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .dropdown > a:hover .active:after, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .dropdown > label:hover .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .dropdown > label:hover .active:after, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .main-nav .active:after, .navbar-inverse .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .dropdown > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .main-nav .sub-navbar > .dropdown > label:hover .active:after, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .main-nav .active:after, .navbar .main-nav .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .dropdown > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .navbar-inverse .sub-navbar > .dropdown > label:hover .active:after {
   border-top-color: white;
   border-bottom-color: white;
 }
 /* line 572, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > .dropdown > a .caret, .navbar-inverse .navbar .sub-navbar > .dropdown > a .caret, .navbar .navbar-inverse .sub-navbar > .dropdown > a .caret, .navbar-inverse .navbar-nav > .dropdown > a .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .dropdown > a .active:after, .navbar-inverse .navbar .sub-navbar > .dropdown > a .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .dropdown > a .active:after, .navbar .navbar-inverse .sub-navbar > .dropdown > a .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .dropdown > a .active:after {
+.navbar-inverse .navbar-nav > .dropdown > a .caret, .navbar-inverse .navbar .sub-navbar > .dropdown > a .caret, .navbar .navbar-inverse .sub-navbar > .dropdown > a .caret, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .dropdown > label .caret, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .dropdown > label .caret, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .dropdown > label .caret, .navbar-inverse .navbar-nav > .dropdown > a .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .dropdown > a .active:after, .navbar-inverse .navbar .sub-navbar > .dropdown > a .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .dropdown > a .active:after, .navbar .navbar-inverse .sub-navbar > .dropdown > a .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .dropdown > a .active:after, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .dropdown > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .dropdown > label .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .dropdown > label .active:after, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .main-nav .active:after, .navbar-inverse .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .dropdown > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .main-nav .sub-navbar > .dropdown > label .active:after, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .main-nav .active:after, .navbar .main-nav .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .dropdown > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .dropdown > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .navbar-inverse .sub-navbar > .dropdown > label .active:after {
   border-top-color: #999999;
   border-bottom-color: #999999;
 }
 /* line 580, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-.navbar-inverse .navbar-nav > .open > a .caret, .navbar-inverse .navbar .sub-navbar > .open > a .caret, .navbar .navbar-inverse .sub-navbar > .open > a .caret, .navbar-inverse .navbar-nav > .open > a .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .open > a .active:after, .navbar-inverse .navbar .sub-navbar > .open > a .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .open > a .active:after, .navbar .navbar-inverse .sub-navbar > .open > a .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .open > a .active:after, .navbar-inverse .navbar-nav > .open > a:hover .caret, .navbar-inverse .navbar .sub-navbar > .open > a:hover .caret, .navbar .navbar-inverse .sub-navbar > .open > a:hover .caret, .navbar-inverse .navbar-nav > .open > a:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .open > a:hover .active:after, .navbar-inverse .navbar .sub-navbar > .open > a:hover .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .open > a:hover .active:after, .navbar .navbar-inverse .sub-navbar > .open > a:hover .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .open > a:hover .active:after, .navbar-inverse .navbar-nav > .open > a:focus .caret, .navbar-inverse .navbar .sub-navbar > .open > a:focus .caret, .navbar .navbar-inverse .sub-navbar > .open > a:focus .caret, .navbar-inverse .navbar-nav > .open > a:focus .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .open > a:focus .active:after, .navbar-inverse .navbar .sub-navbar > .open > a:focus .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .open > a:focus .active:after, .navbar .navbar-inverse .sub-navbar > .open > a:focus .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .open > a:focus .active:after {
+.navbar-inverse .navbar-nav > .open > a .caret, .navbar-inverse .navbar .sub-navbar > .open > a .caret, .navbar .navbar-inverse .sub-navbar > .open > a .caret, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .open > label .caret, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .open > label .caret, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .open > label .caret, .navbar-inverse .navbar-nav > .open > a .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .open > a .active:after, .navbar-inverse .navbar .sub-navbar > .open > a .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .open > a .active:after, .navbar .navbar-inverse .sub-navbar > .open > a .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .open > a .active:after, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .open > label .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .open > label .active:after, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .main-nav .active:after, .navbar-inverse .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .open > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .main-nav .sub-navbar > .open > label .active:after, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .main-nav .active:after, .navbar .main-nav .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .open > label .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .navbar-inverse .sub-navbar > .open > label .active:after, .navbar-inverse .navbar-nav > .open > a:hover .caret, .navbar-inverse .navbar .sub-navbar > .open > a:hover .caret, .navbar .navbar-inverse .sub-navbar > .open > a:hover .caret, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .open > label:hover .caret, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .open > label:hover .caret, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .open > label:hover .caret, .navbar-inverse .navbar-nav > .open > a:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .open > a:hover .active:after, .navbar-inverse .navbar .sub-navbar > .open > a:hover .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .open > a:hover .active:after, .navbar .navbar-inverse .sub-navbar > .open > a:hover .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .open > a:hover .active:after, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:hover .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .open > label:hover .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .open > label:hover .active:after, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .main-nav .active:after, .navbar-inverse .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .open > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .main-nav .sub-navbar > .open > label:hover .active:after, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .main-nav .active:after, .navbar .main-nav .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:hover .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .open > label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .navbar-inverse .sub-navbar > .open > label:hover .active:after, .navbar-inverse .navbar-nav > .open > a:focus .caret, .navbar-inverse .navbar .sub-navbar > .open > a:focus .caret, .navbar .navbar-inverse .sub-navbar > .open > a:focus .caret, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:focus .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .open > label:focus .caret, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .caret, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .open > label:focus .caret, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .caret, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .open > label:focus .caret, .navbar-inverse .navbar-nav > .open > a:focus .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .navbar-nav > .open > a:focus .active:after, .navbar-inverse .navbar .sub-navbar > .open > a:focus .main-nav .active:after, .navbar-inverse .navbar .main-nav .sub-navbar > .open > a:focus .active:after, .navbar .navbar-inverse .sub-navbar > .open > a:focus .main-nav .active:after, .navbar .main-nav .navbar-inverse .sub-navbar > .open > a:focus .active:after, .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:focus .navbar .main-nav .active:after, .navbar .main-nav .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .navbar-nav > .open > label:focus .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .open > label:focus .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav > .open > label:focus .active:after, .navbar-inverse .navbar .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .main-nav .active:after, .navbar-inverse .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar > .open > label:focus .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .main-nav .sub-navbar > .open > label:focus .active:after, .navbar .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .main-nav .active:after, .navbar .main-nav .navbar-inverse .dropdown-checkbox-group .dropdown-menu li .sub-navbar > .open > label:focus .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar > .open > label:focus .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .navbar-inverse .sub-navbar > .open > label:focus .active:after {
   border-top-color: white;
   border-bottom-color: white;
 }
@@ -5371,21 +5412,21 @@ input[type="button"].btn-block {
     border-color: #090909;
   }
   /* line 593, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > li > a, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > li > a {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > li > a, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > li > a, .navbar-inverse .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar-inverse .navbar-nav .open .dropdown-menu > li > label, .navbar-inverse .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > li > label, .navbar .navbar-inverse .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > li > label {
     color: #999999;
   }
   /* line 596, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > li > a:hover, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > li > a:focus, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > li > a:focus {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > li > a:hover, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > li > a:hover, .navbar-inverse .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-checkbox-group .navbar-inverse .navbar-nav .open .dropdown-menu > li > label:hover, .navbar-inverse .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-checkbox-group .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > li > label:hover, .navbar .navbar-inverse .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-checkbox-group .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > li > label:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > li > a:focus, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > li > a:focus, .navbar-inverse .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label:focus, .dropdown-checkbox-group .navbar-inverse .navbar-nav .open .dropdown-menu > li > label:focus, .navbar-inverse .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:focus, .dropdown-checkbox-group .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > li > label:focus, .navbar .navbar-inverse .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:focus, .dropdown-checkbox-group .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > li > label:focus {
     color: white;
     background-color: transparent;
   }
   /* line 604, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .active > a, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .active > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .active > a:focus, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .active > a:focus {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .active > a, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .active > a, .navbar-inverse .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav .open .dropdown-menu > .active > label, .navbar-inverse .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .active > label, .navbar .navbar-inverse .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .active > label, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .active > a:hover, .navbar-inverse .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav .open .dropdown-menu > .active > label:hover, .navbar-inverse .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .active > label:hover, .navbar .navbar-inverse .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .active > label:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .active > a:focus, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .active > a:focus, .navbar-inverse .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav .open .dropdown-menu > .active > label:focus, .navbar-inverse .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .active > label:focus, .navbar .navbar-inverse .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .active > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .active > label:focus {
     color: white;
     background-color: #090909;
   }
   /* line 612, ../../app/components/bootstrap-sass/lib/_navbar.scss */
-  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .disabled > a, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .disabled > a, .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .disabled > a:focus, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .disabled > a:focus {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .disabled > a, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .disabled > a, .navbar-inverse .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > label, .navbar-inverse .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .disabled > label, .navbar .navbar-inverse .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .disabled > label, .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .disabled > a:hover, .navbar-inverse .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > label:hover, .navbar-inverse .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .disabled > label:hover, .navbar .navbar-inverse .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .disabled > label:hover, .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus, .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .disabled > a:focus, .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .disabled > a:focus, .navbar-inverse .navbar-nav .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > label:focus, .navbar-inverse .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar-inverse .navbar .sub-navbar .open .dropdown-menu > .disabled > label:focus, .navbar .navbar-inverse .sub-navbar .open .dropdown-checkbox-group .dropdown-menu li .dropdown-menu > .disabled > label:focus, .dropdown-checkbox-group .dropdown-menu li .navbar .navbar-inverse .sub-navbar .open .dropdown-menu > .disabled > label:focus {
     color: #444444;
     background-color: transparent;
   }
@@ -5434,7 +5475,7 @@ input[type="button"].btn-block {
   display: inline;
 }
 /* line 13, ../../app/components/bootstrap-sass/lib/_pagination.scss */
-.pagination > li > a,
+.pagination > li > a, .dropdown-checkbox-group .dropdown-menu .pagination > li > label,
 .pagination > li > span {
   position: relative;
   float: left;
@@ -5446,26 +5487,26 @@ input[type="button"].btn-block {
   margin-left: -1px;
 }
 /* line 25, ../../app/components/bootstrap-sass/lib/_pagination.scss */
-.pagination > li:first-child > a,
+.pagination > li:first-child > a, .dropdown-checkbox-group .dropdown-menu .pagination > li:first-child > label,
 .pagination > li:first-child > span {
   margin-left: 0;
   border-bottom-left-radius: 4px;
   border-top-left-radius: 4px;
 }
 /* line 32, ../../app/components/bootstrap-sass/lib/_pagination.scss */
-.pagination > li:last-child > a,
+.pagination > li:last-child > a, .dropdown-checkbox-group .dropdown-menu .pagination > li:last-child > label,
 .pagination > li:last-child > span {
   border-bottom-right-radius: 4px;
   border-top-right-radius: 4px;
 }
 /* line 41, ../../app/components/bootstrap-sass/lib/_pagination.scss */
-.pagination > li > a:hover, .pagination > li > a:focus,
+.pagination > li > a:hover, .dropdown-checkbox-group .dropdown-menu .pagination > li > label:hover, .pagination > li > a:focus, .dropdown-checkbox-group .dropdown-menu .pagination > li > label:focus,
 .pagination > li > span:hover,
 .pagination > li > span:focus {
   background-color: #eeeeee;
 }
 /* line 50, ../../app/components/bootstrap-sass/lib/_pagination.scss */
-.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus,
+.pagination > .active > a, .dropdown-checkbox-group .dropdown-menu li .pagination > .active > label, .pagination > .active > a:hover, .dropdown-checkbox-group .dropdown-menu li .pagination > .active > label:hover, .pagination > .active > a:focus, .dropdown-checkbox-group .dropdown-menu li .pagination > .active > label:focus,
 .pagination > .active > span,
 .pagination > .active > span:hover,
 .pagination > .active > span:focus {
@@ -5480,8 +5521,11 @@ input[type="button"].btn-block {
 .pagination > .disabled > span:hover,
 .pagination > .disabled > span:focus,
 .pagination > .disabled > a,
+.dropdown-checkbox-group .dropdown-menu li .pagination > .disabled > label,
 .pagination > .disabled > a:hover,
-.pagination > .disabled > a:focus {
+.dropdown-checkbox-group .dropdown-menu li .pagination > .disabled > label:hover,
+.pagination > .disabled > a:focus,
+.dropdown-checkbox-group .dropdown-menu li .pagination > .disabled > label:focus {
   color: #999999;
   background-color: white;
   border-color: #dddddd;
@@ -5489,38 +5533,38 @@ input[type="button"].btn-block {
 }
 
 /* line 515, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.pagination-lg > li > a,
+.pagination-lg > li > a, .dropdown-checkbox-group .dropdown-menu .pagination-lg > li > label,
 .pagination-lg > li > span {
   padding: 10px 16px;
   font-size: 18px;
 }
 /* line 521, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > a, .dropdown-checkbox-group .dropdown-menu .pagination-lg > li:first-child > label,
 .pagination-lg > li:first-child > span {
   border-bottom-left-radius: 6px;
   border-top-left-radius: 6px;
 }
 /* line 527, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > a, .dropdown-checkbox-group .dropdown-menu .pagination-lg > li:last-child > label,
 .pagination-lg > li:last-child > span {
   border-bottom-right-radius: 6px;
   border-top-right-radius: 6px;
 }
 
 /* line 515, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.pagination-sm > li > a,
+.pagination-sm > li > a, .dropdown-checkbox-group .dropdown-menu .pagination-sm > li > label,
 .pagination-sm > li > span {
   padding: 5px 10px;
   font-size: 12px;
 }
 /* line 521, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > a, .dropdown-checkbox-group .dropdown-menu .pagination-sm > li:first-child > label,
 .pagination-sm > li:first-child > span {
   border-bottom-left-radius: 3px;
   border-top-left-radius: 3px;
 }
 /* line 527, ../../app/components/bootstrap-sass/lib/_mixins.scss */
-.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > a, .dropdown-checkbox-group .dropdown-menu .pagination-sm > li:last-child > label,
 .pagination-sm > li:last-child > span {
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
@@ -5549,7 +5593,7 @@ input[type="button"].btn-block {
   display: inline;
 }
 /* line 15, ../../app/components/bootstrap-sass/lib/_pager.scss */
-.pager li > a,
+.pager li > a, .pager .dropdown-checkbox-group .dropdown-menu li > label, .dropdown-checkbox-group .dropdown-menu .pager li > label,
 .pager li > span {
   display: inline-block;
   padding: 5px 14px;
@@ -5558,25 +5602,31 @@ input[type="button"].btn-block {
   border-radius: 15px;
 }
 /* line 24, ../../app/components/bootstrap-sass/lib/_pager.scss */
-.pager li > a:hover,
-.pager li > a:focus {
+.pager li > a:hover, .pager .dropdown-checkbox-group .dropdown-menu li > label:hover, .dropdown-checkbox-group .dropdown-menu .pager li > label:hover,
+.pager li > a:focus,
+.pager .dropdown-checkbox-group .dropdown-menu li > label:focus,
+.dropdown-checkbox-group .dropdown-menu .pager li > label:focus {
   text-decoration: none;
   background-color: #eeeeee;
 }
 /* line 32, ../../app/components/bootstrap-sass/lib/_pager.scss */
-.pager .next > a,
+.pager .next > a, .pager .dropdown-checkbox-group .dropdown-menu li .next > label, .dropdown-checkbox-group .dropdown-menu li .pager .next > label,
 .pager .next > span {
   float: right;
 }
 /* line 39, ../../app/components/bootstrap-sass/lib/_pager.scss */
-.pager .previous > a,
+.pager .previous > a, .pager .dropdown-checkbox-group .dropdown-menu li .previous > label, .dropdown-checkbox-group .dropdown-menu li .pager .previous > label,
 .pager .previous > span {
   float: left;
 }
 /* line 48, ../../app/components/bootstrap-sass/lib/_pager.scss */
-.pager .disabled > a,
+.pager .disabled > a, .pager .dropdown-checkbox-group .dropdown-menu li .disabled > label, .dropdown-checkbox-group .dropdown-menu li .pager .disabled > label,
 .pager .disabled > a:hover,
+.pager .dropdown-checkbox-group .dropdown-menu li .disabled > label:hover,
+.dropdown-checkbox-group .dropdown-menu li .pager .disabled > label:hover,
 .pager .disabled > a:focus,
+.pager .dropdown-checkbox-group .dropdown-menu li .disabled > label:focus,
+.dropdown-checkbox-group .dropdown-menu li .pager .disabled > label:focus,
 .pager .disabled > span {
   color: #999999;
   background-color: white;
@@ -5682,7 +5732,7 @@ input[type="button"].btn-block {
 }
 
 /* line 30, ../../app/components/bootstrap-sass/lib/_badges.scss */
-a.badge:hover, a.badge:focus {
+a.badge:hover, .dropdown-checkbox-group .dropdown-menu li label.badge:hover, a.badge:focus, .dropdown-checkbox-group .dropdown-menu li label.badge:focus {
   color: white;
   text-decoration: none;
   cursor: pointer;
@@ -5695,14 +5745,15 @@ a.badge:hover, a.badge:focus {
 }
 
 /* line 45, ../../app/components/bootstrap-sass/lib/_badges.scss */
-a.list-group-item.active > .badge,
-.nav-pills > .active > a > .badge {
+a.list-group-item.active > .badge, .dropdown-checkbox-group .dropdown-menu li label.list-group-item.active > .badge,
+.nav-pills > .active > a > .badge,
+.dropdown-checkbox-group .dropdown-menu li .nav-pills > .active > label > .badge {
   color: #428bca;
   background-color: white;
 }
 
 /* line 49, ../../app/components/bootstrap-sass/lib/_badges.scss */
-.nav-pills > li > a > .badge {
+.nav-pills > li > a > .badge, .dropdown-checkbox-group .dropdown-menu .nav-pills > li > label > .badge {
   margin-left: 3px;
 }
 
@@ -5766,9 +5817,11 @@ a.list-group-item.active > .badge,
 }
 
 /* line 30, ../../app/components/bootstrap-sass/lib/_thumbnails.scss */
-a.thumbnail:hover,
+a.thumbnail:hover, .dropdown-checkbox-group .dropdown-menu li label.thumbnail:hover,
 a.thumbnail:focus,
-a.thumbnail.active {
+.dropdown-checkbox-group .dropdown-menu li label.thumbnail:focus,
+a.thumbnail.active,
+.dropdown-checkbox-group .dropdown-menu li label.thumbnail.active {
   border-color: #428bca;
 }
 
@@ -6087,31 +6140,31 @@ a.thumbnail.active {
 }
 
 /* line 45, ../../app/components/bootstrap-sass/lib/_list-group.scss */
-a.list-group-item {
+a.list-group-item, .dropdown-checkbox-group .dropdown-menu li label.list-group-item {
   color: #555555;
 }
 /* line 48, ../../app/components/bootstrap-sass/lib/_list-group.scss */
-a.list-group-item .list-group-item-heading {
+a.list-group-item .list-group-item-heading, .dropdown-checkbox-group .dropdown-menu li label.list-group-item .list-group-item-heading {
   color: #333333;
 }
 /* line 54, ../../app/components/bootstrap-sass/lib/_list-group.scss */
-a.list-group-item:hover, a.list-group-item:focus {
+a.list-group-item:hover, .dropdown-checkbox-group .dropdown-menu li label.list-group-item:hover, a.list-group-item:focus, .dropdown-checkbox-group .dropdown-menu li label.list-group-item:focus {
   text-decoration: none;
   background-color: whitesmoke;
 }
 /* line 62, ../../app/components/bootstrap-sass/lib/_list-group.scss */
-a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+a.list-group-item.active, .dropdown-checkbox-group .dropdown-menu li label.list-group-item.active, a.list-group-item.active:hover, .dropdown-checkbox-group .dropdown-menu li label.list-group-item.active:hover, a.list-group-item.active:focus, .dropdown-checkbox-group .dropdown-menu li label.list-group-item.active:focus {
   z-index: 2;
   color: white;
   background-color: #428bca;
   border-color: #428bca;
 }
 /* line 69, ../../app/components/bootstrap-sass/lib/_list-group.scss */
-a.list-group-item.active .list-group-item-heading, a.list-group-item.active:hover .list-group-item-heading, a.list-group-item.active:focus .list-group-item-heading {
+a.list-group-item.active .list-group-item-heading, .dropdown-checkbox-group .dropdown-menu li label.list-group-item.active .list-group-item-heading, a.list-group-item.active:hover .list-group-item-heading, .dropdown-checkbox-group .dropdown-menu li label.list-group-item.active:hover .list-group-item-heading, a.list-group-item.active:focus .list-group-item-heading, .dropdown-checkbox-group .dropdown-menu li label.list-group-item.active:focus .list-group-item-heading {
   color: inherit;
 }
 /* line 72, ../../app/components/bootstrap-sass/lib/_list-group.scss */
-a.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .list-group-item-text, a.list-group-item.active:focus .list-group-item-text {
+a.list-group-item.active .list-group-item-text, .dropdown-checkbox-group .dropdown-menu li label.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .list-group-item-text, .dropdown-checkbox-group .dropdown-menu li label.list-group-item.active:hover .list-group-item-text, a.list-group-item.active:focus .list-group-item-text, .dropdown-checkbox-group .dropdown-menu li label.list-group-item.active:focus .list-group-item-text {
   color: #e1edf7;
 }
 
@@ -6358,7 +6411,7 @@ a.list-group-item.active .list-group-item-text, a.list-group-item.active:hover .
   font-size: 16px;
 }
 /* line 109, ../../app/components/bootstrap-sass/lib/_panels.scss */
-.panel-title > a {
+.panel-title > a, .dropdown-checkbox-group .dropdown-menu li .panel-title > label {
   color: inherit;
 }
 
@@ -7023,7 +7076,8 @@ button.close {
 }
 /* line 23, ../../app/components/bootstrap-sass/lib/_carousel.scss */
 .carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
+.carousel-inner > .item > a > img,
+.dropdown-checkbox-group .dropdown-menu li .carousel-inner > .item > label > img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -7990,7 +8044,7 @@ input[readonly] {
 }
 
 /* line 48, ../../app/styles/ntd-main.scss */
-a {
+a, .dropdown-checkbox-group .dropdown-menu li label {
   cursor: pointer;
 }
 
@@ -8163,22 +8217,22 @@ form.form-horizontal .help-block {
   border-bottom-left-radius: 4px;
 }
 /* line 194, ../../app/styles/ntd-main.scss */
-.advance-search-filter .more a {
+.advance-search-filter .more a, .advance-search-filter .more .dropdown-checkbox-group .dropdown-menu li label, .dropdown-checkbox-group .dropdown-menu li .advance-search-filter .more label {
   display: block;
   padding: 0 0 5px;
   width: 60px;
   height: 15px;
 }
 /* line 199, ../../app/styles/ntd-main.scss */
-.advance-search-filter .more a:hover {
+.advance-search-filter .more a:hover, .advance-search-filter .more .dropdown-checkbox-group .dropdown-menu li label:hover, .dropdown-checkbox-group .dropdown-menu li .advance-search-filter .more label:hover {
   background: #e3e3e3;
 }
 /* line 202, ../../app/styles/ntd-main.scss */
-.advance-search-filter .more a [class^="icon-"], .advance-search-filter .more a [class*=" icon-"] {
+.advance-search-filter .more a [class^="icon-"], .advance-search-filter .more .dropdown-checkbox-group .dropdown-menu li label [class^="icon-"], .dropdown-checkbox-group .dropdown-menu li .advance-search-filter .more label [class^="icon-"], .advance-search-filter .more a [class*=" icon-"], .advance-search-filter .more .dropdown-checkbox-group .dropdown-menu li label [class*=" icon-"], .dropdown-checkbox-group .dropdown-menu li .advance-search-filter .more label [class*=" icon-"] {
   margin-top: -2px;
 }
 /* line 205, ../../app/styles/ntd-main.scss */
-.advance-search-filter .more a .icon-chevron-up {
+.advance-search-filter .more a .icon-chevron-up, .advance-search-filter .more .dropdown-checkbox-group .dropdown-menu li label .icon-chevron-up, .dropdown-checkbox-group .dropdown-menu li .advance-search-filter .more label .icon-chevron-up {
   background-position: -288px -120px;
 }
 
@@ -8872,7 +8926,7 @@ form.form-horizontal .help-block {
 }
 
 /* line 745, ../../app/styles/ntd-main.scss */
-.nav-tabs > li a {
+.nav-tabs > li a, .dropdown-checkbox-group .dropdown-menu .nav-tabs > li label {
   height: 40px;
 }
 
@@ -8914,7 +8968,7 @@ form.form-horizontal .help-block {
 }
 
 /* line 2, ../../app/styles/ntd-nav.scss */
-.nav li.dropdown.open .caret, .navbar .sub-navbar li.dropdown.open .caret, .nav li.dropdown.open .navbar .main-nav .active:after, .navbar .main-nav .nav li.dropdown.open .active:after, .navbar .sub-navbar li.dropdown.open .main-nav .active:after, .navbar .main-nav .sub-navbar li.dropdown.open .active:after, .nav li.dropdown.open.active .caret, .navbar .sub-navbar li.dropdown.open.active .caret, .nav li.dropdown.open.active .navbar .main-nav .active:after, .navbar .main-nav .nav li.dropdown.open.active .active:after, .navbar .sub-navbar li.dropdown.open.active .main-nav .active:after, .navbar .main-nav .sub-navbar li.dropdown.open.active .active:after, .nav li.dropdown.open a:hover .caret, .navbar .sub-navbar li.dropdown.open a:hover .caret, .nav li.dropdown.open a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav li.dropdown.open a:hover .active:after, .navbar .sub-navbar li.dropdown.open a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar li.dropdown.open a:hover .active:after {
+.nav li.dropdown.open .caret, .navbar .sub-navbar li.dropdown.open .caret, .nav li.dropdown.open .navbar .main-nav .active:after, .navbar .main-nav .nav li.dropdown.open .active:after, .navbar .sub-navbar li.dropdown.open .main-nav .active:after, .navbar .main-nav .sub-navbar li.dropdown.open .active:after, .nav li.dropdown.open.active .caret, .navbar .sub-navbar li.dropdown.open.active .caret, .nav li.dropdown.open.active .navbar .main-nav .active:after, .navbar .main-nav .nav li.dropdown.open.active .active:after, .navbar .sub-navbar li.dropdown.open.active .main-nav .active:after, .navbar .main-nav .sub-navbar li.dropdown.open.active .active:after, .nav li.dropdown.open a:hover .caret, .navbar .sub-navbar li.dropdown.open a:hover .caret, .nav .dropdown-checkbox-group .dropdown-menu li.dropdown.open label:hover .caret, .dropdown-checkbox-group .dropdown-menu .nav li.dropdown.open label:hover .caret, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li.dropdown.open label:hover .caret, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar li.dropdown.open label:hover .caret, .nav li.dropdown.open a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav li.dropdown.open a:hover .active:after, .navbar .sub-navbar li.dropdown.open a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar li.dropdown.open a:hover .active:after, .nav .dropdown-checkbox-group .dropdown-menu li.dropdown.open label:hover .navbar .main-nav .active:after, .navbar .main-nav .nav .dropdown-checkbox-group .dropdown-menu li.dropdown.open label:hover .active:after, .dropdown-checkbox-group .dropdown-menu .nav li.dropdown.open label:hover .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu .nav li.dropdown.open label:hover .active:after, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li.dropdown.open label:hover .main-nav .active:after, .navbar .main-nav .sub-navbar .dropdown-checkbox-group .dropdown-menu li.dropdown.open label:hover .active:after, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar li.dropdown.open label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu .navbar .main-nav .sub-navbar li.dropdown.open label:hover .active:after {
   opacity: 0.4;
 }
 
@@ -8981,7 +9035,7 @@ form.form-horizontal .help-block {
   z-index: 500;
 }
 /* line 68, ../../app/styles/ntd-nav.scss */
-.navbar .sub-navbar li.active a {
+.navbar .sub-navbar li.active a, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li.active label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar li.active label {
   color: #428bcb;
 }
 /* line 71, ../../app/styles/ntd-nav.scss */
@@ -8989,7 +9043,7 @@ form.form-horizontal .help-block {
   content: none;
 }
 /* line 75, ../../app/styles/ntd-nav.scss */
-.navbar .sub-navbar li a {
+.navbar .sub-navbar li a, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar li label {
   padding-top: 5px;
   padding-bottom: 5px;
   color: #666;
@@ -9033,22 +9087,22 @@ form.form-horizontal .help-block {
   cursor: pointer;
 }
 /* line 119, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li a {
+.side-nav .side-nav-menu li a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label {
   padding: 8px 15px;
   display: block;
   color: #555555;
 }
 /* line 123, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li a .glyphicon-chevron-down {
+.side-nav .side-nav-menu li a .glyphicon-chevron-down, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label .glyphicon-chevron-down, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label .glyphicon-chevron-down {
   opacity: .25;
 }
 /* line 126, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li a:hover {
+.side-nav .side-nav-menu li a:hover, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label:hover, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label:hover {
   background-color: whitesmoke;
   text-decoration: none;
 }
 /* line 129, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li a:hover .glyphicon-chevron-down {
+.side-nav .side-nav-menu li a:hover .glyphicon-chevron-down, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label:hover .glyphicon-chevron-down, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label:hover .glyphicon-chevron-down {
   opacity: .5;
 }
 /* line 134, ../../app/styles/ntd-nav.scss */
@@ -9056,7 +9110,7 @@ form.form-horizontal .help-block {
   border-color: #428bca;
 }
 /* line 136, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li.active a {
+.side-nav .side-nav-menu li.active a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li.active label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active label {
   color: white;
   background-color: #428bca;
   border-top-right-radius: 0 !important;
@@ -9067,12 +9121,12 @@ form.form-horizontal .help-block {
   border-color: #dddddd;
 }
 /* line 146, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li.active ul li a {
+.side-nav .side-nav-menu li.active ul li a, .side-nav .side-nav-menu li.active ul .dropdown-checkbox-group .dropdown-menu li label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active ul li label {
   background-color: #fff;
   color: #555555;
 }
 /* line 149, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li.active ul li a:hover {
+.side-nav .side-nav-menu li.active ul li a:hover, .side-nav .side-nav-menu li.active ul .dropdown-checkbox-group .dropdown-menu li label:hover, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active ul li label:hover {
   text-decoration: none;
 }
 /* line 156, ../../app/styles/ntd-nav.scss */
@@ -9081,7 +9135,7 @@ form.form-horizontal .help-block {
   border-top-left-radius: 0;
 }
 /* line 160, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li:last-child a {
+.side-nav .side-nav-menu li:last-child a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li:last-child label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li:last-child label {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -9091,12 +9145,12 @@ form.form-horizontal .help-block {
   border-bottom-left-radius: 4px;
 }
 /* line 168, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li:last-child ul:last-child li:last-child a {
+.side-nav .side-nav-menu li:last-child ul:last-child li:last-child a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li:last-child ul:last-child li:last-child label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li:last-child ul:last-child li:last-child label {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
 /* line 176, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li a.has-sub-menu {
+.side-nav .side-nav-menu li a.has-sub-menu, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label.has-sub-menu, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label.has-sub-menu {
   border-bottom-right-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
 }
@@ -9117,13 +9171,13 @@ form.form-horizontal .help-block {
   border-bottom-left-radius: 0;
 }
 /* line 191, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li ul li a {
+.side-nav .side-nav-menu li ul li a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li ul li label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li ul li label {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   padding-left: 25px;
 }
 /* line 194, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li ul li a:hover {
+.side-nav .side-nav-menu li ul li a:hover, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li ul li label:hover, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li ul li label:hover {
   border-color: #dddddd !important;
   background: whitesmoke url("../images/menu_sprites.png") no-repeat 15px 14px;
 }
@@ -9132,12 +9186,12 @@ form.form-horizontal .help-block {
   border-color: #dddddd;
 }
 /* line 201, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li ul li.active a {
+.side-nav .side-nav-menu li ul li.active a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li.active ul li.active label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active ul li.active label {
   color: #428bcb;
   background: white url("../images/menu_sprites.png") no-repeat 15px -22px;
 }
 /* line 204, ../../app/styles/ntd-nav.scss */
-.side-nav .side-nav-menu li ul li.active a:hover {
+.side-nav .side-nav-menu li ul li.active a:hover, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li.active ul li.active label:hover, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active ul li.active label:hover {
   border-color: #dddddd !important;
   background: whitesmoke url("../images/menu_sprites.png") no-repeat 15px -22px;
 }
@@ -9465,7 +9519,7 @@ i[tooltip-popup-delay] {
     content: none;
   }
   /* line 59, ../../app/styles/ntd-responsive.scss */
-  .navbar .main-nav a:hover {
+  .navbar .main-nav a:hover, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav label:hover {
     background-color: transparent !important;
   }
   /* line 64, ../../app/styles/ntd-responsive.scss */
@@ -9478,7 +9532,7 @@ i[tooltip-popup-delay] {
     margin: 5px 0;
   }
   /* line 72, ../../app/styles/ntd-responsive.scss */
-  .navbar .sub-navbar li.active a {
+  .navbar .sub-navbar li.active a, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li.active label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar li.active label {
     color: #fff;
   }
   /* line 78, ../../app/styles/ntd-responsive.scss */
@@ -9806,7 +9860,7 @@ https://github.com/ghinda/css-toggle-switch
 }
 
   /* line 302, ../../app/styles/ntd-toggle-switch.scss */
-  .toggle.disabled a.slide-button {
+  .toggle.disabled a.slide-button, .toggle.disabled .dropdown-checkbox-group .dropdown-menu li label.slide-button, .dropdown-checkbox-group .dropdown-menu li .toggle.disabled label.slide-button {
     cursor: default;
     background-color: #E6E6E6;
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65);
@@ -9824,4 +9878,31 @@ https://github.com/ghinda/css-toggle-switch
   .toggle.disabled input:checked ~ p > span:first-child {
     color: #999;
   }
+}
+/* line 2, ../../app/styles/adminui-checkbox-group.scss */
+.dropdown-checkbox-group .dropdown-toggle {
+  cursor: pointer;
+}
+/* line 4, ../../app/styles/adminui-checkbox-group.scss */
+.dropdown-checkbox-group .dropdown-toggle input {
+  margin: 0 5px 0 0;
+}
+/* line 6, ../../app/styles/adminui-checkbox-group.scss */
+.dropdown-checkbox-group .dropdown-toggle input.part-checked {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  opacity: 0.3;
+}
+/* line 11, ../../app/styles/adminui-checkbox-group.scss */
+.dropdown-checkbox-group .dropdown-menu {
+  margin-left: -10px;
+}
+/* line 14, ../../app/styles/adminui-checkbox-group.scss */
+.dropdown-checkbox-group .dropdown-menu li label {
+  font: normal 12px/18px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
+  padding: 5px 10px;
+  margin: 0 auto;
+}
+/* line 17, ../../app/styles/adminui-checkbox-group.scss */
+.dropdown-checkbox-group .dropdown-menu li label input {
+  margin: 0 5px 0 0;
 }

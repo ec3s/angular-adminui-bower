@@ -1481,3 +1481,54 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
     toggleSwitcherDirective
   ]);
 }());
+(function (ng) {
+  var CheckboxGroup = function () {
+    return {
+      restrict: 'A',
+      templateUrl: 'templates/checkbox-group.html',
+      scope: { dataSource: '=ngModel' },
+      link: function (scope, elem, attrs) {
+        scope.status = 'none';
+        scope.init = ng.bind(scope, init, elem);
+        scope.watchCheckboxGroup = ng.bind(scope, watchCheckboxGroup);
+        scope.toggleCheckedAll = ng.bind(scope, toggleCheckedAll);
+        scope.init(elem);
+        scope.watchCheckboxGroup();
+      }
+    };
+  };
+  var watchCheckboxGroup = function () {
+    this.$watch('dataSource.checkboxGroup', function (value, oldValue) {
+      var status = [];
+      ng.forEach(value, function (checkbox) {
+        if (true == Boolean(checkbox.checked)) {
+          status.push(checkbox);
+        }
+      });
+      if (status.length > 0 && status.length < this.dataSource.checkboxGroup.length) {
+        this.status = 'part';
+      } else if (status.length == this.dataSource.checkboxGroup.length) {
+        this.status = 'all';
+      } else {
+        this.status = 'none';
+      }
+    }.bind(this), true);
+  };
+  var toggleCheckedAll = function () {
+    this.status = this.status == 'none' ? 'all' : 'none';
+    ng.forEach(this.dataSource.checkboxGroup, function (checkbox) {
+      checkbox.checked = this.status == 'all' ? true : false;
+    }, this);
+  };
+  var init = function (elem) {
+    var titleCheckBox = elem.find('.dropdown-toggle>input');
+    var dropMenu = elem.find('.dropdown-menu');
+    titleCheckBox.bind('click', function (e) {
+      e.stopPropagation();
+    });
+    dropMenu.bind('click', function (e) {
+      e.stopPropagation();
+    });
+  };
+  ng.module('ntd.directives').directive('checkboxGroup', [CheckboxGroup]);
+}(angular));
