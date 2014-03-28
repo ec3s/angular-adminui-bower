@@ -1367,6 +1367,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
 (function () {
   'use strict';
   function build_msg(type, message) {
+    type = type == 'error' ? 'danger' : type;
     var html = '<div class="alert alert-' + type + '">' + message + '<button type="button" class="close">\xd7</button>' + '</div>';
     return html;
   }
