@@ -1,3 +1,4 @@
+/* flash message */
 (function () {
   function flashService($rootScope) {
     return {
@@ -44,13 +45,17 @@ angular.module('ntd.directives', ['ntd.config']);
         messages: '='
       },
       link: function (scope, elem, attrs) {
+        /* dose default show submenu */
         scope.isSubMenuShow = adminuiFrameProvider.defaultShowSubmenu;
+        /* dose show message box */
         scope.isMessageBoxShow = adminuiFrameProvider.showMessageBox;
+        /* bind navigation data */
         scope.navigation = adminuiFrameProvider.navigation;
+        /* init messages */
         scope.messages = scope.messages ? scope.messages : [];
         scope.userInfo = ng.extend({
           'username': 'N/A',
-          'avatar': '../images/avatar.jpg',
+          'avatar': 'images/avatar.jpg',
           'logout': function () {
             console.log('logout');
           },
@@ -58,18 +63,29 @@ angular.module('ntd.directives', ['ntd.config']);
             console.log('change password');
           }
         }, scope.userInfo);
+        /* perpare navigation data */
         init(scope.navigation);
+        /* when route changed, reselected */
         $rootScope.$on('$routeChangeStart', function () {
           selectPath(scope, $location.path());
         });
+        /* bind menu select func */
         scope.select = ng.bind(scope, select, $timeout, elem);
+        /* bind submenu toggle */
         scope.toggleSubMenu = ng.bind(scope, toggleSubMenu);
+        /* bind select nav */
         scope.selectNav = ng.bind(scope, selectNav);
+        /* bind select menu*/
         scope.selectMenu = ng.bind(scope, selectMenu);
+        /* bind is current selected */
         scope.isSelected = ng.bind(scope, isSelected);
+        /* bind set side menu */
         scope.setSideMenu = ng.bind(scope, setSideMenu, elem);
+        /* bind logout func */
         scope.logout = ng.bind(scope, logout);
+        /* bind change password func */
         scope.changePwd = ng.bind(scope, changePwd);
+        /* select from path */
         selectPath(scope, $location.path());
       }
     };
@@ -202,6 +218,7 @@ angular.module('ntd.directives', ['ntd.config']);
     AdminuiFrame
   ]);
 }(angular));
+/* advance filter */
 (function () {
   'use strict';
   var fieldsets, showFilterBtn, primaryFieldset, secondaryFieldset, template = '<div class="advance-search-filter">' + '<div ng-transclude></div>' + '<div class="more">' + '<a data-class="J_toggleShowFilterBtn">' + '<i class="glyphicon glyphicon-chevron-down"></i>' + '</a>' + '</div>' + '</div>';
@@ -252,6 +269,7 @@ angular.module('ntd.directives', ['ntd.config']);
   }
   angular.module('ntd.directives').directive('advanceFilter', [advanceFilterDirective]);
 }());
+/* confirm button*/
 (function () {
   'use strict';
   function confirmButtonDirective($document, $parse) {
@@ -318,6 +336,8 @@ angular.module('ntd.directives', ['ntd.config']);
     confirmButtonDirective
   ]);
 }());
+/* date picker */
+// function datePickerDirective($timeout, $ntdConfig) {
 function DatepickerDemoCtrl($scope, $timeout) {
   $scope.today = function () {
     $scope.dt = new Date();
@@ -330,6 +350,7 @@ function DatepickerDemoCtrl($scope, $timeout) {
   $scope.clear = function () {
     $scope.dt = null;
   };
+  // Disable weekend selection
   $scope.disabled = function (date, mode) {
     return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
   };
@@ -354,6 +375,15 @@ function DatepickerDemoCtrl($scope, $timeout) {
   $scope.format = $scope.formats[0];
 }
 ;
+//   angular.module('ntd.directives').directive('DatepickerDemoCtrl', [
+//     '$scope',
+//     '$timeout',
+//     DatepickerDemoCtrl
+//   ]);
+// }());
+/* ntd time picker */
+// (function() {
+// 'use strict';
 var TimepickerDemoCtrl = function ($scope) {
   $scope.mytime = new Date();
   $scope.hstep = 1;
@@ -390,6 +420,9 @@ var TimepickerDemoCtrl = function ($scope) {
     $scope.mytime = null;
   };
 };
+// angular.module('ntd.directives').directive('timePicker', ['$timeout', timePickerDirective]);
+// }());
+/* easy pie chart */
 (function () {
   'use strict';
   function easyPieChartDirective($timeout) {
@@ -431,6 +464,7 @@ var TimepickerDemoCtrl = function ($scope) {
     easyPieChartDirective
   ]);
 }());
+/* foo table */
 (function () {
   'use strict';
   function fooTableDirective() {
@@ -476,6 +510,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
     };
   }
 ]);
+/* lable state */
 (function () {
   'use strict';
   function labelStateDirective() {
@@ -488,6 +523,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
   }
   angular.module('ntd.directives').directive('labelState', [labelStateDirective]);
 }());
+/* nav bar */
 (function () {
   'use strict';
   function navBarDirective($location) {
@@ -517,6 +553,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
     navBarDirective
   ]);
 }());
+/* toggle submenu */
 (function () {
   'use strict';
   function toggle_menuClass() {
@@ -539,6 +576,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
   }
   angular.module('ntd.directives').directive('toggleSubmenu', [toggleSubmenuDirectice]);
 }());
+/* sub tree menu */
 (function () {
   'use strict';
   function subTreemenuDirective() {
@@ -563,6 +601,13 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
   }
   angular.module('ntd.directives').directive('subTreemenu', [subTreemenuDirective]);
 }());
+/**
+ * Created with JetBrains PhpStorm.
+ * User: wangting
+ * Date: 13-4-27
+ * Time: 下午3:10
+ */
+/* ntd pie */
 (function () {
   'use strict';
   function ntdPieDirective() {
@@ -608,6 +653,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
   }
   angular.module('ntd.directives').directive('ntdPie', [ntdPieDirective]);
 }());
+/* loading button */
 (function () {
   'use strict';
   function loadingButtonDirective() {
@@ -635,6 +681,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
   }
   angular.module('ntd.directives').directive('loadingButton', [loadingButtonDirective]);
 }());
+/* slim scroll */
 (function () {
   'use strict';
   var element;
@@ -689,6 +736,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
     slimScrollDirective
   ]);
 }());
+/* casecade list */
 (function () {
   'use strict';
   var $element, $tree, $scope;
@@ -718,13 +766,16 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
     var item = $(e.target).addClass('selective');
     var parent = item.parent().addClass('selective');
     var parentId = item.attr('cl-value');
+    // 删除下级列表
     parent.nextAll('ul').remove();
+    // 取消本级的选定状态
     item.prevAll('.selective').removeClass('selective');
     item.nextAll('.selective').removeClass('selective');
     parent.prevAll('.selective').removeClass('selective');
     if (item.hasClass('has-child')) {
       var list = createList(parentId);
       $element.append(list);
+      // 计算点击位置，如果超过1/3则滚动
       var pos = $element.offset().left + $element.width() * 2 / 3;
       if (e.clientX > pos) {
         $element.scrollLeft(parent.prev().offset().left);
@@ -820,6 +871,23 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
     cascadeListDirective
   ]);
 }());
+/**
+ * ntd chosen directive
+ *
+ * attributies:
+ *  data-disable-search-threshold - int
+ *  当大于设置条数时显示搜索
+ *  data-on-search-promise - fn
+ *  当搜索的时候回调函数, 要求返回一个promise
+ *  data-options-node - string
+ *  返回结果中option 所处的节点
+ *  data-allow-single-deselect - bool
+ *  是否允许清空选中项目
+ *
+ * multiple 模式下 autocomplete 完成 beta
+ *
+ * @author Fengming Sun<sunfengming@ec3s.com>
+ */
 (function (app, ng) {
   'use strict';
   var Chosen = function ($parse, $timeout) {
@@ -836,13 +904,16 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
         var disableSearchThreshold = attrs.disableSearchThreshold || 0;
         var allowSingleDeselect = attrs.allowSingleDeselect || false;
         allowSingleDeselect = allowSingleDeselect == 'true' ? true : false;
+        // init chosen
         var options = { disable_search_threshold: disableSearchThreshold };
         var chosenEl = elem.chosen(options);
         var chosen = chosenEl.data('chosen');
+        // fix for responsive
         chosen.container.css('max-width', chosenEl.css('width'));
         var selected_options = {};
         var searchTxt = scope.$new(false);
         if (onSearch) {
+          // 不进入匹配模式
           chosen.winnow_results = function () {
             this.no_results_clear();
             var searchText = this.get_search_text();
@@ -852,10 +923,12 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
               var option = results_data[i];
               if (!option.empty) {
                 option_number++;
+                // 永远可被匹配
                 option.search_match = true;
                 option.search_text = option.group ? option.label : option.html;
               }
             }
+            // 按照有效选项数量判断现实
             if (option_number <= 0) {
               this.update_results_content('');
               this.result_clear_highlight();
@@ -865,6 +938,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
               return this.winnow_results_set_highlight();
             }
           };
+          // 搜索模式时, 刷新chosen 不清空搜索框内容且
           chosen.show_search_field_default = function () {
             if (this.is_multiple && this.choices_count() < 1 && !this.active_field) {
               this.search_field.val(this.default_text);
@@ -874,7 +948,9 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             }
           };
         }
+        // reset allow single deselect
         chosen.allow_single_deselect = allowSingleDeselect;
+        // watch for ng-options change
         if (ngOptions) {
           var optionsModelName = ngOptions.split(' ').pop();
           var optionsModelGetter = $parse(optionsModelName);
@@ -886,8 +962,10 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             });
           }, true);
         }
+        // watch for ng-model change
         if (ngModelName) {
           scope.$watch(ngModelName, function (newValue, oldValue) {
+            // if multiple chosen
             if (multiple) {
               ng.forEach(newValue, function (value) {
                 if (!selected_options[value]) {
@@ -904,6 +982,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             }
           }, true);
         }
+        //reselect
         chosenEl.bind('liszt:hiding_dropdown', function (e) {
           if (!chosen.active_field && ng.isArray(initOptions)) {
             optionsModelSetter(scope, initOptions);
@@ -917,6 +996,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             initOptions = optionsModelGetter(scope);
           }
         });
+        // set chosen object
         chosenEl.bind('liszt:showing_dropdown', function (e, data) {
           if (onSearch) {
             if (!searchTxt.$search) {
@@ -925,6 +1005,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
               });
               return;
             }
+            // if single then set search field
             if (!multiple) {
               chosen.search_field.val(searchTxt.$search);
             }
@@ -935,9 +1016,12 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             });
           }
         });
+        // load options data
         chosenEl.bind('liszt:load_data', function (e, data) {
           var promise = searchTxt.$eval(data.onSearch);
+          // add loading pic
           chosen.search_field.addClass('loading');
+          // add loading tip
           chosen.search_results.find('.no-results').text('\u52a0\u8f7d\u4e2d...');
           promise.then(function (result) {
             var options = [];
@@ -958,18 +1042,23 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             });
           });
         });
+        // options data loaded
         chosenEl.bind('liszt:data_loaded', function (e, data) {
           if (onSearch) {
+            // remove loading pic
             chosen.search_field.removeClass('loading');
+            // load new options
             if (ng.isArray(data.options) && data.options.length > 0) {
               if (!initOptions) {
                 initOptions = data.options;
               }
               optionsModelSetter(scope, data.options);
             } else {
+              // show no results tip
               optionsModelSetter(scope, []);
             }
             if (multiple) {
+              // concat selected options into loaded options
               ng.forEach(selected_options, function (selectedOption) {
                 var hasOption = false;
                 ng.forEach(optionsModelGetter(scope), function (option) {
@@ -988,6 +1077,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
               });
             }
           }
+          // refresh chosen when options loaded
           $timeout(function () {
             chosenEl.trigger('liszt:updated');
             if (!searchTxt.$search) {
@@ -995,7 +1085,9 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             }
           });
         });
+        // get new option list
         if (onSearch && optionsModelName) {
+          // if chosen.search_field changed, callback onSearch func
           chosen.search_field.bind('keyup', function (e) {
             if (chosen && chosen.results_showing) {
               searchTxt.$search = chosen.get_search_text();
@@ -1011,6 +1103,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             }
           });
         }
+        // refresh the option list when chosen changed
         chosenEl.change(function (e) {
           elem.trigger('liszt:updated');
         });
@@ -1102,6 +1195,23 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
     Linkage
   ]);
 }(angular.module('ntd.directives'), angular));
+/**
+ * tag input directive
+ *
+ * attribute:
+ *  data-ng-model array
+ *  标签列表
+ *  data-placeholder string
+ *  占位提示信息
+ *  data-allways-placeholder bool
+ *  是否一直显示占位提示信息,默认为否
+ *  data-unique bool
+ *  标签是否唯一,默认为是
+ *
+ * version 0.2
+ *
+ * @author Fengming Sun <sunfengming@ec3s.com>
+ */
 (function () {
   'use strict';
   function tagInputDirective() {
@@ -1166,6 +1276,9 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           delete tag.deletable;
           delete tag.editable;
         };
+        /**
+         *  检查 Tags 中的元素，补充元素属性
+         */
         var unifyItemInTags = function (tags) {
           angular.forEach(tags, function (tag, index) {
             if (angular.isString(tag)) {
@@ -1175,6 +1288,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           });
         };
         unifyItemInTags(scope.tags);
+        // 查看tag 所处位置
         var indexOf = function (tags, tag) {
           if (!caseSensitive) {
             var tagName = tag.name.toLowerCase();
@@ -1195,6 +1309,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           });
           scope.tags = uniqueTags;
         }
+        // 删除按钮
         scope.removeTag = function (index) {
           closeAllPop();
           scope.tags.splice(index, 1);
@@ -1255,7 +1370,9 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           closeAllPop();
           elem.find('input').focus();
         });
+        // 删除前面的标签
         elem.find('input').bind('keyup', function (e) {
+          // record input
           if (oldInput != scope.tagInput) {
             oldInput = scope.tagInput;
           } else if (e.keyCode == 8 && scope.tags.length > 0) {
@@ -1270,6 +1387,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             }
           }
         });
+        // 观察标签变动
         scope.$watch('tags', function (newValue, oldValue) {
           unifyItemInTags(newValue);
           if (!allwaysPlaceholder) {
@@ -1280,6 +1398,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             }
           }
         }, true);
+        // 监听输入
         scope.$watch('tagInput', function (newValue, oldValue) {
           if (newValue != oldValue) {
             var lastChar = newValue.substr(-1, 1);
@@ -1302,6 +1421,12 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
   }
   angular.module('ntd.directives').directive('tagInput', [tagInputDirective]);
 }());
+/**
+ * Created with JetBrains PhpStorm.
+ * User: wangting
+ * Date: 13-7-31
+ * Time: 上午9:09
+ */
 (function () {
   'use strict';
   function fieldErrorDirective() {
@@ -1320,6 +1445,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
   }
   angular.module('ntd.directives').directive('fieldError', [fieldErrorDirective]);
 }());
+/* notcie */
 (function () {
   'use strict';
   var msgObj = {
@@ -1364,6 +1490,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
     noticeDirective
   ]);
 }());
+/* flash message */
 (function () {
   'use strict';
   function build_msg(type, message) {
@@ -1387,6 +1514,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           }
         });
         $rootScope.$on('$routeChangeSuccess', function () {
+          // remove old message when route changed
           element.empty();
           if (html_fragement) {
             element.append(html_fragement);
@@ -1470,6 +1598,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           }
         }, true);
         $timeout(function () {
+          // calculate span width to set element width
           var spanWidth = element.find('span').outerWidth();
           element.width(spanWidth * 2).find('span:last').css('left', spanWidth);
         });
@@ -1488,11 +1617,17 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
       templateUrl: 'templates/checkbox-group.html',
       scope: { dataSource: '=ngModel' },
       link: function (scope, elem, attrs) {
+        /* title checkbox status  */
         scope.status = 'none';
+        /* bind init func */
         scope.init = ng.bind(scope, init, elem);
+        /* bind checkbox group status watcher */
         scope.watchCheckboxGroup = ng.bind(scope, watchCheckboxGroup);
+        /* bind toggle checked all for title checkbox */
         scope.toggleCheckedAll = ng.bind(scope, toggleCheckedAll);
+        /* init directive element */
         scope.init(elem);
+        /* watch all checkbox status */
         scope.watchCheckboxGroup();
       }
     };
@@ -1532,6 +1667,9 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
   };
   ng.module('ntd.directives').directive('checkboxGroup', [CheckboxGroup]);
 }(angular));
+/**
+ * Created by david on 14-3-26.
+ */
 (function (ng) {
   'use strict';
   var pagination = {
@@ -1570,16 +1708,21 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
         if (this.config.total <= 1) {
           return;
         }
+        // Default page limits
         var startPage = 1, endPage = this.config.total;
         var isMaxSized = this.config.size && this.config.size < this.config.total;
+        // recompute if maxSize
         if (isMaxSized) {
+          // Current page is displayed in the middle of the visible ones
           startPage = Math.max(this.config.page - Math.floor(this.config.size / 2), 1);
           endPage = startPage + this.config.size - 1;
+          // Adjust if limit is exceeded
           if (endPage > this.config.total) {
             endPage = this.config.total;
             startPage = endPage - this.config.size + 1;
           }
         }
+        // Add page number links
         for (var number = startPage; number <= endPage; number++) {
           if (number == 1 || number == this.config.total) {
             continue;
@@ -1587,6 +1730,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
           var page = this.makePage(number, number, this.isActive(number), false);
           pages.push(page);
         }
+        // Add links to move between page sets
         if (isMaxSized && !this.config.rotate) {
           if (startPage > 1) {
             var previousPageSet = this.makePage(startPage - 1, '...', false, false);
@@ -1597,10 +1741,12 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
             pages.push(nextPageSet);
           }
         }
+        //add first and last links
         var firstPage = this.makePage(1, 1, this.isActive(1), false);
         pages.unshift(firstPage);
         var lastPage = this.makePage(this.config.total, this.config.total, this.isActive(this.config.total), false);
         pages.push(lastPage);
+        // Add previous & next links
         if (pagination.config.directionLinks) {
           var previousPage = this.makePage(this.config.page - 1, this.config.previousText, false, this.noPrevious());
           pages.unshift(previousPage);
