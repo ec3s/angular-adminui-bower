@@ -1507,7 +1507,7 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
       });
       if (status.length > 0 && status.length < this.dataSource.checkboxGroup.length) {
         this.status = 'part';
-      } else if (status.length == this.dataSource.checkboxGroup.length) {
+      } else if (status.length == this.dataSource.checkboxGroup.length && status.length > 0) {
         this.status = 'all';
       } else {
         this.status = 'none';
