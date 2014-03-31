@@ -380,8 +380,8 @@ html {
 /* line 22, ../../app/components/bootstrap-sass/lib/_scaffolding.scss */
 body {
   font-family: "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.42857;
+  font-size: 12px;
+  line-height: 1.5;
   color: #666666;
   background-color: #fdfdfd;
 }
@@ -433,7 +433,7 @@ img {
 /* line 78, ../../app/components/bootstrap-sass/lib/_scaffolding.scss */
 .img-thumbnail, .thumbnail {
   padding: 4px;
-  line-height: 1.42857;
+  line-height: 1.5;
   background-color: #fdfdfd;
   border: 1px solid #dddddd;
   border-radius: 4px;
@@ -451,8 +451,8 @@ img {
 
 /* line 98, ../../app/components/bootstrap-sass/lib/_scaffolding.scss */
 hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 18px;
+  margin-bottom: 18px;
   border: 0;
   border-top: 1px solid #eeeeee;
 }
@@ -471,20 +471,20 @@ hr {
 
 /* line 9, ../../app/components/bootstrap-sass/lib/_type.scss */
 p {
-  margin: 0 0 10px;
+  margin: 0 0 9px;
 }
 
 /* line 12, ../../app/components/bootstrap-sass/lib/_type.scss */
 .lead {
-  margin-bottom: 20px;
-  font-size: 16px;
+  margin-bottom: 18px;
+  font-size: 13px;
   font-weight: 200;
   line-height: 1.4;
 }
 @media (min-width: 768px) {
   /* line 12, ../../app/components/bootstrap-sass/lib/_type.scss */
   .lead {
-    font-size: 21px;
+    font-size: 18px;
   }
 }
 
@@ -596,8 +596,8 @@ h6 .small,
 h1,
 h2,
 h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 18px;
+  margin-bottom: 9px;
 }
 /* line 100, ../../app/components/bootstrap-sass/lib/_type.scss */
 h1 small,
@@ -613,8 +613,8 @@ h3 .small {
 h4,
 h5,
 h6 {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 9px;
+  margin-bottom: 9px;
 }
 /* line 111, ../../app/components/bootstrap-sass/lib/_type.scss */
 h4 small,
@@ -628,38 +628,38 @@ h6 .small {
 
 /* line 116, ../../app/components/bootstrap-sass/lib/_type.scss */
 h1, .h1 {
-  font-size: 36px;
+  font-size: 24px;
 }
 
 /* line 117, ../../app/components/bootstrap-sass/lib/_type.scss */
 h2, .h2 {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 /* line 118, ../../app/components/bootstrap-sass/lib/_type.scss */
 h3, .h3 {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 /* line 119, ../../app/components/bootstrap-sass/lib/_type.scss */
 h4, .h4 {
-  font-size: 18px;
+  font-size: 15px;
 }
 
 /* line 120, ../../app/components/bootstrap-sass/lib/_type.scss */
 h5, .h5 {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 /* line 121, ../../app/components/bootstrap-sass/lib/_type.scss */
 h6, .h6 {
-  font-size: 12px;
+  font-size: 11px;
 }
 
 /* line 127, ../../app/components/bootstrap-sass/lib/_type.scss */
 .page-header {
-  padding-bottom: 9px;
-  margin: 40px 0 20px;
+  padding-bottom: 8px;
+  margin: 36px 0 18px;
   border-bottom: 1px solid #eeeeee;
 }
 
@@ -667,7 +667,7 @@ h6, .h6 {
 ul,
 ol {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 9px;
 }
 /* line 144, ../../app/components/bootstrap-sass/lib/_type.scss */
 ul ul,
@@ -696,13 +696,13 @@ ol ol {
 
 /* line 173, ../../app/components/bootstrap-sass/lib/_type.scss */
 dl {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 /* line 177, ../../app/components/bootstrap-sass/lib/_type.scss */
 dt,
 dd {
-  line-height: 1.42857;
+  line-height: 1.5;
 }
 
 /* line 180, ../../app/components/bootstrap-sass/lib/_type.scss */
@@ -757,13 +757,13 @@ abbr.initialism {
 
 /* line 224, ../../app/components/bootstrap-sass/lib/_type.scss */
 blockquote {
-  padding: 10px 20px;
-  margin: 0 0 20px;
+  padding: 9px 18px;
+  margin: 0 0 18px;
   border-left: 5px solid #eeeeee;
 }
 /* line 228, ../../app/components/bootstrap-sass/lib/_type.scss */
 blockquote p {
-  font-size: 17.5px;
+  font-size: 15px;
   font-weight: 300;
   line-height: 1.25;
 }
@@ -774,7 +774,7 @@ blockquote p:last-child {
 /* line 236, ../../app/components/bootstrap-sass/lib/_type.scss */
 blockquote small {
   display: block;
-  line-height: 1.42857;
+  line-height: 1.5;
   color: #999999;
 }
 /* line 240, ../../app/components/bootstrap-sass/lib/_type.scss */
@@ -813,9 +813,9 @@ blockquote:after {
 
 /* line 275, ../../app/components/bootstrap-sass/lib/_type.scss */
 address {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   font-style: normal;
-  line-height: 1.42857;
+  line-height: 1.5;
 }
 
 /* line 10, ../../app/components/bootstrap-sass/lib/_code.scss */
@@ -839,10 +839,10 @@ code {
 /* line 25, ../../app/components/bootstrap-sass/lib/_code.scss */
 pre {
   display: block;
-  padding: 9.5px;
-  margin: 0 0 10px;
-  font-size: 13px;
-  line-height: 1.42857;
+  padding: 8.5px;
+  margin: 0 0 9px;
+  font-size: 11px;
+  line-height: 1.5;
   word-break: break-all;
   word-wrap: break-word;
   color: #333333;
@@ -1982,7 +1982,7 @@ th {
 /* line 17, ../../app/components/bootstrap-sass/lib/_tables.scss */
 .table, .table-normal {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 /* line 26, ../../app/components/bootstrap-sass/lib/_tables.scss */
 .table > thead > tr > th, .table-normal > thead > tr > th,
@@ -1997,7 +1997,7 @@ th {
 .table > tfoot > tr > td,
 .table-normal > tfoot > tr > td {
   padding: 8px;
-  line-height: 1.42857;
+  line-height: 1.5;
   vertical-align: top;
   border-top: 1px solid #dddddd;
 }
@@ -2207,7 +2207,7 @@ table th[class*="col-"] {
   /* line 183, ../../app/components/bootstrap-sass/lib/_tables.scss */
   .table-responsive {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 13.5px;
     overflow-y: hidden;
     overflow-x: scroll;
     -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -2287,8 +2287,8 @@ legend {
   display: block;
   width: 100%;
   padding: 0;
-  margin-bottom: 20px;
-  font-size: 21px;
+  margin-bottom: 18px;
+  font-size: 18px;
   line-height: inherit;
   color: #333333;
   border: 0;
@@ -2354,8 +2354,8 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
 output {
   display: block;
   padding-top: 7px;
-  font-size: 14px;
-  line-height: 1.42857;
+  font-size: 12px;
+  line-height: 1.5;
   color: #555555;
   vertical-align: middle;
 }
@@ -2364,10 +2364,10 @@ output {
 .form-control {
   display: block;
   width: 100%;
-  height: 34px;
+  height: 32px;
   padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857;
+  font-size: 12px;
+  line-height: 1.5;
   color: #555555;
   vertical-align: middle;
   background-color: white;
@@ -2422,7 +2422,7 @@ textarea.form-control {
 .radio,
 .checkbox {
   display: block;
-  min-height: 20px;
+  min-height: 18px;
   margin-top: 10px;
   margin-bottom: 10px;
   padding-left: 20px;
@@ -2489,9 +2489,9 @@ input[type="checkbox"],
 .input-sm, .input-group-sm > .form-control,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn {
-  height: 30px;
+  height: 28px;
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.5;
   border-radius: 3px;
 }
@@ -2500,8 +2500,8 @@ input[type="checkbox"],
 select.input-sm, .input-group-sm > select.form-control,
 .input-group-sm > select.input-group-addon,
 .input-group-sm > .input-group-btn > select.btn {
-  height: 30px;
-  line-height: 30px;
+  height: 28px;
+  line-height: 28px;
 }
 
 /* line 858, ../../app/components/bootstrap-sass/lib/_mixins.scss */
@@ -2515,9 +2515,9 @@ textarea.input-sm, .input-group-sm > textarea.form-control,
 .input-lg, .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {
-  height: 45px;
+  height: 41px;
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.33;
   border-radius: 6px;
 }
@@ -2526,8 +2526,8 @@ textarea.input-sm, .input-group-sm > textarea.form-control,
 select.input-lg, .input-group-lg > select.form-control,
 .input-group-lg > select.input-group-addon,
 .input-group-lg > .input-group-btn > select.btn {
-  height: 45px;
-  line-height: 45px;
+  height: 41px;
+  line-height: 41px;
 }
 
 /* line 858, ../../app/components/bootstrap-sass/lib/_mixins.scss */
@@ -2712,8 +2712,8 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
   border: 1px solid transparent;
   white-space: nowrap;
   padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857;
+  font-size: 12px;
+  line-height: 1.5;
   border-radius: 4px;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -2973,7 +2973,7 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
 /* line 122, ../../app/components/bootstrap-sass/lib/_buttons.scss */
 .btn-lg, .btn-group-lg > .btn {
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.33;
   border-radius: 6px;
 }
@@ -2983,7 +2983,7 @@ textarea.input-lg, .input-group-lg > textarea.form-control,
 .btn-xs,
 .btn-group-xs > .btn {
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.5;
   border-radius: 3px;
 }
@@ -4100,7 +4100,7 @@ input[type="button"].btn-block {
   padding: 5px 0;
   margin: 2px 0 0;
   list-style: none;
-  font-size: 14px;
+  font-size: 12px;
   background-color: white;
   border: 1px solid #cccccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -4117,7 +4117,7 @@ input[type="button"].btn-block {
 /* line 58, ../../app/components/bootstrap-sass/lib/_dropdowns.scss */
 .dropdown-menu .divider {
   height: 1px;
-  margin: 9px 0;
+  margin: 8px 0;
   overflow: hidden;
   background-color: #e5e5e5;
 }
@@ -4127,7 +4127,7 @@ input[type="button"].btn-block {
   padding: 3px 20px;
   clear: both;
   font-weight: normal;
-  line-height: 1.42857;
+  line-height: 1.5;
   color: #333333;
   white-space: nowrap;
 }
@@ -4174,8 +4174,8 @@ input[type="button"].btn-block {
 .dropdown-header {
   display: block;
   padding: 3px 20px;
-  font-size: 12px;
-  line-height: 1.42857;
+  font-size: 11px;
+  line-height: 1.5;
   color: #999999;
 }
 
@@ -4526,7 +4526,7 @@ input[type="button"].btn-block {
 /* line 59, ../../app/components/bootstrap-sass/lib/_input-groups.scss */
 .input-group-addon {
   padding: 6px 12px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   line-height: 1;
   color: #555555;
@@ -4540,7 +4540,7 @@ input[type="button"].btn-block {
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .input-group-addon.btn {
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 11px;
   border-radius: 3px;
 }
 /* line 76, ../../app/components/bootstrap-sass/lib/_input-groups.scss */
@@ -4548,7 +4548,7 @@ input[type="button"].btn-block {
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .input-group-addon.btn {
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: 15px;
   border-radius: 6px;
 }
 /* line 84, ../../app/components/bootstrap-sass/lib/_input-groups.scss */
@@ -4671,7 +4671,7 @@ input[type="button"].btn-block {
 /* line 64, ../../app/components/bootstrap-sass/lib/_navs.scss */
 .nav .nav-divider, .navbar .sub-navbar .nav-divider {
   height: 1px;
-  margin: 9px 0;
+  margin: 8px 0;
   overflow: hidden;
   background-color: #e5e5e5;
 }
@@ -4692,7 +4692,7 @@ input[type="button"].btn-block {
 /* line 89, ../../app/components/bootstrap-sass/lib/_navs.scss */
 .nav-tabs > li > a, .dropdown-checkbox-group .dropdown-menu .nav-tabs > li > label {
   margin-right: 2px;
-  line-height: 1.42857;
+  line-height: 1.5;
   border: 1px solid transparent;
   border-radius: 4px 4px 0 0;
 }
@@ -4845,7 +4845,7 @@ input[type="button"].btn-block {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   border: 1px solid transparent;
 }
 /* line 21, ../../app/components/bootstrap-sass/lib/_mixins.scss */
@@ -5000,9 +5000,9 @@ input[type="button"].btn-block {
 /* line 152, ../../app/components/bootstrap-sass/lib/_navbar.scss */
 .navbar-brand {
   float: left;
-  padding: 15px 15px;
-  font-size: 18px;
-  line-height: 20px;
+  padding: 16px 15px;
+  font-size: 15px;
+  line-height: 18px;
 }
 /* line 159, ../../app/components/bootstrap-sass/lib/_navbar.scss */
 .navbar-brand:hover, .navbar-brand:focus {
@@ -5047,13 +5047,13 @@ input[type="button"].btn-block {
 
 /* line 208, ../../app/components/bootstrap-sass/lib/_navbar.scss */
 .navbar-nav, .navbar .sub-navbar {
-  margin: 7.5px -15px;
+  margin: 8px -15px;
 }
 /* line 211, ../../app/components/bootstrap-sass/lib/_navbar.scss */
 .navbar-nav > li > a, .navbar .sub-navbar > li > a, .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label, .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar > li > label {
   padding-top: 10px;
   padding-bottom: 10px;
-  line-height: 20px;
+  line-height: 18px;
 }
 @media (max-width: 767px) {
   /* line 219, ../../app/components/bootstrap-sass/lib/_navbar.scss */
@@ -5074,7 +5074,7 @@ input[type="button"].btn-block {
   }
   /* line 231, ../../app/components/bootstrap-sass/lib/_navbar.scss */
   .navbar-nav .open .dropdown-menu > li > a, .navbar .sub-navbar .open .dropdown-menu > li > a, .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar-nav .open .dropdown-menu > li > label, .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label, .dropdown-checkbox-group .navbar .sub-navbar .open .dropdown-menu > li > label {
-    line-height: 20px;
+    line-height: 18px;
   }
   /* line 234, ../../app/components/bootstrap-sass/lib/_navbar.scss */
   .navbar-nav .open .dropdown-menu > li > a:hover, .navbar .sub-navbar .open .dropdown-menu > li > a:hover, .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-checkbox-group .navbar-nav .open .dropdown-menu > li > label:hover, .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:hover, .dropdown-checkbox-group .navbar .sub-navbar .open .dropdown-menu > li > label:hover, .navbar-nav .open .dropdown-menu > li > a:focus, .navbar .sub-navbar .open .dropdown-menu > li > a:focus, .navbar-nav .open .dropdown-checkbox-group .dropdown-menu > li > label:focus, .dropdown-checkbox-group .navbar-nav .open .dropdown-menu > li > label:focus, .navbar .sub-navbar .open .dropdown-checkbox-group .dropdown-menu > li > label:focus, .dropdown-checkbox-group .navbar .sub-navbar .open .dropdown-menu > li > label:focus {
@@ -5093,8 +5093,8 @@ input[type="button"].btn-block {
   }
   /* line 248, ../../app/components/bootstrap-sass/lib/_navbar.scss */
   .navbar-nav > li > a, .navbar .sub-navbar > li > a, .dropdown-checkbox-group .dropdown-menu .navbar-nav > li > label, .navbar .dropdown-checkbox-group .dropdown-menu .sub-navbar > li > label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar > li > label {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 }
 
@@ -5118,8 +5118,8 @@ input[type="button"].btn-block {
   border-bottom: 1px solid transparent;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 9px;
+  margin-bottom: 9px;
 }
 @media (max-width: 767px) {
   /* line 291, ../../app/components/bootstrap-sass/lib/_navbar.scss */
@@ -5164,15 +5164,15 @@ input[type="button"].btn-block {
 
 /* line 337, ../../app/components/bootstrap-sass/lib/_navbar.scss */
 .navbar-btn {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 9px;
+  margin-bottom: 9px;
 }
 
 /* line 346, ../../app/components/bootstrap-sass/lib/_navbar.scss */
 .navbar-text {
   float: left;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 @media (min-width: 768px) {
   /* line 346, ../../app/components/bootstrap-sass/lib/_navbar.scss */
@@ -5443,7 +5443,7 @@ input[type="button"].btn-block {
 /* line 6, ../../app/components/bootstrap-sass/lib/_breadcrumbs.scss */
 .breadcrumb {
   padding: 8px 15px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   list-style: none;
   background-color: whitesmoke;
   border-radius: 4px;
@@ -5467,7 +5467,7 @@ input[type="button"].btn-block {
 .pagination {
   display: inline-block;
   padding-left: 0;
-  margin: 20px 0;
+  margin: 18px 0;
   border-radius: 4px;
 }
 /* line 10, ../../app/components/bootstrap-sass/lib/_pagination.scss */
@@ -5480,7 +5480,7 @@ input[type="button"].btn-block {
   position: relative;
   float: left;
   padding: 6px 12px;
-  line-height: 1.42857;
+  line-height: 1.5;
   text-decoration: none;
   background-color: white;
   border: 1px solid #dddddd;
@@ -5536,7 +5536,7 @@ input[type="button"].btn-block {
 .pagination-lg > li > a, .dropdown-checkbox-group .dropdown-menu .pagination-lg > li > label,
 .pagination-lg > li > span {
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: 15px;
 }
 /* line 521, ../../app/components/bootstrap-sass/lib/_mixins.scss */
 .pagination-lg > li:first-child > a, .dropdown-checkbox-group .dropdown-menu .pagination-lg > li:first-child > label,
@@ -5555,7 +5555,7 @@ input[type="button"].btn-block {
 .pagination-sm > li > a, .dropdown-checkbox-group .dropdown-menu .pagination-sm > li > label,
 .pagination-sm > li > span {
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 11px;
 }
 /* line 521, ../../app/components/bootstrap-sass/lib/_mixins.scss */
 .pagination-sm > li:first-child > a, .dropdown-checkbox-group .dropdown-menu .pagination-sm > li:first-child > label,
@@ -5573,7 +5573,7 @@ input[type="button"].btn-block {
 /* line 6, ../../app/components/bootstrap-sass/lib/_pager.scss */
 .pager {
   padding-left: 0;
-  margin: 20px 0;
+  margin: 18px 0;
   list-style: none;
   text-align: center;
 }
@@ -5716,7 +5716,7 @@ input[type="button"].btn-block {
   display: inline-block;
   min-width: 10px;
   padding: 3px 7px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
   color: white;
   line-height: 1;
@@ -5761,9 +5761,9 @@ a.list-group-item.active > .badge, .dropdown-checkbox-group .dropdown-menu li la
 .jumbotron {
   padding: 30px;
   margin-bottom: 30px;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 200;
-  line-height: 2.14286;
+  line-height: 2.25;
   color: inherit;
   background-color: #eeeeee;
 }
@@ -5793,14 +5793,14 @@ a.list-group-item.active > .badge, .dropdown-checkbox-group .dropdown-menu li la
   }
   /* line 36, ../../app/components/bootstrap-sass/lib/_jumbotron.scss */
   .jumbotron h1 {
-    font-size: 63px;
+    font-size: 54px;
   }
 }
 
 /* line 7, ../../app/components/bootstrap-sass/lib/_thumbnails.scss */
 .thumbnail {
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 /* line 12, ../../app/components/bootstrap-sass/lib/_thumbnails.scss */
 .thumbnail > img {
@@ -5828,7 +5828,7 @@ a.thumbnail.active,
 /* line 9, ../../app/components/bootstrap-sass/lib/_alerts.scss */
 .alert {
   padding: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   border: 1px solid transparent;
   border-radius: 4px;
 }
@@ -5974,8 +5974,8 @@ a.thumbnail.active,
 /* line 39, ../../app/components/bootstrap-sass/lib/_progress-bars.scss */
 .progress {
   overflow: hidden;
-  height: 20px;
-  margin-bottom: 20px;
+  height: 18px;
+  margin-bottom: 18px;
   background-color: whitesmoke;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -5987,8 +5987,8 @@ a.thumbnail.active,
   float: left;
   width: 0%;
   height: 100%;
-  font-size: 12px;
-  line-height: 20px;
+  font-size: 11px;
+  line-height: 18px;
   color: white;
   text-align: center;
   background-color: #428bca;
@@ -6182,7 +6182,7 @@ a.list-group-item.active .list-group-item-text, .dropdown-checkbox-group .dropdo
 
 /* line 7, ../../app/components/bootstrap-sass/lib/_panels.scss */
 .panel, .info-box .stat {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   background-color: white;
   border: 1px solid transparent;
   border-radius: 4px;
@@ -6408,7 +6408,7 @@ a.list-group-item.active .list-group-item-text, .dropdown-checkbox-group .dropdo
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
-  font-size: 16px;
+  font-size: 14px;
 }
 /* line 109, ../../app/components/bootstrap-sass/lib/_panels.scss */
 .panel-title > a, .dropdown-checkbox-group .dropdown-menu li .panel-title > label {
@@ -6621,7 +6621,7 @@ a.list-group-item.active .list-group-item-text, .dropdown-checkbox-group .dropdo
 /* line 6, ../../app/components/bootstrap-sass/lib/_close.scss */
 .close {
   float: right;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: bold;
   line-height: 1;
   color: black;
@@ -6729,7 +6729,7 @@ button.close {
 .modal-header {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
-  min-height: 16.42857px;
+  min-height: 16.5px;
 }
 
 /* line 80, ../../app/components/bootstrap-sass/lib/_modals.scss */
@@ -6740,7 +6740,7 @@ button.close {
 /* line 85, ../../app/components/bootstrap-sass/lib/_modals.scss */
 .modal-title {
   margin: 0;
-  line-height: 1.42857;
+  line-height: 1.5;
 }
 
 /* line 92, ../../app/components/bootstrap-sass/lib/_modals.scss */
@@ -6801,7 +6801,7 @@ button.close {
   z-index: 1030;
   display: block;
   visibility: visible;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.4;
   opacity: 0;
   filter: alpha(opacity=0);
@@ -6953,7 +6953,7 @@ button.close {
 .popover-title {
   margin: 0;
   padding: 8px 14px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   line-height: 18px;
   background-color: #f7f7f7;
@@ -7890,88 +7890,77 @@ td.visible-print {
     display: none !important;
   }
 }
-/* line 20, ../../app/styles/ntd-admin-ui.scss */
-h1 {
-  font: 24px/30px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
-}
-
-/* line 24, ../../app/styles/ntd-admin-ui.scss */
-body {
-  font: 12px/18px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
-}
-
-/* line 28, ../../app/styles/ntd-admin-ui.scss */
+/* line 34, ../../app/styles/ntd-admin-ui.scss */
 .navbar {
-  font: 14px/20px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
+  font: 15px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
 }
 
-/* line 32, ../../app/styles/ntd-admin-ui.scss */
+/* line 38, ../../app/styles/ntd-admin-ui.scss */
 .glyphicon {
-  top: 2px;
-  line-height: 1.2;
+  top: 3px;
 }
 
 @-webkit-keyframes rotate {
-  /* line 70, ../../app/styles/ntd-admin-ui.scss */
+  /* line 75, ../../app/styles/ntd-admin-ui.scss */
   from {
     -webkit-transform: rotate(0deg);
   }
 
-  /* line 71, ../../app/styles/ntd-admin-ui.scss */
+  /* line 76, ../../app/styles/ntd-admin-ui.scss */
   to {
     -webkit-transform: rotate(360deg);
   }
 }
 
 @-webkit-keyframes rotate {
-  /* line 90, ../../app/styles/ntd-admin-ui.scss */
+  /* line 95, ../../app/styles/ntd-admin-ui.scss */
   from {
     -webkit-transform: rotate(0deg);
   }
 
-  /* line 91, ../../app/styles/ntd-admin-ui.scss */
+  /* line 96, ../../app/styles/ntd-admin-ui.scss */
   to {
     -webkit-transform: rotate(360deg);
   }
 }
 
 @-moz-keyframes rotate {
-  /* line 90, ../../app/styles/ntd-admin-ui.scss */
+  /* line 95, ../../app/styles/ntd-admin-ui.scss */
   from {
     -webkit-transform: rotate(0deg);
   }
 
-  /* line 91, ../../app/styles/ntd-admin-ui.scss */
+  /* line 96, ../../app/styles/ntd-admin-ui.scss */
   to {
     -webkit-transform: rotate(360deg);
   }
 }
 
 @-ms-keyframes rotate {
-  /* line 90, ../../app/styles/ntd-admin-ui.scss */
+  /* line 95, ../../app/styles/ntd-admin-ui.scss */
   from {
     -webkit-transform: rotate(0deg);
   }
 
-  /* line 91, ../../app/styles/ntd-admin-ui.scss */
+  /* line 96, ../../app/styles/ntd-admin-ui.scss */
   to {
     -webkit-transform: rotate(360deg);
   }
 }
 
 @keyframes rotate {
-  /* line 90, ../../app/styles/ntd-admin-ui.scss */
+  /* line 95, ../../app/styles/ntd-admin-ui.scss */
   from {
     -webkit-transform: rotate(0deg);
   }
 
-  /* line 91, ../../app/styles/ntd-admin-ui.scss */
+  /* line 96, ../../app/styles/ntd-admin-ui.scss */
   to {
     -webkit-transform: rotate(360deg);
   }
 }
 
-/* line 95, ../../app/styles/ntd-admin-ui.scss */
+/* line 100, ../../app/styles/ntd-admin-ui.scss */
 .collapse {
   display: block;
   overflow: hidden;
@@ -7979,17 +7968,17 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* line 102, ../../app/styles/ntd-admin-ui.scss */
+  /* line 107, ../../app/styles/ntd-admin-ui.scss */
   .collapse {
     display: none;
   }
 
-  /* line 105, ../../app/styles/ntd-admin-ui.scss */
+  /* line 110, ../../app/styles/ntd-admin-ui.scss */
   .nav.pull-right, .navbar .pull-right.sub-navbar {
     float: none !important;
   }
 
-  /* line 109, ../../app/styles/ntd-admin-ui.scss */
+  /* line 114, ../../app/styles/ntd-admin-ui.scss */
   .chzn-container {
     margin-bottom: 15px;
   }
@@ -8059,7 +8048,7 @@ select {
 .label,
 .badge,
 .btn-small {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: normal;
 }
 
@@ -8238,7 +8227,7 @@ form.form-horizontal .help-block {
 
 /* line 214, ../../app/styles/ntd-main.scss */
 .box {
-  margin-bottom: 1.42857;
+  margin-bottom: 1.5;
 }
 /* line 216, ../../app/styles/ntd-main.scss */
 .box .opts {
@@ -8247,7 +8236,7 @@ form.form-horizontal .help-block {
 /* line 219, ../../app/styles/ntd-main.scss */
 .box .box-hd {
   padding: 8px;
-  line-height: 1.42857;
+  line-height: 1.5;
   border: 1px solid #ccc;
   text-shadow: 0 1px 0 white;
   -webkit-box-shadow: 0 1px 0 0 white inset;
@@ -8259,7 +8248,7 @@ form.form-horizontal .help-block {
 .box .box-hd h3 {
   margin: 0;
   font-size: 14px;
-  line-height: 1.42857;
+  line-height: 1.5;
 }
 /* line 231, ../../app/styles/ntd-main.scss */
 .box .box-bd {
@@ -8518,7 +8507,7 @@ form.form-horizontal .help-block {
   padding: 6px 12px 1px;
   margin-bottom: 0;
   font: 12px/18px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
-  line-height: 1.42857;
+  line-height: 1.5;
   vertical-align: middle;
   cursor: pointer;
   background: white;
@@ -8967,16 +8956,6 @@ form.form-horizontal .help-block {
   line-height: inherit;
 }
 
-/* line 780, ../../app/styles/ntd-main.scss */
-form legend {
-  line-height: 1.8;
-}
-
-/* line 787, ../../app/styles/ntd-main.scss */
-.pagination li a, .pagination .dropdown-checkbox-group .dropdown-menu li label, .dropdown-checkbox-group .dropdown-menu .pagination li label {
-  line-height: inherit;
-}
-
 /* line 2, ../../app/styles/ntd-nav.scss */
 .nav li.dropdown.open .caret, .navbar .sub-navbar li.dropdown.open .caret, .nav li.dropdown.open .navbar .main-nav .active:after, .navbar .main-nav .nav li.dropdown.open .active:after, .navbar .sub-navbar li.dropdown.open .main-nav .active:after, .navbar .main-nav .sub-navbar li.dropdown.open .active:after, .nav li.dropdown.open.active .caret, .navbar .sub-navbar li.dropdown.open.active .caret, .nav li.dropdown.open.active .navbar .main-nav .active:after, .navbar .main-nav .nav li.dropdown.open.active .active:after, .navbar .sub-navbar li.dropdown.open.active .main-nav .active:after, .navbar .main-nav .sub-navbar li.dropdown.open.active .active:after, .nav li.dropdown.open a:hover .caret, .navbar .sub-navbar li.dropdown.open a:hover .caret, .nav .dropdown-checkbox-group .dropdown-menu li.dropdown.open label:hover .caret, .dropdown-checkbox-group .dropdown-menu .nav li.dropdown.open label:hover .caret, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li.dropdown.open label:hover .caret, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar li.dropdown.open label:hover .caret, .nav li.dropdown.open a:hover .navbar .main-nav .active:after, .navbar .main-nav .nav li.dropdown.open a:hover .active:after, .navbar .sub-navbar li.dropdown.open a:hover .main-nav .active:after, .navbar .main-nav .sub-navbar li.dropdown.open a:hover .active:after, .nav .dropdown-checkbox-group .dropdown-menu li.dropdown.open label:hover .navbar .main-nav .active:after, .navbar .main-nav .nav .dropdown-checkbox-group .dropdown-menu li.dropdown.open label:hover .active:after, .dropdown-checkbox-group .dropdown-menu .nav li.dropdown.open label:hover .navbar .main-nav .active:after, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu .nav li.dropdown.open label:hover .active:after, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li.dropdown.open label:hover .main-nav .active:after, .navbar .main-nav .sub-navbar .dropdown-checkbox-group .dropdown-menu li.dropdown.open label:hover .active:after, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar li.dropdown.open label:hover .main-nav .active:after, .dropdown-checkbox-group .dropdown-menu .navbar .main-nav .sub-navbar li.dropdown.open label:hover .active:after {
   opacity: 0.4;
@@ -9040,167 +9019,165 @@ form legend {
   position: absolute;
   left: 15px;
   right: 15px;
-  padding: 3px 0 0;
   margin-bottom: 0;
   z-index: 500;
 }
-/* line 68, ../../app/styles/ntd-nav.scss */
+/* line 67, ../../app/styles/ntd-nav.scss */
 .navbar .sub-navbar li.active a, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li.active label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar li.active label {
   color: #428bcb;
 }
-/* line 71, ../../app/styles/ntd-nav.scss */
+/* line 70, ../../app/styles/ntd-nav.scss */
 .navbar .sub-navbar li.active:after {
   content: none;
 }
-/* line 75, ../../app/styles/ntd-nav.scss */
+/* line 74, ../../app/styles/ntd-nav.scss */
 .navbar .sub-navbar li a, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar li label {
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 8px 15px;
   color: #666;
 }
-/* line 82, ../../app/styles/ntd-nav.scss */
+/* line 80, ../../app/styles/ntd-nav.scss */
 .navbar .sub-navbar-back {
   border-bottom: 1px solid #ddd;
   height: 35px;
 }
 
-/* line 90, ../../app/styles/ntd-nav.scss */
+/* line 88, ../../app/styles/ntd-nav.scss */
 .message-container {
   z-index: 600;
   position: fixed;
   right: 15px;
   left: 15px;
 }
-/* line 95, ../../app/styles/ntd-nav.scss */
+/* line 93, ../../app/styles/ntd-nav.scss */
 .message-container .alert {
   padding: 10px 15px;
 }
-/* line 98, ../../app/styles/ntd-nav.scss */
+/* line 96, ../../app/styles/ntd-nav.scss */
 .message-container .close {
   line-height: inherit;
 }
 
-/* line 105, ../../app/styles/ntd-nav.scss */
+/* line 103, ../../app/styles/ntd-nav.scss */
 .side-nav h4 {
   font: bold 14px/20px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
   background-color: whitesmoke;
   border-bottom-width: 2px;
   padding: 8px 15px;
 }
-/* line 112, ../../app/styles/ntd-nav.scss */
+/* line 110, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu {
   font: 12px/18px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
 }
-/* line 115, ../../app/styles/ntd-nav.scss */
+/* line 113, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li {
   padding: 0;
   cursor: pointer;
 }
-/* line 119, ../../app/styles/ntd-nav.scss */
+/* line 117, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label {
-  padding: 8px 15px;
+  padding: 10px 15px;
   display: block;
   color: #555555;
 }
-/* line 123, ../../app/styles/ntd-nav.scss */
+/* line 121, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li a .glyphicon-chevron-down, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label .glyphicon-chevron-down, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label .glyphicon-chevron-down {
   opacity: .25;
 }
-/* line 126, ../../app/styles/ntd-nav.scss */
+/* line 124, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li a:hover, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label:hover, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label:hover {
   background-color: whitesmoke;
   text-decoration: none;
 }
-/* line 129, ../../app/styles/ntd-nav.scss */
+/* line 127, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li a:hover .glyphicon-chevron-down, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label:hover .glyphicon-chevron-down, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label:hover .glyphicon-chevron-down {
   opacity: .5;
 }
-/* line 134, ../../app/styles/ntd-nav.scss */
+/* line 132, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li.active {
   border-color: #428bca;
 }
-/* line 136, ../../app/styles/ntd-nav.scss */
+/* line 134, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li.active a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li.active label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active label {
   color: white;
   background-color: #428bca;
   border-top-right-radius: 0 !important;
   border-top-left-radius: 0 !important;
 }
-/* line 143, ../../app/styles/ntd-nav.scss */
+/* line 141, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li.active ul li:hover {
   border-color: #dddddd;
 }
-/* line 146, ../../app/styles/ntd-nav.scss */
+/* line 144, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li.active ul li a, .side-nav .side-nav-menu li.active ul .dropdown-checkbox-group .dropdown-menu li label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active ul li label {
   background-color: #fff;
   color: #555555;
 }
-/* line 149, ../../app/styles/ntd-nav.scss */
+/* line 147, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li.active ul li a:hover, .side-nav .side-nav-menu li.active ul .dropdown-checkbox-group .dropdown-menu li label:hover, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active ul li label:hover {
   text-decoration: none;
 }
-/* line 156, ../../app/styles/ntd-nav.scss */
+/* line 154, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
-/* line 160, ../../app/styles/ntd-nav.scss */
+/* line 158, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li:last-child a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li:last-child label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li:last-child label {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-/* line 166, ../../app/styles/ntd-nav.scss */
+/* line 164, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li:last-child ul:last-child li:last-child {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-/* line 168, ../../app/styles/ntd-nav.scss */
+/* line 166, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li:last-child ul:last-child li:last-child a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li:last-child ul:last-child li:last-child label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li:last-child ul:last-child li:last-child label {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-/* line 176, ../../app/styles/ntd-nav.scss */
+/* line 174, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li a.has-sub-menu, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label.has-sub-menu, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label.has-sub-menu {
   border-bottom-right-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
 }
-/* line 179, ../../app/styles/ntd-nav.scss */
+/* line 177, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul {
   display: none;
   margin: -1px;
-  font-size: 12px;
+  font-size: 11px;
 }
-/* line 185, ../../app/styles/ntd-nav.scss */
+/* line 183, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
-/* line 188, ../../app/styles/ntd-nav.scss */
+/* line 186, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li:last-child {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-/* line 191, ../../app/styles/ntd-nav.scss */
+/* line 189, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li ul li label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li ul li label {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   padding-left: 25px;
 }
-/* line 194, ../../app/styles/ntd-nav.scss */
+/* line 192, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li a:hover, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li ul li label:hover, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li ul li label:hover {
   border-color: #dddddd !important;
   background: whitesmoke url("../images/menu_sprites.png") no-repeat 15px 14px;
 }
-/* line 199, ../../app/styles/ntd-nav.scss */
+/* line 197, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li.active {
   border-color: #dddddd;
 }
-/* line 201, ../../app/styles/ntd-nav.scss */
+/* line 199, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li.active a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li.active ul li.active label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active ul li.active label {
   color: #428bcb;
   background: white url("../images/menu_sprites.png") no-repeat 15px -22px;
 }
-/* line 204, ../../app/styles/ntd-nav.scss */
+/* line 202, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li.active a:hover, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li.active ul li.active label:hover, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active ul li.active label:hover {
   border-color: #dddddd !important;
   background: whitesmoke url("../images/menu_sprites.png") no-repeat 15px -22px;
