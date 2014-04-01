@@ -9055,134 +9055,140 @@ form.form-horizontal .form-group .help-block {
   position: fixed;
   right: 15px;
   left: 15px;
+  opacity: 0.95;
+  filter: alpha(opacity=95);
 }
-/* line 93, ../../app/styles/ntd-nav.scss */
+/* line 94, ../../app/styles/ntd-nav.scss */
 .message-container .alert {
   padding: 10px 15px;
 }
+/* line 97, ../../app/styles/ntd-nav.scss */
+.message-container .close {
+  line-height: .8;
+}
 
-/* line 100, ../../app/styles/ntd-nav.scss */
+/* line 104, ../../app/styles/ntd-nav.scss */
 .side-nav h4 {
   font: bold 14px/20px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
   background-color: whitesmoke;
   border-bottom-width: 2px;
   padding: 8px 15px;
 }
-/* line 107, ../../app/styles/ntd-nav.scss */
+/* line 111, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu {
   font: 12px/18px "Helvetica Neue", Helvetica, "microsoft yahei", Arial, sans-serif;
 }
-/* line 110, ../../app/styles/ntd-nav.scss */
+/* line 114, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li {
   padding: 0;
   cursor: pointer;
 }
-/* line 114, ../../app/styles/ntd-nav.scss */
+/* line 118, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label {
   padding: 10px 15px;
   display: block;
   color: #555555;
 }
-/* line 118, ../../app/styles/ntd-nav.scss */
+/* line 122, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li a .glyphicon-chevron-down, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label .glyphicon-chevron-down, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label .glyphicon-chevron-down {
   top: 3px;
   opacity: .25;
 }
-/* line 122, ../../app/styles/ntd-nav.scss */
+/* line 126, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li a:hover, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label:hover, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label:hover {
   background-color: whitesmoke;
   text-decoration: none;
 }
-/* line 125, ../../app/styles/ntd-nav.scss */
+/* line 129, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li a:hover .glyphicon-chevron-down, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label:hover .glyphicon-chevron-down, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label:hover .glyphicon-chevron-down {
   opacity: .5;
 }
-/* line 130, ../../app/styles/ntd-nav.scss */
+/* line 134, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li.active {
   border-color: #428bca;
 }
-/* line 132, ../../app/styles/ntd-nav.scss */
+/* line 136, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li.active a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li.active label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active label {
   color: white;
   background-color: #428bca;
   border-top-right-radius: 0 !important;
   border-top-left-radius: 0 !important;
 }
-/* line 139, ../../app/styles/ntd-nav.scss */
+/* line 143, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li.active ul li:hover {
   border-color: #dddddd;
 }
-/* line 142, ../../app/styles/ntd-nav.scss */
+/* line 146, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li.active ul li a, .side-nav .side-nav-menu li.active ul .dropdown-checkbox-group .dropdown-menu li label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active ul li label {
   background-color: #fff;
   color: #555555;
 }
-/* line 145, ../../app/styles/ntd-nav.scss */
+/* line 149, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li.active ul li a:hover, .side-nav .side-nav-menu li.active ul .dropdown-checkbox-group .dropdown-menu li label:hover, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active ul li label:hover {
   text-decoration: none;
 }
-/* line 152, ../../app/styles/ntd-nav.scss */
+/* line 156, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
-/* line 156, ../../app/styles/ntd-nav.scss */
+/* line 160, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li:last-child a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li:last-child label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li:last-child label {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-/* line 162, ../../app/styles/ntd-nav.scss */
+/* line 166, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li:last-child ul:last-child li:last-child {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-/* line 164, ../../app/styles/ntd-nav.scss */
+/* line 168, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li:last-child ul:last-child li:last-child a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li:last-child ul:last-child li:last-child label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li:last-child ul:last-child li:last-child label {
   border-bottom-right-radius: 4px;
   border-bottom-left-radius: 4px;
 }
-/* line 172, ../../app/styles/ntd-nav.scss */
+/* line 176, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li a.has-sub-menu, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li label.has-sub-menu, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li label.has-sub-menu {
   border-bottom-right-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
 }
-/* line 175, ../../app/styles/ntd-nav.scss */
+/* line 179, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul {
   display: none;
   margin: -1px;
   font-size: 11px;
 }
-/* line 181, ../../app/styles/ntd-nav.scss */
+/* line 185, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
-/* line 184, ../../app/styles/ntd-nav.scss */
+/* line 188, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li:last-child {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-/* line 187, ../../app/styles/ntd-nav.scss */
+/* line 191, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li ul li label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li ul li label {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   padding-left: 25px;
 }
-/* line 190, ../../app/styles/ntd-nav.scss */
+/* line 194, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li a:hover, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li ul li label:hover, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li ul li label:hover {
   border-color: #dddddd !important;
   background: whitesmoke url("../images/menu_sprites.png") no-repeat 15px 14px;
 }
-/* line 195, ../../app/styles/ntd-nav.scss */
+/* line 199, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li.active {
   border-color: #dddddd;
 }
-/* line 197, ../../app/styles/ntd-nav.scss */
+/* line 201, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li.active a, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li.active ul li.active label, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active ul li.active label {
   color: #428bcb;
   background: white url("../images/menu_sprites.png") no-repeat 15px -22px;
 }
-/* line 200, ../../app/styles/ntd-nav.scss */
+/* line 204, ../../app/styles/ntd-nav.scss */
 .side-nav .side-nav-menu li ul li.active a:hover, .side-nav .side-nav-menu .dropdown-checkbox-group .dropdown-menu li.active ul li.active label:hover, .dropdown-checkbox-group .dropdown-menu .side-nav .side-nav-menu li.active ul li.active label:hover {
   border-color: #dddddd !important;
   background: whitesmoke url("../images/menu_sprites.png") no-repeat 15px -22px;
