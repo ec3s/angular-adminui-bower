@@ -9093,7 +9093,7 @@ form.form-horizontal .form-group .help-block {
   display: block;
   z-index: 501;
   position: absolute;
-  border-bottom: 4px solid #eeeeee;
+  border-bottom: 4px solid #f8f8f8;
   border-top: 0 solid transparent;
   margin: 12px 0 0 -4px;
   left: 50%;
