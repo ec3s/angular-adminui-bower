@@ -9589,15 +9589,15 @@ i[tooltip-popup-delay] {
   }
 }
 @media (max-width: 767px) {
-  /* line 54, ../../app/styles/ntd-responsive.scss */
-  .navbar .main-nav .active:after {
-    content: none;
+  /* line 55, ../../app/styles/ntd-responsive.scss */
+  .navbar .main-nav .active a:after, .navbar .main-nav .active .dropdown-checkbox-group .dropdown-menu li label:after, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav .active label:after {
+    content: none !important;
   }
-  /* line 59, ../../app/styles/ntd-responsive.scss */
+  /* line 61, ../../app/styles/ntd-responsive.scss */
   .navbar .main-nav a:hover, .navbar .main-nav .dropdown-checkbox-group .dropdown-menu li label:hover, .dropdown-checkbox-group .dropdown-menu li .navbar .main-nav label:hover {
     background-color: transparent !important;
   }
-  /* line 64, ../../app/styles/ntd-responsive.scss */
+  /* line 66, ../../app/styles/ntd-responsive.scss */
   .navbar .sub-navbar {
     position: relative;
     left: 0;
@@ -9606,11 +9606,11 @@ i[tooltip-popup-delay] {
     width: 100%;
     margin: 5px 0;
   }
-  /* line 72, ../../app/styles/ntd-responsive.scss */
+  /* line 74, ../../app/styles/ntd-responsive.scss */
   .navbar .sub-navbar li.active a, .navbar .sub-navbar .dropdown-checkbox-group .dropdown-menu li.active label, .dropdown-checkbox-group .dropdown-menu .navbar .sub-navbar li.active label {
     color: #fff;
   }
-  /* line 78, ../../app/styles/ntd-responsive.scss */
+  /* line 80, ../../app/styles/ntd-responsive.scss */
   .navbar .sub-navbar-back {
     display: none;
   }
