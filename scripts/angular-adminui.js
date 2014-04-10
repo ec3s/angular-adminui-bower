@@ -1728,9 +1728,13 @@ angular.module('ntd.directives').directive('nanoScrollbar', [
     return false;
   };
   Finder.prototype.showChildren = function (scope, item, evt) {
-    var childLevel = this.getLevel(item) + 1;
+    var level = this.getLevel(item);
+    var childLevel = level + 1;
     var children = this.getChildren(item);
-    this.selectedItems = this.getAllSelected(item);
+    if (!ng.isUndefined(this.selectedItems[level])) {
+      this.selectedItems.splice(level, this.selectedItems.length - level);
+    }
+    this.selectedItems[level] = item;
     scope.ngModel = this.selectedItems.slice(-1).pop().value;
     if (ng.isUndefined(evt)) {
       this.scrollToView(this.selectedItems.length - 1);
