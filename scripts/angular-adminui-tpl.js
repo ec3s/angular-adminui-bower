@@ -10,4 +10,9 @@ angular.module('ntd.directives').run(['$templateCache', function($templateCache)
     "<div class=\"dropdown dropdown-checkbox-group\"><label class=dropdown-toggle data-toggle=dropdown><input type=checkbox data-ng-click=toggleCheckedAll() data-ng-class=\"{'part': 'part-checked'}[status]\" data-ng-checked=\"{'all': true, 'part': true, 'none': false}[status]\">{{dataSource.name}} <b class=caret></b></label><ul class=dropdown-menu><li data-ng-repeat=\"checkbox in dataSource.checkboxGroup\"><label><input type=checkbox data-ng-model=checkbox.checked>{{checkbox.name}}</label></li><li data-ng-show=\"dataSource.checkboxGroup.length <= 0\"><label>无可选项目</label></li></ul></div>"
   );
 
+
+  $templateCache.put('templates/finder.html',
+    "<div class=adminui-finder-container><div class=adminui-finder-inner>{{selectedItems}}<ul data-ng-repeat=\"list in finderList\" style=\"margin-left: {{30 * $index}}%\" data-ng-class=\"{true: 'selected'}[isLevelSelected($index)]\"><li data-ng-click=\"showChildren(item, $event)\" data-ng-class=\"[{true: 'selected'}[isItemSelected(item, $parent.$index)], {true: 'has-child'}[hasChildren(item)]]\" data-ng-repeat=\"item in list\">{{item.text}}</li></ul></div></div>"
+  );
+
 }]);

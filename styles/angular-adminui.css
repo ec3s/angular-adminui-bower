@@ -9343,13 +9343,14 @@ i[tooltip-popup-delay] {
   padding-left: 5px;
 }
 
-/* line 5, ../../app/styles/ntd-cascade-list.scss */
-.cascade-list {
+/* line 5, ../../app/styles/adminui-finder.scss */
+.adminui-finder-container {
   margin-bottom: 0;
   vertical-align: middle;
   background-color: #fff;
   border: 1px solid #ccc;
   font-weight: normal;
+  height: 100%;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -9365,18 +9366,19 @@ i[tooltip-popup-delay] {
   transition: border linear 0.2s, box-shadow linear 0.2s;
 }
 
-/* line 18, ../../app/styles/ntd-cascade-list.scss */
-.cascade-list-inner {
+/* line 19, ../../app/styles/adminui-finder.scss */
+.adminui-finder-inner {
   width: 100%;
-  height: 100px;
+  height: 100%;
+  min-height: 150px;
   display: block;
   overflow-x: auto;
   overflow-y: hidden;
   position: relative;
 }
 
-/* line 28, ../../app/styles/ntd-cascade-list.scss */
-.cascade-list ul {
+/* line 30, ../../app/styles/adminui-finder.scss */
+.adminui-finder-container ul {
   margin: 0;
   padding: 4px 6px;
   width: 30%;
@@ -9388,46 +9390,46 @@ i[tooltip-popup-delay] {
   overflow: auto;
 }
 
-/* line 41, ../../app/styles/ntd-cascade-list.scss */
-.cascade-list li {
+/* line 43, ../../app/styles/adminui-finder.scss */
+.adminui-finder-container li {
   background-image: url("../images/cascadelist_arrows.png");
   background-repeat: no-repeat;
-  background-position: 98% 20px;
+  background-position: 98% 24px;
   overflow: hidden;
-  padding-right: 1.5em;
+  padding: 3px 1.5em 3px 5px;
   cursor: pointer;
 }
 
-/* line 49, ../../app/styles/ntd-cascade-list.scss */
-.cascade-list .form-control {
+/* line 51, ../../app/styles/adminui-finder.scss */
+.adminui-finder-container .form-control {
   display: inline-block;
 }
 
-/* line 55, ../../app/styles/ntd-cascade-list.scss */
-.cascade-list li.has-child {
-  background-position: 98% -21px;
+/* line 57, ../../app/styles/adminui-finder.scss */
+.adminui-finder-container li.has-child {
+  background-position: 98% -17px;
 }
 
-/* line 60, ../../app/styles/ntd-cascade-list.scss */
-.cascade-list li.selective {
+/* line 62, ../../app/styles/adminui-finder.scss */
+.adminui-finder-container li.selected {
   background-color: #eeeeee;
 }
 
-/* line 65, ../../app/styles/ntd-cascade-list.scss */
-.cascade-list li.selective.has-child {
+/* line 67, ../../app/styles/adminui-finder.scss */
+.adminui-finder-container li.selected.has-child {
   background-color: #eeeeee;
-  background-position: 98% -47px;
+  background-position: 98% -44px;
 }
 
-/* line 71, ../../app/styles/ntd-cascade-list.scss */
-.cascade-list ul.selective li.selective {
+/* line 73, ../../app/styles/adminui-finder.scss */
+.adminui-finder-container ul.selected li.selected {
   background-color: #049cdb;
   color: #fff;
 }
 
-/* line 77, ../../app/styles/ntd-cascade-list.scss */
-.cascade-list ul.selective li.selective.has-child {
-  background-position: 98% -73px;
+/* line 79, ../../app/styles/adminui-finder.scss */
+.adminui-finder-container ul.selected li.selected.has-child {
+  background-position: 98% -70px;
 }
 
 /* line 2, ../../app/styles/ntd-login.scss */
