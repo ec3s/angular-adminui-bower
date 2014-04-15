@@ -267,7 +267,7 @@ angular.module('ntd.directives', ['ntd.config']);
         nope = attrs.no || '\u53d6\u6d88';
         title = attrs.title || '\u786e\u8ba4\u5220\u9664?';
         pos = attrs.position || 'top';
-        html = '<div id="button-' + buttonId + '">' + '<p ng-show="test" class="confirmbutton-msg">' + message + '</p>' + '<button type="button" class="confirmbutton-yes btn btn-primary">' + yep + '</button>\n' + '<button type="button" class="confirmbutton-no btn btn-default">' + nope + '</button>' + '</div>';
+        html = '<div id="button-' + buttonId + '">' + '<p ng-show="test" class="confirmbutton-msg">' + message + '</p>' + '<button type="button" class="confirmbutton-yes' + ' btn btn-primary">' + yep + '</button>\n' + '<button type="button" class="confirmbutton-no btn btn-default">' + nope + '</button>' + '</div>';
         element.popover({
           content: html,
           html: true,
@@ -296,6 +296,9 @@ angular.module('ntd.directives', ['ntd.config']);
             dontBubble = false;
             var func = $parse(attrs.confirmButton);
             func(scope);
+            if (scope.$root.$$phase != '$apply' && scope.$root.$$phase != '$digest') {
+              scope.$apply();
+            }
           });
           pop.find('.confirmbutton-no').click(function (e) {
             dontBubble = false;
