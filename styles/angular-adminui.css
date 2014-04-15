@@ -9375,12 +9375,10 @@ i[tooltip-popup-delay] {
   min-width: 500px;
   min-height: 150px;
   display: block;
-  overflow-x: auto;
-  overflow-y: hidden;
   position: relative;
 }
 
-/* line 33, ../../app/styles/adminui-finder.scss */
+/* line 31, ../../app/styles/adminui-finder.scss */
 .adminui-finder-container ul {
   margin: 0;
   padding: 4px 6px;
@@ -9393,7 +9391,7 @@ i[tooltip-popup-delay] {
   overflow: auto;
 }
 
-/* line 46, ../../app/styles/adminui-finder.scss */
+/* line 44, ../../app/styles/adminui-finder.scss */
 .adminui-finder-container li {
   background-image: url("../images/cascadelist_arrows.png");
   background-repeat: no-repeat;
@@ -9403,34 +9401,34 @@ i[tooltip-popup-delay] {
   cursor: pointer;
 }
 
-/* line 54, ../../app/styles/adminui-finder.scss */
+/* line 52, ../../app/styles/adminui-finder.scss */
 .adminui-finder-container .form-control {
   display: inline-block;
 }
 
-/* line 60, ../../app/styles/adminui-finder.scss */
+/* line 58, ../../app/styles/adminui-finder.scss */
 .adminui-finder-container li.has-child {
   background-position: 98% -17px;
 }
 
-/* line 65, ../../app/styles/adminui-finder.scss */
+/* line 63, ../../app/styles/adminui-finder.scss */
 .adminui-finder-container li.selected {
   background-color: #eeeeee;
 }
 
-/* line 70, ../../app/styles/adminui-finder.scss */
+/* line 68, ../../app/styles/adminui-finder.scss */
 .adminui-finder-container li.selected.has-child {
   background-color: #eeeeee;
   background-position: 98% -44px;
 }
 
-/* line 76, ../../app/styles/adminui-finder.scss */
+/* line 74, ../../app/styles/adminui-finder.scss */
 .adminui-finder-container ul.selected li.selected {
   background-color: #049cdb;
   color: #fff;
 }
 
-/* line 82, ../../app/styles/adminui-finder.scss */
+/* line 80, ../../app/styles/adminui-finder.scss */
 .adminui-finder-container ul.selected li.selected.has-child {
   background-position: 98% -70px;
 }
