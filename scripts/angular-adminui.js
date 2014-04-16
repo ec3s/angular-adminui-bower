@@ -202,6 +202,33 @@ angular.module('ntd.directives', ['ntd.config']);
     AdminuiFrame
   ]);
 }(angular));
+(function (ng) {
+  'use strict';
+  var loadBackdrop = function ($location) {
+    return {
+      restrict: 'A',
+      link: function (scope, elem, attr) {
+        scope.$on('$routeChangeStart', function () {
+          scope.$watch(function () {
+            return $location.path();
+          }, function (value, oldValue) {
+            if (value !== oldValue) {
+              elem.fadeTo(200, 0.7);
+            }
+          });
+        });
+        scope.$on('$routeChangeSuccess', function () {
+          elem.finish();
+          elem.fadeOut('normal');
+        });
+      }
+    };
+  };
+  ng.module('ntd.directives').directive('adminuiLoadBackdrop', [
+    '$location',
+    loadBackdrop
+  ]);
+}(angular));
 (function () {
   'use strict';
   var fieldsets, showFilterBtn, primaryFieldset, secondaryFieldset, template = '<div class="advance-search-filter">' + '<div ng-transclude></div>' + '<div class="more">' + '<a data-class="J_toggleShowFilterBtn">' + '<i class="glyphicon glyphicon-chevron-down"></i>' + '</a>' + '</div>' + '</div>';

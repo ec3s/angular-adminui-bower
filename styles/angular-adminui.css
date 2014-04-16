@@ -9271,6 +9271,45 @@ form.form-horizontal .form-group .help-block {
   background: whitesmoke url("../images/menu_sprites.png") no-repeat 15px -22px;
 }
 
+/* line 1, ../../app/styles/adminui-load-backdrop.scss */
+.load-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+/* line 9, ../../app/styles/adminui-load-backdrop.scss */
+.load-backdrop .splash {
+  width: 200px;
+  height: 130px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -70px 0 0 -100px;
+  text-align: center;
+}
+/* line 17, ../../app/styles/adminui-load-backdrop.scss */
+.load-backdrop .splash .logo {
+  font-family: 'good_timesregular';
+  font-size: 20px;
+  color: #BBB;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(255, 255, 255, 0.125);
+}
+/* line 22, ../../app/styles/adminui-load-backdrop.scss */
+.load-backdrop .splash .logo:before {
+  margin-right: 5px;
+  font-family: 'admin_uiregular';
+  font-size: 28px;
+  content: '\F000';
+}
+/* line 29, ../../app/styles/adminui-load-backdrop.scss */
+.load-backdrop .splash .loading {
+  margin: 20px 0 12px;
+}
+
 /* line 5, ../../app/styles/ntd-table.scss */
 .table-normal thead {
   background-color: whitesmoke;
