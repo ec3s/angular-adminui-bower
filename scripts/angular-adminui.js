@@ -45,11 +45,12 @@ angular.module('ntd.directives', ['ntd.config']);
       },
       link: function (scope, elem, attrs) {
         scope.isSubMenuShow = adminuiFrameProvider.defaultShowSubmenu;
+        scope.hasSideMenu = false;
         scope.isMessageBoxShow = adminuiFrameProvider.showMessageBox;
         scope.navigation = adminuiFrameProvider.navigation;
         scope.messages = scope.messages ? scope.messages : [];
         scope.userInfo = ng.extend({
-          'username': 'N/A',
+          'username': null,
           'avatar': 'images/avatar.jpg',
           'logout': function () {
             console.log('logout');
