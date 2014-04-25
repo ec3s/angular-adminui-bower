@@ -1932,60 +1932,64 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             templateUrl: "templates/adminui-switcher.html",
             link: function(scope, elem, attrs) {
                 $timeout(function() {
-                    var switcher = new Switcher(elem, scope.model, scope.disabled);
-                    elem.bind("click", function(e) {
-                        var switchedFunc = null;
-                        var clickEvent = null;
-                        if (!switcher.onAnimate && !scope.disabled) {
-                            if (e.button !== 0) {
-                                return;
+                    scope.onLabel = scope.onLabel ? scope.onLabel : '<i class="glyphicon glyphicon-ok"></i>';
+                    scope.offLabel = scope.offLabel ? scope.offLabel : '<i class="glyphicon glyphicon-remove"></i>';
+                    $timeout(function() {
+                        var switcher = new Switcher(elem, scope.model, scope.disabled);
+                        elem.bind("click", function(e) {
+                            var switchedFunc = null;
+                            var clickEvent = null;
+                            if (!switcher.onAnimate && !scope.disabled) {
+                                if (e.button !== 0) {
+                                    return;
+                                }
+                                clickEvent = {
+                                    $event: {
+                                        type: "SWITCHER_CLICK",
+                                        name: "click",
+                                        target: elem,
+                                        oldValue: scope.model,
+                                        value: !scope.model,
+                                        switched: function(callback) {
+                                            switchedFunc = callback;
+                                        }
+                                    }
+                                };
+                                scope.ngClick(clickEvent);
+                                switcher.switch(scope.model, function(value) {
+                                    scope.$apply(function() {
+                                        scope.model = value;
+                                        if (switchedFunc !== null) {
+                                            switchedFunc.call(clickEvent, value, !value);
+                                        }
+                                    });
+                                });
                             }
-                            clickEvent = {
-                                $event: {
-                                    type: "SWITCHER_CLICK",
-                                    name: "click",
-                                    target: elem,
-                                    oldValue: scope.model,
-                                    value: !scope.model,
-                                    switched: function(callback) {
-                                        switchedFunc = callback;
-                                    }
-                                }
-                            };
-                            scope.ngClick(clickEvent);
-                            switcher.switch(scope.model, function(value) {
-                                scope.$apply(function() {
-                                    scope.model = value;
-                                    if (switchedFunc !== null) {
-                                        switchedFunc.call(clickEvent, value, !value);
+                        });
+                        scope.$watch("disabled", function(value, oldValue) {
+                            if (value != oldValue) {
+                                switcher.disabled(value);
+                                switcher.switch(!scope.model, function(newValue) {
+                                    scope.$apply(function() {
+                                        scope.model = newValue;
+                                    });
+                                });
+                            }
+                        });
+                        scope.$watch("model", function(value, oldValue) {
+                            if (value !== oldValue && !scope.disabled) {
+                                scope.ngChange({
+                                    $event: {
+                                        type: "SWITCHER_CHANGE",
+                                        name: "change",
+                                        target: elem,
+                                        oldValue: oldValue,
+                                        value: value
                                     }
                                 });
-                            });
-                        }
-                    });
-                    scope.$watch("disabled", function(value, oldValue) {
-                        if (value != oldValue) {
-                            switcher.disabled(value);
-                            switcher.switch(!scope.model, function(newValue) {
-                                scope.$apply(function() {
-                                    scope.model = newValue;
-                                });
-                            });
-                        }
-                    });
-                    scope.$watch("model", function(value, oldValue) {
-                        if (value !== oldValue && !scope.disabled) {
-                            scope.ngChange({
-                                $event: {
-                                    type: "SWITCHER_CHANGE",
-                                    name: "change",
-                                    target: elem,
-                                    oldValue: oldValue,
-                                    value: value
-                                }
-                            });
-                            switcher.switch(oldValue);
-                        }
+                                switcher.switch(oldValue);
+                            }
+                        });
                     });
                 });
             }
