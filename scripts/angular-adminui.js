@@ -410,6 +410,13 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
             controller: "CommonMenuDialogCtrl",
             templateUrl: "templates/common-menu-dialog.html",
             resolve: {
+                name: function() {
+                    var titleEl = ng.element("body").find(".page-header>h1");
+                    if (titleEl.length > 0) {
+                        return titleEl.text();
+                    }
+                    return "";
+                },
                 url: function() {
                     return $location.absUrl();
                 }
@@ -430,6 +437,10 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
             $http.jsonp(this.accountHost + "/api/menus/create?callback=JSON_CALLBACK", {
                 params: data
             }).then(function(res) {
+                flash.notify({
+                    state: "success",
+                    info: "常用菜单 " + data.name + " 添加成功"
+                });
                 this.commonMenus = res.data;
             }.bind(this), function(res) {
                 flash.notify({
@@ -440,7 +451,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
         }.bind(this));
     };
     var fetchCommonMenus = function($http, scope) {
-        if (scope.accountHost === null) {
+        if (scope.accountHost === null || scope.userInfo.accessToken === null) {
             return;
         }
         $http.jsonp(scope.accountHost + "/api/menus/jsonp?callback=JSON_CALLBACK", {
@@ -576,10 +587,10 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
             this.config = ng.extend(this.config, config);
         };
     };
-    var CommonMenuDialogCtrl = function($scope, $modalInstance, url) {
+    var CommonMenuDialogCtrl = function($scope, $modalInstance, url, name) {
         $scope.menu = {
             link: url,
-            name: ""
+            name: name
         };
         $scope.cancel = ng.bind(this, this.cancel, $modalInstance);
         $scope.add = ng.bind(this, this.add, $scope, $modalInstance);
@@ -596,7 +607,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
     };
     ng.module("ntd.directives").provider("adminuiFrame", [ AdminuiFrameProvider ]);
     ng.module("ntd.directives").directive("adminuiFrame", [ "adminuiFrame", "$rootScope", "$location", "$timeout", "$modal", "$http", "SYS", "flash", AdminuiFrame ]);
-    ng.module("ntd.directives").controller("CommonMenuDialogCtrl", [ "$scope", "$modalInstance", "url", CommonMenuDialogCtrl ]);
+    ng.module("ntd.directives").controller("CommonMenuDialogCtrl", [ "$scope", "$modalInstance", "url", "name", CommonMenuDialogCtrl ]);
 })(angular);
 
 (function(ng) {
