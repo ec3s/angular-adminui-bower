@@ -1185,13 +1185,18 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 var initOptions;
                 var disableSearchThreshold = attrs.disableSearchThreshold || 0;
                 var allowSingleDeselect = attrs.allowSingleDeselect || false;
-                allowSingleDeselect = allowSingleDeselect == "true" ? true : false;
+                allowSingleDeselect = allowSingleDeselect == "true";
                 var options = {
                     disable_search_threshold: disableSearchThreshold
                 };
                 var chosenEl = elem.chosen(options);
                 var chosen = chosenEl.data("chosen");
-                chosen.container.css("max-width", chosenEl.css("width"));
+                $timeout(function() {
+                    chosen.container.css({
+                        "max-width": chosenEl.css("width"),
+                        width: chosenEl.css("width")
+                    });
+                });
                 var selected_options = {};
                 var searchTxt = scope.$new(false);
                 if (onSearch) {
