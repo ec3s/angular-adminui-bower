@@ -1192,11 +1192,13 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 var chosenEl = elem.chosen(options);
                 var chosen = chosenEl.data("chosen");
                 $timeout(function() {
+                    chosenEl.css("display", "inline");
                     chosen.container.css({
-                        "max-width": chosenEl.css("width"),
-                        width: chosenEl.css("width")
+                        "max-width": chosenEl.innerWidth(),
+                        width: chosenEl.innerWidth()
                     });
-                }, 50);
+                    chosenEl.css("display", "none");
+                }, 100);
                 var selected_options = {};
                 var searchTxt = scope.$new(false);
                 if (onSearch) {
