@@ -1196,7 +1196,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                         "max-width": chosenEl.css("width"),
                         width: chosenEl.css("width")
                     });
-                });
+                }, 50);
                 var selected_options = {};
                 var searchTxt = scope.$new(false);
                 if (onSearch) {
