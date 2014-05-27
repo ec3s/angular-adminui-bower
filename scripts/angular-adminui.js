@@ -289,7 +289,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
 
 (function(ng) {
     "use strict";
-    var AdminuiFrame = function(adminuiFrameProvider, $rootScope, $location, $timeout, $modal, $http, SYS, flash) {
+    var AdminuiFrame = function(adminuiFrameProvider, $rootScope, $location, $timeout, $modal, $http, $route, SYS, flash) {
         return {
             restrict: "A",
             templateUrl: "templates/adminui-frame.html",
@@ -330,10 +330,15 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
                         fetchCommonMenus($http, scope);
                     }
                 }, true);
-                initNav(scope, $http, SYS, adminuiFrameProvider.navigation, $location.path());
+                initNav(scope, $http, $route, SYS, adminuiFrameProvider.navigation, $location.path());
                 $rootScope.$on("$routeChangeStart", function() {
                     if (scope.isInited) {
                         selectPath(scope, $location.path());
+                    }
+                });
+                $rootScope.$on("$routeChangeSuccess", function() {
+                    if (scope.isInited) {
+                        parseNavUrl(scope.navigation, $route);
                     }
                 });
                 scope.select = ng.bind(scope, select, $timeout, elem);
@@ -348,7 +353,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
             }
         };
     };
-    var initNav = function(scope, $http, SYS, navigation, currentPath) {
+    var initNav = function(scope, $http, $route, SYS, navigation, currentPath) {
         $http.jsonp(SYS.host + "/api/systems?callback=JSON_CALLBACK").then(function(res) {
             var systemMatched = false;
             ng.forEach(res.data, function(nav) {
@@ -370,13 +375,13 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
                 res.data.push(ng.copy(navigation));
             }
             scope.navigation = res.data;
-            init(scope, scope.navigation);
+            init(scope, scope.navigation, $route);
             scope.isInited = true;
             selectPath(scope, currentPath);
             fetchCommonMenus($http, scope);
         }, function(res) {
             scope.navigation = [ navigation ];
-            init(scope, scope.navigation);
+            init(scope, scope.navigation, $route);
             scope.isInited = true;
             selectPath(scope, currentPath);
             fetchCommonMenus($http, scope);
@@ -470,10 +475,46 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
         evt.preventDefault();
         this.userInfo.changePwd();
     };
-    var init = function(scope, parentNavs) {
-        var navigation = arguments[2] === undefined ? null : arguments[2];
-        var level = arguments[3] === undefined ? 0 : arguments[3];
+    var parseParams = function(url, params, route) {
+        var searchInfo = {};
+        var parsedUrl = "";
+        var queryInfo = [];
+        ng.forEach(params, function(value, key) {
+            var paramKey = value.replace("@", "");
+            if (route.hasOwnProperty(paramKey)) {
+                searchInfo[key] = route[paramKey];
+            }
+        });
+        if (ng.isString(url)) {
+            var result = [];
+            ng.forEach(url.split(":"), function(segment, i) {
+                if (i === 0) {
+                    result.push(segment);
+                } else {
+                    var segmentMatch = segment.match(/(\w+)(.*)/);
+                    var key = segmentMatch[1];
+                    if (searchInfo.hasOwnProperty(key)) {
+                        result.push(segment.replace(key, searchInfo[key]));
+                        delete searchInfo[key];
+                    }
+                }
+            });
+            parsedUrl = result.join("");
+        }
+        ng.forEach(searchInfo, function(value, key) {
+            queryInfo.push(key + "=" + decodeURIComponent(value));
+        });
+        if (queryInfo.length > 0) {
+            parsedUrl += "?" + queryInfo.join("&");
+        }
+        return parsedUrl;
+    };
+    var init = function(scope, parentNavs, $route) {
+        var navigation = arguments[3] === undefined ? null : arguments[3];
+        var level = arguments[4] === undefined ? 0 : arguments[4];
         ng.forEach(parentNavs, function(nav) {
+            nav.urlTemplate = nav.url;
+            nav.url = parseParams(nav.url, nav.params, $route.current.params);
             nav.parentNav = navigation;
             nav.level = level + 1;
             nav.show = nav.hasOwnProperty("show") ? nav.show : true;
@@ -481,7 +522,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
                 scope.hasSubNav = true;
             }
             if (nav.children != null) {
-                init(scope, nav.children, nav, nav.level);
+                init(scope, nav.children, $route, nav, nav.level);
             }
         });
     };
@@ -554,6 +595,14 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
             }
         }
     };
+    var parseNavUrl = function(navigation, $route) {
+        ng.forEach(navigation, function(nav) {
+            nav.url = parseParams(nav.urlTemplate, nav.params, $route.current.params);
+            if (nav.children !== null) {
+                parseNavUrl(nav.children, $route);
+            }
+        });
+    };
     var selectNav = function(nav) {
         clearSelected(this.navigation);
         if (nav.url != null) {
@@ -606,7 +655,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
         $modalInstance.dismiss("cancel");
     };
     ng.module("ntd.directives").provider("adminuiFrame", [ AdminuiFrameProvider ]);
-    ng.module("ntd.directives").directive("adminuiFrame", [ "adminuiFrame", "$rootScope", "$location", "$timeout", "$modal", "$http", "SYS", "flash", AdminuiFrame ]);
+    ng.module("ntd.directives").directive("adminuiFrame", [ "adminuiFrame", "$rootScope", "$location", "$timeout", "$modal", "$http", "$route", "SYS", "flash", AdminuiFrame ]);
     ng.module("ntd.directives").controller("CommonMenuDialogCtrl", [ "$scope", "$modalInstance", "url", "name", CommonMenuDialogCtrl ]);
 })(angular);
 
