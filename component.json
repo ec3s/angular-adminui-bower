@@ -18,6 +18,7 @@
     "chosen": "https://github.com/harvesthq/chosen/releases/download/0.13.0/chosen_v0.13.0.zip",
     "angular-route":"~1.2.4",
     "angular-ui-bootstrap-bower": "*",
+    "bootstrap-datepicker": "*",
     "bootstrap-daterangepicker": "*"
   },
   "devDependencies": {
