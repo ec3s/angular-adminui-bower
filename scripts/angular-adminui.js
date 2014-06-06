@@ -6234,7 +6234,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 $timeout(function() {
                     var resetBtn = ng.element("<button>清空</button>").addClass("btn btn-default").bind("click", function() {
                         $scope.$apply(function() {
-                            $scope[$attributes.ngModel] = null;
+                            $parse($attributes.ngModel).assign($scope, null);
                         });
                         $element.data("daterangepicker").container.hide();
                     });
