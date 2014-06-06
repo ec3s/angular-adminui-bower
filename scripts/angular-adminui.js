@@ -6211,7 +6211,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
 
 (function(ng) {
     "use strict";
-    var AdminuiDaterange = function($compile, $parse) {
+    var AdminuiDaterange = function($compile, $parse, $timeout) {
         return {
             restrict: "A",
             require: "ngModel",
@@ -6225,8 +6225,21 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     return index === 0 && parseInt(elem, 10) || elem;
                 }));
                 options.ranges = $attributes.ranges && $parse($attributes.ranges)($scope);
-                options.locale = $attributes.locale && $parse($attributes.locale)($scope);
+                options.locale = {
+                    applyLabel: "应用",
+                    cancelLabel: "取消",
+                    customRangeLabel: "自定义"
+                };
                 options.opens = $attributes.opens || "right";
+                $timeout(function() {
+                    var resetBtn = ng.element("<button>清空</button>").addClass("btn btn-default").bind("click", function() {
+                        $scope.$apply(function() {
+                            $scope[$attributes.ngModel] = null;
+                        });
+                        $element.data("daterangepicker").container.hide();
+                    });
+                    $element.data("daterangepicker").container.find(".applyBtn").after(resetBtn);
+                });
                 function format(date) {
                     return date.format(options.format);
                 }
@@ -6242,10 +6255,6 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 });
                 $scope.$watch($attributes.ngModel, function(modelValue) {
                     if (!modelValue || !modelValue.startDate) {
-                        ngModel.$setViewValue({
-                            startDate: moment().startOf("day").toDate(),
-                            endDate: moment().startOf("day").toDate()
-                        });
                         return;
                     }
                     $element.data("daterangepicker").startDate = moment(modelValue.startDate);
@@ -6265,7 +6274,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             }
         };
     };
-    ng.module("ntd.directives").directive("adminuiDaterangePicker", [ "$compile", "$parse", AdminuiDaterange ]);
+    ng.module("ntd.directives").directive("adminuiDaterangePicker", [ "$compile", "$parse", "$timeout", AdminuiDaterange ]);
 })(angular);
 
 (function(ng) {
