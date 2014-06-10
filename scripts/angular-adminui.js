@@ -6039,6 +6039,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                         elem.bind("click", function(e) {
                             var switchedFunc = null;
                             var clickEvent = null;
+                            var isStop = false;
                             if (!switcher.onAnimate && !scope.disabled) {
                                 if (e.button !== 0) {
                                     return;
@@ -6052,18 +6053,24 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                                         value: !scope.model,
                                         switched: function(callback) {
                                             switchedFunc = callback;
+                                        },
+                                        stopSwitch: function() {
+                                            isStop = true;
                                         }
                                     }
                                 };
                                 scope.ngClick(clickEvent);
-                                switcher.switch(scope.model, function(value) {
-                                    scope.$apply(function() {
-                                        scope.model = value;
-                                        if (switchedFunc !== null) {
-                                            switchedFunc.call(clickEvent, value, !value);
-                                        }
+                                if (!isStop) {
+                                    switcher.switch(scope.model, function(value) {
+                                        scope.$apply(function() {
+                                            scope.model = value;
+                                            if (switchedFunc !== null) {
+                                                switchedFunc.call(clickEvent, value, !value);
+                                            }
+                                        });
                                     });
-                                });
+                                }
+                                isStop = true;
                             }
                         });
                         scope.$watch("disabled", function(value, oldValue) {
