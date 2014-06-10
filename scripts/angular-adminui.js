@@ -6272,6 +6272,13 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                                     }).addClass("opensright").removeClass("opensleft");
                                 }
                             }
+                            var leftCalendar = this.container.find(".calendar.left");
+                            var rightCalendar = this.container.find(".calendar.right");
+                            if (this.container.hasClass("opensright")) {
+                                rightCalendar.after(leftCalendar);
+                            } else {
+                                leftCalendar.after(rightCalendar);
+                            }
                         } else {
                             if (this.opens == "left") {
                                 this.container.css({
