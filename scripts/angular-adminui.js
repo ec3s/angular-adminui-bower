@@ -5016,12 +5016,12 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 };
                 var originStyleClass = elem.attr("class").split(" ").filter(function(item) {
                     item = $.trim(item);
-                    return item != "ntd-chosen" && item != "form-control" && item.match(/^ng\-.*$/) === null;
+                    return item != "ntd-chosen" && item.match(/^ng\-.*$/) === null;
                 });
                 var chosenEl = elem.chosen(options);
                 var chosen = chosenEl.data("chosen");
                 chosen.container.css("width", "");
-                chosen.container.addClass(originStyleClass.join());
+                chosen.container.addClass(originStyleClass.join(" "));
                 var selected_options = {};
                 var searchTxt = scope.$new(false);
                 if (onSearch) {
