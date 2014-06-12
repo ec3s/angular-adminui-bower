@@ -5018,12 +5018,17 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 var chosen = chosenEl.data("chosen");
                 chosen.container.hide();
                 $timeout(function() {
-                    chosenEl.css("display", "inline");
+                    var cloneEl = chosenEl.clone().css({
+                        display: "block",
+                        visibility: "hidden",
+                        position: "absolute"
+                    });
+                    ng.element("body").append(cloneEl);
                     chosen.container.css({
-                        "max-width": chosenEl.innerWidth(),
-                        width: chosenEl.innerWidth()
+                        "max-width": cloneEl.innerWidth(),
+                        width: cloneEl.innerWidth()
                     }).show();
-                    chosenEl.css("display", "none");
+                    cloneEl.remove();
                 }, 100);
                 var selected_options = {};
                 var searchTxt = scope.$new(false);
