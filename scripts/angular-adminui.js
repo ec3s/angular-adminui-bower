@@ -4261,7 +4261,12 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
                 searchInfo[key] = route[paramKey];
             }
         });
+        var schema = "";
         if (ng.isString(url)) {
+            if (url.match(/^\w*:\/\//) !== null) {
+                schema = url.match(/^\w*:\/\//)[0];
+                url = url.replace(schema, "");
+            }
             var result = [];
             ng.forEach(url.split(":"), function(segment, i) {
                 if (i === 0) {
@@ -4283,7 +4288,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
         if (queryInfo.length > 0) {
             parsedUrl += "?" + queryInfo.join("&");
         }
-        return parsedUrl;
+        return schema + parsedUrl;
     };
     var init = function(scope, parentNavs, $route) {
         var navigation = arguments[3] === undefined ? null : arguments[3];
