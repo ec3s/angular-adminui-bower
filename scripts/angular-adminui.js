@@ -4343,7 +4343,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
             return false;
         }
         if (menu.children != null) {
-            ng.element(evt.target).parent("li").find("ul").toggle();
+            ng.element(evt.currentTarget).parent("li").find("ul").toggle();
         } else {
             clearSelected(this.menu);
             if (menu.url != null) {
@@ -5042,8 +5042,10 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 chosenEl.bind("liszt:hiding_dropdown", function(e) {
                     if (!chosen.active_field && ng.isArray(initOptions)) {
                         optionsModelSetter(scope, initOptions);
-                        searchTxt.$search = "";
-                        searchTxt.$apply();
+                        searchTxt.$apply(function() {
+                            searchTxt.$search = "";
+                            oldSearch = "";
+                        });
                         $timeout(function() {
                             chosenEl.trigger("liszt:updated");
                             chosen.search_field.val(searchTxt.$search);
