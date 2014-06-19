@@ -1,5 +1,5 @@
 (function(undefined) {
-    var moment, VERSION = "2.6.0", globalScope = typeof global !== "undefined" ? global : this, oldGlobalMoment, round = Math.round, i, YEAR = 0, MONTH = 1, DATE = 2, HOUR = 3, MINUTE = 4, SECOND = 5, MILLISECOND = 6, languages = {}, momentProperties = {
+    var moment, VERSION = "2.5.1", global = this, round = Math.round, i, YEAR = 0, MONTH = 1, DATE = 2, HOUR = 3, MINUTE = 4, SECOND = 5, MILLISECOND = 6, languages = {}, momentProperties = {
         _isAMomentObject: null,
         _i: null,
         _f: null,
@@ -9,7 +9,7 @@
         _offset: null,
         _pf: null,
         _lang: null
-    }, hasModule = typeof module !== "undefined" && module.exports, aspNetJsonRegex = /^\/?Date\((\-?\d+)/i, aspNetTimeSpanJsonRegex = /(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/, isoDurationRegex = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/, formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|X|zz?|ZZ?|.)/g, localFormattingTokens = /(\[[^\[]*\])|(\\)?(LT|LL?L?L?|l{1,4})/g, parseTokenOneOrTwoDigits = /\d\d?/, parseTokenOneToThreeDigits = /\d{1,3}/, parseTokenOneToFourDigits = /\d{1,4}/, parseTokenOneToSixDigits = /[+\-]?\d{1,6}/, parseTokenDigits = /\d+/, parseTokenWord = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i, parseTokenTimezone = /Z|[\+\-]\d\d:?\d\d/gi, parseTokenT = /T/i, parseTokenTimestampMs = /[\+\-]?\d+(\.\d{1,3})?/, parseTokenOrdinal = /\d{1,2}/, parseTokenOneDigit = /\d/, parseTokenTwoDigits = /\d\d/, parseTokenThreeDigits = /\d{3}/, parseTokenFourDigits = /\d{4}/, parseTokenSixDigits = /[+-]?\d{6}/, parseTokenSignedNumber = /[+-]?\d+/, isoRegex = /^\s*(?:[+-]\d{6}|\d{4})-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/, isoFormat = "YYYY-MM-DDTHH:mm:ssZ", isoDates = [ [ "YYYYYY-MM-DD", /[+-]\d{6}-\d{2}-\d{2}/ ], [ "YYYY-MM-DD", /\d{4}-\d{2}-\d{2}/ ], [ "GGGG-[W]WW-E", /\d{4}-W\d{2}-\d/ ], [ "GGGG-[W]WW", /\d{4}-W\d{2}/ ], [ "YYYY-DDD", /\d{4}-\d{3}/ ] ], isoTimes = [ [ "HH:mm:ss.SSSS", /(T| )\d\d:\d\d:\d\d\.\d+/ ], [ "HH:mm:ss", /(T| )\d\d:\d\d:\d\d/ ], [ "HH:mm", /(T| )\d\d:\d\d/ ], [ "HH", /(T| )\d\d/ ] ], parseTimezoneChunker = /([\+\-]|\d\d)/gi, proxyGettersAndSetters = "Date|Hours|Minutes|Seconds|Milliseconds".split("|"), unitMillisecondFactors = {
+    }, hasModule = typeof module !== "undefined" && module.exports && typeof require !== "undefined", aspNetJsonRegex = /^\/?Date\((\-?\d+)/i, aspNetTimeSpanJsonRegex = /(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/, isoDurationRegex = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/, formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|X|zz?|ZZ?|.)/g, localFormattingTokens = /(\[[^\[]*\])|(\\)?(LT|LL?L?L?|l{1,4})/g, parseTokenOneOrTwoDigits = /\d\d?/, parseTokenOneToThreeDigits = /\d{1,3}/, parseTokenOneToFourDigits = /\d{1,4}/, parseTokenOneToSixDigits = /[+\-]?\d{1,6}/, parseTokenDigits = /\d+/, parseTokenWord = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i, parseTokenTimezone = /Z|[\+\-]\d\d:?\d\d/gi, parseTokenT = /T/i, parseTokenTimestampMs = /[\+\-]?\d+(\.\d{1,3})?/, parseTokenOneDigit = /\d/, parseTokenTwoDigits = /\d\d/, parseTokenThreeDigits = /\d{3}/, parseTokenFourDigits = /\d{4}/, parseTokenSixDigits = /[+-]?\d{6}/, parseTokenSignedNumber = /[+-]?\d+/, isoRegex = /^\s*(?:[+-]\d{6}|\d{4})-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/, isoFormat = "YYYY-MM-DDTHH:mm:ssZ", isoDates = [ [ "YYYYYY-MM-DD", /[+-]\d{6}-\d{2}-\d{2}/ ], [ "YYYY-MM-DD", /\d{4}-\d{2}-\d{2}/ ], [ "GGGG-[W]WW-E", /\d{4}-W\d{2}-\d/ ], [ "GGGG-[W]WW", /\d{4}-W\d{2}/ ], [ "YYYY-DDD", /\d{4}-\d{3}/ ] ], isoTimes = [ [ "HH:mm:ss.SSSS", /(T| )\d\d:\d\d:\d\d\.\d{1,3}/ ], [ "HH:mm:ss", /(T| )\d\d:\d\d:\d\d/ ], [ "HH:mm", /(T| )\d\d:\d\d/ ], [ "HH", /(T| )\d\d/ ] ], parseTimezoneChunker = /([\+\-]|\d\d)/gi, proxyGettersAndSetters = "Date|Hours|Minutes|Seconds|Milliseconds".split("|"), unitMillisecondFactors = {
         Milliseconds: 1,
         Seconds: 1e3,
         Minutes: 6e4,
@@ -27,7 +27,6 @@
         w: "week",
         W: "isoWeek",
         M: "month",
-        Q: "quarter",
         y: "year",
         DDD: "dayOfYear",
         e: "weekday",
@@ -184,21 +183,6 @@
             iso: false
         };
     }
-    function deprecate(msg, fn) {
-        var firstTime = true;
-        function printMsg() {
-            if (moment.suppressDeprecationWarnings === false && typeof console !== "undefined" && console.warn) {
-                console.warn("Deprecation warning: " + msg);
-            }
-        }
-        return extend(function() {
-            if (firstTime) {
-                printMsg();
-                firstTime = false;
-            }
-            return fn.apply(this, arguments);
-        }, fn);
-    }
     function padToken(func, count) {
         return function(a) {
             return leftZeroFill(func.call(this, a), count);
@@ -224,10 +208,10 @@
         extend(this, config);
     }
     function Duration(duration) {
-        var normalizedInput = normalizeObjectUnits(duration), years = normalizedInput.year || 0, quarters = normalizedInput.quarter || 0, months = normalizedInput.month || 0, weeks = normalizedInput.week || 0, days = normalizedInput.day || 0, hours = normalizedInput.hour || 0, minutes = normalizedInput.minute || 0, seconds = normalizedInput.second || 0, milliseconds = normalizedInput.millisecond || 0;
+        var normalizedInput = normalizeObjectUnits(duration), years = normalizedInput.year || 0, months = normalizedInput.month || 0, weeks = normalizedInput.week || 0, days = normalizedInput.day || 0, hours = normalizedInput.hour || 0, minutes = normalizedInput.minute || 0, seconds = normalizedInput.second || 0, milliseconds = normalizedInput.millisecond || 0;
         this._milliseconds = +milliseconds + seconds * 1e3 + minutes * 6e4 + hours * 36e5;
         this._days = +days + weeks * 7;
-        this._months = +months + quarters * 3 + years * 12;
+        this._months = +months + years * 12;
         this._data = {};
         this._bubble();
     }
@@ -268,20 +252,27 @@
         }
         return (sign ? forceSign ? "+" : "" : "-") + output;
     }
-    function addOrSubtractDurationFromMoment(mom, duration, isAdding, updateOffset) {
-        var milliseconds = duration._milliseconds, days = duration._days, months = duration._months;
-        updateOffset = updateOffset == null ? true : updateOffset;
+    function addOrSubtractDurationFromMoment(mom, duration, isAdding, ignoreUpdateOffset) {
+        var milliseconds = duration._milliseconds, days = duration._days, months = duration._months, minutes, hours;
         if (milliseconds) {
             mom._d.setTime(+mom._d + milliseconds * isAdding);
         }
+        if (days || months) {
+            minutes = mom.minute();
+            hours = mom.hour();
+        }
         if (days) {
-            rawSetter(mom, "Date", rawGetter(mom, "Date") + days * isAdding);
+            mom.date(mom.date() + days * isAdding);
         }
         if (months) {
-            rawMonthSetter(mom, rawGetter(mom, "Month") + months * isAdding);
+            mom.month(mom.month() + months * isAdding);
         }
-        if (updateOffset) {
-            moment.updateOffset(mom, days || months);
+        if (milliseconds && !ignoreUpdateOffset) {
+            moment.updateOffset(mom);
+        }
+        if (days || months) {
+            mom.minute(minutes);
+            mom.hour(hours);
         }
     }
     function isArray(input) {
@@ -362,9 +353,6 @@
     }
     function daysInMonth(year, month) {
         return new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
-    }
-    function weeksInYear(year, dow, doy) {
-        return weekOfYear(moment([ year, 11, 31 + dow - doy ]), dow, doy).week;
     }
     function daysInYear(year) {
         return isLeapYear(year) ? 366 : 365;
@@ -644,9 +632,6 @@
     function getParseRegexForToken(token, config) {
         var a, strict = config._strict;
         switch (token) {
-          case "Q":
-            return parseTokenOneDigit;
-
           case "DDDD":
             return parseTokenThreeDigits;
 
@@ -734,9 +719,6 @@
           case "E":
             return parseTokenOneOrTwoDigits;
 
-          case "Do":
-            return parseTokenOrdinal;
-
           default:
             a = new RegExp(regexpEscape(unescapeFormat(token.replace("\\", "")), "i"));
             return a;
@@ -750,12 +732,6 @@
     function addTimeToArrayFromToken(token, input, config) {
         var a, datePartArray = config._a;
         switch (token) {
-          case "Q":
-            if (input != null) {
-                datePartArray[MONTH] = (toInt(input) - 1) * 3;
-            }
-            break;
-
           case "M":
           case "MM":
             if (input != null) {
@@ -780,12 +756,6 @@
             }
             break;
 
-          case "Do":
-            if (input != null) {
-                datePartArray[DATE] = toInt(parseInt(input, 10));
-            }
-            break;
-
           case "DDD":
           case "DDDD":
             if (input != null) {
@@ -794,7 +764,7 @@
             break;
 
           case "YY":
-            datePartArray[YEAR] = moment.parseTwoDigitYear(input);
+            datePartArray[YEAR] = toInt(input) + (toInt(input) > 68 ? 1900 : 2e3);
             break;
 
           case "YYYY":
@@ -875,8 +845,8 @@
         currentDate = currentDateArray(config);
         if (config._w && config._a[DATE] == null && config._a[MONTH] == null) {
             fixYear = function(val) {
-                var intVal = parseInt(val, 10);
-                return val ? val.length < 3 ? intVal > 68 ? 1900 + intVal : 2e3 + intVal : intVal : config._a[YEAR] == null ? moment().weekYear() : config._a[YEAR];
+                var int_val = parseInt(val, 10);
+                return val ? val.length < 3 ? int_val > 68 ? 1900 + int_val : 2e3 + int_val : int_val : config._a[YEAR] == null ? moment().weekYear() : config._a[YEAR];
             };
             w = config._w;
             if (w.GG != null || w.W != null || w.E != null) {
@@ -1024,7 +994,7 @@
             }
             makeDateFromStringAndFormat(config);
         } else {
-            moment.createFromInputFallback(config);
+            config._d = new Date(string);
         }
     }
     function makeDateFromInput(config) {
@@ -1042,10 +1012,8 @@
             config._d = new Date(+input);
         } else if (typeof input === "object") {
             dateFromObject(config);
-        } else if (typeof input === "number") {
-            config._d = new Date(input);
         } else {
-            moment.createFromInputFallback(config);
+            config._d = new Date(input);
         }
     }
     function makeDate(y, m, d, h, M, s, ms) {
@@ -1111,7 +1079,7 @@
     }
     function makeMoment(config) {
         var input = config._i, format = config._f;
-        if (input === null || format === undefined && input === "") {
+        if (input === null) {
             return moment.invalid({
                 nullInput: true
             });
@@ -1149,10 +1117,6 @@
         c._pf = defaultParsingFlags();
         return makeMoment(c);
     };
-    moment.suppressDeprecationWarnings = false;
-    moment.createFromInputFallback = deprecate("moment construction falls back to js Date. This is " + "discouraged and will be removed in upcoming major " + "release. Please refer to " + "https://github.com/moment/moment/issues/1407 for more info.", function(config) {
-        config._d = new Date(config._i);
-    });
     moment.utc = function(input, format, lang, strict) {
         var c;
         if (typeof lang === "boolean") {
@@ -1222,7 +1186,6 @@
     };
     moment.version = VERSION;
     moment.defaultFormat = isoFormat;
-    moment.momentProperties = momentProperties;
     moment.updateOffset = function() {};
     moment.lang = function(key, values) {
         var r;
@@ -1267,11 +1230,8 @@
         }
         return m;
     };
-    moment.parseZone = function() {
-        return moment.apply(null, arguments).parseZone();
-    };
-    moment.parseTwoDigitYear = function(input) {
-        return toInt(input) + (toInt(input) > 68 ? 1900 : 2e3);
+    moment.parseZone = function(input) {
+        return moment(input).parseZone();
     };
     extend(moment.fn = Moment.prototype, {
         clone: function() {
@@ -1392,14 +1352,31 @@
                 return day;
             }
         },
-        month: makeAccessor("Month", true),
+        month: function(input) {
+            var utc = this._isUTC ? "UTC" : "", dayOfMonth;
+            if (input != null) {
+                if (typeof input === "string") {
+                    input = this.lang().monthsParse(input);
+                    if (typeof input !== "number") {
+                        return this;
+                    }
+                }
+                dayOfMonth = this.date();
+                this.date(1);
+                this._d["set" + utc + "Month"](input);
+                this.date(Math.min(dayOfMonth, this.daysInMonth()));
+                moment.updateOffset(this);
+                return this;
+            } else {
+                return this._d["get" + utc + "Month"]();
+            }
+        },
         startOf: function(units) {
             units = normalizeUnits(units);
             switch (units) {
               case "year":
                 this.month(0);
 
-              case "quarter":
               case "month":
                 this.date(1);
 
@@ -1421,9 +1398,6 @@
                 this.weekday(0);
             } else if (units === "isoWeek") {
                 this.isoWeekday(1);
-            }
-            if (units === "quarter") {
-                this.month(Math.floor(this.month() / 3) * 3);
             }
             return this;
         },
@@ -1451,7 +1425,7 @@
             other = moment.apply(null, arguments);
             return other > this ? this : other;
         },
-        zone: function(input, keepTime) {
+        zone: function(input) {
             var offset = this._offset || 0;
             if (input != null) {
                 if (typeof input === "string") {
@@ -1463,13 +1437,7 @@
                 this._offset = input;
                 this._isUTC = true;
                 if (offset !== input) {
-                    if (!keepTime || this._changeInProgress) {
-                        addOrSubtractDurationFromMoment(this, moment.duration(offset - input, "m"), 1, false);
-                    } else if (!this._changeInProgress) {
-                        this._changeInProgress = true;
-                        moment.updateOffset(this, true);
-                        this._changeInProgress = null;
-                    }
+                    addOrSubtractDurationFromMoment(this, moment.duration(offset - input, "m"), 1, true);
                 }
             } else {
                 return this._isUTC ? offset : this._d.getTimezoneOffset();
@@ -1505,8 +1473,8 @@
             var dayOfYear = round((moment(this).startOf("day") - moment(this).startOf("year")) / 864e5) + 1;
             return input == null ? dayOfYear : this.add("d", input - dayOfYear);
         },
-        quarter: function(input) {
-            return input == null ? Math.ceil((this.month() + 1) / 3) : this.month((input - 1) * 3 + this.month() % 3);
+        quarter: function() {
+            return Math.ceil((this.month() + 1) / 3);
         },
         weekYear: function(input) {
             var year = weekOfYear(this, this.lang()._week.dow, this.lang()._week.doy).year;
@@ -1531,13 +1499,6 @@
         isoWeekday: function(input) {
             return input == null ? this.day() || 7 : this.day(this.day() % 7 ? input : input - 7);
         },
-        isoWeeksInYear: function() {
-            return weeksInYear(this.year(), 1, 4);
-        },
-        weeksInYear: function() {
-            var weekInfo = this._lang._week;
-            return weeksInYear(this.year(), weekInfo.dow, weekInfo.doy);
-        },
         get: function(units) {
             units = normalizeUnits(units);
             return this[units]();
@@ -1558,52 +1519,26 @@
             }
         }
     });
-    function rawMonthSetter(mom, value) {
-        var dayOfMonth;
-        if (typeof value === "string") {
-            value = mom.lang().monthsParse(value);
-            if (typeof value !== "number") {
-                return mom;
-            }
-        }
-        dayOfMonth = Math.min(mom.date(), daysInMonth(mom.year(), value));
-        mom._d["set" + (mom._isUTC ? "UTC" : "") + "Month"](value, dayOfMonth);
-        return mom;
-    }
-    function rawGetter(mom, unit) {
-        return mom._d["get" + (mom._isUTC ? "UTC" : "") + unit]();
-    }
-    function rawSetter(mom, unit, value) {
-        if (unit === "Month") {
-            return rawMonthSetter(mom, value);
-        } else {
-            return mom._d["set" + (mom._isUTC ? "UTC" : "") + unit](value);
-        }
-    }
-    function makeAccessor(unit, keepTime) {
-        return function(value) {
-            if (value != null) {
-                rawSetter(this, unit, value);
-                moment.updateOffset(this, keepTime);
+    function makeGetterAndSetter(name, key) {
+        moment.fn[name] = moment.fn[name + "s"] = function(input) {
+            var utc = this._isUTC ? "UTC" : "";
+            if (input != null) {
+                this._d["set" + utc + key](input);
+                moment.updateOffset(this);
                 return this;
             } else {
-                return rawGetter(this, unit);
+                return this._d["get" + utc + key]();
             }
         };
     }
-    moment.fn.millisecond = moment.fn.milliseconds = makeAccessor("Milliseconds", false);
-    moment.fn.second = moment.fn.seconds = makeAccessor("Seconds", false);
-    moment.fn.minute = moment.fn.minutes = makeAccessor("Minutes", false);
-    moment.fn.hour = moment.fn.hours = makeAccessor("Hours", true);
-    moment.fn.date = makeAccessor("Date", true);
-    moment.fn.dates = deprecate("dates accessor is deprecated. Use date instead.", makeAccessor("Date", true));
-    moment.fn.year = makeAccessor("FullYear", true);
-    moment.fn.years = deprecate("years accessor is deprecated. Use year instead.", makeAccessor("FullYear", true));
+    for (i = 0; i < proxyGettersAndSetters.length; i++) {
+        makeGetterAndSetter(proxyGettersAndSetters[i].toLowerCase().replace(/s$/, ""), proxyGettersAndSetters[i]);
+    }
+    makeGetterAndSetter("year", "FullYear");
     moment.fn.days = moment.fn.day;
     moment.fn.months = moment.fn.month;
     moment.fn.weeks = moment.fn.week;
     moment.fn.isoWeeks = moment.fn.isoWeek;
-    moment.fn.quarters = moment.fn.quarter;
     moment.fn.toJSON = moment.fn.toISOString;
     extend(moment.duration.fn = Duration.prototype, {
         _bubble: function() {
@@ -1694,27 +1629,34 @@
             return number + output;
         }
     });
-    function makeGlobal(shouldDeprecate) {
+    function makeGlobal(deprecate) {
+        var warned = false, local_moment = moment;
         if (typeof ender !== "undefined") {
             return;
         }
-        oldGlobalMoment = globalScope.moment;
-        if (shouldDeprecate) {
-            globalScope.moment = deprecate("Accessing Moment through the global scope is " + "deprecated, and will be removed in an upcoming " + "release.", moment);
+        if (deprecate) {
+            global.moment = function() {
+                if (!warned && console && console.warn) {
+                    warned = true;
+                    console.warn("Accessing Moment through the global scope is " + "deprecated, and will be removed in an upcoming " + "release.");
+                }
+                return local_moment.apply(null, arguments);
+            };
+            extend(global.moment, local_moment);
         } else {
-            globalScope.moment = moment;
+            global["moment"] = moment;
         }
     }
     if (hasModule) {
         module.exports = moment;
+        makeGlobal(true);
     } else if (typeof define === "function" && define.amd) {
         define("moment", function(require, exports, module) {
-            if (module.config && module.config() && module.config().noGlobal === true) {
-                globalScope.moment = oldGlobalMoment;
+            if (module.config && module.config() && module.config().noGlobal !== true) {
+                makeGlobal(module.config().noGlobal === undefined);
             }
             return moment;
         });
-        makeGlobal(true);
     } else {
         makeGlobal();
     }
@@ -6401,7 +6343,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
 
 angular.module("ntd.directives").run([ "$templateCache", function($templateCache) {
     "use strict";
-    $templateCache.put("templates/adminui-frame.html", '<nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container-fluid><div class=navbar-header><button class=navbar-toggle type=button data-toggle=collapse data-target=.bs-navbar-collapse><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href="../"></a></div><div class="collapse navbar-collapse bs-navbar-collapse"><ul class="nav navbar-nav main-nav"><li data-ng-repeat="nav in navigation" data-ng-class="{true: \'active\', false: \'\'}[nav.children != null]"><a data-ng-href={{nav.url}} data-ng-show=nav.show>{{nav.name}}</a><ul class=sub-navbar data-ng-if="nav.children != null" data-ng-class="{false: \'no-parent\'}[nav.show]"><li data-ng-repeat="subnav in nav.children" data-ng-show=subnav.show data-ng-class="{true: \'active\', false: \'\'}[isSelected(subnav)]"><a data-ng-click=selectNav(subnav) data-ng-href={{subnav.url}}>{{subnav.name}}</a></li></ul></li></ul><ul class="nav navbar-nav navbar-right"><li class=dropdown><a data-ng-show=isMessageBoxShow class=dropdown-toggle href=# data-toggle=dropdown><span class=badge data-ng-show="messages.length > 0">{{messages.length}}</span> <i class="glyphicon glyphicon-inbox"></i></a><ul data-ng-show=isMessageBoxShow class=dropdown-menu><li data-ng-repeat="message in messages"><a href=#>{{message.title}}</a></li><li class=divider></li><li><a href=#><i class="glyphicon glyphicon-chevron-right pull-right"></i> 查看全部</a></li></ul></li><li data-ng-hide=noSideMenu data-ng-class="{true: \'active\', false: \'\'}[isSubMenuShow]"><a href=javascript:; data-ng-click=toggleSubMenu($event)><i class="glyphicon glyphicon-list"></i></a></li><li data-ng-show="userInfo.username != null" class=dropdown><a class=dropdown-toggle href=# data-toggle=dropdown>您好，{{userInfo.username}}<b class=caret></b></a><ul class=dropdown-menu><li class=user-information><img data-ng-src={{userInfo.avatar}} alt=user_avatar><div class="user-content muted">{{userInfo.username}}</div></li><li class=divider></li><li><a data-ng-click=changePwd($event) href=#><i class="glyphicon glyphicon-lock"></i> 修改密码</a></li><li><a data-ng-click=logout($event) href=#><i class="glyphicon glyphicon-off"></i> 退出</a></li></ul></li><li class=dropdown data-ng-show="userInfo.username != null && accountHost != null "><a class=dropdown-toggle href=# data-toggle=dropdown>常用 <b class=caret></b></a><ul class=dropdown-menu><li data-ng-repeat="menu in commonMenus"><a data-ng-href={{menu.link}}>{{menu.name}}</a></li><li data-ng-show="commonMenus.length <= 0" class=none-info>暂无常用菜单</li><li class=divider></li><li><a href=javascript:; data-ng-click=addCommonMenu()>添加为常用</a></li><li><a data-ng-href={{accountHost}}/#/menus>管理常用菜单</a></li></ul></li></ul></div></div><nav class=sub-navbar-back data-ng-show=hasSubNav></nav></nav><div class=container-fluid><div class="row fix-row"><div class="col-md-2 container-fluid" data-ng-show=hasSideMenu><div data-ng-show=isSubMenuShow class=row><div class="col-md-2 affix side-nav"><h4>{{sideMenuName}}</h4><ul class=side-nav-menu><li data-ng-repeat="sidemenu in menu" data-ng-class="{true: \'active\', false: \'\'}[isSelected(sidemenu)]"><a data-ng-href={{sidemenu.url}} data-ng-class="{true: \'has-sub-menu\', false: \'\'}[sidemenu.children != null]" data-ng-click="selectMenu(sidemenu, $event)"><i class="pull-right glyphicon glyphicon-chevron-down" data-ng-show="sidemenu.children != null"></i>{{sidemenu.name}}</a><ul data-ng-if="sidemenu.children != null"><li data-ng-repeat="subsidemenu in sidemenu.children" data-ng-class="{true: \'active\', false: \'\'}[isSelected(subsidemenu)]"><a data-ng-click="selectMenu(subsidemenu, $event)" data-ng-href={{subsidemenu.url}}>{{subsidemenu.name}}</a></li></ul></li></ul></div></div></div><div data-ng-class="{true: \'col-md-offset-2\', false: \'\'}[isSubMenuShow && hasSideMenu]" class="message-container flash-alert"></div><div data-ng-class="{true: \'col-md-offset-2\', false: \'\'}[isSubMenuShow && hasSideMenu]" class="message-container notice"></div><div data-ng-class="{true: \'col-md-10\', false: \'col-md-12\'}[isSubMenuShow && hasSideMenu]" data-ng-transclude=""></div><div data-adminui-load-backdrop="" class=load-backdrop style=display:none><div class=splash><img class=loading src=images/ajax-loader.gif alt=加载中></div></div></div></div>');
+    $templateCache.put("templates/adminui-frame.html", '<nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container-fluid><div class=navbar-header><button class=navbar-toggle type=button data-toggle=collapse data-target=.bs-navbar-collapse><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href="../"></a></div><div class="collapse navbar-collapse bs-navbar-collapse"><ul class="nav navbar-nav main-nav"><li data-ng-repeat="nav in navigation" data-ng-class="{true: \'active\', false: \'\'}[nav.children != null]"><a data-ng-href={{nav.url}} data-ng-show=nav.show>{{nav.name}}</a><ul class=sub-navbar data-ng-if="nav.children != null" data-ng-class="{false: \'no-parent\'}[nav.show]"><li data-ng-repeat="subnav in nav.children" data-ng-show=subnav.show data-ng-class="{true: \'active\', false: \'\'}[isSelected(subnav)]"><a data-ng-click=selectNav(subnav) data-ng-href={{subnav.url}}>{{subnav.name}}</a></li></ul></li></ul><ul class="nav navbar-nav navbar-right"><li class=dropdown><a data-ng-show=isMessageBoxShow class=dropdown-toggle href=# data-toggle=dropdown><span class=badge data-ng-show="messages.length > 0">{{messages.length}}</span> <i class="glyphicon glyphicon-inbox"></i></a><ul data-ng-show=isMessageBoxShow class=dropdown-menu><li data-ng-repeat="message in messages"><a href=#>{{message.title}}</a></li><li class=divider></li><li><a href=#><i class="glyphicon glyphicon-chevron-right pull-right"></i> 查看全部</a></li></ul></li><li data-ng-hide=noSideMenu data-ng-class="{true: \'active\', false: \'\'}[isSubMenuShow]"><a href=javascript:; data-ng-click=toggleSubMenu($event)><i class="glyphicon glyphicon-list"></i></a></li><li data-ng-show="userInfo.username != null" class=dropdown><a class=dropdown-toggle href=# data-toggle=dropdown>您好，{{userInfo.username}}<b class=caret></b></a><ul class=dropdown-menu><li class=user-information><img data-ng-src={{userInfo.avatar}} alt=user_avatar><div class="user-content muted">{{userInfo.username}}</div></li><li class=divider></li><li><a data-ng-click=changePwd($event) href=#><i class="glyphicon glyphicon-lock"></i> 修改密码</a></li><li><a data-ng-click=logout($event) href=#><i class="glyphicon glyphicon-off"></i> 退出</a></li></ul></li><li class=dropdown data-ng-show="userInfo.username != null && accountHost != null "><a class=dropdown-toggle href=# data-toggle=dropdown>常用 <b class=caret></b></a><ul class=dropdown-menu><li data-ng-repeat="menu in commonMenus"><a data-ng-href={{menu.link}}>{{menu.name}}</a></li><li data-ng-show="commonMenus.length <= 0" class=none-info>暂无常用菜单</li><li class=divider></li><li><a href=javascript:; data-ng-click=addCommonMenu()>添加为常用</a></li><li><a data-ng-href={{accountHost}}/#/menus>管理常用菜单</a></li></ul></li></ul></div></div><nav class=sub-navbar-back data-ng-show=hasSubNav></nav></nav><div class=container-fluid><div class="col-md-2 affix side-nav-container" data-ng-show=hasSideMenu><div data-ng-show=isSubMenuShow><div class=side-nav><h4>{{sideMenuName}}</h4><ul class=side-nav-menu><li data-ng-repeat="sidemenu in menu" data-ng-class="{true: \'active\', false: \'\'}[isSelected(sidemenu)]"><a data-ng-href={{sidemenu.url}} data-ng-class="{true: \'has-sub-menu\', false: \'\'}[sidemenu.children != null]" data-ng-click="selectMenu(sidemenu, $event)"><i class="pull-right glyphicon glyphicon-chevron-down" data-ng-show="sidemenu.children != null"></i>{{sidemenu.name}}</a><ul data-ng-if="sidemenu.children != null"><li data-ng-repeat="subsidemenu in sidemenu.children" data-ng-class="{true: \'active\', false: \'\'}[isSelected(subsidemenu)]"><a data-ng-click="selectMenu(subsidemenu, $event)" data-ng-href={{subsidemenu.url}}>{{subsidemenu.name}}</a></li></ul></li></ul></div></div></div><div class="row fix-row"><div data-ng-class="{true: \'col-md-offset-2\', false: \'\'}[isSubMenuShow && hasSideMenu]" class="message-container flash-alert"></div><div data-ng-class="{true: \'col-md-offset-2\', false: \'\'}[isSubMenuShow && hasSideMenu]" class="message-container notice"></div><div data-ng-class="{true: \'col-md-10 col-md-offset-2\', false: \'col-md-12\'}[isSubMenuShow && hasSideMenu]" data-ng-transclude=""></div><div data-adminui-load-backdrop="" class=load-backdrop style=display:none><div class=splash><img class=loading src=images/ajax-loader.gif alt=加载中></div></div></div></div>');
     $templateCache.put("templates/adminui-list.html", '<ul class=adminui-list-container data-ng-class="{true: \'disabled\'}[disabled]"><li data-ng-repeat="item in listItems" data-ng-class="{true: \'selected\'}[item.selected]">{{item.text}}</li></ul>');
     $templateCache.put("templates/adminui-switcher.html", "<div class=adminui-switcher-container><div class=adminui-switcher-inner><div class=on-label data-ng-bind-html=onLabel></div><div class=divider></div><div class=off-label data-ng-bind-html=offLabel></div><div class=ng-hide><input type=checkbox data-ng-model=model></div></div></div>");
     $templateCache.put("templates/checkbox-group.html", "<div class=\"dropdown dropdown-checkbox-group\"><label class=dropdown-toggle data-toggle=dropdown><input type=checkbox data-ng-click=toggleCheckedAll() data-ng-class=\"{'part': 'part-checked'}[status]\" data-ng-checked=\"{'all': true, 'part': true, 'none': false}[status]\">{{dataSource.name}} <b class=caret></b></label><ul class=dropdown-menu><li data-ng-repeat=\"checkbox in dataSource.checkboxGroup\"><label><input type=checkbox data-ng-model=checkbox.checked>{{checkbox.name}}</label></li><li data-ng-show=\"dataSource.checkboxGroup.length <= 0\"><label>无可选项目</label></li></ul></div>");
