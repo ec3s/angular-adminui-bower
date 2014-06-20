@@ -4040,7 +4040,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
                 }, scope.userInfo);
                 scope.$watch("hasSubNav", function(value, oldValue) {
                     if (value == true) {
-                        $("body").css("paddingTop", "100px");
+                        $("body").addClass("padding-submenu");
                     }
                 });
                 scope.$watch("userInfo", function(value) {
