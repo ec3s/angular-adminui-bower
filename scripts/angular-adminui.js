@@ -4390,7 +4390,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
 
 (function(ng) {
     "use strict";
-    var loadBackdrop = function($location) {
+    var loadBackdrop = function($location, $timeout) {
         return {
             restrict: "A",
             link: function(scope, elem, attr) {
@@ -4404,13 +4404,15 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
                     });
                 });
                 scope.$on("$routeChangeSuccess", function() {
-                    elem.finish();
-                    elem.fadeOut("normal");
+                    $timeout(function() {
+                        elem.finish();
+                        elem.fadeOut("normal");
+                    });
                 });
             }
         };
     };
-    ng.module("ntd.directives").directive("adminuiLoadBackdrop", [ "$location", loadBackdrop ]);
+    ng.module("ntd.directives").directive("adminuiLoadBackdrop", [ "$location", "$timeout", loadBackdrop ]);
 })(angular);
 
 (function() {
@@ -6347,6 +6349,30 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
         };
     };
     ng.module("ntd.directives").directive("adminuiDatePicker", [ "$compile", "$parse", "$timeout", AdminuiDatePicker ]);
+})(angular);
+
+(function(ng) {
+    "use strict";
+    var AdminuiTimeLine = function($compile) {
+        return {
+            restrict: "EA",
+            replace: true,
+            scope: {
+                adminuiTimeLine: "=adminuiTimeLine"
+            },
+            transclude: true,
+            link: function(scope, elem, attrs) {
+                var currentHtml = null;
+                if (scope.adminuiTimeLine.hasOwnProperty("content") && ng.isObject(scope.adminuiTimeLine.content)) {
+                    var contentScope = scope.$new(true);
+                    ng.extend(contentScope, scope.adminuiTimeLine.content);
+                    currentHtml = $compile(scope.adminuiTimeLine.template)(contentScope);
+                }
+                elem.append(currentHtml);
+            }
+        };
+    };
+    ng.module("ntd.directives").directive("adminuiTimeLine", [ "$compile", AdminuiTimeLine ]);
 })(angular);
 
 angular.module("ntd.directives").run([ "$templateCache", function($templateCache) {
