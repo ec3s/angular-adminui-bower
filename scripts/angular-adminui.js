@@ -6355,14 +6355,14 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
     "use strict";
     var TimeLine = function() {
         return {
-            restrict: "E",
+            restrict: "EA",
             replace: true,
             require: "^ngModel",
             templateUrl: "templates/adminui-time-line.html",
-            transclude: true,
-            link: function(scope, elem, attrs, ctrl) {
-                scope.timeLineDemoData = angular.copy(scope[attrs.ngModel]);
-            }
+            scope: {
+                timeLineDemoData: "=ngModel"
+            },
+            transclude: true
         };
     };
     var AdminuiTimeLine = function($compile) {
