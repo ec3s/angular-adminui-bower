@@ -6353,7 +6353,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
 
 (function(ng) {
     "use strict";
-    var TimeLine = function() {
+    var TimeLine = function($filter) {
         return {
             restrict: "EA",
             replace: true,
@@ -6361,7 +6361,23 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             templateUrl: "templates/adminui-time-line.html",
             scope: true,
             link: function(scope, elem, attrs) {
-                scope.timeLineDemoData = scope[attrs.ngModel];
+                scope.timeLineDemoData = [];
+                var tempTimeLineData = scope[attrs.ngModel];
+                tempTimeLineData = $filter("orderBy")(tempTimeLineData, [ "-time" ]);
+                var currentObj = {};
+                tempTimeLineData.forEach(function(value, index) {
+                    var currentTime = $filter("date")(value.time, "yyyy-MM-dd");
+                    if (!currentObj || currentObj.currentTime !== currentTime) {
+                        currentObj = {
+                            currentObj: []
+                        };
+                        currentObj.currentTime = angular.copy(currentTime);
+                        currentObj.currentObj.push(angular.copy(value));
+                        scope.timeLineDemoData.push(currentObj);
+                    } else {
+                        currentObj.currentObj.push(angular.copy(value));
+                    }
+                });
             }
         };
     };
@@ -6382,7 +6398,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             }
         };
     };
-    ng.module("ntd.directives").directive("timeLine", [ TimeLine ]);
+    ng.module("ntd.directives").directive("timeLine", [ "$filter", TimeLine ]);
     ng.module("ntd.directives").directive("adminuiTimeLine", [ "$compile", AdminuiTimeLine ]);
 })(angular);
 
