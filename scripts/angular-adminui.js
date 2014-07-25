@@ -6177,6 +6177,8 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             restrict: "A",
             require: "ngModel",
             link: function($scope, $element, $attributes, ngModel) {
+                $element.attr("readonly", true);
+                $element.css("background-color", "white");
                 var options = {};
                 options.format = $attributes.format || "YYYY-MM-DD";
                 options.separator = $attributes.separator || " - ";
@@ -6249,11 +6251,10 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                             }
                         }
                     };
-                    var resetBtn = ng.element("<button>清空</button>").addClass("btn btn-default").bind("click", function() {
+                    var resetBtn = ng.element("<button>清空</button>").addClass("cancelBtn btn btn-default").bind("click", function() {
                         $scope.$apply(function() {
                             $parse($attributes.ngModel).assign($scope, null);
                         });
-                        $element.data("daterangepicker").container.hide();
                     });
                     $element.data("daterangepicker").container.find(".applyBtn").bind("click", function() {
                         $scope.$apply(function() {
@@ -6400,6 +6401,29 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
     };
     ng.module("ntd.directives").directive("timeLine", [ "$filter", TimeLine ]);
     ng.module("ntd.directives").directive("adminuiTimeLine", [ "$compile", AdminuiTimeLine ]);
+})(angular);
+
+(function(ng) {
+    "use strict";
+    var AdminuiMoney = function() {
+        return {
+            restrict: "A",
+            require: "ngModel",
+            link: function(scope, elem, attrs, ctrl) {
+                elem.maskMoney({
+                    prefix: "￥",
+                    allowZero: true,
+                    thousands: ""
+                });
+                var parser = function() {
+                    ctrl.$viewValue = elem.maskMoney("unmasked")[0];
+                    return ctrl.$viewValue;
+                };
+                ctrl.$parsers.push(parser);
+            }
+        };
+    };
+    ng.module("ntd.directives").directive("adminuiMoney", [ AdminuiMoney ]);
 })(angular);
 
 angular.module("ntd.directives").run([ "$templateCache", function($templateCache) {
