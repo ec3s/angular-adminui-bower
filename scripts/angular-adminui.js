@@ -6496,6 +6496,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
     "use strict";
     var money = function() {
         return function(scope, elem, attrs) {
+            scope[attrs.ngModel] = scope[attrs.ngModel] || 0;
             var oldValue, newValue, errorMsg;
             var max = null;
             if (attrs.max !== null) {
@@ -6514,7 +6515,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             });
             var numberInput = function() {
                 var val = elem.val();
-                newValue = parseFloat(val);
+                newValue = parseFloat(val) || 0;
                 var caretPos = getCaretPosition(elem[0]) || 0;
                 if (max !== null && newValue > max || formatInvalidate(val)) {
                     if (formatInvalidate(val)) {
@@ -6527,6 +6528,8 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     newValue = oldValue;
                     elem.val(newValue);
                 } else {
+                    var transformValue = newValue === 0 ? 0 : val.substr(val.search(/[1-9]/));
+                    elem.val(transformValue);
                     popEl.popover("hide");
                 }
                 oldValue = newValue;
