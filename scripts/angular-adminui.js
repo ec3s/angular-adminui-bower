@@ -1,92 +1,3 @@
-angular.module("fiestah.money", []).directive("money", function() {
-    "use strict";
-    var NUMBER_REGEXP = /^\s*(\-|\+)?(\d+|(\d*(\.\d*)))\s*$/;
-    function link(scope, el, attrs, ngModelCtrl) {
-        var min = parseFloat(attrs.min || 0);
-        var precision = parseFloat(attrs.precision || 2);
-        var lastValidValue;
-        function round(num) {
-            var d = Math.pow(10, precision);
-            return Math.round(num * d) / d;
-        }
-        function formatPrecision(value) {
-            return parseFloat(value).toFixed(precision);
-        }
-        function formatViewValue(value) {
-            return ngModelCtrl.$isEmpty(value) ? "" : "" + value;
-        }
-        ngModelCtrl.$parsers.push(function(value) {
-            if (value.indexOf(".") === 0) {
-                value = "0" + value;
-            }
-            if (value.indexOf("-") === 0) {
-                if (min >= 0) {
-                    value = null;
-                    ngModelCtrl.$setViewValue("");
-                    ngModelCtrl.$render();
-                } else if (value === "-") {
-                    value = "";
-                }
-            }
-            var empty = ngModelCtrl.$isEmpty(value);
-            if (empty || NUMBER_REGEXP.test(value)) {
-                lastValidValue = value === "" ? null : empty ? value : parseFloat(value);
-            } else {
-                ngModelCtrl.$setViewValue(formatViewValue(lastValidValue));
-                ngModelCtrl.$render();
-            }
-            ngModelCtrl.$setValidity("number", true);
-            return lastValidValue;
-        });
-        ngModelCtrl.$formatters.push(formatViewValue);
-        var minValidator = function(value) {
-            if (!ngModelCtrl.$isEmpty(value) && value < min) {
-                ngModelCtrl.$setValidity("min", false);
-                return undefined;
-            } else {
-                ngModelCtrl.$setValidity("min", true);
-                return value;
-            }
-        };
-        ngModelCtrl.$parsers.push(minValidator);
-        ngModelCtrl.$formatters.push(minValidator);
-        if (attrs.max) {
-            var max = parseFloat(attrs.max);
-            var maxValidator = function(value) {
-                if (!ngModelCtrl.$isEmpty(value) && value > max) {
-                    ngModelCtrl.$setValidity("max", false);
-                    return undefined;
-                } else {
-                    ngModelCtrl.$setValidity("max", true);
-                    return value;
-                }
-            };
-            ngModelCtrl.$parsers.push(maxValidator);
-            ngModelCtrl.$formatters.push(maxValidator);
-        }
-        if (precision > -1) {
-            ngModelCtrl.$parsers.push(function(value) {
-                return value ? round(value) : value;
-            });
-            ngModelCtrl.$formatters.push(function(value) {
-                return value ? formatPrecision(value) : value;
-            });
-        }
-        el.bind("blur", function() {
-            var value = ngModelCtrl.$modelValue;
-            if (value) {
-                ngModelCtrl.$viewValue = formatPrecision(value);
-                ngModelCtrl.$render();
-            }
-        });
-    }
-    return {
-        restrict: "A",
-        require: "ngModel",
-        link: link
-    };
-});
-
 (function(undefined) {
     var moment, VERSION = "2.5.1", global = this, round = Math.round, i, YEAR = 0, MONTH = 1, DATE = 2, HOUR = 3, MINUTE = 4, SECOND = 5, MILLISECOND = 6, languages = {}, momentProperties = {
         _isAMomentObject: null,
@@ -3836,7 +3747,7 @@ angular.module("fiestah.money", []).directive("money", function() {
 
 angular.module("ntd.config", []).value("$ntdConfig", {});
 
-angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "fiestah.money" ]);
+angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
 
 (function(ng, app) {
     "use strict";
@@ -6494,18 +6405,15 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
 
 (function(ng) {
     "use strict";
-    var money = function() {
-        return function(scope, elem, attrs) {
-            scope[attrs.ngModel] = scope[attrs.ngModel] || 0;
-            var oldValue, newValue, errorMsg;
-            var max = null;
-            if (attrs.max !== null) {
-                max = parseFloat(attrs.max);
-            }
-            var formatInvalidate = function(value) {
-                return value.split(".")[1] && value.split(".")[1].length > 2;
-            };
-            var popEl = elem.popover({
+    var adminuiMoney = function($parse) {
+        var NUMBER_REGEXP = /^\s*(\-|\+)?(\d+|(\d*(\.\d*)))\s*$/;
+        function link(scope, el, attrs, ngModelCtrl) {
+            var getter = $parse(attrs.ngModel);
+            getter.assign(scope, getter(scope) || 0);
+            var max, errorMsg, newValue, oldValue, lastValidValue;
+            var precision = parseFloat(attrs.precision || 2);
+            var min = parseFloat(attrs.min || 0);
+            var popEl = el.popover({
                 placement: "bottom",
                 delay: 0,
                 trigger: "focus",
@@ -6513,10 +6421,41 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     return errorMsg;
                 }
             });
+            function formatPrecision(value) {
+                return parseFloat(value).toFixed(precision);
+            }
+            function formatViewValue(value) {
+                return ngModelCtrl.$isEmpty(value) ? 0 : 0 + value;
+            }
+            var formatInvalidate = function(value) {
+                return value.split(".")[1] && value.split(".")[1].length > 2;
+            };
+            ngModelCtrl.$parsers.push(function(value) {
+                if (value.indexOf(".") === 0) {
+                    value = "0" + value;
+                }
+                if (value.indexOf("-") === 0) {
+                    if (min >= 0) {
+                        value = null;
+                        ngModelCtrl.$setViewValue("");
+                        ngModelCtrl.$render();
+                    } else if (value === "-") {
+                        value = "";
+                    }
+                }
+                var empty = ngModelCtrl.$isEmpty(value);
+                if (empty || NUMBER_REGEXP.test(value)) {
+                    lastValidValue = value === "" ? null : empty ? value : parseFloat(value);
+                } else {
+                    ngModelCtrl.$setViewValue(formatViewValue(lastValidValue));
+                    ngModelCtrl.$render();
+                }
+                ngModelCtrl.$setValidity("number", true);
+                return lastValidValue;
+            });
             var numberInput = function() {
-                var val = elem.val();
+                var val = el.val();
                 newValue = parseFloat(val) || 0;
-                var caretPos = getCaretPosition(elem[0]) || 0;
                 if (max !== null && newValue > max || formatInvalidate(val)) {
                     if (formatInvalidate(val)) {
                         errorMsg = "小数点后最多保留两位小数";
@@ -6524,63 +6463,55 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                         errorMsg = "金额不能大于最大值";
                     }
                     popEl.popover("show");
-                    setCaretPosition(this, caretPos - 1);
                     newValue = oldValue;
-                    elem.val(newValue);
+                    el.val(newValue || 0);
                 } else {
                     var transformValue = newValue === 0 ? 0 : val.substr(val.search(/[1-9]/));
-                    elem.val(transformValue);
+                    el.val(transformValue);
                     popEl.popover("hide");
                 }
                 oldValue = newValue;
             };
-            elem.bind("input", numberInput);
-            elem.bind("focus", function() {
+            var maxValidator = function(value) {
+                if (max !== null && value > max) {
+                    ngModelCtrl.$setValidity("max", false);
+                    return oldValue || 0;
+                } else {
+                    ngModelCtrl.$setValidity("max", true);
+                    return value || 0;
+                }
+            };
+            el.bind("input", numberInput);
+            var maxInitialize = function(value) {
+                max = parseFloat(value) ? value : null;
+                if (parseFloat(value) === 0) {
+                    max = value;
+                }
+            };
+            if (ng.isDefined(attrs.max)) {
+                attrs.$observe("max", maxInitialize);
+                ngModelCtrl.$parsers.push(maxValidator);
+            }
+            el.bind("focus", function() {
                 if (popEl) {
                     popEl.popover("hide");
                 }
             });
-            var maxInitialize = function(value) {
-                max = value || null;
-            };
-            attrs.$observe("max", maxInitialize);
-            function getCaretPosition(input) {
-                if (!ng.isUndefined(input.selectionStart)) {
-                    return input.selectionStart;
-                } else if (document.selection) {
-                    input.focus();
-                    var selection = document.selection.createRange();
-                    selection.moveStart("character", -input.value.length);
-                    return selection.text.length;
+            el.bind("blur", function() {
+                var value = ngModelCtrl.$modelValue;
+                if (value) {
+                    ngModelCtrl.$viewValue = formatPrecision(value);
+                    ngModelCtrl.$render();
                 }
-                return 0;
-            }
-            function setCaretPosition(input, pos) {
-                if (input.offsetWidth === 0 || input.offsetHeight === 0) {
-                    return;
-                }
-                if (input.setSelectionRange) {
-                    input.focus();
-                    input.setSelectionRange(pos, pos);
-                } else if (input.createTextRange) {
-                    var range = input.createTextRange();
-                    range.collapse(true);
-                    range.moveEnd("character", pos);
-                    range.moveStart("character", pos);
-                    range.select();
-                }
-            }
-        };
-    };
-    ng.module("ntd.directives").directive("money", [ money ]);
-    var adminuiMoney = function() {
+            });
+        }
         return {
             restrict: "A",
-            templateUrl: "templates/replace-template.html",
-            replace: "true"
+            require: "ngModel",
+            link: link
         };
     };
-    ng.module("ntd.directives").directive("adminuiMoney", [ adminuiMoney ]);
+    ng.module("ntd.directives").directive("adminuiMoney", [ "$parse", adminuiMoney ]);
 })(angular);
 
 angular.module("ntd.directives").run([ "$templateCache", function($templateCache) {
@@ -6592,5 +6523,4 @@ angular.module("ntd.directives").run([ "$templateCache", function($templateCache
     $templateCache.put("templates/checkbox-group.html", "<div class=\"dropdown dropdown-checkbox-group\"><label class=dropdown-toggle data-toggle=dropdown><input type=checkbox data-ng-click=toggleCheckedAll() data-ng-class=\"{'part': 'part-checked'}[status]\" data-ng-checked=\"{'all': true, 'part': true, 'none': false}[status]\">{{dataSource.name}} <b class=caret></b></label><ul class=dropdown-menu><li data-ng-repeat=\"checkbox in dataSource.checkboxGroup\"><label><input type=checkbox data-ng-model=checkbox.checked>{{checkbox.name}}</label></li><li data-ng-show=\"dataSource.checkboxGroup.length <= 0\"><label>无可选项目</label></li></ul></div>");
     $templateCache.put("templates/common-menu-dialog.html", '<div class=modal-header><h3>将当前地址加入常用菜单</h3></div><div class=modal-body data-ng-keypress=add($event)><form class=form-horizontal><div class=form-group><label class="col-sm-2 control-label" for="">地址</label><div class=col-sm-9><input class="form-control input-sm" data-ng-model=menu.link readonly></div></div><div class=form-group><label class="col-sm-2 control-label" for="">名称</label><div class=col-sm-9><input class="form-control input-sm" data-ng-model=menu.name></div></div></form></div><div class=modal-footer><button class="btn btn-primary" data-ng-click=add($event)>添加</button> <button class="btn btn-default" data-ng-click=cancel($event)>取消</button></div>');
     $templateCache.put("templates/finder.html", '<div class=adminui-finder-container><div class=adminui-finder-inner>{{selectedItems}}<ul data-ng-repeat="list in finderList" style="margin-left: {{30 * $index}}%" data-ng-class="{true: \'selected\'}[isLevelSelected($index)]"><li data-ng-click="showChildren(item, $event)" data-ng-class="[{true: \'selected\'}[isItemSelected(item, $parent.$index)], {true: \'has-child\'}[hasChildren(item)]]" data-ng-repeat="item in list">{{item.text}}</li></ul></div></div>');
-    $templateCache.put("templates/replace-template.html", '<input class=form-control data-money="">');
 } ]);
