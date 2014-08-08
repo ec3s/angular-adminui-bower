@@ -6382,25 +6382,34 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             }
         };
     };
-    var TimeLineTemplate = function($compile) {
+    var TimeLineTemplate = function($http, $q, $compile, $templateCache) {
         return {
             restrict: "EA",
             replace: true,
             require: "^ngModel",
             link: function(scope, elem, attrs) {
                 scope.adminuiTimeLine = scope[attrs.ngModel];
+                var getTemplatePromise = function(options) {
+                    return options.template ? $q.when(options.template) : $http.get(options.templateUrl, {
+                        cache: $templateCache
+                    }).then(function(result) {
+                        return result.data;
+                    });
+                };
                 var currentHtml = null;
                 if (scope.adminuiTimeLine.hasOwnProperty("content") && ng.isObject(scope.adminuiTimeLine.content)) {
                     var contentScope = scope.$new(false);
                     ng.extend(contentScope, scope.adminuiTimeLine.content);
-                    currentHtml = $compile(scope.adminuiTimeLine.template)(contentScope);
+                    getTemplatePromise(scope.adminuiTimeLine).then(function(value) {
+                        currentHtml = $compile(value)(contentScope);
+                        elem.append(currentHtml);
+                    });
                 }
-                elem.append(currentHtml);
             }
         };
     };
     ng.module("ntd.directives").directive("adminuiTimeLine", [ "$filter", AdminuiTimeLine ]);
-    ng.module("ntd.directives").directive("timeLineTemplate", [ "$compile", TimeLineTemplate ]);
+    ng.module("ntd.directives").directive("timeLineTemplate", [ "$http", "$q", "$compile", "$templateCache", TimeLineTemplate ]);
 })(angular);
 
 (function(ng) {
@@ -6429,7 +6438,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 return parseFloat(value).toFixed(precision);
             }
             function formatViewValue(value) {
-                return ngModelCtrl.$isEmpty(value) ? 0 : 0 + value;
+                return ngModelCtrl.$isEmpty(value) ? "" : "" + value;
             }
             var formatInvalidate = function(value) {
                 return value.split(".")[1] && value.split(".")[1].length > 2;
