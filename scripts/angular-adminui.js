@@ -4064,7 +4064,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
                 $rootScope.$on("$routeChangeError", function() {
                     selectPath(scope, "/_default_");
                 });
-                $rootScope.$on("selectPath", function(path) {
+                $rootScope.$on("selectPath", function(evt, path) {
                     selectPath(scope, path);
                 });
                 scope.select = ng.bind(scope, select, $timeout, elem);
