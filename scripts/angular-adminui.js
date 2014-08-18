@@ -4059,8 +4059,11 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
                         parseNavUrl(scope.navigation, $route);
                     }
                 });
-                $rootScope.$on("flushNavStatus", function() {
+                $rootScope.$on("$routeChangeError", function() {
                     selectPath(scope, "/_default_");
+                });
+                $rootScope.$on("selectPath", function(path) {
+                    selectPath(scope, path);
                 });
                 scope.select = ng.bind(scope, select, $timeout, elem);
                 scope.toggleSubMenu = ng.bind(scope, toggleSubMenu);
