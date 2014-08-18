@@ -4059,6 +4059,9 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
                         parseNavUrl(scope.navigation, $route);
                     }
                 });
+                $rootScope.$on("flushNavStatus", function() {
+                    selectPath(scope, "/_default_");
+                });
                 scope.select = ng.bind(scope, select, $timeout, elem);
                 scope.toggleSubMenu = ng.bind(scope, toggleSubMenu);
                 scope.selectNav = ng.bind(scope, selectNav);
@@ -4072,6 +4075,12 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize" ]);
         };
     };
     var initNav = function(scope, $http, $route, SYS, navigation, currentPath) {
+        navigation.children.push({
+            name: "default",
+            show: false,
+            url: "/_default_",
+            children: null
+        });
         $http.jsonp(SYS.host + "/api/systems?callback=JSON_CALLBACK").then(function(res) {
             var systemMatched = false;
             ng.forEach(res.data, function(nav) {
@@ -6366,7 +6375,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 var tempTimeLineData = scope[attrs.ngModel];
                 tempTimeLineData = $filter("orderBy")(tempTimeLineData, [ "-time" ]);
                 var currentObj = {};
-                tempTimeLineData.forEach(function(value, index) {
+                ng.forEach(tempTimeLineData, function(value, index) {
                     var currentTime = $filter("date")(value.time, "yyyy-MM-dd");
                     if (!currentObj || currentObj.currentTime !== currentTime) {
                         currentObj = {
