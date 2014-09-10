@@ -6466,19 +6466,12 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
     var adminuiMoney = function($parse) {
         var NUMBER_REGEXP = /^\s*(\-|\+)?(\d+|(\d*(\.\d*)))\s*$/;
         function link(scope, el, attrs, ngModelCtrl) {
+            var isNull = ng.isDefined(attrs.canBeNull) || false;
             var getter = $parse(attrs.ngModel);
-            getter.assign(scope, getter(scope) || 0);
+            getter.assign(scope, getter(scope) || (isNull ? null : 0));
             var max, errorMsg, newValue, lastValidValue;
             var precision = parseFloat(attrs.precision || 2);
             var min = parseFloat(attrs.min || 0);
-            var popEl = el.popover({
-                placement: "bottom",
-                delay: 0,
-                trigger: "focus",
-                content: function() {
-                    return errorMsg;
-                }
-            });
             function floor(num) {
                 var d = Math.pow(10, precision);
                 return Math.floor(num * d) / d;
@@ -6489,9 +6482,6 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             function formatViewValue(value) {
                 return ngModelCtrl.$isEmpty(value) ? "" : "" + value;
             }
-            var formatInvalidate = function(value) {
-                return value.split(".")[1] && value.split(".")[1].length > 2;
-            };
             ngModelCtrl.$parsers.push(function(value) {
                 if (value.indexOf(".") === 0) {
                     value = "0" + value;
@@ -6513,8 +6503,34 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     ngModelCtrl.$render();
                 }
                 ngModelCtrl.$setValidity("number", true);
-                return lastValidValue;
+                return lastValidValue === 0 ? lastValidValue : lastValidValue || (isNull ? null : 0);
             });
+            if (precision > -1) {
+                ngModelCtrl.$parsers.push(function(value) {
+                    return value ? floor(value) : value;
+                });
+                ngModelCtrl.$formatters.push(function(value) {
+                    return value ? formatPrecision(value) : value;
+                });
+            }
+            el.bind("blur", function() {
+                var value = ngModelCtrl.$modelValue;
+                if (value) {
+                    ngModelCtrl.$viewValue = formatPrecision(value);
+                    ngModelCtrl.$render();
+                }
+            });
+            var popEl = el.popover({
+                placement: "bottom",
+                delay: 0,
+                trigger: "focus",
+                content: function() {
+                    return errorMsg;
+                }
+            });
+            var formatInvalidate = function(value) {
+                return value.split(".")[1] && value.split(".")[1].length > 2;
+            };
             var numberInput = function() {
                 var val = el.val();
                 newValue = parseFloat(val) || 0;
@@ -6525,9 +6541,9 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                         errorMsg = "金额不能大于最大值";
                     }
                     popEl.popover("show");
-                    el.val(ngModelCtrl.$modelValue || 0);
+                    el.val(ngModelCtrl.$modelValue || (isNull ? null : 0));
                 } else {
-                    var transformValue = newValue === 0 ? 0 : val.substr(val.search(/[1-9]/));
+                    var transformValue = val.substr(val.search(/[1-9]/)) || (isNull ? null : 0);
                     el.val(transformValue);
                     popEl.popover("hide");
                 }
@@ -6535,10 +6551,10 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             var maxValidator = function(value) {
                 if (max !== null && value > max) {
                     ngModelCtrl.$setValidity("max", false);
-                    return ngModelCtrl.$modelValue || 0;
+                    return ngModelCtrl.$modelValue;
                 } else {
                     ngModelCtrl.$setValidity("max", true);
-                    return value || 0;
+                    return value;
                 }
             };
             el.bind("input", numberInput);
@@ -6557,21 +6573,38 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     popEl.popover("hide");
                 }
             });
-            if (precision > -1) {
-                ngModelCtrl.$parsers.push(function(value) {
-                    return value ? floor(value) : value;
-                });
-                ngModelCtrl.$formatters.push(function(value) {
-                    return value ? formatPrecision(value) : value;
-                });
-            }
-            el.bind("blur", function() {
-                var value = ngModelCtrl.$modelValue;
-                if (value) {
-                    ngModelCtrl.$viewValue = formatPrecision(value);
-                    ngModelCtrl.$render();
+            el.bind("keyup", function() {
+                var care = getCaretPosition(el[0]);
+                if (care == 0) {
+                    setCaretPosition(el[0], 1);
                 }
             });
+            function getCaretPosition(input) {
+                if (ng.isDefined(input.selectionStart)) {
+                    return input.selectionStart;
+                } else if (document.selection) {
+                    input.focus();
+                    var selection = document.selection.createRange();
+                    selection.moveStart("character", -input.value.length);
+                    return selection.text.length;
+                }
+                return 0;
+            }
+            function setCaretPosition(input, pos) {
+                if (input.offsetWidth === 0 || input.offsetHeight === 0) {
+                    return;
+                }
+                if (input.setSelectionRange) {
+                    input.focus();
+                    input.setSelectionRange(pos, pos);
+                } else if (input.createTextRange) {
+                    var range = input.createTextRange();
+                    range.collapse(true);
+                    range.moveEnd("character", pos);
+                    range.moveStart("character", pos);
+                    range.select();
+                }
+            }
         }
         return {
             restrict: "A",
