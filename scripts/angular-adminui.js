@@ -6468,7 +6468,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
         function link(scope, el, attrs, ngModelCtrl) {
             var isNull = ng.isDefined(attrs.canBeNull) || false;
             var getter = $parse(attrs.ngModel);
-            getter.assign(scope, getter(scope) || (isNull ? null : 0));
+            getter.assign(scope, getter(scope) === 0 ? 0 : getter(scope) || (isNull ? null : 0));
             var max, errorMsg, newValue, lastValidValue;
             var precision = parseFloat(attrs.precision || 2);
             var min = parseFloat(attrs.min || 0);
