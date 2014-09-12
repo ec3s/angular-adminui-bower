@@ -6520,8 +6520,9 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     ngModelCtrl.$render();
                 }
             });
+            var placement = attrs.placement || "bottom";
             var popEl = el.popover({
-                placement: "bottom",
+                placement: placement,
                 delay: 0,
                 trigger: "focus",
                 content: function() {
@@ -6532,6 +6533,9 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 return value.split(".")[1] && value.split(".")[1].length > 2;
             };
             var numberInput = function() {
+                if (popEl) {
+                    popEl.popover("hide");
+                }
                 var val = el.val();
                 newValue = parseFloat(val) || 0;
                 if (max !== null && newValue > max || formatInvalidate(val)) {
@@ -6573,10 +6577,12 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     popEl.popover("hide");
                 }
             });
-            el.bind("keyup", function() {
-                var care = getCaretPosition(el[0]);
-                if (care == 0) {
-                    setCaretPosition(el[0], 1);
+            el.bind("keyup click focus", function() {
+                if (ngModelCtrl.$modelValue === 0) {
+                    var care = getCaretPosition(el[0]);
+                    if (care == 0) {
+                        setCaretPosition(el[0], 1);
+                    }
                 }
             });
             function getCaretPosition(input) {
