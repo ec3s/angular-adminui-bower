@@ -5412,7 +5412,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 var allowSingleDeselect = attrs.allowSingleDeselect || false;
                 allowSingleDeselect = allowSingleDeselect == "true";
                 var options = {
-                    disable_search_threshold: disableSearchThreshold
+                    disable_search_threshold: onSearch ? 0 : disableSearchThreshold
                 };
                 var originStyleClass = elem.attr("class").split(" ").filter(function(item) {
                     item = $.trim(item);
