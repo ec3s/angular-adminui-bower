@@ -1,66 +1,123 @@
-!function(a, b, c) {
+(function(angular, document, undefined) {
     "use strict";
-    a.module("ng.shims.placeholder", []).directive("placeholder", [ "$timeout", function(d) {
-        if (!a.mock) {
-            var e = b.createElement("input");
-            if (void 0 !== e.placeholder) return {};
+    angular.module("ng.shims.placeholder", []).directive("placeholder", [ "$timeout", function($timeout) {
+        if (!angular.mock) {
+            var test = document.createElement("input");
+            if (test.placeholder !== void 0) return {};
         }
         return {
             restrict: "A",
             require: "?ngModel",
             priority: 1,
-            link: function(e, f, g, h) {
-                function i() {
-                    var a = f.val();
-                    f.hasClass(w) && a === v || (b.documentMode <= 11 ? d(function() {
-                        j(a);
-                    }, 0) : j(a));
+            link: function(scope, elem, attrs, ngModel) {
+                var orig_val = getValue(), is_pwd = attrs.type === "password", text = attrs.placeholder, emptyClassName = "empty", domElem = elem[0], clone;
+                if (!text) {
+                    return;
                 }
-                function j(a) {
-                    k(a), h && h.$setViewValue(a);
+                if (is_pwd) {
+                    setupPasswordPlaceholder();
                 }
-                function k(a) {
-                    a ? (f.removeClass(w), u && p(), f.val(a)) : (f.addClass(w), u ? o() : f.val(v));
+                setValueWithModel(orig_val);
+                elem.bind("focus", function() {
+                    if (elem.hasClass(emptyClassName)) {
+                        elem.val("");
+                        elem.removeClass(emptyClassName);
+                        elem.removeClass("error");
+                    }
+                });
+                elem.bind("blur", updateValue);
+                if (!ngModel) {
+                    elem.bind("change", updateValue);
                 }
-                function l() {
-                    return h ? e.$eval(g.ngModel) || "" : m() || "";
+                if (ngModel) {
+                    ngModel.$render = function() {
+                        setValue(ngModel.$viewValue);
+                    };
                 }
-                function m() {
-                    var a = f.val();
-                    return a === g.placeholder && (a = ""), a;
+                function updateValue(e) {
+                    var val = elem.val();
+                    if (elem.hasClass(emptyClassName) && val === text) {
+                        return;
+                    }
+                    if (document.documentMode <= 11) {
+                        $timeout(function() {
+                            setValueWithModel(val);
+                        }, 0);
+                    } else {
+                        setValueWithModel(val);
+                    }
                 }
-                function n() {
-                    s = a.element('<input type="text"/>').attr(a.extend(r(x), {
-                        type: c,
-                        value: v,
+                function setValueWithModel(val) {
+                    setValue(val);
+                    if (ngModel) {
+                        ngModel.$setViewValue(val);
+                    }
+                }
+                function setValue(val) {
+                    if (!val) {
+                        elem.addClass(emptyClassName);
+                        if (is_pwd) {
+                            showPasswordPlaceholder();
+                        } else {
+                            elem.val(text);
+                        }
+                    } else {
+                        elem.removeClass(emptyClassName);
+                        if (is_pwd) {
+                            hidePasswordPlaceholder();
+                        }
+                        elem.val(val);
+                    }
+                }
+                function getValue() {
+                    if (ngModel) {
+                        return scope.$eval(attrs.ngModel) || "";
+                    }
+                    return getDomValue() || "";
+                }
+                function getDomValue() {
+                    var val = elem.val();
+                    if (val === attrs.placeholder) {
+                        val = "";
+                    }
+                    return val;
+                }
+                function setupPasswordPlaceholder() {
+                    clone = angular.element('<input type="text"/>').attr(angular.extend(extractAttributes(domElem), {
+                        type: undefined,
+                        value: text,
                         placeholder: "",
                         id: "",
                         name: ""
-                    })).addClass(w).addClass("ng-hide").bind("focus", q), x.parentNode.insertBefore(s[0], x);
+                    })).addClass(emptyClassName).addClass("ng-hide").bind("focus", hidePasswordPlaceholderAndFocus);
+                    domElem.parentNode.insertBefore(clone[0], domElem);
                 }
-                function o() {
-                    s.val(v), f.addClass("ng-hide"), s.removeClass("ng-hide");
+                function showPasswordPlaceholder() {
+                    clone.val(text);
+                    elem.addClass("ng-hide");
+                    clone.removeClass("ng-hide");
                 }
-                function p() {
-                    s.addClass("ng-hide"), f.removeClass("ng-hide");
+                function hidePasswordPlaceholder() {
+                    clone.addClass("ng-hide");
+                    elem.removeClass("ng-hide");
                 }
-                function q() {
-                    p(), x.focus();
+                function hidePasswordPlaceholderAndFocus() {
+                    hidePasswordPlaceholder();
+                    domElem.focus();
                 }
-                function r(a) {
-                    for (var b = a.attributes, c = {}, d = /^jQuery\d+/, e = 0; e < b.length; e++) b[e].specified && !d.test(b[e].name) && (c[b[e].name] = b[e].value);
-                    return c;
+                function extractAttributes(element) {
+                    var attr = element.attributes, copy = {}, skip = /^jQuery\d+/;
+                    for (var i = 0; i < attr.length; i++) {
+                        if (attr[i].specified && !skip.test(attr[i].name)) {
+                            copy[attr[i].name] = attr[i].value;
+                        }
+                    }
+                    return copy;
                 }
-                var s, t = l(), u = "password" === g.type, v = g.placeholder, w = "empty", x = f[0];
-                v && (u && n(), j(t), f.bind("focus", function() {
-                    f.hasClass(w) && (f.val(""), f.removeClass(w), f.removeClass("error"));
-                }), f.bind("blur", i), h || f.bind("change", i), h && (h.$render = function() {
-                    k(h.$viewValue);
-                }));
             }
         };
     } ]);
-}(window.angular, window.document);
+})(window.angular, window.document);
 
 (function(undefined) {
     var moment, VERSION = "2.8.3", globalScope = typeof global !== "undefined" ? global : this, oldGlobalMoment, round = Math.round, hasOwnProperty = Object.prototype.hasOwnProperty, i, YEAR = 0, MONTH = 1, DATE = 2, HOUR = 3, MINUTE = 4, SECOND = 5, MILLISECOND = 6, locales = {}, momentProperties = [], hasModule = typeof module !== "undefined" && module.exports, aspNetJsonRegex = /^\/?Date\((\-?\d+)/i, aspNetTimeSpanJsonRegex = /(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/, isoDurationRegex = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/, formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|X|zz?|ZZ?|.)/g, localFormattingTokens = /(\[[^\[]*\])|(\\)?(LT|LL?L?L?|l{1,4})/g, parseTokenOneOrTwoDigits = /\d\d?/, parseTokenOneToThreeDigits = /\d{1,3}/, parseTokenOneToFourDigits = /\d{1,4}/, parseTokenOneToSixDigits = /[+\-]?\d{1,6}/, parseTokenDigits = /\d+/, parseTokenWord = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i, parseTokenTimezone = /Z|[\+\-]\d\d:?\d\d/gi, parseTokenT = /T/i, parseTokenTimestampMs = /[\+\-]?\d+(\.\d{1,3})?/, parseTokenOrdinal = /\d{1,2}/, parseTokenOneDigit = /\d/, parseTokenTwoDigits = /\d\d/, parseTokenThreeDigits = /\d{3}/, parseTokenFourDigits = /\d{4}/, parseTokenSixDigits = /[+-]?\d{6}/, parseTokenSignedNumber = /[+-]?\d+/, isoRegex = /^\s*(?:[+-]\d{6}|\d{4})-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/, isoFormat = "YYYY-MM-DDTHH:mm:ssZ", isoDates = [ [ "YYYYYY-MM-DD", /[+-]\d{6}-\d{2}-\d{2}/ ], [ "YYYY-MM-DD", /\d{4}-\d{2}-\d{2}/ ], [ "GGGG-[W]WW-E", /\d{4}-W\d{2}-\d/ ], [ "GGGG-[W]WW", /\d{4}-W\d{2}/ ], [ "YYYY-DDD", /\d{4}-\d{3}/ ] ], isoTimes = [ [ "HH:mm:ss.SSSS", /(T| )\d\d:\d\d:\d\d\.\d+/ ], [ "HH:mm:ss", /(T| )\d\d:\d\d:\d\d/ ], [ "HH:mm", /(T| )\d\d:\d\d/ ], [ "HH", /(T| )\d\d/ ] ], parseTimezoneChunker = /([\+\-]|\d\d)/gi, proxyGettersAndSetters = "Date|Hours|Minutes|Seconds|Milliseconds".split("|"), unitMillisecondFactors = {
@@ -4555,6 +4612,30 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "angular-echarts"
     };
     app.config([ "$provide", ModalDecorator ]);
 })(angular, angular.module("ui.bootstrap.modal"));
+
+(function(ng, app) {
+    "use strict";
+    var placeholderDecorator = function($provide) {
+        var placeholderDirective = function($delegate, $timeout) {
+            var directive = $delegate[0];
+            if (!directive.hasOwnProperty("link")) {
+                return $delegate;
+            }
+            var oldLinkFn = ng.copy(directive.link);
+            delete directive.link;
+            directive.compile = function(elem) {
+                var isInput = elem.is("input") && !elem.is('input[type="file"]') && !elem.is('input[type="radio"]') && !elem.is('input[type="checkbox"]') && !elem.is('input[type="submit"]') && !elem.is('input[type="button"]');
+                var isTextarea = elem.is("textarea");
+                if (isInput || isTextarea) {
+                    return oldLinkFn;
+                }
+            };
+            return $delegate;
+        };
+        $provide.decorator("placeholderDirective", [ "$delegate", "$timeout", placeholderDirective ]);
+    };
+    app.config([ "$provide", placeholderDecorator ]);
+})(angular, angular.module("ng.shims.placeholder"));
 
 (function(ng) {
     "use strict";
