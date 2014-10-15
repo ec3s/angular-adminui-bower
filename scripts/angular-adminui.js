@@ -1,3 +1,67 @@
+!function(a, b, c) {
+    "use strict";
+    a.module("ng.shims.placeholder", []).directive("placeholder", [ "$timeout", function(d) {
+        if (!a.mock) {
+            var e = b.createElement("input");
+            if (void 0 !== e.placeholder) return {};
+        }
+        return {
+            restrict: "A",
+            require: "?ngModel",
+            priority: 1,
+            link: function(e, f, g, h) {
+                function i() {
+                    var a = f.val();
+                    f.hasClass(w) && a === v || (b.documentMode <= 11 ? d(function() {
+                        j(a);
+                    }, 0) : j(a));
+                }
+                function j(a) {
+                    k(a), h && h.$setViewValue(a);
+                }
+                function k(a) {
+                    a ? (f.removeClass(w), u && p(), f.val(a)) : (f.addClass(w), u ? o() : f.val(v));
+                }
+                function l() {
+                    return h ? e.$eval(g.ngModel) || "" : m() || "";
+                }
+                function m() {
+                    var a = f.val();
+                    return a === g.placeholder && (a = ""), a;
+                }
+                function n() {
+                    s = a.element('<input type="text"/>').attr(a.extend(r(x), {
+                        type: c,
+                        value: v,
+                        placeholder: "",
+                        id: "",
+                        name: ""
+                    })).addClass(w).addClass("ng-hide").bind("focus", q), x.parentNode.insertBefore(s[0], x);
+                }
+                function o() {
+                    s.val(v), f.addClass("ng-hide"), s.removeClass("ng-hide");
+                }
+                function p() {
+                    s.addClass("ng-hide"), f.removeClass("ng-hide");
+                }
+                function q() {
+                    p(), x.focus();
+                }
+                function r(a) {
+                    for (var b = a.attributes, c = {}, d = /^jQuery\d+/, e = 0; e < b.length; e++) b[e].specified && !d.test(b[e].name) && (c[b[e].name] = b[e].value);
+                    return c;
+                }
+                var s, t = l(), u = "password" === g.type, v = g.placeholder, w = "empty", x = f[0];
+                v && (u && n(), j(t), f.bind("focus", function() {
+                    f.hasClass(w) && (f.val(""), f.removeClass(w), f.removeClass("error"));
+                }), f.bind("blur", i), h || f.bind("change", i), h && (h.$render = function() {
+                    k(h.$viewValue);
+                }));
+            }
+        };
+    } ]);
+}(window.angular, window.document);
+
 (function(undefined) {
     var moment, VERSION = "2.8.3", globalScope = typeof global !== "undefined" ? global : this, oldGlobalMoment, round = Math.round, hasOwnProperty = Object.prototype.hasOwnProperty, i, YEAR = 0, MONTH = 1, DATE = 2, HOUR = 3, MINUTE = 4, SECOND = 5, MILLISECOND = 6, locales = {}, momentProperties = [], hasModule = typeof module !== "undefined" && module.exports, aspNetJsonRegex = /^\/?Date\((\-?\d+)/i, aspNetTimeSpanJsonRegex = /(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/, isoDurationRegex = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/, formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|X|zz?|ZZ?|.)/g, localFormattingTokens = /(\[[^\[]*\])|(\\)?(LT|LL?L?L?|l{1,4})/g, parseTokenOneOrTwoDigits = /\d\d?/, parseTokenOneToThreeDigits = /\d{1,3}/, parseTokenOneToFourDigits = /\d{1,4}/, parseTokenOneToSixDigits = /[+\-]?\d{1,6}/, parseTokenDigits = /\d+/, parseTokenWord = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i, parseTokenTimezone = /Z|[\+\-]\d\d:?\d\d/gi, parseTokenT = /T/i, parseTokenTimestampMs = /[\+\-]?\d+(\.\d{1,3})?/, parseTokenOrdinal = /\d{1,2}/, parseTokenOneDigit = /\d/, parseTokenTwoDigits = /\d\d/, parseTokenThreeDigits = /\d{3}/, parseTokenFourDigits = /\d{4}/, parseTokenSixDigits = /[+-]?\d{6}/, parseTokenSignedNumber = /[+-]?\d+/, isoRegex = /^\s*(?:[+-]\d{6}|\d{4})-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/, isoFormat = "YYYY-MM-DDTHH:mm:ssZ", isoDates = [ [ "YYYYYY-MM-DD", /[+-]\d{6}-\d{2}-\d{2}/ ], [ "YYYY-MM-DD", /\d{4}-\d{2}-\d{2}/ ], [ "GGGG-[W]WW-E", /\d{4}-W\d{2}-\d/ ], [ "GGGG-[W]WW", /\d{4}-W\d{2}/ ], [ "YYYY-DDD", /\d{4}-\d{3}/ ] ], isoTimes = [ [ "HH:mm:ss.SSSS", /(T| )\d\d:\d\d:\d\d\.\d+/ ], [ "HH:mm:ss", /(T| )\d\d:\d\d:\d\d/ ], [ "HH:mm", /(T| )\d\d:\d\d/ ], [ "HH", /(T| )\d\d/ ] ], parseTimezoneChunker = /([\+\-]|\d\d)/gi, proxyGettersAndSetters = "Date|Hours|Minutes|Seconds|Milliseconds".split("|"), unitMillisecondFactors = {
         Milliseconds: 1,
@@ -4234,7 +4298,7 @@
 
 angular.module("ntd.config", []).value("$ntdConfig", {});
 
-angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "angular-echarts" ]);
+angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "angular-echarts", "ng.shims.placeholder" ]);
 
 (function(ng, app) {
     "use strict";
@@ -4494,7 +4558,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "angular-echarts"
 
 (function(ng) {
     "use strict";
-    var AdminuiFrame = function(adminuiFrameProvider, $rootScope, $location, $timeout, $modal, $http, $route, $parse, $sce, SYS, flash) {
+    var AdminuiFrame = function(adminuiFrameProvider, $rootScope, $location, $timeout, $modal, $http, $route, $parse, $compile, SYS, flash) {
         return {
             restrict: "A",
             templateUrl: "templates/adminui-frame.html",
@@ -4503,77 +4567,88 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "angular-echarts"
                 userInfo: "=",
                 messages: "="
             },
-            link: function(scope, elem, attrs) {
-                scope.isSubMenuShow = adminuiFrameProvider.defaultShowSubmenu;
-                scope.hasSideMenu = false;
-                scope.noSideMenu = true;
-                scope.hasSubNav = false;
-                scope.isMessageBoxShow = adminuiFrameProvider.showMessageBox;
-                scope.navigation = adminuiFrameProvider.navigation;
-                scope.messages = scope.messages ? scope.messages : [];
-                scope.plugin = attrs["plugin"] ? $parse(attrs["plugin"])(scope.$root) : {};
-                scope.pluginEl = null;
-                scope.commonMenus = [];
-                scope.accountHost = null;
-                scope.isInited = false;
-                scope.userInfo = ng.extend({
-                    username: null,
-                    accessToken: null,
-                    avatar: "images/avatar.jpg",
-                    logout: function() {
-                        console.log("logout");
-                    },
-                    changePwd: function() {
-                        console.log("change password");
+            compile: function(element, attributes) {
+                var plugin = attributes["plugin"] ? $parse(attributes["plugin"])($rootScope) : {};
+                var pluginContainer = $("<li>").addClass("nav-plugin");
+                if (plugin.hasOwnProperty("template")) {
+                    var pluginEl = $(plugin.template);
+                    if (pluginEl.length != 0) {
+                        pluginContainer.append(pluginEl);
+                        element.find(".nav ul.sub-navbar").append($compile(pluginContainer)($rootScope));
                     }
-                }, scope.userInfo);
-                scope.$watch("hasSubNav", function(value, oldValue) {
-                    if (value == true) {
-                        $("body").addClass("padding-submenu");
-                    }
-                });
-                scope.$watch("userInfo", function(value) {
-                    if (scope.isInited && value.accessToken !== null) {
-                        fetchCommonMenus($http, scope);
-                    }
-                }, true);
-                initNav(scope, $http, $route, $sce, SYS, adminuiFrameProvider.navigation, $location.path());
-                $rootScope.$on("$routeChangeStart", function() {
-                    if (scope.isInited) {
-                        selectPath(scope, $location.path());
-                    }
-                });
-                $rootScope.$on("$routeChangeSuccess", function() {
-                    if (scope.isInited) {
-                        parseNavUrl(scope.navigation, $route);
-                    }
-                });
-                $rootScope.$on("$routeChangeError", function() {
-                    selectPath(scope, "/_default_");
-                });
-                $rootScope.$on("selectPath", function(evt, path) {
-                    selectPath(scope, path);
-                });
-                scope.select = ng.bind(scope, select, $timeout, elem);
-                scope.toggleSubMenu = ng.bind(scope, toggleSubMenu);
-                scope.selectNav = ng.bind(scope, selectNav);
-                scope.selectMenu = ng.bind(scope, selectMenu);
-                scope.isSelected = ng.bind(scope, isSelected);
-                scope.setSideMenu = ng.bind(scope, setSideMenu, elem);
-                scope.logout = ng.bind(scope, logout);
-                scope.changePwd = ng.bind(scope, changePwd);
-                scope.addCommonMenu = ng.bind(scope, addCommonMenu, $http, $location, $modal, flash);
+                }
+                return linkFn(adminuiFrameProvider, $rootScope, $location, $timeout, $modal, $http, $route, $parse, SYS, flash);
             }
         };
     };
-    var initNav = function(scope, $http, $route, $sce, SYS, navigation, currentPath) {
+    var linkFn = function(adminuiFrameProvider, $rootScope, $location, $timeout, $modal, $http, $route, $parse, SYS, flash) {
+        return function(scope, elem, attrs) {
+            scope.isSubMenuShow = adminuiFrameProvider.defaultShowSubmenu;
+            scope.hasSideMenu = false;
+            scope.noSideMenu = true;
+            scope.hasSubNav = false;
+            scope.isMessageBoxShow = adminuiFrameProvider.showMessageBox;
+            scope.navigation = adminuiFrameProvider.navigation;
+            scope.messages = scope.messages ? scope.messages : [];
+            scope.commonMenus = [];
+            scope.accountHost = null;
+            scope.isInited = false;
+            scope.userInfo = ng.extend({
+                username: null,
+                accessToken: null,
+                avatar: "images/avatar.jpg",
+                logout: function() {
+                    console.log("logout");
+                },
+                changePwd: function() {
+                    console.log("change password");
+                }
+            }, scope.userInfo);
+            scope.$watch("hasSubNav", function(value, oldValue) {
+                if (value == true) {
+                    $("body").addClass("padding-submenu");
+                }
+            });
+            scope.$watch("userInfo", function(value) {
+                if (scope.isInited && value.accessToken !== null) {
+                    fetchCommonMenus($http, scope);
+                }
+            }, true);
+            initNav(scope, $http, $route, SYS, adminuiFrameProvider.navigation, $location.path());
+            $rootScope.$on("$routeChangeStart", function() {
+                if (scope.isInited) {
+                    selectPath(scope, $location.path());
+                }
+            });
+            $rootScope.$on("$routeChangeSuccess", function() {
+                if (scope.isInited) {
+                    parseNavUrl(scope.navigation, $route);
+                }
+            });
+            $rootScope.$on("$routeChangeError", function() {
+                selectPath(scope, "/_default_");
+            });
+            $rootScope.$on("selectPath", function(evt, path) {
+                selectPath(scope, path);
+            });
+            scope.select = ng.bind(scope, select, $timeout, elem);
+            scope.toggleSubMenu = ng.bind(scope, toggleSubMenu);
+            scope.selectNav = ng.bind(scope, selectNav);
+            scope.selectMenu = ng.bind(scope, selectMenu);
+            scope.isSelected = ng.bind(scope, isSelected);
+            scope.setSideMenu = ng.bind(scope, setSideMenu, elem);
+            scope.logout = ng.bind(scope, logout);
+            scope.changePwd = ng.bind(scope, changePwd);
+            scope.addCommonMenu = ng.bind(scope, addCommonMenu, $http, $location, $modal, flash);
+        };
+    };
+    var initNav = function(scope, $http, $route, SYS, navigation, currentPath) {
         navigation.children.push({
             name: "default",
             show: false,
             url: "/_default_",
             children: null
         });
-        scope.pluginEl = initPlugin($sce, scope);
         $http.jsonp(SYS.host + "/api/systems?callback=JSON_CALLBACK").then(function(res) {
             var systemMatched = false;
             ng.forEach(res.data, function(nav) {
@@ -4606,12 +4681,6 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "angular-echarts"
             selectPath(scope, currentPath);
             fetchCommonMenus($http, scope);
         });
-    };
-    var initPlugin = function($sce, scope) {
-        var plugin = scope.plugin;
-        if (plugin.hasOwnProperty("template")) {
-            return $sce.trustAsHtml(plugin.template);
-        }
     };
     var hasSameMenu = function($scope, url) {
         var hasSameMenu = false;
@@ -4892,7 +4961,7 @@ angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "angular-echarts"
         $modalInstance.dismiss("cancel");
     };
     ng.module("ntd.directives").provider("adminuiFrame", [ AdminuiFrameProvider ]);
-    ng.module("ntd.directives").directive("adminuiFrame", [ "adminuiFrame", "$rootScope", "$location", "$timeout", "$modal", "$http", "$route", "$parse", "$sce", "SYS", "flash", AdminuiFrame ]);
+    ng.module("ntd.directives").directive("adminuiFrame", [ "adminuiFrame", "$rootScope", "$location", "$timeout", "$modal", "$http", "$route", "$parse", "$compile", "SYS", "flash", AdminuiFrame ]);
     ng.module("ntd.directives").controller("CommonMenuDialogCtrl", [ "$scope", "$modalInstance", "url", "name", CommonMenuDialogCtrl ]);
 })(angular);
 
@@ -23143,7 +23212,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
 
 angular.module("ntd.directives").run([ "$templateCache", function($templateCache) {
     "use strict";
-    $templateCache.put("templates/adminui-frame.html", '<nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container-fluid><div class=navbar-header><button class=navbar-toggle type=button data-toggle=collapse data-target=.bs-navbar-collapse><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href="../"></a></div><div class="collapse navbar-collapse bs-navbar-collapse"><ul class="nav navbar-nav main-nav"><li data-ng-repeat="nav in navigation" data-ng-class="{true: \'active\', false: \'\'}[nav.children != null]"><a data-ng-href={{nav.url}} data-ng-show=nav.show>{{nav.name}}</a><ul class=sub-navbar data-ng-if="nav.children != null" data-ng-class="{false: \'no-parent\'}[nav.show]"><li data-ng-repeat="subnav in nav.children" data-ng-show=subnav.show data-ng-class="{true: \'active\', false: \'\'}[isSelected(subnav)]"><a data-ng-click="selectNav(subnav, $event)" data-ng-href={{subnav.url}}>{{subnav.name}}</a></li><li class=nav-plugin data-ng-show="pluginEl !== null" data-ng-bind-html=pluginEl></li></ul></li></ul><ul class="nav navbar-nav navbar-right"><li class=dropdown><a data-ng-show=isMessageBoxShow class=dropdown-toggle href=# data-toggle=dropdown><span class=badge data-ng-show="messages.length > 0">{{messages.length}}</span> <i class="glyphicon glyphicon-inbox"></i></a><ul data-ng-show=isMessageBoxShow class=dropdown-menu><li data-ng-repeat="message in messages"><a href=#>{{message.title}}</a></li><li class=divider></li><li><a href=#><i class="glyphicon glyphicon-chevron-right pull-right"></i> 查看全部</a></li></ul></li><li data-ng-hide=noSideMenu data-ng-class="{true: \'active\', false: \'\'}[isSubMenuShow]"><a href=javascript:; data-ng-click=toggleSubMenu($event)><i class="glyphicon glyphicon-list"></i></a></li><li data-ng-show="userInfo.username != null" class=dropdown><a class=dropdown-toggle href=# data-toggle=dropdown>您好，{{userInfo.username}}<b class=caret></b></a><ul class=dropdown-menu><li class=user-information><img data-ng-src={{userInfo.avatar}} alt=user_avatar><div class="user-content muted">{{userInfo.username}}</div></li><li class=divider></li><li><a data-ng-click=changePwd($event) href=#><i class="glyphicon glyphicon-lock"></i> 修改密码</a></li><li><a data-ng-click=logout($event) href=#><i class="glyphicon glyphicon-off"></i> 退出</a></li></ul></li><li class=dropdown data-ng-show="userInfo.username != null && accountHost != null "><a class=dropdown-toggle href=# data-toggle=dropdown>常用 <b class=caret></b></a><ul class=dropdown-menu><li data-ng-repeat="menu in commonMenus"><a data-ng-href={{menu.link}}>{{menu.name}}</a></li><li data-ng-show="commonMenus.length <= 0" class=none-info>暂无常用菜单</li><li class=divider></li><li><a href=javascript:; data-ng-click=addCommonMenu()>添加为常用</a></li><li><a data-ng-href={{accountHost}}/#/menus>管理常用菜单</a></li></ul></li></ul></div></div><nav class=sub-navbar-back data-ng-show=hasSubNav></nav></nav><div class=container-fluid><div class="col-md-2 affix side-nav-container" data-ng-show=hasSideMenu><div data-ng-show=isSubMenuShow><div class=side-nav><h4>{{sideMenuName}}</h4><ul class=side-nav-menu><li data-ng-repeat="sidemenu in menu" data-ng-class="{true: \'active\', false: \'\'}[isSelected(sidemenu)]"><a data-ng-href={{sidemenu.url}} data-ng-class="{true: \'has-sub-menu\', false: \'\'}[sidemenu.children != null]" data-ng-click="selectMenu(sidemenu, $event)"><i class="pull-right glyphicon glyphicon-chevron-down" data-ng-show="sidemenu.children != null"></i>{{sidemenu.name}}</a><ul data-ng-if="sidemenu.children != null"><li data-ng-repeat="subsidemenu in sidemenu.children" data-ng-class="{true: \'active\', false: \'\'}[isSelected(subsidemenu)]"><a data-ng-click="selectMenu(subsidemenu, $event)" data-ng-href={{subsidemenu.url}}>{{subsidemenu.name}}</a></li></ul></li></ul></div></div></div><div class="row fix-row"><div data-ng-class="{true: \'col-md-offset-2\', false: \'\'}[isSubMenuShow && hasSideMenu]" class="message-container notice"></div><div data-ng-class="{true: \'col-md-10 col-md-offset-2\', false: \'col-md-12\'}[isSubMenuShow && hasSideMenu]" data-ng-transclude=""></div><div data-adminui-load-backdrop="" class=load-backdrop style=display:none><div class=splash><img class=loading src=images/ajax-loader.gif alt=加载中></div></div></div></div>');
+    $templateCache.put("templates/adminui-frame.html", '<nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container-fluid><div class=navbar-header><button class=navbar-toggle type=button data-toggle=collapse data-target=.bs-navbar-collapse><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href="../"></a></div><div class="collapse navbar-collapse bs-navbar-collapse"><ul class="nav navbar-nav main-nav"><li data-ng-repeat="nav in navigation" data-ng-class="{true: \'active\', false: \'\'}[nav.children != null]"><a data-ng-href={{nav.url}} data-ng-show=nav.show>{{nav.name}}</a><ul class=sub-navbar data-ng-if="nav.children != null" data-ng-class="{false: \'no-parent\'}[nav.show]"><li data-ng-repeat="subnav in nav.children" data-ng-show=subnav.show data-ng-class="{true: \'active\', false: \'\'}[isSelected(subnav)]"><a data-ng-click="selectNav(subnav, $event)" data-ng-href={{subnav.url}}>{{subnav.name}}</a></li></ul></li></ul><ul class="nav navbar-nav navbar-right"><li class=dropdown><a data-ng-show=isMessageBoxShow class=dropdown-toggle href=# data-toggle=dropdown><span class=badge data-ng-show="messages.length > 0">{{messages.length}}</span> <i class="glyphicon glyphicon-inbox"></i></a><ul data-ng-show=isMessageBoxShow class=dropdown-menu><li data-ng-repeat="message in messages"><a href=#>{{message.title}}</a></li><li class=divider></li><li><a href=#><i class="glyphicon glyphicon-chevron-right pull-right"></i> 查看全部</a></li></ul></li><li data-ng-hide=noSideMenu data-ng-class="{true: \'active\', false: \'\'}[isSubMenuShow]"><a href=javascript:; data-ng-click=toggleSubMenu($event)><i class="glyphicon glyphicon-list"></i></a></li><li data-ng-show="userInfo.username != null" class=dropdown><a class=dropdown-toggle href=# data-toggle=dropdown>您好，{{userInfo.username}}<b class=caret></b></a><ul class=dropdown-menu><li class=user-information><img data-ng-src={{userInfo.avatar}} alt=user_avatar><div class="user-content muted">{{userInfo.username}}</div></li><li class=divider></li><li><a data-ng-click=changePwd($event) href=#><i class="glyphicon glyphicon-lock"></i> 修改密码</a></li><li><a data-ng-click=logout($event) href=#><i class="glyphicon glyphicon-off"></i> 退出</a></li></ul></li><li class=dropdown data-ng-show="userInfo.username != null && accountHost != null "><a class=dropdown-toggle href=# data-toggle=dropdown>常用 <b class=caret></b></a><ul class=dropdown-menu><li data-ng-repeat="menu in commonMenus"><a data-ng-href={{menu.link}}>{{menu.name}}</a></li><li data-ng-show="commonMenus.length <= 0" class=none-info>暂无常用菜单</li><li class=divider></li><li><a href=javascript:; data-ng-click=addCommonMenu()>添加为常用</a></li><li><a data-ng-href={{accountHost}}/#/menus>管理常用菜单</a></li></ul></li></ul></div></div><nav class=sub-navbar-back data-ng-show=hasSubNav></nav></nav><div class=container-fluid><div class="col-md-2 affix side-nav-container" data-ng-show=hasSideMenu><div data-ng-show=isSubMenuShow><div class=side-nav><h4>{{sideMenuName}}</h4><ul class=side-nav-menu><li data-ng-repeat="sidemenu in menu" data-ng-class="{true: \'active\', false: \'\'}[isSelected(sidemenu)]"><a data-ng-href={{sidemenu.url}} data-ng-class="{true: \'has-sub-menu\', false: \'\'}[sidemenu.children != null]" data-ng-click="selectMenu(sidemenu, $event)"><i class="pull-right glyphicon glyphicon-chevron-down" data-ng-show="sidemenu.children != null"></i>{{sidemenu.name}}</a><ul data-ng-if="sidemenu.children != null"><li data-ng-repeat="subsidemenu in sidemenu.children" data-ng-class="{true: \'active\', false: \'\'}[isSelected(subsidemenu)]"><a data-ng-click="selectMenu(subsidemenu, $event)" data-ng-href={{subsidemenu.url}}>{{subsidemenu.name}}</a></li></ul></li></ul></div></div></div><div class="row fix-row"><div data-ng-class="{true: \'col-md-offset-2\', false: \'\'}[isSubMenuShow && hasSideMenu]" class="message-container notice"></div><div data-ng-class="{true: \'col-md-10 col-md-offset-2\', false: \'col-md-12\'}[isSubMenuShow && hasSideMenu]" data-ng-transclude=""></div><div data-adminui-load-backdrop="" class=load-backdrop style=display:none><div class=splash><img class=loading src=images/ajax-loader.gif alt=加载中></div></div></div></div>');
     $templateCache.put("templates/adminui-list.html", '<ul class=adminui-list-container data-ng-class="{true: \'disabled\'}[disabled]"><li data-ng-repeat="item in listItems" data-ng-class="{true: \'selected\'}[item.selected]">{{item.text}}</li></ul>');
     $templateCache.put("templates/adminui-switcher.html", "<div class=adminui-switcher-container><div class=adminui-switcher-inner><div class=on-label data-ng-bind-html=onLabel></div><div class=divider></div><div class=off-label data-ng-bind-html=offLabel></div><div class=ng-hide><input type=checkbox data-ng-model=model></div></div></div>");
     $templateCache.put("templates/adminui-time-line.html", '<div><section class=content><div class=row><div class=col-md-12><ul class=timeline><li class=time-label data-ng-repeat="timeLineData in timeLineDemoData"><span class=bg-red>{{timeLineData.currentTime}}</span> <ul data-ng-repeat="timeLine in timeLineData.currentObj"><i class=fa data-ng-show=timeLine.user.avator><img data-ng-src={{timeLine.user.avator}} alt=user_avatar></i> <i class=small-fa data-ng-show=!timeLine.user.avator></i><div class=feed_arrow><div class=arrow_i></div><div class=arrow_bg></div><span class=arrow_dot></span> <span class="transition_l arrow_line"></span></div><div class=timeline-item><span class=time>{{timeLine.time | date:\'yyyy-MM-dd HH:mm:ss\'}}</span><h3 class=timeline-header>{{timeLine.user.name}}</h3><div data-ng-if="timeLine.template || timeLine.templateUrl" class=timeline-body><div data-time-line-template="" data-ng-model=timeLine></div></div><div data-ng-if="!timeLine.template && !timeLine.templateUrl" class=timeline-body>{{timeLine.content}}</div></div></ul></li><li class=time-label><i class="glyphicon glyphicon-time"></i></li></ul></div></div></section></div>');
