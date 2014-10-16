@@ -4357,33 +4357,6 @@ angular.module("ntd.config", []).value("$ntdConfig", {});
 
 var directiveApp = angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "angular-echarts", "ng.shims.placeholder" ]);
 
-var adminuiHttpInterceptor = function($httpProvider) {
-    $httpProvider.interceptors.push(function() {
-        return {
-            request: function(config) {
-                if (config.method == "GET" && !config.hasOwnProperty("cache")) {
-                    if (!config.hasOwnProperty("params")) {
-                        config.params = {};
-                    }
-                    var date = new Date();
-                    config.params["_hash_"] = date.getTime().toString();
-                }
-                return config;
-            }
-        };
-    });
-};
-
-var httpInterceptorFn = function(adminuiFrameProvider) {
-    if (adminuiFrameProvider.hasOwnProperty("usedModules") && angular.isArray(adminuiFrameProvider.usedModules)) {
-        angular.forEach(adminuiFrameProvider.usedModules, function(module) {
-            module.config([ "$httpProvider", adminuiHttpInterceptor ]);
-        });
-    }
-};
-
-directiveApp.config([ "adminuiFrameProvider", httpInterceptorFn ]);
-
 (function(ng, app) {
     "use strict";
     var ModalDecorator = function($provide) {
@@ -5040,6 +5013,7 @@ directiveApp.config([ "adminuiFrameProvider", httpInterceptorFn ]);
     };
     var AdminuiFrameProvider = function() {
         this.config = {
+            usedModules: [],
             defaultShowSubmenu: false,
             showMessageBox: false
         };
@@ -5071,6 +5045,30 @@ directiveApp.config([ "adminuiFrameProvider", httpInterceptorFn ]);
     ng.module("ntd.directives").provider("adminuiFrame", [ AdminuiFrameProvider ]);
     ng.module("ntd.directives").directive("adminuiFrame", [ "adminuiFrame", "$rootScope", "$location", "$timeout", "$modal", "$http", "$route", "$parse", "$compile", "SYS", "flash", AdminuiFrame ]);
     ng.module("ntd.directives").controller("CommonMenuDialogCtrl", [ "$scope", "$modalInstance", "url", "name", CommonMenuDialogCtrl ]);
+    var adminuiHttpInterceptor = function($httpProvider) {
+        $httpProvider.interceptors.push(function() {
+            return {
+                request: function(config) {
+                    if (config.method == "GET" && !config.hasOwnProperty("cache")) {
+                        if (!config.hasOwnProperty("params")) {
+                            config.params = {};
+                        }
+                        var date = new Date();
+                        config.params["_hash_"] = date.getTime().toString();
+                    }
+                    return config;
+                }
+            };
+        });
+    };
+    var httpInterceptorFn = function(adminuiFrameProvider) {
+        if (adminuiFrameProvider.hasOwnProperty("usedModules") && ng.isArray(adminuiFrameProvider.usedModules)) {
+            ng.forEach(adminuiFrameProvider.usedModules, function(module) {
+                module.config([ "$httpProvider", adminuiHttpInterceptor ]);
+            });
+        }
+    };
+    ng.module("ntd.directives").config([ "adminuiFrameProvider", httpInterceptorFn ]);
 })(angular);
 
 (function(ng) {
