@@ -4353,12 +4353,12 @@
 
 "use strict";
 
-window.adminConfigApp = angular.module("ntd.config", []).value("$ntdConfig", {});
+angular.module("ntd.config", []).value("$ntdConfig", {});
 
-angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "angular-echarts", "ng.shims.placeholder" ]);
+var directiveApp = angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "angular-echarts", "ng.shims.placeholder" ]);
 
-var httpInterceptorFn = function($httpProvider, $provide) {
-    $provide.factory("AdminuiHttpInterceptor", function() {
+var adminuiHttpInterceptor = function($httpProvider) {
+    $httpProvider.interceptors.push(function() {
         return {
             request: function(config) {
                 if (config.method == "GET" && !config.hasOwnProperty("cache")) {
@@ -4374,7 +4374,15 @@ var httpInterceptorFn = function($httpProvider, $provide) {
     });
 };
 
-window.adminConfigApp.config([ "$httpProvider", "$provide", httpInterceptorFn ]);
+var httpInterceptorFn = function(adminuiFrameProvider) {
+    if (adminuiFrameProvider.hasOwnProperty("usedModules") && angular.isArray(adminuiFrameProvider.usedModules)) {
+        angular.forEach(adminuiFrameProvider.usedModules, function(module) {
+            module.config([ "$httpProvider", adminuiHttpInterceptor ]);
+        });
+    }
+};
+
+directiveApp.config([ "adminuiFrameProvider", httpInterceptorFn ]);
 
 (function(ng, app) {
     "use strict";
