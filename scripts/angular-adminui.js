@@ -4355,7 +4355,28 @@
 
 angular.module("ntd.config", []).value("$ntdConfig", {});
 
-var directiveApp = angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "angular-echarts", "ng.shims.placeholder" ]);
+var ntdDirective = angular.module("ntd.directives", [ "ntd.config", "ngSanitize", "ngAnimate", "angular-echarts", "ng.shims.placeholder" ]);
+
+ntdDirective.run([ "$rootScope", "$animate", function($rootScope, $animate) {
+    $rootScope.$on("$routeChangeStart", function() {
+        $animate.enabled(false);
+    });
+    $rootScope.$on("$routeChangeSuccess", function() {
+        $animate.enabled(true);
+    });
+} ]);
+
+(function(ng) {
+    "use strict";
+    var AlertAnimate = function() {
+        return {
+            leave: function(elem, done) {
+                elem.slideUp("slow", done);
+            }
+        };
+    };
+    ng.module("ntd.directives").animation(".alert-animation", [ AlertAnimate ]);
+})(angular);
 
 (function(ng, app) {
     "use strict";
@@ -4622,12 +4643,16 @@ var directiveApp = angular.module("ntd.directives", [ "ntd.config", "ngSanitize"
                 return $delegate;
             }
             var oldLinkFn = ng.copy(directive.link);
+            var linkFn;
             delete directive.link;
             directive.compile = function(elem) {
                 var isInput = elem.is("input") && !elem.is('input[type="file"]') && !elem.is('input[type="radio"]') && !elem.is('input[type="checkbox"]') && !elem.is('input[type="submit"]') && !elem.is('input[type="button"]');
                 var isTextarea = elem.is("textarea");
                 if (isInput || isTextarea) {
-                    return oldLinkFn;
+                    var oldLinkFnStr = oldLinkFn.toString();
+                    oldLinkFnStr = oldLinkFnStr.replace("setValueWithModel(orig_val);", "setValueWithModel(orig_val);if (ngModel) {ngModel.$setPristine();}");
+                    eval("linkFn = " + oldLinkFnStr);
+                    return linkFn;
                 }
             };
             return $delegate;
@@ -4636,6 +4661,33 @@ var directiveApp = angular.module("ntd.directives", [ "ntd.config", "ngSanitize"
     };
     app.config([ "$provide", placeholderDecorator ]);
 })(angular, angular.module("ng.shims.placeholder"));
+
+(function(ng, app) {
+    "use strict";
+    var ngFormDecorator = function($provide) {
+        var ngFormDirective = function($delegate, $timeout) {
+            var directive = $delegate[0];
+            if (!directive.hasOwnProperty("compile")) {
+                return $delegate;
+            }
+            var oldCompileFn = ng.copy(directive.compile);
+            delete directive.compile;
+            directive.compile = function(element) {
+                $timeout(function() {
+                    var requiredDom = angular.element(element.find(":input[required]:enabled,div[required]"));
+                    ng.forEach(requiredDom, function(value) {
+                        angular.element("[for = '" + angular.element(value).attr("id") + "']").addClass("required-label");
+                    });
+                }, 100);
+                return oldCompileFn.apply(directive, arguments);
+            };
+            return $delegate;
+        };
+        $provide.decorator("ngFormDirective", [ "$delegate", "$timeout", ngFormDirective ]);
+        $provide.decorator("formDirective", [ "$delegate", "$timeout", ngFormDirective ]);
+    };
+    app.config([ "$provide", ngFormDecorator ]);
+})(angular, angular.module("ng"));
 
 (function(ng) {
     "use strict";
@@ -6068,73 +6120,110 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
     angular.module("ntd.directives").directive("fieldError", [ fieldErrorDirective ]);
 })();
 
-(function() {
+(function(ng) {
     "use strict";
-    var msgObj = {
-        info: "alert-info",
-        error: "alert-danger",
-        success: "alert-success",
-        warning: "alert-warning"
-    };
-    var alertModel = function(message) {
-        return '<div class="alert ' + msgObj[message.state] + '">' + "<strong>" + message.info + "</strong>" + '<button type="button" class="close">×</button>' + "</div>";
-    };
-    function noticeDirective($rootScope, $location, $timeout) {
+    function noticeDirective($rootScope, $location, $timeout, noticeService) {
         return {
             restrict: "EAC",
             replace: false,
             transclude: false,
-            link: function(scope, element, attr) {
-                var html_fragement = "";
-                var flag = false;
-                var buildHtml = function(msg) {
-                    if (angular.isArray(msg)) {
-                        angular.forEach(msg, function(item) {
-                            html_fragement += alertModel(item);
-                        });
-                    } else {
-                        html_fragement += alertModel(msg);
-                    }
-                };
-                var appendAndAddCloseListener = function() {
-                    element.append(html_fragement);
-                    element.next().css("padding-top", element.height());
-                    $(".close", element).bind("click", function() {
-                        $(this).parent(".alert").fadeOut(function() {
-                            $(this).remove();
-                            element.next().css("padding-top", element.height());
-                        });
-                    });
-                    html_fragement = "";
-                };
+            templateUrl: "templates/adminui-notice.html",
+            link: function(scope, elem) {
+                var tempMessage;
                 $rootScope.$on("event:notification", function(event, message) {
-                    flag = true;
-                    buildHtml(message);
-                    appendAndAddCloseListener();
                     if (message.redirect_url) {
                         $timeout(function() {
                             $location.path(message.redirect_url);
+                            tempMessage = message;
                         }, 1500);
+                    } else {
+                        noticeService.addAlert(message);
                     }
                 });
                 $rootScope.$on("event:flashMessageEvent", function(event, msg) {
-                    flag = false;
-                    buildHtml(msg);
+                    tempMessage = msg;
+                });
+                $rootScope.$on("$routeChangeStart", function() {
+                    $rootScope.alerts = [];
                 });
                 $rootScope.$on("$routeChangeSuccess", function() {
-                    if (flag) {
-                        element.empty();
-                        element.next().css("padding-top", 0);
-                    } else {
-                        element.empty();
-                        appendAndAddCloseListener();
+                    if (tempMessage) {
+                        noticeService.addAlert(ng.copy(tempMessage));
                     }
+                    tempMessage = null;
                 });
+                var debounce = function(func, wait, immediate) {
+                    var timeout;
+                    return function() {
+                        var context = this, args = arguments;
+                        var later = function() {
+                            timeout = null;
+                            if (!immediate) func.apply(context, args);
+                        };
+                        var callNow = immediate && !timeout;
+                        clearTimeout(timeout);
+                        timeout = setTimeout(later, wait);
+                        if (callNow) func.apply(context, args);
+                    };
+                };
+                if (!$(document.body).scrollTop()) {
+                    elem.css({
+                        position: "static",
+                        "padding-left": "15px",
+                        "padding-right": "15px"
+                    });
+                    if (!$(".message-supply").length) {
+                        elem.after("<div class='message-supply'>");
+                    }
+                    elem.next().css("position", "fixed");
+                    elem.next().css("min-height", elem.height());
+                } else {
+                    elem.css({
+                        position: "fixed",
+                        "padding-left": "0",
+                        "padding-right": "0"
+                    });
+                    if (!$(".message-supply").length) {
+                        elem.after("<div class='message-supply'>");
+                    }
+                    elem.next().css({
+                        position: "static",
+                        "min-height": 0
+                    });
+                }
+                $(window).scroll(debounce(function() {
+                    if (!$(document.body).scrollTop()) {
+                        elem.css({
+                            position: "static",
+                            "padding-left": "15px",
+                            "padding-right": "15px"
+                        });
+                        if (!$(".message-supply").length) {
+                            elem.after("<div class='message-supply'>");
+                        }
+                        elem.next().css("min-height", elem.height());
+                        elem.next().css("position", "fixed");
+                    } else {
+                        elem.css({
+                            position: "fixed",
+                            "padding-left": "0",
+                            "padding-right": "0"
+                        });
+                        var messageSupply = $(".message-supply");
+                        if (!messageSupply.length) {
+                            elem.after("<div class='message-supply'>");
+                        }
+                        elem.next().css("position", "static");
+                        elem.next().animate({
+                            "min-height": 0
+                        });
+                    }
+                }, 10));
             }
         };
     }
-    angular.module("ntd.directives").directive("notice", [ "$rootScope", "$location", "$timeout", noticeDirective ]);
-})();
+    ng.module("ntd.directives").directive("notice", [ "$rootScope", "$location", "$timeout", "noticeService", noticeDirective ]);
+})(angular);
 
 (function() {
     "use strict";
@@ -6175,6 +6264,52 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
     }
     angular.module("ntd.directives").directive("flashAlert", [ "$rootScope", "$timeout", flashAlertDirective ]);
 })();
+
+(function(ng) {
+    "use strict";
+    var noticeService = function($rootScope, $timeout, $sce) {
+        var exports;
+        $rootScope.alerts = [];
+        $rootScope.msgObj = {
+            info: "alert-info",
+            error: "alert-danger",
+            success: "alert-success",
+            warning: "alert-warning"
+        };
+        function _factory(alertOptions) {
+            var alert = {
+                className: $rootScope.msgObj[alertOptions.state],
+                msg: $sce.trustAsHtml(alertOptions.info),
+                close: function() {
+                    return exports.closeAlert(this);
+                }
+            };
+            $rootScope.alerts.push(alert);
+            return alert;
+        }
+        function _addAlert(alertOptions) {
+            var alert = this.factory(alertOptions), that = this;
+            $timeout(function() {
+                that.closeAlert(alert);
+            }, 5e3);
+        }
+        function _closeAlert(alert) {
+            if ($rootScope.alerts.indexOf(alert) === -1) return false;
+            return this.closeAlertByIndex($rootScope.alerts.indexOf(alert));
+        }
+        function _closeAlertByIndex(index) {
+            return $rootScope.alerts.splice(index, 1);
+        }
+        exports = {
+            factory: _factory,
+            addAlert: _addAlert,
+            closeAlert: _closeAlert,
+            closeAlertByIndex: _closeAlertByIndex
+        };
+        return exports;
+    };
+    ng.module("ntd.directives").factory("noticeService", [ "$rootScope", "$timeout", "$sce", noticeService ]);
+})(angular);
 
 (function(ng) {
     var CheckboxGroup = function() {
@@ -23317,6 +23452,7 @@ angular.module("ntd.directives").run([ "$templateCache", function($templateCache
     "use strict";
     $templateCache.put("templates/adminui-frame.html", '<nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container-fluid><div class=navbar-header><button class=navbar-toggle type=button data-toggle=collapse data-target=.bs-navbar-collapse><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href="../"></a></div><div class="collapse navbar-collapse bs-navbar-collapse"><ul class="nav navbar-nav main-nav"><li data-ng-repeat="nav in navigation" data-ng-class="{true: \'active\', false: \'\'}[nav.children != null]"><a data-ng-href={{nav.url}} data-ng-show=nav.show>{{nav.name}}</a><ul class=sub-navbar data-ng-if="nav.children != null" data-ng-class="{false: \'no-parent\'}[nav.show]"><li data-ng-repeat="subnav in nav.children" data-ng-show=subnav.show data-ng-class="{true: \'active\', false: \'\'}[isSelected(subnav)]"><a data-ng-click="selectNav(subnav, $event)" data-ng-href={{subnav.url}}>{{subnav.name}}</a></li></ul></li></ul><ul class="nav navbar-nav navbar-right"><li class=dropdown><a data-ng-show=isMessageBoxShow class=dropdown-toggle href=# data-toggle=dropdown><span class=badge data-ng-show="messages.length > 0">{{messages.length}}</span> <i class="glyphicon glyphicon-inbox"></i></a><ul data-ng-show=isMessageBoxShow class=dropdown-menu><li data-ng-repeat="message in messages"><a href=#>{{message.title}}</a></li><li class=divider></li><li><a href=#><i class="glyphicon glyphicon-chevron-right pull-right"></i> 查看全部</a></li></ul></li><li data-ng-hide=noSideMenu data-ng-class="{true: \'active\', false: \'\'}[isSubMenuShow]"><a href=javascript:; data-ng-click=toggleSubMenu($event)><i class="glyphicon glyphicon-list"></i></a></li><li data-ng-show="userInfo.username != null" class=dropdown><a class=dropdown-toggle href=# data-toggle=dropdown>您好，{{userInfo.username}}<b class=caret></b></a><ul class=dropdown-menu><li class=user-information><img data-ng-src={{userInfo.avatar}} alt=user_avatar><div class="user-content muted">{{userInfo.username}}</div></li><li class=divider></li><li><a data-ng-click=changePwd($event) href=#><i class="glyphicon glyphicon-lock"></i> 修改密码</a></li><li><a data-ng-click=logout($event) href=#><i class="glyphicon glyphicon-off"></i> 退出</a></li></ul></li><li class=dropdown data-ng-show="userInfo.username != null && accountHost != null "><a class=dropdown-toggle href=# data-toggle=dropdown>常用 <b class=caret></b></a><ul class=dropdown-menu><li data-ng-repeat="menu in commonMenus"><a data-ng-href={{menu.link}}>{{menu.name}}</a></li><li data-ng-show="commonMenus.length <= 0" class=none-info>暂无常用菜单</li><li class=divider></li><li><a href=javascript:; data-ng-click=addCommonMenu()>添加为常用</a></li><li><a data-ng-href={{accountHost}}/#/menus>管理常用菜单</a></li></ul></li></ul></div></div><nav class=sub-navbar-back data-ng-show=hasSubNav></nav></nav><div class=container-fluid><div class="col-md-2 affix side-nav-container" data-ng-show=hasSideMenu><div data-ng-show=isSubMenuShow><div class=side-nav><h4>{{sideMenuName}}</h4><ul class=side-nav-menu><li data-ng-repeat="sidemenu in menu" data-ng-class="{true: \'active\', false: \'\'}[isSelected(sidemenu)]"><a data-ng-href={{sidemenu.url}} data-ng-class="{true: \'has-sub-menu\', false: \'\'}[sidemenu.children != null]" data-ng-click="selectMenu(sidemenu, $event)"><i class="pull-right glyphicon glyphicon-chevron-down" data-ng-show="sidemenu.children != null"></i>{{sidemenu.name}}</a><ul data-ng-if="sidemenu.children != null"><li data-ng-repeat="subsidemenu in sidemenu.children" data-ng-class="{true: \'active\', false: \'\'}[isSelected(subsidemenu)]"><a data-ng-click="selectMenu(subsidemenu, $event)" data-ng-href={{subsidemenu.url}}>{{subsidemenu.name}}</a></li></ul></li></ul></div></div></div><div class="row fix-row"><div data-ng-class="{true: \'col-md-offset-2\', false: \'\'}[isSubMenuShow && hasSideMenu]" class="message-container notice"></div><div data-ng-class="{true: \'col-md-10 col-md-offset-2\', false: \'col-md-12\'}[isSubMenuShow && hasSideMenu]" data-ng-transclude=""></div><div data-adminui-load-backdrop="" class=load-backdrop style=display:none><div class=splash><img class=loading src=images/ajax-loader.gif alt=加载中></div></div></div></div>');
     $templateCache.put("templates/adminui-list.html", '<ul class=adminui-list-container data-ng-class="{true: \'disabled\'}[disabled]"><li data-ng-repeat="item in listItems" data-ng-class="{true: \'selected\'}[item.selected]">{{item.text}}</li></ul>');
+    $templateCache.put("templates/adminui-notice.html", '<div data-ng-repeat="alert in $root.alerts" class="alert alert-animation" data-ng-class=[alert.className]><strong>{{ alert.msg }}</strong> <button type=button class=close data-ng-click=alert.close()>×</button></div>');
     $templateCache.put("templates/adminui-switcher.html", "<div class=adminui-switcher-container><div class=adminui-switcher-inner><div class=on-label data-ng-bind-html=onLabel></div><div class=divider></div><div class=off-label data-ng-bind-html=offLabel></div><div class=ng-hide><input type=checkbox data-ng-model=model></div></div></div>");
     $templateCache.put("templates/adminui-time-line.html", '<div><section class=content><div class=row><div class=col-md-12><ul class=timeline><li class=time-label data-ng-repeat="timeLineData in timeLineDemoData"><span class=bg-red>{{timeLineData.currentTime}}</span> <ul data-ng-repeat="timeLine in timeLineData.currentObj"><i class=fa data-ng-show=timeLine.user.avator><img data-ng-src={{timeLine.user.avator}} alt=user_avatar></i> <i class=small-fa data-ng-show=!timeLine.user.avator></i><div class=feed_arrow><div class=arrow_i></div><div class=arrow_bg></div><span class=arrow_dot></span> <span class="transition_l arrow_line"></span></div><div class=timeline-item><span class=time>{{timeLine.time | date:\'yyyy-MM-dd HH:mm:ss\'}}</span><h3 class=timeline-header>{{timeLine.user.name}}</h3><div data-ng-if="timeLine.template || timeLine.templateUrl" class=timeline-body><div data-time-line-template="" data-ng-model=timeLine></div></div><div data-ng-if="!timeLine.template && !timeLine.templateUrl" class=timeline-body>{{timeLine.content}}</div></div></ul></li><li class=time-label><i class="glyphicon glyphicon-time"></i></li></ul></div></div></section></div>');
     $templateCache.put("templates/checkbox-group.html", "<div class=\"dropdown dropdown-checkbox-group\"><label class=dropdown-toggle data-ng-show=dataSource.checkboxGroup.length data-toggle=dropdown><input type=checkbox data-ng-click=toggleCheckedAll() data-ng-class=\"{'part': 'part-checked'}[status]\" data-ng-checked=\"{'all': true, 'part': true, 'none': false}[status]\">{{dataSource.name}} <b class=caret></b></label><label class=dropdown-toggle data-ng-show=!dataSource.checkboxGroup.length data-toggle=dropdown><input type=checkbox disabled>{{dataSource.name}}</label><ul class=dropdown-menu data-ng-show=dataSource.checkboxGroup.length><li data-ng-repeat=\"checkbox in dataSource.checkboxGroup\"><label><input type=checkbox data-ng-model=checkbox.checked>{{checkbox.name}}</label></li></ul></div>");
