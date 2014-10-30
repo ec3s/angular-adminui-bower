@@ -4351,6 +4351,51 @@
     angular.module("ntd.services").factory("flashMessage", [ "$rootScope", flashMessageService ]);
 })();
 
+(function(Sonic) {
+    function sonicService() {
+        var width = $(window).width();
+        var Tween = {
+            Cubic: {
+                easeOut: function(t, b, c, d) {
+                    return c * ((t = t / d - 1) * t * t + 1) + b;
+                }
+            }
+        };
+        var getOffsetX = function(index, startX, width) {
+            var offset = (index - 3) * 10;
+            return Tween.Cubic.easeOut(startX - offset, 0 - offset, width / 2 - offset, width * .2);
+        };
+        var loader = {
+            width: width,
+            height: 5,
+            fillColor: "#1196EE",
+            trailLength: .01,
+            pointDistance: .01,
+            fps: 30,
+            step: function(point, index, frame) {
+                var ctx = this._;
+                ctx.fillText(0 | frame * this.fps, 1, 99);
+                ctx.beginPath();
+                for (var i = 4; i >= 0; i--) {
+                    var offset = getOffsetX(i, point.x, loader.width);
+                    ctx.moveTo(offset, point.y);
+                    ctx.rect(offset, point.y, 3, 3);
+                }
+                ctx.closePath();
+                ctx.fill();
+            },
+            path: [ [ "line", 0, 0, width, 0 ] ]
+        };
+        var sonic = new Sonic(loader);
+        return function(dom) {
+            dom.append(sonic.canvas);
+            sonic.play();
+            return sonic;
+        };
+    }
+    angular.module("ntd.services").factory("sonic", [ sonicService ]);
+})(Sonic);
+
 "use strict";
 
 angular.module("ntd.config", []).value("$ntdConfig", {});
@@ -4482,6 +4527,7 @@ ntdDirective.run([ "$rootScope", "$animate", function($rootScope, $animate) {
             };
             modalStack.setContent = function(modalInstance, scope, content) {
                 var opened = openedWindows.get(modalInstance);
+                if (!opened) return;
                 var contentDomEl = $compile(content)(scope);
                 opened.value.modalScope = scope;
                 $timeout(function() {
@@ -4518,6 +4564,7 @@ ntdDirective.run([ "$rootScope", "$animate", function($rootScope, $animate) {
                 if (modalWindow) {
                     modalWindow.deferred.resolve(result);
                     removeModalWindow(modalInstance);
+                    modalWindow.modalScope.$destroy();
                 }
             };
             modalStack.dismiss = function(modalInstance, reason) {
@@ -4525,6 +4572,7 @@ ntdDirective.run([ "$rootScope", "$animate", function($rootScope, $animate) {
                 if (modalWindow) {
                     modalWindow.deferred.reject(reason);
                     removeModalWindow(modalInstance);
+                    modalWindow.modalScope.$destroy();
                 }
             };
             modalStack.dismissAll = function(reason) {
@@ -4627,6 +4675,36 @@ ntdDirective.run([ "$rootScope", "$animate", function($rootScope, $animate) {
                 });
                 return modalInstance;
             };
+            $rootScope.$watch(function() {
+                var modalBody = $(".modal-body");
+                if (!modalBody.find(".add-body").length) {
+                    modalBody.wrapInner('<div class="add-body"></div>');
+                }
+                return modalBody.children().height();
+            }, function(value, oldValue) {
+                var modalBody = $(".modal-body");
+                var modalHeader = $(".modal-header");
+                var modalFooter = $(".modal-footer");
+                var modalContent = $(".modal-content");
+                if (value && value !== oldValue) {
+                    var contentHeight = $(window).height() - 30 - modalHeader.outerHeight(true) - modalFooter.outerHeight(true);
+                    if (modalBody.css("overflow-y") === "visible") {
+                        if (modalBody.outerHeight() >= contentHeight) {
+                            modalBody.css("overflow-y", "scroll");
+                            modalBody.css("height", contentHeight);
+                            $(".modal").css("overflow", "visible");
+                            modalContent.addClass("modal-scroll");
+                        }
+                    } else {
+                        if (modalBody.height() >= value) {
+                            modalBody.css("overflow-y", "visible");
+                            modalBody.css("height", "");
+                            $(".modal").css("overflow-y", "scroll");
+                            modalContent.removeClass("modal-scroll");
+                        }
+                    }
+                }
+            });
             return modalProvider;
         };
         $provide.decorator("$modal", [ "$delegate", "$injector", "$rootScope", "$q", "$http", "$templateCache", "$controller", "$modalStack", ModalProvider ]);
@@ -5101,9 +5179,29 @@ ntdDirective.run([ "$rootScope", "$animate", function($rootScope, $animate) {
     ng.module("ntd.directives").directive("adminuiFrame", [ "adminuiFrame", "$rootScope", "$location", "$timeout", "$modal", "$http", "$route", "$parse", "$compile", "SYS", "flash", AdminuiFrame ]);
     ng.module("ntd.directives").controller("CommonMenuDialogCtrl", [ "$scope", "$modalInstance", "url", "name", CommonMenuDialogCtrl ]);
     var adminuiHttpInterceptor = function($httpProvider) {
-        $httpProvider.interceptors.push(function() {
+        $httpProvider.interceptors.push([ "$rootScope", "$q", "sonic", function($rootScope, $q, sonic) {
+            var requestTime = 0;
+            var responseTime = 0;
+            var progressBar = null;
+            var time1 = null;
+            var time2 = null;
+            function destroy() {
+                progressBar.stop();
+                $(".process-bar").hide();
+                progressBar.frame = 0;
+                progressBar._.clearRect(0, 0, progressBar.fullWidth, progressBar.fullWidth);
+                progressBar = null;
+            }
             return {
                 request: function(config) {
+                    if ($rootScope.progressBar && !config.hasOwnProperty("cache")) {
+                        var progress = $(".process-bar");
+                        progress.show();
+                        if (!progressBar) {
+                            progressBar = sonic(progress);
+                            time1 = new Date().valueOf();
+                        }
+                    }
                     if (config.method == "GET" && !config.hasOwnProperty("cache")) {
                         if (!config.hasOwnProperty("params")) {
                             config.params = {};
@@ -5111,34 +5209,83 @@ ntdDirective.run([ "$rootScope", "$animate", function($rootScope, $animate) {
                         var date = new Date();
                         config.params["_hash_"] = date.getTime().toString();
                     }
+                    requestTime++;
                     return config;
+                },
+                response: function(response) {
+                    var deferred = $q.defer();
+                    var flag = false;
+                    responseTime++;
+                    if (responseTime === requestTime && !response.config.hasOwnProperty("cache")) {
+                        if (progressBar) {
+                            time2 = new Date().valueOf();
+                            if (time2 - time1 <= 1e3) {
+                                flag = true;
+                                setTimeout(function() {
+                                    destroy();
+                                    deferred.resolve(response);
+                                }, 1e3 - (time2 - time1));
+                            } else {
+                                destroy();
+                            }
+                        }
+                    }
+                    if (!flag) {
+                        deferred.resolve(response);
+                    }
+                    return deferred.promise;
+                },
+                responseError: function(response) {
+                    var deferred = $q.defer();
+                    responseTime++;
+                    var flag = false;
+                    if (responseTime === requestTime && !response.config.hasOwnProperty("cache")) {
+                        if (progressBar) {
+                            time2 = new Date().valueOf();
+                            if (time2 - time1 <= 1e3) {
+                                flag = true;
+                                setTimeout(function() {
+                                    destroy();
+                                    deferred.reject(response);
+                                }, 1e3 - (time2 - time1));
+                            } else {
+                                destroy();
+                            }
+                        }
+                    }
+                    if (!flag) {
+                        deferred.reject(response);
+                    }
+                    return deferred.promise;
                 }
             };
-        });
+        } ]);
     };
 })(angular);
 
 (function(ng) {
     "use strict";
-    var loadBackdrop = function($location, $timeout) {
+    var loadBackdrop = function($rootScope, $location, $timeout) {
         return {
             restrict: "A",
-            link: function(scope, elem, attr) {
+            link: function(scope, elem) {
                 scope.$watch(function() {
                     return $location.path();
                 }, function() {
                     elem.fadeTo(200, .7);
+                    $rootScope.progressBar = false;
                 });
                 scope.$on("$routeChangeSuccess", function() {
                     $timeout(function() {
                         elem.finish();
                         elem.fadeOut("normal");
+                        $rootScope.progressBar = true;
                     });
                 });
             }
         };
     };
-    ng.module("ntd.directives").directive("adminuiLoadBackdrop", [ "$location", "$timeout", loadBackdrop ]);
+    ng.module("ntd.directives").directive("adminuiLoadBackdrop", [ "$rootScope", "$location", "$timeout", loadBackdrop ]);
 })(angular);
 
 (function() {
@@ -6166,7 +6313,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                         if (callNow) func.apply(context, args);
                     };
                 };
-                if (!$(document.body).scrollTop()) {
+                if (!$(window).scrollTop()) {
                     elem.css({
                         position: "static",
                         "padding-left": "15px",
@@ -6192,7 +6339,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     });
                 }
                 $(window).scroll(debounce(function() {
-                    if (!$(document.body).scrollTop()) {
+                    if (!$(window).scrollTop()) {
                         elem.css({
                             position: "static",
                             "padding-left": "15px",
@@ -23450,7 +23597,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
 
 angular.module("ntd.directives").run([ "$templateCache", function($templateCache) {
     "use strict";
-    $templateCache.put("templates/adminui-frame.html", '<nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=container-fluid><div class=navbar-header><button class=navbar-toggle type=button data-toggle=collapse data-target=.bs-navbar-collapse><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href="../"></a></div><div class="collapse navbar-collapse bs-navbar-collapse"><ul class="nav navbar-nav main-nav"><li data-ng-repeat="nav in navigation" data-ng-class="{true: \'active\', false: \'\'}[nav.children != null]"><a data-ng-href={{nav.url}} data-ng-show=nav.show>{{nav.name}}</a><ul class=sub-navbar data-ng-if="nav.children != null" data-ng-class="{false: \'no-parent\'}[nav.show]"><li data-ng-repeat="subnav in nav.children" data-ng-show=subnav.show data-ng-class="{true: \'active\', false: \'\'}[isSelected(subnav)]"><a data-ng-click="selectNav(subnav, $event)" data-ng-href={{subnav.url}}>{{subnav.name}}</a></li></ul></li></ul><ul class="nav navbar-nav navbar-right"><li class=dropdown><a data-ng-show=isMessageBoxShow class=dropdown-toggle href=# data-toggle=dropdown><span class=badge data-ng-show="messages.length > 0">{{messages.length}}</span> <i class="glyphicon glyphicon-inbox"></i></a><ul data-ng-show=isMessageBoxShow class=dropdown-menu><li data-ng-repeat="message in messages"><a href=#>{{message.title}}</a></li><li class=divider></li><li><a href=#><i class="glyphicon glyphicon-chevron-right pull-right"></i> 查看全部</a></li></ul></li><li data-ng-hide=noSideMenu data-ng-class="{true: \'active\', false: \'\'}[isSubMenuShow]"><a href=javascript:; data-ng-click=toggleSubMenu($event)><i class="glyphicon glyphicon-list"></i></a></li><li data-ng-show="userInfo.username != null" class=dropdown><a class=dropdown-toggle href=# data-toggle=dropdown>您好，{{userInfo.username}}<b class=caret></b></a><ul class=dropdown-menu><li class=user-information><img data-ng-src={{userInfo.avatar}} alt=user_avatar><div class="user-content muted">{{userInfo.username}}</div></li><li class=divider></li><li><a data-ng-click=changePwd($event) href=#><i class="glyphicon glyphicon-lock"></i> 修改密码</a></li><li><a data-ng-click=logout($event) href=#><i class="glyphicon glyphicon-off"></i> 退出</a></li></ul></li><li class=dropdown data-ng-show="userInfo.username != null && accountHost != null "><a class=dropdown-toggle href=# data-toggle=dropdown>常用 <b class=caret></b></a><ul class=dropdown-menu><li data-ng-repeat="menu in commonMenus"><a data-ng-href={{menu.link}}>{{menu.name}}</a></li><li data-ng-show="commonMenus.length <= 0" class=none-info>暂无常用菜单</li><li class=divider></li><li><a href=javascript:; data-ng-click=addCommonMenu()>添加为常用</a></li><li><a data-ng-href={{accountHost}}/#/menus>管理常用菜单</a></li></ul></li></ul></div></div><nav class=sub-navbar-back data-ng-show=hasSubNav></nav></nav><div class=container-fluid><div class="col-md-2 affix side-nav-container" data-ng-show=hasSideMenu><div data-ng-show=isSubMenuShow><div class=side-nav><h4>{{sideMenuName}}</h4><ul class=side-nav-menu><li data-ng-repeat="sidemenu in menu" data-ng-class="{true: \'active\', false: \'\'}[isSelected(sidemenu)]"><a data-ng-href={{sidemenu.url}} data-ng-class="{true: \'has-sub-menu\', false: \'\'}[sidemenu.children != null]" data-ng-click="selectMenu(sidemenu, $event)"><i class="pull-right glyphicon glyphicon-chevron-down" data-ng-show="sidemenu.children != null"></i>{{sidemenu.name}}</a><ul data-ng-if="sidemenu.children != null"><li data-ng-repeat="subsidemenu in sidemenu.children" data-ng-class="{true: \'active\', false: \'\'}[isSelected(subsidemenu)]"><a data-ng-click="selectMenu(subsidemenu, $event)" data-ng-href={{subsidemenu.url}}>{{subsidemenu.name}}</a></li></ul></li></ul></div></div></div><div class="row fix-row"><div data-ng-class="{true: \'col-md-offset-2\', false: \'\'}[isSubMenuShow && hasSideMenu]" class="message-container notice"></div><div data-ng-class="{true: \'col-md-10 col-md-offset-2\', false: \'col-md-12\'}[isSubMenuShow && hasSideMenu]" data-ng-transclude=""></div><div data-adminui-load-backdrop="" class=load-backdrop style=display:none><div class=splash><img class=loading src=images/ajax-loader.gif alt=加载中></div></div></div></div>');
+    $templateCache.put("templates/adminui-frame.html", '<nav class="navbar navbar-inverse navbar-fixed-top" role=navigation><div class=progress-bar></div><div class=container-fluid><div class=navbar-header><button class=navbar-toggle type=button data-toggle=collapse data-target=.bs-navbar-collapse><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button> <a class=navbar-brand href="../"></a></div><div class="collapse navbar-collapse bs-navbar-collapse"><ul class="nav navbar-nav main-nav"><li data-ng-repeat="nav in navigation" data-ng-class="{true: \'active\', false: \'\'}[nav.children != null]"><a data-ng-href={{nav.url}} data-ng-show=nav.show>{{nav.name}}</a><ul class=sub-navbar data-ng-if="nav.children != null" data-ng-class="{false: \'no-parent\'}[nav.show]"><li data-ng-repeat="subnav in nav.children" data-ng-show=subnav.show data-ng-class="{true: \'active\', false: \'\'}[isSelected(subnav)]"><a data-ng-click="selectNav(subnav, $event)" data-ng-href={{subnav.url}}>{{subnav.name}}</a></li></ul></li></ul><ul class="nav navbar-nav navbar-right"><li class=dropdown><a data-ng-show=isMessageBoxShow class=dropdown-toggle href=# data-toggle=dropdown><span class=badge data-ng-show="messages.length > 0">{{messages.length}}</span> <i class="glyphicon glyphicon-inbox"></i></a><ul data-ng-show=isMessageBoxShow class=dropdown-menu><li data-ng-repeat="message in messages"><a href=#>{{message.title}}</a></li><li class=divider></li><li><a href=#><i class="glyphicon glyphicon-chevron-right pull-right"></i> 查看全部</a></li></ul></li><li data-ng-hide=noSideMenu data-ng-class="{true: \'active\', false: \'\'}[isSubMenuShow]"><a href=javascript:; data-ng-click=toggleSubMenu($event)><i class="glyphicon glyphicon-list"></i></a></li><li data-ng-show="userInfo.username != null" class=dropdown><a class=dropdown-toggle href=# data-toggle=dropdown>您好，{{userInfo.username}}<b class=caret></b></a><ul class=dropdown-menu><li class=user-information><img data-ng-src={{userInfo.avatar}} alt=user_avatar><div class="user-content muted">{{userInfo.username}}</div></li><li class=divider></li><li><a data-ng-click=changePwd($event) href=#><i class="glyphicon glyphicon-lock"></i> 修改密码</a></li><li><a data-ng-click=logout($event) href=#><i class="glyphicon glyphicon-off"></i> 退出</a></li></ul></li><li class=dropdown data-ng-show="userInfo.username != null && accountHost != null "><a class=dropdown-toggle href=# data-toggle=dropdown>常用 <b class=caret></b></a><ul class=dropdown-menu><li data-ng-repeat="menu in commonMenus"><a data-ng-href={{menu.link}}>{{menu.name}}</a></li><li data-ng-show="commonMenus.length <= 0" class=none-info>暂无常用菜单</li><li class=divider></li><li><a href=javascript:; data-ng-click=addCommonMenu()>添加为常用</a></li><li><a data-ng-href={{accountHost}}/#/menus>管理常用菜单</a></li></ul></li></ul></div></div><nav class=sub-navbar-back data-ng-show=hasSubNav></nav></nav><div class=container-fluid><div class="col-md-2 affix side-nav-container" data-ng-show=hasSideMenu><div data-ng-show=isSubMenuShow><div class=side-nav><h4>{{sideMenuName}}</h4><ul class=side-nav-menu><li data-ng-repeat="sidemenu in menu" data-ng-class="{true: \'active\', false: \'\'}[isSelected(sidemenu)]"><a data-ng-href={{sidemenu.url}} data-ng-class="{true: \'has-sub-menu\', false: \'\'}[sidemenu.children != null]" data-ng-click="selectMenu(sidemenu, $event)"><i class="pull-right glyphicon glyphicon-chevron-down" data-ng-show="sidemenu.children != null"></i>{{sidemenu.name}}</a><ul data-ng-if="sidemenu.children != null"><li data-ng-repeat="subsidemenu in sidemenu.children" data-ng-class="{true: \'active\', false: \'\'}[isSelected(subsidemenu)]"><a data-ng-click="selectMenu(subsidemenu, $event)" data-ng-href={{subsidemenu.url}}>{{subsidemenu.name}}</a></li></ul></li></ul></div></div></div><div class="row fix-row"><div data-ng-class="{true: \'col-md-offset-2\', false: \'\'}[isSubMenuShow && hasSideMenu]" class="message-container notice"></div><div data-ng-class="{true: \'col-md-10 col-md-offset-2\', false: \'col-md-12\'}[isSubMenuShow && hasSideMenu]" data-ng-transclude=""></div><div data-adminui-load-backdrop="" class=load-backdrop style=display:none><div class=splash><img class=loading src=images/ajax-loader.gif alt=加载中></div></div></div></div>');
     $templateCache.put("templates/adminui-list.html", '<ul class=adminui-list-container data-ng-class="{true: \'disabled\'}[disabled]"><li data-ng-repeat="item in listItems" data-ng-class="{true: \'selected\'}[item.selected]">{{item.text}}</li></ul>');
     $templateCache.put("templates/adminui-notice.html", '<div data-ng-repeat="alert in $root.alerts" class="alert alert-animation" data-ng-class=[alert.className]><strong>{{ alert.msg }}</strong> <button type=button class=close data-ng-click=alert.close()>×</button></div>');
     $templateCache.put("templates/adminui-switcher.html", "<div class=adminui-switcher-container><div class=adminui-switcher-inner><div class=on-label data-ng-bind-html=onLabel></div><div class=divider></div><div class=off-label data-ng-bind-html=offLabel></div><div class=ng-hide><input type=checkbox data-ng-model=model></div></div></div>");
