@@ -4558,7 +4558,6 @@
 
 (function(Sonic) {
     function sonicService() {
-        var width = $(window).width();
         var Tween = {
             Cubic: {
                 easeOut: function(t, b, c, d) {
@@ -4570,29 +4569,31 @@
             var offset = (index - 3) * 10;
             return Tween.Cubic.easeOut(startX - offset, 0 - offset, width / 2 - offset, width * .2);
         };
-        var loader = {
-            width: width,
-            height: 5,
-            fillColor: "white",
-            trailLength: .01,
-            pointDistance: .01,
-            fps: 40,
-            step: function(point, index, frame) {
-                var ctx = this._;
-                ctx.fillText(0 | frame * this.fps, 1, 99);
-                ctx.beginPath();
-                for (var i = 4; i >= 0; i--) {
-                    var offset = getOffsetX(i, point.x, loader.width);
-                    ctx.moveTo(offset, point.y);
-                    ctx.rect(offset, point.y, 3, 3);
-                }
-                ctx.closePath();
-                ctx.fill();
-            },
-            path: [ [ "line", 0, 0, width, 0 ] ]
+        var loader = function(width) {
+            return {
+                width: width,
+                height: 5,
+                fillColor: "white",
+                trailLength: .01,
+                pointDistance: .01,
+                fps: 40,
+                step: function(point, index, frame) {
+                    var ctx = this._;
+                    ctx.fillText(0 | frame * this.fps, 1, 99);
+                    ctx.beginPath();
+                    for (var i = 4; i >= 0; i--) {
+                        var offset = getOffsetX(i, point.x, width);
+                        ctx.moveTo(offset, point.y);
+                        ctx.rect(offset, point.y, 3, 3);
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+                },
+                path: [ [ "line", 0, 0, width, 0 ] ]
+            };
         };
-        var sonic = new Sonic(loader);
         return function(dom) {
+            var sonic = new Sonic(loader($(window).width()));
             dom.append(sonic.canvas);
             sonic.play();
             return sonic;
@@ -5392,9 +5393,9 @@ ntdDirective.run([ "$rootScope", "$animate", function($rootScope, $animate) {
             var time2 = null;
             function destroy() {
                 progressBar.stop();
-                $(".adminui-progress-bar").hide();
-                progressBar.frame = 0;
-                progressBar._.clearRect(0, 0, progressBar.fullWidth, progressBar.fullWidth);
+                var progress = $(".adminui-progress-bar");
+                progress.hide();
+                progress.empty();
                 progressBar = null;
             }
             return {
@@ -7488,7 +7489,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             link: function(scope, elem, attrs) {
                 scope.timeLineDemoData = [];
                 var tempTimeLineData = scope[attrs.ngModel];
-                tempTimeLineData = $filter("orderBy")(tempTimeLineData, [ "-time" ]);
+                tempTimeLineData = $filter("orderBy")(tempTimeLineData, [ "-sortBy" ]);
                 var currentObj = {};
                 ng.forEach(tempTimeLineData, function(value, index) {
                     var currentTime = $filter("date")(value.time, "yyyy-MM-dd");
@@ -22995,6 +22996,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 getSizes(scope.config);
                 if (!chart) {
                     chart = echarts.init(dom, scope.config.theme || util.theme());
+                    chart.on(echarts.config.EVENT.CLICK, scope.config.onClick);
                 }
                 if (ng.isString(scope.data)) {
                     chart.showLoading({
@@ -23187,7 +23189,11 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 ng.forEach(data, function(serie) {
                     var dataPoints = [];
                     ng.forEach(serie.dataPoints, function(datapoint) {
-                        dataPoints.push(datapoint.y);
+                        dataPoints.push({
+                            name: datapoint.x,
+                            value: datapoint.y,
+                            url: data.hasOwnProperty("url") ? data.url : null
+                        });
                     });
                     var conf = {
                         type: type || "line",
@@ -23250,15 +23256,6 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                                 }
                             }
                         }, config.gauge || {});
-                    }
-                    if (!isAxisChart(type)) {
-                        conf.data = [];
-                        ng.forEach(serie.dataPoints, function(datapoint) {
-                            conf.data.push({
-                                value: datapoint.y,
-                                name: datapoint.x
-                            });
-                        });
                     }
                     if (isPieChart(type)) {
                         conf.type = "pie";
@@ -23341,10 +23338,12 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     data: [ {
                         name: data.caption,
                         value: data.percent,
+                        url: data.hasOwnProperty("url") ? data.url : null,
                         itemStyle: labelTop
                     }, {
                         name: "other",
                         value: 100 - data.percent,
+                        url: data.hasOwnProperty("url") ? data.url : null,
                         itemStyle: labelBottom
                     } ]
                 };
@@ -23377,6 +23376,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     var data = {
                         name: item.name,
                         value: item.value,
+                        url: item.hasOwnProperty("url") ? item.url : null,
                         itemStyle: ntdPieLabel(index)
                     };
                     index++;
