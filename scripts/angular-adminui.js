@@ -23200,6 +23200,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                         name: serie.name,
                         data: dataPoints
                     };
+                    conf = ng.extend(conf, config.series || {});
                     if (type === "area") {
                         conf.type = "line";
                         conf.itemStyle = {
@@ -23285,6 +23286,34 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                                     }
                                 }
                             }, config.donut || {});
+                            if (config.showEdge) {
+                                angular.forEach(conf.radius, function(value, index) {
+                                    var currentRadius = parseFloat(value);
+                                    var radius1 = currentRadius + (index % 2 ? 4.5 : -4.5) + "%";
+                                    var radius2 = currentRadius + (index % 2 ? 5 : -5) + "%";
+                                    var edgeConfig = {
+                                        type: "pie",
+                                        center: [ "50%", "50%" ],
+                                        radius: [ radius1, radius2 ],
+                                        data: [ {
+                                            name: "",
+                                            value: "1"
+                                        } ],
+                                        tooltip: {
+                                            show: false
+                                        },
+                                        itemStyle: {
+                                            normal: {
+                                                color: "lightgray",
+                                                labelLine: {
+                                                    show: false
+                                                }
+                                            }
+                                        }
+                                    };
+                                    series.push(edgeConfig);
+                                });
+                            }
                         }
                     }
                     if (config.stack) {
