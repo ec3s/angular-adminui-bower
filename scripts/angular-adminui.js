@@ -23192,7 +23192,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                         dataPoints.push({
                             name: datapoint.x,
                             value: datapoint.y,
-                            url: data.hasOwnProperty("url") ? data.url : null
+                            url: datapoint.hasOwnProperty("url") ? datapoint.url : undefined
                         });
                     });
                     var conf = {
@@ -23338,12 +23338,12 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     data: [ {
                         name: data.caption,
                         value: data.percent,
-                        url: data.hasOwnProperty("url") ? data.url : null,
+                        url: data.hasOwnProperty("url") ? data.url : undefined,
                         itemStyle: labelTop
                     }, {
                         name: "other",
                         value: 100 - data.percent,
-                        url: data.hasOwnProperty("url") ? data.url : null,
+                        url: data.hasOwnProperty("url") ? data.url : undefined,
                         itemStyle: labelBottom
                     } ]
                 };
@@ -23376,7 +23376,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     var data = {
                         name: item.name,
                         value: item.value,
-                        url: item.hasOwnProperty("url") ? item.url : null,
+                        url: item.hasOwnProperty("url") ? item.url : undefined,
                         itemStyle: ntdPieLabel(index)
                     };
                     index++;
