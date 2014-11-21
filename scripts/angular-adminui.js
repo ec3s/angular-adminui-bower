@@ -7653,40 +7653,9 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     popEl.popover("hide");
                 }
             });
-            el.bind("keyup click focus", function() {
-                if (ngModelCtrl.$modelValue === 0) {
-                    var care = getCaretPosition(el[0]);
-                    if (care == 0) {
-                        setCaretPosition(el[0], 1);
-                    }
-                }
+            el.bind("click", function() {
+                el.select();
             });
-            function getCaretPosition(input) {
-                if (ng.isDefined(input.selectionStart)) {
-                    return input.selectionStart;
-                } else if (document.selection) {
-                    input.focus();
-                    var selection = document.selection.createRange();
-                    selection.moveStart("character", -input.value.length);
-                    return selection.text.length;
-                }
-                return 0;
-            }
-            function setCaretPosition(input, pos) {
-                if (input.offsetWidth === 0 || input.offsetHeight === 0) {
-                    return;
-                }
-                if (input.setSelectionRange) {
-                    input.focus();
-                    input.setSelectionRange(pos, pos);
-                } else if (input.createTextRange) {
-                    var range = input.createTextRange();
-                    range.collapse(true);
-                    range.moveEnd("character", pos);
-                    range.moveStart("character", pos);
-                    range.select();
-                }
-            }
         }
         return {
             restrict: "A",
