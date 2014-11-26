@@ -120,7 +120,7 @@
 })(window.angular, window.document);
 
 (function(undefined) {
-    var moment, VERSION = "2.8.3", globalScope = typeof global !== "undefined" ? global : this, oldGlobalMoment, round = Math.round, hasOwnProperty = Object.prototype.hasOwnProperty, i, YEAR = 0, MONTH = 1, DATE = 2, HOUR = 3, MINUTE = 4, SECOND = 5, MILLISECOND = 6, locales = {}, momentProperties = [], hasModule = typeof module !== "undefined" && module.exports, aspNetJsonRegex = /^\/?Date\((\-?\d+)/i, aspNetTimeSpanJsonRegex = /(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/, isoDurationRegex = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/, formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|X|zz?|ZZ?|.)/g, localFormattingTokens = /(\[[^\[]*\])|(\\)?(LT|LL?L?L?|l{1,4})/g, parseTokenOneOrTwoDigits = /\d\d?/, parseTokenOneToThreeDigits = /\d{1,3}/, parseTokenOneToFourDigits = /\d{1,4}/, parseTokenOneToSixDigits = /[+\-]?\d{1,6}/, parseTokenDigits = /\d+/, parseTokenWord = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i, parseTokenTimezone = /Z|[\+\-]\d\d:?\d\d/gi, parseTokenT = /T/i, parseTokenTimestampMs = /[\+\-]?\d+(\.\d{1,3})?/, parseTokenOrdinal = /\d{1,2}/, parseTokenOneDigit = /\d/, parseTokenTwoDigits = /\d\d/, parseTokenThreeDigits = /\d{3}/, parseTokenFourDigits = /\d{4}/, parseTokenSixDigits = /[+-]?\d{6}/, parseTokenSignedNumber = /[+-]?\d+/, isoRegex = /^\s*(?:[+-]\d{6}|\d{4})-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/, isoFormat = "YYYY-MM-DDTHH:mm:ssZ", isoDates = [ [ "YYYYYY-MM-DD", /[+-]\d{6}-\d{2}-\d{2}/ ], [ "YYYY-MM-DD", /\d{4}-\d{2}-\d{2}/ ], [ "GGGG-[W]WW-E", /\d{4}-W\d{2}-\d/ ], [ "GGGG-[W]WW", /\d{4}-W\d{2}/ ], [ "YYYY-DDD", /\d{4}-\d{3}/ ] ], isoTimes = [ [ "HH:mm:ss.SSSS", /(T| )\d\d:\d\d:\d\d\.\d+/ ], [ "HH:mm:ss", /(T| )\d\d:\d\d:\d\d/ ], [ "HH:mm", /(T| )\d\d:\d\d/ ], [ "HH", /(T| )\d\d/ ] ], parseTimezoneChunker = /([\+\-]|\d\d)/gi, proxyGettersAndSetters = "Date|Hours|Minutes|Seconds|Milliseconds".split("|"), unitMillisecondFactors = {
+    var moment, VERSION = "2.8.4", globalScope = typeof global !== "undefined" ? global : this, oldGlobalMoment, round = Math.round, hasOwnProperty = Object.prototype.hasOwnProperty, i, YEAR = 0, MONTH = 1, DATE = 2, HOUR = 3, MINUTE = 4, SECOND = 5, MILLISECOND = 6, locales = {}, momentProperties = [], hasModule = typeof module !== "undefined" && module && module.exports, aspNetJsonRegex = /^\/?Date\((\-?\d+)/i, aspNetTimeSpanJsonRegex = /(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/, isoDurationRegex = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/, formattingTokens = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|x|X|zz?|ZZ?|.)/g, localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, parseTokenOneOrTwoDigits = /\d\d?/, parseTokenOneToThreeDigits = /\d{1,3}/, parseTokenOneToFourDigits = /\d{1,4}/, parseTokenOneToSixDigits = /[+\-]?\d{1,6}/, parseTokenDigits = /\d+/, parseTokenWord = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i, parseTokenTimezone = /Z|[\+\-]\d\d:?\d\d/gi, parseTokenT = /T/i, parseTokenOffsetMs = /[\+\-]?\d+/, parseTokenTimestampMs = /[\+\-]?\d+(\.\d{1,3})?/, parseTokenOneDigit = /\d/, parseTokenTwoDigits = /\d\d/, parseTokenThreeDigits = /\d{3}/, parseTokenFourDigits = /\d{4}/, parseTokenSixDigits = /[+-]?\d{6}/, parseTokenSignedNumber = /[+-]?\d+/, isoRegex = /^\s*(?:[+-]\d{6}|\d{4})-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/, isoFormat = "YYYY-MM-DDTHH:mm:ssZ", isoDates = [ [ "YYYYYY-MM-DD", /[+-]\d{6}-\d{2}-\d{2}/ ], [ "YYYY-MM-DD", /\d{4}-\d{2}-\d{2}/ ], [ "GGGG-[W]WW-E", /\d{4}-W\d{2}-\d/ ], [ "GGGG-[W]WW", /\d{4}-W\d{2}/ ], [ "YYYY-DDD", /\d{4}-\d{3}/ ] ], isoTimes = [ [ "HH:mm:ss.SSSS", /(T| )\d\d:\d\d:\d\d\.\d+/ ], [ "HH:mm:ss", /(T| )\d\d:\d\d:\d\d/ ], [ "HH:mm", /(T| )\d\d:\d\d/ ], [ "HH", /(T| )\d\d/ ] ], parseTimezoneChunker = /([\+\-]|\d\d)/gi, proxyGettersAndSetters = "Date|Hours|Minutes|Seconds|Milliseconds".split("|"), unitMillisecondFactors = {
         Milliseconds: 1,
         Seconds: 1e3,
         Minutes: 6e4,
@@ -279,6 +279,9 @@
         },
         zz: function() {
             return this.zoneName();
+        },
+        x: function() {
+            return this.valueOf();
         },
         X: function() {
             return this.unix();
@@ -590,7 +593,7 @@
     function checkOverflow(m) {
         var overflow;
         if (m._a && m._pf.overflow === -2) {
-            overflow = m._a[MONTH] < 0 || m._a[MONTH] > 11 ? MONTH : m._a[DATE] < 1 || m._a[DATE] > daysInMonth(m._a[YEAR], m._a[MONTH]) ? DATE : m._a[HOUR] < 0 || m._a[HOUR] > 23 ? HOUR : m._a[MINUTE] < 0 || m._a[MINUTE] > 59 ? MINUTE : m._a[SECOND] < 0 || m._a[SECOND] > 59 ? SECOND : m._a[MILLISECOND] < 0 || m._a[MILLISECOND] > 999 ? MILLISECOND : -1;
+            overflow = m._a[MONTH] < 0 || m._a[MONTH] > 11 ? MONTH : m._a[DATE] < 1 || m._a[DATE] > daysInMonth(m._a[YEAR], m._a[MONTH]) ? DATE : m._a[HOUR] < 0 || m._a[HOUR] > 24 || m._a[HOUR] === 24 && (m._a[MINUTE] !== 0 || m._a[SECOND] !== 0 || m._a[MILLISECOND] !== 0) ? HOUR : m._a[MINUTE] < 0 || m._a[MINUTE] > 59 ? MINUTE : m._a[SECOND] < 0 || m._a[SECOND] > 59 ? SECOND : m._a[MILLISECOND] < 0 || m._a[MILLISECOND] > 999 ? MILLISECOND : -1;
             if (m._pf._overflowDayOfYear && (overflow < YEAR || overflow > DATE)) {
                 overflow = DATE;
             }
@@ -601,7 +604,7 @@
         if (m._isValid == null) {
             m._isValid = !isNaN(m._d.getTime()) && m._pf.overflow < 0 && !m._pf.empty && !m._pf.invalidMonth && !m._pf.nullInput && !m._pf.invalidFormat && !m._pf.userInvalidated;
             if (m._strict) {
-                m._isValid = m._isValid && m._pf.charsLeftOver === 0 && m._pf.unusedTokens.length === 0;
+                m._isValid = m._isValid && m._pf.charsLeftOver === 0 && m._pf.unusedTokens.length === 0 && m._pf.bigHour === undefined;
             }
         }
         return m._isValid;
@@ -642,7 +645,16 @@
         return locales[name];
     }
     function makeAs(input, model) {
-        return model._isUTC ? moment(input).zone(model._offset || 0) : moment(input).local();
+        var res, diff;
+        if (model._isUTC) {
+            res = model.clone();
+            diff = (moment.isMoment(input) || isDate(input) ? +input : +moment(input)) - +res;
+            res._d.setTime(+res._d + diff);
+            moment.updateOffset(res, false);
+            return res;
+        } else {
+            return moment(input).local();
+        }
     }
     extend(Locale.prototype, {
         set: function(config) {
@@ -655,6 +667,7 @@
                     this["_" + i] = prop;
                 }
             }
+            this._ordinalParseLenient = new RegExp(this._ordinalParse.source + "|" + /\d{1,2}/.source);
         },
         _months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"),
         months: function(m) {
@@ -664,18 +677,28 @@
         monthsShort: function(m) {
             return this._monthsShort[m.month()];
         },
-        monthsParse: function(monthName) {
+        monthsParse: function(monthName, format, strict) {
             var i, mom, regex;
             if (!this._monthsParse) {
                 this._monthsParse = [];
+                this._longMonthsParse = [];
+                this._shortMonthsParse = [];
             }
             for (i = 0; i < 12; i++) {
-                if (!this._monthsParse[i]) {
-                    mom = moment.utc([ 2e3, i ]);
+                mom = moment.utc([ 2e3, i ]);
+                if (strict && !this._longMonthsParse[i]) {
+                    this._longMonthsParse[i] = new RegExp("^" + this.months(mom, "").replace(".", "") + "$", "i");
+                    this._shortMonthsParse[i] = new RegExp("^" + this.monthsShort(mom, "").replace(".", "") + "$", "i");
+                }
+                if (!strict && !this._monthsParse[i]) {
                     regex = "^" + this.months(mom, "") + "|^" + this.monthsShort(mom, "");
                     this._monthsParse[i] = new RegExp(regex.replace(".", ""), "i");
                 }
-                if (this._monthsParse[i].test(monthName)) {
+                if (strict && format === "MMMM" && this._longMonthsParse[i].test(monthName)) {
+                    return i;
+                } else if (strict && format === "MMM" && this._shortMonthsParse[i].test(monthName)) {
+                    return i;
+                } else if (!strict && this._monthsParse[i].test(monthName)) {
                     return i;
                 }
             }
@@ -709,6 +732,7 @@
             }
         },
         _longDateFormat: {
+            LTS: "h:mm:ss A",
             LT: "h:mm A",
             L: "MM/DD/YYYY",
             LL: "MMMM D, YYYY",
@@ -744,9 +768,9 @@
             lastWeek: "[Last] dddd [at] LT",
             sameElse: "L"
         },
-        calendar: function(key, mom) {
+        calendar: function(key, mom, now) {
             var output = this._calendar[key];
-            return typeof output === "function" ? output.apply(mom) : output;
+            return typeof output === "function" ? output.apply(mom, [ now ]) : output;
         },
         _relativeTime: {
             future: "in %s",
@@ -775,6 +799,7 @@
             return this._ordinal.replace("%d", number);
         },
         _ordinal: "%d",
+        _ordinalParse: /\d{1,2}/,
         preparse: function(string) {
             return string;
         },
@@ -893,6 +918,9 @@
           case "A":
             return config._locale._meridiemParse;
 
+          case "x":
+            return parseTokenOffsetMs;
+
           case "X":
             return parseTokenTimestampMs;
 
@@ -933,7 +961,7 @@
             return parseTokenOneOrTwoDigits;
 
           case "Do":
-            return parseTokenOrdinal;
+            return strict ? config._locale._ordinalParse : config._locale._ordinalParseLenient;
 
           default:
             a = new RegExp(regexpEscape(unescapeFormat(token.replace("\\", "")), "i"));
@@ -963,7 +991,7 @@
 
           case "MMM":
           case "MMMM":
-            a = config._locale.monthsParse(input);
+            a = config._locale.monthsParse(input, token, config._strict);
             if (a != null) {
                 datePartArray[MONTH] = a;
             } else {
@@ -980,7 +1008,7 @@
 
           case "Do":
             if (input != null) {
-                datePartArray[DATE] = toInt(parseInt(input, 10));
+                datePartArray[DATE] = toInt(parseInt(input.match(/\d{1,2}/)[0], 10));
             }
             break;
 
@@ -1006,10 +1034,12 @@
             config._isPm = config._locale.isPM(input);
             break;
 
-          case "H":
-          case "HH":
           case "h":
           case "hh":
+            config._pf.bigHour = true;
+
+          case "H":
+          case "HH":
             datePartArray[HOUR] = toInt(input);
             break;
 
@@ -1028,6 +1058,10 @@
           case "SSS":
           case "SSSS":
             datePartArray[MILLISECOND] = toInt(("0." + input) * 1e3);
+            break;
+
+          case "x":
+            config._d = new Date(toInt(input));
             break;
 
           case "X":
@@ -1130,9 +1164,16 @@
         for (;i < 7; i++) {
             config._a[i] = input[i] = config._a[i] == null ? i === 2 ? 1 : 0 : config._a[i];
         }
+        if (config._a[HOUR] === 24 && config._a[MINUTE] === 0 && config._a[SECOND] === 0 && config._a[MILLISECOND] === 0) {
+            config._nextDay = true;
+            config._a[HOUR] = 0;
+        }
         config._d = (config._useUTC ? makeUTCDate : makeDate).apply(null, input);
         if (config._tzm != null) {
             config._d.setUTCMinutes(config._d.getUTCMinutes() + config._tzm);
+        }
+        if (config._nextDay) {
+            config._a[HOUR] = 24;
         }
     }
     function dateFromObject(config) {
@@ -1141,7 +1182,7 @@
             return;
         }
         normalizedInput = normalizeObjectUnits(config._i);
-        config._a = [ normalizedInput.year, normalizedInput.month, normalizedInput.day, normalizedInput.hour, normalizedInput.minute, normalizedInput.second, normalizedInput.millisecond ];
+        config._a = [ normalizedInput.year, normalizedInput.month, normalizedInput.day || normalizedInput.date, normalizedInput.hour, normalizedInput.minute, normalizedInput.second, normalizedInput.millisecond ];
         dateFromConfig(config);
     }
     function currentDateArray(config) {
@@ -1186,6 +1227,9 @@
         config._pf.charsLeftOver = stringLength - totalParsedInputLength;
         if (string.length > 0) {
             config._pf.unusedInput.push(string);
+        }
+        if (config._pf.bigHour === true && config._a[HOUR] <= 12) {
+            config._pf.bigHour = undefined;
         }
         if (config._isPm && config._a[HOUR] < 12) {
             config._a[HOUR] += 12;
@@ -1357,7 +1401,7 @@
         };
     }
     function makeMoment(config) {
-        var input = config._i, format = config._f;
+        var input = config._i, format = config._f, res;
         config._locale = config._locale || moment.localeData(config._l);
         if (input === null || format === undefined && input === "") {
             return moment.invalid({
@@ -1378,7 +1422,12 @@
         } else {
             makeDateFromInput(config);
         }
-        return new Moment(config);
+        res = new Moment(config);
+        if (res._nextDay) {
+            res.add(1, "d");
+            res._nextDay = undefined;
+        }
+        return res;
     }
     moment = function(input, format, locale, strict) {
         var c;
@@ -1398,7 +1447,7 @@
     };
     moment.suppressDeprecationWarnings = false;
     moment.createFromInputFallback = deprecate("moment construction falls back to js Date. This is " + "discouraged and will be removed in upcoming major " + "release. Please refer to " + "https://github.com/moment/moment/issues/1407 for more info.", function(config) {
-        config._d = new Date(config._i);
+        config._d = new Date(config._i + (config._useUTC ? " UTC" : ""));
     });
     function pickBy(fn, moments) {
         var res, i;
@@ -1608,7 +1657,11 @@
         toISOString: function() {
             var m = moment(this).utc();
             if (0 < m.year() && m.year() <= 9999) {
-                return formatMoment(m, "YYYY-MM-DD[T]HH:mm:ss.SSS[Z]");
+                if ("function" === typeof Date.prototype.toISOString) {
+                    return this.toDate().toISOString();
+                } else {
+                    return formatMoment(m, "YYYY-MM-DD[T]HH:mm:ss.SSS[Z]");
+                }
             } else {
                 return formatMoment(m, "YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]");
             }
@@ -1680,7 +1733,7 @@
         },
         calendar: function(time) {
             var now = time || moment(), sod = makeAs(now, this).startOf("day"), diff = this.diff(sod, "days", true), format = diff < -6 ? "sameElse" : diff < -1 ? "lastWeek" : diff < 0 ? "lastDay" : diff < 1 ? "sameDay" : diff < 2 ? "nextDay" : diff < 7 ? "nextWeek" : "sameElse";
-            return this.format(this.localeData().calendar(format, this));
+            return this.format(this.localeData().calendar(format, this, moment(now)));
         },
         isLeapYear: function() {
             return isLeapYear(this.year());
@@ -1734,33 +1787,42 @@
         },
         endOf: function(units) {
             units = normalizeUnits(units);
+            if (units === undefined || units === "millisecond") {
+                return this;
+            }
             return this.startOf(units).add(1, units === "isoWeek" ? "week" : units).subtract(1, "ms");
         },
         isAfter: function(input, units) {
+            var inputMs;
             units = normalizeUnits(typeof units !== "undefined" ? units : "millisecond");
             if (units === "millisecond") {
                 input = moment.isMoment(input) ? input : moment(input);
                 return +this > +input;
             } else {
-                return +this.clone().startOf(units) > +moment(input).startOf(units);
+                inputMs = moment.isMoment(input) ? +input : +moment(input);
+                return inputMs < +this.clone().startOf(units);
             }
         },
         isBefore: function(input, units) {
+            var inputMs;
             units = normalizeUnits(typeof units !== "undefined" ? units : "millisecond");
             if (units === "millisecond") {
                 input = moment.isMoment(input) ? input : moment(input);
                 return +this < +input;
             } else {
-                return +this.clone().startOf(units) < +moment(input).startOf(units);
+                inputMs = moment.isMoment(input) ? +input : +moment(input);
+                return +this.clone().endOf(units) < inputMs;
             }
         },
         isSame: function(input, units) {
+            var inputMs;
             units = normalizeUnits(units || "millisecond");
             if (units === "millisecond") {
                 input = moment.isMoment(input) ? input : moment(input);
                 return +this === +input;
             } else {
-                return +this.clone().startOf(units) === +makeAs(input, this).startOf(units);
+                inputMs = +moment(input);
+                return +this.clone().startOf(units) <= inputMs && inputMs <= +this.clone().endOf(units);
             }
         },
         min: deprecate("moment().min is deprecated, use moment.min instead. https://github.com/moment/moment/issues/1548", function(other) {
@@ -1887,7 +1949,7 @@
                 return this;
             }
         },
-        lang: deprecate("moment().lang() is deprecated. Use moment().localeData() instead.", function(key) {
+        lang: deprecate("moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.", function(key) {
             if (key === undefined) {
                 return this.localeData();
             } else {
@@ -2028,7 +2090,7 @@
                 months = this._months + daysToYears(days) * 12;
                 return units === "month" ? months : months / 12;
             } else {
-                days = this._days + yearsToDays(this._months / 12);
+                days = this._days + Math.round(yearsToDays(this._months / 12));
                 switch (units) {
                   case "week":
                     return days / 7 + this._milliseconds / 6048e5;
@@ -2105,6 +2167,7 @@
         return this.as("y");
     };
     moment.locale("en", {
+        ordinalParse: /\d{1,2}(th|st|nd|rd)/,
         ordinal: function(number) {
             var b = number % 10, output = toInt(number % 100 / 10) === 1 ? "th" : b === 1 ? "st" : b === 2 ? "nd" : b === 3 ? "rd" : "th";
             return number + output;
@@ -2205,7 +2268,7 @@
     } else if (typeof exports === "object") {
         module.exports = factory(require("../moment"));
     } else {
-        factory(window.moment);
+        factory((typeof global !== "undefined" ? global : this).moment);
     }
 })(function(moment) {
     return moment.defineLocale("zh-cn", {
@@ -2216,6 +2279,7 @@
         weekdaysMin: "日_一_二_三_四_五_六".split("_"),
         longDateFormat: {
             LT: "Ah点mm",
+            LTS: "Ah点m分s秒",
             L: "YYYY-MM-DD",
             LL: "YYYY年MMMD日",
             LLL: "YYYY年MMMD日LT",
@@ -2265,6 +2329,7 @@
             },
             sameElse: "LL"
         },
+        ordinalParse: /\d{1,2}(日|月|周)/,
         ordinal: function(number, period) {
             switch (period) {
               case "d":
@@ -7848,7 +7913,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
         }, r.amd = {
             jQuery: !0
         };
-    })(), r("echarts/config", [], function() {
+    })(), r("ECharts/config", [], function() {
         var e = {
             CHART_TYPE_LINE: "line",
             CHART_TYPE_BAR: "bar",
@@ -12194,7 +12259,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
         }, f;
     }), r("zrender", [ "zrender/zrender" ], function(e) {
         return e;
-    }), r("echarts/util/ecQuery", [ "zrender/tool/util" ], function() {
+    }), r("ECharts/util/ecQuery", [ "zrender/tool/util" ], function() {
         function t(e, t) {
             if (typeof e == "undefined") return;
             if (!t) return e;
@@ -12228,7 +12293,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             deepQuery: r,
             deepMerge: i
         };
-    }), r("echarts/util/number", [], function() {
+    }), r("ECharts/util/number", [], function() {
         function e(e) {
             return e.replace(/^\s+/, "").replace(/\s+$/, "");
         }
@@ -12252,7 +12317,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             parseRadius: r,
             addCommas: i
         };
-    }), r("echarts/component/base", [ "require", "../config", "../util/ecQuery", "../util/number", "zrender/tool/util", "zrender/tool/env" ], function(e) {
+    }), r("ECharts/component/base", [ "require", "../config", "../util/ecQuery", "../util/number", "zrender/tool/util", "zrender/tool/env" ], function(e) {
         function s(e, t, n, r, i) {
             this.ecTheme = e, this.messageCenter = t, this.zr = n, this.option = r, this.series = r.series, 
             this.myChart = i, this.component = i.component, this._zlevelBase = this.getZlevelBase(), 
@@ -12473,7 +12538,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 }, e.__rect;
             }
         }, e("../tool/util").inherits(n, t), n;
-    }), r("echarts/util/shape/Icon", [ "require", "zrender/tool/util", "zrender/shape/Star", "zrender/shape/Heart", "zrender/shape/Droplet", "zrender/shape/Image", "zrender/shape/Base" ], function(e) {
+    }), r("ECharts/util/shape/Icon", [ "require", "zrender/tool/util", "zrender/shape/Star", "zrender/shape/Heart", "zrender/shape/Droplet", "zrender/shape/Image", "zrender/shape/Base" ], function(e) {
         function n(e, t) {
             var n = t.width / 16, r = t.height / 16;
             e.moveTo(t.x, t.y + t.height), e.lineTo(t.x + 5 * n, t.y + 14 * r), e.lineTo(t.x + t.width, t.y + 3 * r), 
@@ -12852,7 +12917,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 return e("./Polygon").prototype.getRect(t);
             }
         }, e("../tool/util").inherits(s, t), s;
-    }), r("echarts/util/shape/MarkLine", [ "require", "zrender/shape/Base", "./Icon", "zrender/shape/Line", "zrender/shape/BrokenLine", "zrender/tool/matrix", "zrender/tool/area", "zrender/shape/util/dashedLineTo", "zrender/shape/util/smoothSpline", "zrender/tool/util" ], function(e) {
+    }), r("ECharts/util/shape/MarkLine", [ "require", "zrender/shape/Base", "./Icon", "zrender/shape/Line", "zrender/shape/BrokenLine", "zrender/tool/matrix", "zrender/tool/area", "zrender/shape/util/dashedLineTo", "zrender/shape/util/smoothSpline", "zrender/tool/util" ], function(e) {
         function h(e) {
             t.call(this, e);
         }
@@ -12939,14 +13004,14 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 return r || (r = this.style.__rect = this.getRect(this.style)), e >= r.x && e <= r.x + r.width && t >= r.y && t <= r.y + r.height ? this.style.smooth !== "spline" ? a.isInside(i, this.style, e, t) : a.isInside(o, this.style, e, t) : !1;
             }
         }, c.inherits(h, t), h;
-    }), r("echarts/util/shape/normalIsCover", [], function() {
+    }), r("ECharts/util/shape/normalIsCover", [], function() {
         return function(e, t) {
             var n = this.getTansform(e, t);
             e = n[0], t = n[1];
             var r = this.style.__rect;
             return r || (r = this.style.__rect = this.getRect(this.style)), e >= r.x && e <= r.x + r.width && t >= r.y && t <= r.y + r.height;
         };
-    }), r("echarts/util/shape/Symbol", [ "require", "zrender/shape/Base", "zrender/shape/Polygon", "zrender/tool/util", "./normalIsCover" ], function(e) {
+    }), r("ECharts/util/shape/Symbol", [ "require", "zrender/shape/Base", "zrender/shape/Polygon", "zrender/tool/util", "./normalIsCover" ], function(e) {
         function s(e) {
             t.call(this, e);
         }
@@ -12997,7 +13062,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             },
             isCover: e("./normalIsCover")
         }, i.inherits(s, t), s;
-    }), r("echarts/util/ecData", [], function() {
+    }), r("ECharts/util/ecData", [], function() {
         function e(e, t, n, r, i, s, o, u) {
             var a;
             return typeof r != "undefined" && (a = r.value == null ? r : r.value), e._echartsData = {
@@ -13059,7 +13124,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             get: t,
             clone: r
         };
-    }), r("echarts/util/ecAnimation", [ "require", "zrender/tool/util", "zrender/shape/Polygon" ], function(e) {
+    }), r("ECharts/util/ecAnimation", [ "require", "zrender/tool/util", "zrender/shape/Polygon" ], function(e) {
         function n(e, n, r, i, s) {
             var o = r.style.pointList, u = o.length, a;
             if (!n) {
@@ -13271,7 +13336,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 }, e.__rect;
             }
         }, e("../tool/util").inherits(n, t), n;
-    }), r("echarts/util/ecEffect", [ "require", "../util/ecData", "zrender/shape/Circle", "zrender/shape/Image", "../util/shape/Icon", "../util/shape/Symbol", "zrender/tool/env" ], function(e) {
+    }), r("ECharts/util/ecEffect", [ "require", "../util/ecData", "zrender/shape/Circle", "zrender/shape/Image", "../util/shape/Icon", "../util/shape/Symbol", "zrender/tool/env" ], function(e) {
         function u(e, n, s, u) {
             var a = s.effect, f = a.color || s.style.strokeColor || s.style.color, l = a.shadowColor || f, c = a.scaleSize, h = typeof a.shadowBlur != "undefined" ? a.shadowBlur : c, p = new i({
                 zlevel: u,
@@ -13390,7 +13455,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             largePoint: a,
             line: f
         };
-    }), r("echarts/util/accMath", [], function() {
+    }), r("ECharts/util/accMath", [], function() {
         function e(e, t) {
             var n = e.toString(), r = t.toString(), i = 0;
             try {
@@ -13431,7 +13496,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             accAdd: n,
             accSub: r
         };
-    }), r("echarts/chart/base", [ "require", "zrender/shape/Image", "../util/shape/Icon", "../util/shape/MarkLine", "../util/shape/Symbol", "../config", "../util/ecData", "../util/ecAnimation", "../util/ecEffect", "../util/accMath", "zrender/tool/util", "zrender/tool/area" ], function(e) {
+    }), r("ECharts/chart/base", [ "require", "zrender/shape/Image", "../util/shape/Icon", "../util/shape/MarkLine", "../util/shape/Symbol", "../config", "../util/ecData", "../util/ecAnimation", "../util/ecEffect", "../util/accMath", "zrender/tool/util", "zrender/tool/area" ], function(e) {
         function h() {
             var e = this;
             this.selectedMap = {}, this.lastShapeList = [], this.shapeHandler = {
@@ -13850,14 +13915,14 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 }
             }
         }, h;
-    }), r("echarts/chart", [], function() {
+    }), r("ECharts/chart", [], function() {
         var e = {}, t = {};
         return e.define = function(n, r) {
             return t[n] = r, e;
         }, e.get = function(e) {
             return t[e];
         }, e;
-    }), r("echarts/chart/island", [ "require", "../component/base", "./base", "zrender/shape/Circle", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/event", "zrender/tool/color", "../util/accMath", "../chart" ], function(e) {
+    }), r("ECharts/chart/island", [ "require", "../component/base", "./base", "zrender/shape/Circle", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/event", "zrender/tool/color", "../util/accMath", "../chart" ], function(e) {
         function a(e, r, i, o, a) {
             t.call(this, e, r, i, {}, a), n.call(this), this._nameConnector, this._valueConnector, 
             this._zrHeight = this.zr.getHeight(), this._zrWidth = this.zr.getWidth();
@@ -13938,19 +14003,19 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 return;
             }
         }, o.inherits(a, n), o.inherits(a, t), e("../chart").define("island", a), a;
-    }), r("echarts/component", [], function() {
+    }), r("ECharts/component", [], function() {
         var e = {}, t = {};
         return e.define = function(n, r) {
             return t[n] = r, e;
         }, e.get = function(e) {
             return t[e];
         }, e;
-    }), r("echarts/component/dataView", [ "require", "./base", "../config", "zrender/tool/util", "../component" ], function(e) {
+    }), r("ECharts/component/dataView", [ "require", "./base", "../config", "zrender/tool/util", "../component" ], function(e) {
         function i(e, n, r, i, s) {
             t.call(this, e, n, r, i, s), this.dom = s.dom, this._tDom = document.createElement("div"), 
             this._textArea = document.createElement("textArea"), this._buttonRefresh = document.createElement("button"), 
             this._buttonClose = document.createElement("button"), this._hasShow = !1, this._zrHeight = r.getHeight(), 
-            this._zrWidth = r.getWidth(), this._tDom.className = "echarts-dataview", this.hide(), 
+            this._zrWidth = r.getWidth(), this._tDom.className = "ECharts-dataview", this.hide(), 
             this.dom.firstChild.appendChild(this._tDom), window.addEventListener ? (this._tDom.addEventListener("click", this._stop), 
             this._tDom.addEventListener("mousewheel", this._stop), this._tDom.addEventListener("mousemove", this._stop), 
             this._tDom.addEventListener("mousedown", this._stop), this._tDom.addEventListener("mouseup", this._stop), 
@@ -14090,7 +14155,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 this._tDom = null;
             }
         }, r.inherits(i, t), e("../component").define("dataView", i), i;
-    }), r("echarts/component/toolbox", [ "require", "./base", "zrender/shape/Line", "zrender/shape/Image", "zrender/shape/Rectangle", "../util/shape/Icon", "../config", "zrender/tool/util", "zrender/config", "zrender/tool/event", "./dataView", "../component" ], function(e) {
+    }), r("ECharts/component/toolbox", [ "require", "./base", "zrender/shape/Line", "zrender/shape/Image", "zrender/shape/Rectangle", "../util/shape/Icon", "../config", "zrender/tool/util", "zrender/config", "zrender/tool/event", "./dataView", "../component" ], function(e) {
         function h(e, n, r, i, s) {
             t.call(this, e, n, r, i, s), this.dom = s.dom, this._magicType = {}, this._magicMap = {}, 
             this._isSilence = !1, this._iconList, this._iconShapeMap = {}, this._featureTitle = {}, 
@@ -14609,7 +14674,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 e.toolbox.show && this._buildShape(), this.hideDataView());
             }
         }, u.inherits(h, t), e("../component").define("toolbox", h), h;
-    }), r("echarts/component/title", [ "require", "./base", "zrender/shape/Text", "zrender/shape/Rectangle", "../config", "zrender/tool/util", "zrender/tool/area", "zrender/tool/color", "../component" ], function(e) {
+    }), r("ECharts/component/title", [ "require", "./base", "zrender/shape/Text", "zrender/shape/Rectangle", "../config", "zrender/tool/util", "zrender/tool/area", "zrender/tool/color", "../component" ], function(e) {
         function a(e, n, r, i, s) {
             t.call(this, e, n, r, i, s), this.refresh(i);
         }
@@ -14744,7 +14809,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 this.clear(), this._buildShape();
             }
         }, s.inherits(a, t), e("../component").define("title", a), a;
-    }), r("echarts/util/shape/Cross", [ "require", "zrender/shape/Base", "zrender/shape/Line", "zrender/tool/util", "./normalIsCover" ], function(e) {
+    }), r("ECharts/util/shape/Cross", [ "require", "zrender/shape/Base", "zrender/shape/Line", "zrender/tool/util", "./normalIsCover" ], function(e) {
         function i(e) {
             t.call(this, e);
         }
@@ -14761,7 +14826,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             },
             isCover: e("./normalIsCover")
         }, r.inherits(i, t), i;
-    }), r("echarts/component/tooltip", [ "require", "./base", "../util/shape/Cross", "zrender/shape/Line", "zrender/shape/Rectangle", "../config", "../util/ecData", "zrender/config", "zrender/tool/event", "zrender/tool/area", "zrender/tool/color", "zrender/tool/util", "zrender/shape/Base", "../component" ], function(e) {
+    }), r("ECharts/component/tooltip", [ "require", "./base", "../util/shape/Cross", "zrender/shape/Line", "zrender/shape/Rectangle", "../config", "../util/ecData", "zrender/config", "zrender/tool/event", "zrender/tool/area", "zrender/tool/color", "zrender/tool/util", "zrender/shape/Base", "../component" ], function(e) {
         function d(e, i, s, o, u) {
             t.call(this, e, i, s, o, u), this.dom = u.dom;
             var f = this;
@@ -15360,7 +15425,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 }), n.__rect;
             }
         }, e("../tool/util").inherits(r, n), r;
-    }), r("echarts/util/shape/Candle", [ "require", "zrender/shape/Base", "zrender/tool/util", "./normalIsCover" ], function(e) {
+    }), r("ECharts/util/shape/Candle", [ "require", "zrender/shape/Base", "zrender/tool/util", "./normalIsCover" ], function(e) {
         function r(e) {
             t.call(this, e);
         }
@@ -15391,7 +15456,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             },
             isCover: e("./normalIsCover")
         }, n.inherits(r, t), r;
-    }), r("echarts/component/legend", [ "require", "./base", "zrender/shape/Text", "zrender/shape/Rectangle", "zrender/shape/Sector", "../util/shape/Icon", "../util/shape/Candle", "../config", "zrender/tool/util", "zrender/tool/area", "../component" ], function(e) {
+    }), r("ECharts/component/legend", [ "require", "./base", "zrender/shape/Text", "zrender/shape/Rectangle", "zrender/shape/Sector", "../util/shape/Icon", "../util/shape/Candle", "../config", "zrender/tool/util", "zrender/tool/area", "../component" ], function(e) {
         function l(e, n, r, i, s) {
             if (!this.query(i, "legend.data")) {
                 console.error("option.legend.data has not been defined.");
@@ -15759,7 +15824,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
         c.chord = c.pie, c.map = c.bar;
         for (var h in c) s.prototype.iconLibrary["legendicon" + h] = c[h];
         return a.inherits(l, t), e("../component").define("legend", l), l;
-    }), r("echarts/util/shape/Chain", [ "require", "zrender/shape/Base", "./Icon", "zrender/shape/util/dashedLineTo", "zrender/tool/util", "zrender/tool/matrix" ], function(e) {
+    }), r("ECharts/util/shape/Chain", [ "require", "zrender/shape/Base", "./Icon", "zrender/shape/util/dashedLineTo", "zrender/tool/util", "zrender/tool/matrix" ], function(e) {
         function o(e) {
             t.call(this, e);
         }
@@ -15820,7 +15885,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 return e >= n.x && e <= n.x + n.width && t >= n.y && t <= n.y + n.height ? !0 : !1;
             }
         }, i.inherits(o, t), o;
-    }), r("echarts/component/timeline", [ "require", "./base", "zrender/shape/Rectangle", "../util/shape/Icon", "../util/shape/Chain", "../config", "zrender/tool/util", "zrender/tool/area", "zrender/tool/event", "../component" ], function(e) {
+    }), r("ECharts/component/timeline", [ "require", "./base", "zrender/shape/Rectangle", "../util/shape/Icon", "../util/shape/Chain", "../config", "zrender/tool/util", "zrender/tool/area", "zrender/tool/event", "../component" ], function(e) {
         function f(e, n, r, i, u) {
             t.call(this, e, n, r, i, u);
             var a = this;
@@ -16454,10 +16519,10 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 e(d), e(g), y[0] -= .3, v.rotation = y, e(v), e(m), e(a), t();
             }, h.timeInterval);
         }, u;
-    }), r("echarts/theme/default", [], function() {
+    }), r("ECharts/theme/default", [], function() {
         var e = {};
         return e;
-    }), r("echarts/echarts", [ "require", "./config", "zrender/tool/util", "zrender/tool/event", "zrender/tool/env", "zrender", "zrender/config", "zrender", "./chart/island", "./component/toolbox", "./component", "./component/title", "./component/tooltip", "./component/legend", "./util/ecData", "./chart", "./component", "zrender/tool/color", "./component/timeline", "zrender", "zrender/shape/Image", "zrender/loadingEffect/Bar", "zrender/loadingEffect/Bubble", "zrender/loadingEffect/DynamicLine", "zrender/loadingEffect/Ring", "zrender/loadingEffect/Spin", "zrender/loadingEffect/Whirling", "./theme/default" ], function(e) {
+    }), r("ECharts/ECharts", [ "require", "./config", "zrender/tool/util", "zrender/tool/event", "zrender/tool/env", "zrender", "zrender/config", "zrender", "./chart/island", "./component/toolbox", "./component", "./component/title", "./component/tooltip", "./component/legend", "./util/ecData", "./chart", "./component", "zrender/tool/color", "./component/timeline", "zrender", "zrender/shape/Image", "zrender/loadingEffect/Bar", "zrender/loadingEffect/Bubble", "zrender/loadingEffect/DynamicLine", "zrender/loadingEffect/Ring", "zrender/loadingEffect/Spin", "zrender/loadingEffect/Whirling", "./theme/default" ], function(e) {
         function f() {
             r.Dispatcher.call(this);
         }
@@ -17046,9 +17111,9 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 this._messageCenter.unbind(), this.clear(), this._zr.dispose(), this._zr = null;
             }
         }, i;
-    }), r("echarts", [ "echarts/echarts" ], function(e) {
+    }), r("echarts", [ "ECharts/ECharts" ], function(e) {
         return e;
-    }), r("echarts/util/shape/GaugePointer", [ "require", "zrender/shape/Base", "zrender/tool/util", "./normalIsCover" ], function(e) {
+    }), r("ECharts/util/shape/GaugePointer", [ "require", "zrender/shape/Base", "zrender/tool/util", "./normalIsCover" ], function(e) {
         function r(e) {
             t.call(this, e);
         }
@@ -17074,7 +17139,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             },
             isCover: e("./normalIsCover")
         }, n.inherits(r, t), r;
-    }), r("echarts/chart/gauge", [ "require", "../component/base", "./base", "../util/shape/GaugePointer", "zrender/shape/Text", "zrender/shape/Line", "zrender/shape/Rectangle", "zrender/shape/Circle", "zrender/shape/Sector", "../config", "../util/ecData", "../util/accMath", "zrender/tool/util", "../chart" ], function(e) {
+    }), r("ECharts/chart/gauge", [ "require", "../component/base", "./base", "../util/shape/GaugePointer", "zrender/shape/Text", "zrender/shape/Line", "zrender/shape/Rectangle", "zrender/shape/Circle", "zrender/shape/Sector", "../config", "../util/ecData", "../util/accMath", "zrender/tool/util", "../chart" ], function(e) {
         function p(e, r, i, s, o) {
             t.call(this, e, r, i, s, o), n.call(this), this.refresh(s);
         }
@@ -17316,7 +17381,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 e && (this.option = e, this.series = e.series), this.backupShapeList(), this._buildShape();
             }
         }, h.inherits(p, n), h.inherits(p, t), e("../chart").define("gauge", p), p;
-    }), r("echarts/chart/funnel", [ "require", "../component/base", "./base", "zrender/shape/Text", "zrender/shape/Line", "zrender/shape/Polygon", "../config", "../util/ecData", "../util/number", "zrender/tool/util", "zrender/tool/color", "zrender/tool/area", "../chart" ], function(e) {
+    }), r("ECharts/chart/funnel", [ "require", "../component/base", "./base", "zrender/shape/Text", "zrender/shape/Line", "zrender/shape/Polygon", "../config", "../util/ecData", "../util/number", "zrender/tool/util", "zrender/tool/color", "zrender/tool/area", "../chart" ], function(e) {
         function h(e, r, i, s, o) {
             t.call(this, e, r, i, s, o), n.call(this), this.refresh(s);
         }
@@ -17504,7 +17569,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 e && (this.option = e, this.series = e.series), this.backupShapeList(), this._buildShape();
             }
         }, f.inherits(h, n), f.inherits(h, t), e("../chart").define("funnel", h), h;
-    }), r("echarts/component/categoryAxis", [ "require", "./base", "zrender/shape/Text", "zrender/shape/Line", "zrender/shape/Rectangle", "../config", "zrender/tool/util", "zrender/tool/area", "../component" ], function(e) {
+    }), r("ECharts/component/categoryAxis", [ "require", "./base", "zrender/shape/Text", "zrender/shape/Line", "zrender/shape/Rectangle", "../config", "zrender/tool/util", "zrender/tool/area", "../component" ], function(e) {
         function a(e, n, r, i, s, o) {
             if (i.data.length < 1) {
                 console.error("option.data.length < 1.");
@@ -17760,7 +17825,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 return e % this._interval === 0;
             }
         }, o.inherits(a, t), e("../component").define("categoryAxis", a), a;
-    }), r("echarts/component/valueAxis", [ "require", "./base", "zrender/shape/Text", "zrender/shape/Line", "zrender/shape/Rectangle", "../config", "zrender/tool/util", "../component" ], function(e) {
+    }), r("ECharts/component/valueAxis", [ "require", "./base", "zrender/shape/Text", "zrender/shape/Line", "zrender/shape/Rectangle", "../config", "zrender/tool/util", "../component" ], function(e) {
         function u(e, n, r, i, s, o, u) {
             if (!u || u.length === 0) {
                 console.err("option.series.length == 0.");
@@ -18061,7 +18126,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 t.toFixed(2) - 0;
             }
         }, o.inherits(u, t), e("../component").define("valueAxis", u), u;
-    }), r("echarts/component/axis", [ "require", "./base", "zrender/shape/Line", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/color", "./categoryAxis", "./valueAxis", "../component" ], function(e) {
+    }), r("ECharts/component/axis", [ "require", "./base", "zrender/shape/Line", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/color", "./categoryAxis", "./valueAxis", "../component" ], function(e) {
         function u(e, n, r, i, s, o) {
             t.call(this, e, n, r, i, s), this.axisType = o, this._axisList = [], this.refresh(i);
         }
@@ -18181,7 +18246,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 this._axisList = [];
             }
         }, s.inherits(u, t), e("../component").define("axis", u), u;
-    }), r("echarts/component/grid", [ "require", "./base", "zrender/shape/Rectangle", "../config", "zrender/tool/util", "../component" ], function(e) {
+    }), r("ECharts/component/grid", [ "require", "./base", "zrender/shape/Rectangle", "../config", "zrender/tool/util", "../component" ], function(e) {
         function s(e, n, r, i, s) {
             t.call(this, e, n, r, i, s), this.refresh(i);
         }
@@ -18252,7 +18317,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 }
             }
         }, i.inherits(s, t), e("../component").define("grid", s), s;
-    }), r("echarts/component/dataZoom", [ "require", "./base", "zrender/shape/Rectangle", "zrender/shape/Polygon", "../util/shape/Icon", "../config", "zrender/tool/util", "../component", "../component" ], function(e) {
+    }), r("ECharts/component/dataZoom", [ "require", "./base", "zrender/shape/Rectangle", "zrender/shape/Polygon", "../util/shape/Icon", "../config", "zrender/tool/util", "../component", "../component" ], function(e) {
         function u(e, n, r, i, s) {
             t.call(this, e, n, r, i, s);
             var o = this;
@@ -18612,7 +18677,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 this.option.dataZoom.show && this._buildShape();
             }
         }, o.inherits(u, t), e("../component").define("dataZoom", u), u;
-    }), r("echarts/util/shape/HandlePolygon", [ "require", "zrender/shape/Base", "zrender/shape/Polygon", "zrender/tool/util" ], function(e) {
+    }), r("ECharts/util/shape/HandlePolygon", [ "require", "zrender/shape/Base", "zrender/shape/Polygon", "zrender/tool/util" ], function(e) {
         function i(e) {
             t.call(this, e);
         }
@@ -18629,7 +18694,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 return e >= r.x && e <= r.x + r.width && t >= r.y && t <= r.y + r.height ? !0 : !1;
             }
         }, r.inherits(i, t), i;
-    }), r("echarts/component/dataRange", [ "require", "./base", "zrender/shape/Text", "zrender/shape/Rectangle", "../util/shape/HandlePolygon", "../config", "zrender/tool/util", "zrender/tool/area", "zrender/tool/color", "zrender/tool/color", "../component" ], function(e) {
+    }), r("ECharts/component/dataRange", [ "require", "./base", "zrender/shape/Text", "zrender/shape/Rectangle", "../util/shape/HandlePolygon", "../config", "zrender/tool/util", "zrender/tool/area", "zrender/tool/color", "zrender/tool/color", "../component" ], function(e) {
         function f(e, n, r, i, s) {
             if (typeof this.query(i, "dataRange.min") == "undefined" || typeof this.query(i, "dataRange.max") == "undefined") {
                 console.error("option.dataRange.min or option.dataRange.max has not been defined.");
@@ -19085,7 +19150,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 return t == this._colorList.length && t--, this._selectedMap[t] ? this._colorList[t] : null;
             }
         }, o.inherits(f, t), e("../component").define("dataRange", f), f;
-    }), r("echarts/chart/scatter", [ "require", "../component/base", "./base", "../util/shape/Symbol", "../component/axis", "../component/grid", "../component/dataZoom", "../component/dataRange", "../config", "zrender/tool/util", "zrender/tool/color", "../chart" ], function(e) {
+    }), r("ECharts/chart/scatter", [ "require", "../component/base", "./base", "../util/shape/Symbol", "../component/axis", "../component/grid", "../component/dataZoom", "../component/dataRange", "../config", "zrender/tool/util", "zrender/tool/color", "../chart" ], function(e) {
         function u(e, r, i, s, o) {
             t.call(this, e, r, i, s, o), n.call(this), this.refresh(s);
         }
@@ -19217,7 +19282,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 return;
             }
         }, s.inherits(u, n), s.inherits(u, t), e("../chart").define("scatter", u), u;
-    }), r("echarts/chart/k", [ "require", "../component/base", "./base", "../util/shape/Candle", "../component/axis", "../component/grid", "../component/dataZoom", "../config", "../util/ecData", "zrender/tool/util", "../chart" ], function(e) {
+    }), r("ECharts/chart/k", [ "require", "../component/base", "./base", "../util/shape/Candle", "../component/axis", "../component/grid", "../component/dataZoom", "../config", "../util/ecData", "zrender/tool/util", "../chart" ], function(e) {
         function u(e, r, i, s, o) {
             t.call(this, e, r, i, s, o), n.call(this), this.refresh(s);
         }
@@ -19344,7 +19409,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 }
             }
         }, o.inherits(u, n), o.inherits(u, t), e("../chart").define("k", u), u;
-    }), r("echarts/util/coordinates", [ "require", "zrender/tool/math" ], function(e) {
+    }), r("ECharts/util/coordinates", [ "require", "zrender/tool/math" ], function(e) {
         function n(e, n) {
             return [ e * t.sin(n), e * t.cos(n) ];
         }
@@ -19356,7 +19421,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             polar2cartesian: n,
             cartesian2polar: r
         };
-    }), r("echarts/component/polar", [ "require", "./base", "zrender/shape/Text", "zrender/shape/Line", "zrender/shape/Polygon", "zrender/shape/Circle", "zrender/shape/Ring", "../config", "zrender/tool/util", "../util/coordinates", "../component" ], function(e) {
+    }), r("ECharts/component/polar", [ "require", "./base", "zrender/shape/Text", "zrender/shape/Line", "zrender/shape/Polygon", "zrender/shape/Circle", "zrender/shape/Ring", "../config", "zrender/tool/util", "../util/coordinates", "../component" ], function(e) {
         function l(e, n, r, i, s) {
             t.call(this, e, n, r, i, s), this.refresh(i);
         }
@@ -19638,7 +19703,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 this.clear(), this._buildShape();
             }
         }, a.inherits(l, t), e("../component").define("polar", l), l;
-    }), r("echarts/chart/radar", [ "require", "../component/base", "./base", "zrender/shape/Polygon", "../component/polar", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/color", "../util/accMath", "../chart" ], function(e) {
+    }), r("ECharts/chart/radar", [ "require", "../component/base", "./base", "zrender/shape/Polygon", "../component/polar", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/color", "../util/accMath", "../chart" ], function(e) {
         function a(e, r, i, s, o) {
             t.call(this, e, r, i, s, o), n.call(this), this.refresh(s);
         }
@@ -19807,7 +19872,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
         }, r.prototype.isEmpty = function() {
             return this.pathCommands.length === 0;
         }, r.PathSegment = n, r;
-    }), r("echarts/util/shape/Ribbon", [ "require", "zrender/shape/Base", "zrender/shape/util/PathProxy", "zrender/tool/util", "zrender/tool/area" ], function(e) {
+    }), r("ECharts/util/shape/Ribbon", [ "require", "zrender/shape/Base", "zrender/shape/util/PathProxy", "zrender/tool/util", "zrender/tool/area" ], function(e) {
         function s(e) {
             t.call(this, e), this._pathProxy = new n();
         }
@@ -19831,7 +19896,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 if (e >= n.x && e <= n.x + n.width && t >= n.y && t <= n.y + n.height) return i.isInsidePath(this._pathProxy.pathCommands, 0, "fill", e, t);
             }
         }, r.inherits(s, t), s;
-    }), r("echarts/util/kwargs", [], function() {
+    }), r("ECharts/util/kwargs", [], function() {
         function e(e, t) {
             var n = new RegExp("(\\/\\*[\\w\\'\\,\\(\\)\\s\\r\\n\\*]*\\*\\/)|(\\/\\/[\\w\\s\\'][^\\n\\r]*$)|(<![\\-\\-\\s\\w\\>\\/]*>)", "gim"), r = new RegExp("\\s+", "gim"), i = new RegExp("function.*?\\((.*?)\\)", "i"), s = e.toString().replace(n, "").replace(r, "").match(i)[1].split(",");
             return t !== Object(t) && (t = {}), function() {
@@ -19845,7 +19910,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             };
         }
         return e;
-    }), r("echarts/util/ndarray", [ "require", "./kwargs" ], function(e) {
+    }), r("ECharts/util/ndarray", [ "require", "./kwargs" ], function(e) {
         function d(e) {
             if (typeof e == "undefined") return "number";
             switch (Object.prototype.toString.call(e)) {
@@ -20844,7 +20909,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             var n = new v(t);
             return n.initFromShape(e), n;
         }), v;
-    }), r("echarts/chart/chord", [ "require", "../component/base", "./base", "zrender/shape/Text", "zrender/shape/Line", "zrender/shape/Sector", "../util/shape/Ribbon", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/vector", "../util/ndarray", "../chart" ], function(e) {
+    }), r("ECharts/chart/chord", [ "require", "../component/base", "./base", "zrender/shape/Text", "zrender/shape/Line", "zrender/shape/Sector", "../util/shape/Ribbon", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/vector", "../util/ndarray", "../chart" ], function(e) {
         function p(e, r, i, s, o) {
             t.call(this, e, r, i, s, o), n.call(this), this.refresh(s);
         }
@@ -21152,7 +21217,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 e = t(e || {}, this.ecTheme.chord), e.itemStyle.normal.label.textStyle = t(e.itemStyle.normal.label.textStyle || {}, this.ecTheme.textStyle);
             }
         }, f.inherits(p, n), f.inherits(p, t), e("../chart").define("chord", p), p;
-    }), r("echarts/data/Graph", [ "require", "zrender/tool/util" ], function(e) {
+    }), r("ECharts/data/Graph", [ "require", "zrender/tool/util" ], function(e) {
         var t = e("zrender/tool/util"), n = function(e) {
             this._directed = e || !1, this.nodes = [], this.edges = [], this._nodesMap = {}, 
             this._edgesMap = {};
@@ -21232,7 +21297,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 }
             }
         }, n;
-    }), r("echarts/layout/forceLayoutWorker", [ "require", "zrender/tool/vector" ], function u(e) {
+    }), r("ECharts/layout/forceLayoutWorker", [ "require", "zrender/tool/vector" ], function u(e) {
         function i() {
             this.subRegions = [], this.nSubRegions = 0, this.node = null, this.mass = 0, this.centerOfMass = null, 
             this.bbox = new r(4), this.size = 0;
@@ -21507,7 +21572,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             };
         }
         return a;
-    }), r("echarts/layout/Force", [ "require", "./forceLayoutWorker", "zrender/tool/vector" ], function(e) {
+    }), r("ECharts/layout/Force", [ "require", "./forceLayoutWorker", "zrender/tool/vector" ], function(e) {
         function o() {
             return Math.round(Date.now() / 100) % 1e7;
         }
@@ -21623,7 +21688,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             this._layoutWorker && this._layoutWorker.terminate(), this._layoutWorker = null, 
             this._layout = null, this._token = 0;
         }, a;
-    }), r("echarts/chart/force", [ "require", "../component/base", "./base", "../data/Graph", "../layout/Force", "zrender/shape/Line", "zrender/shape/Image", "../util/shape/Icon", "../config", "../util/ecData", "zrender/tool/util", "zrender/config", "zrender/tool/vector", "../chart" ], function(e) {
+    }), r("ECharts/chart/force", [ "require", "../component/base", "./base", "../data/Graph", "../layout/Force", "zrender/shape/Line", "zrender/shape/Image", "../util/shape/Icon", "../config", "../util/ecData", "zrender/tool/util", "zrender/config", "zrender/tool/vector", "../chart" ], function(e) {
         function p(e, s, o, u, a) {
             var f = this;
             t.call(this, e, s, o, u, a), n.call(this), this.__nodePositionMap = {}, this._graph = new r(!0), 
@@ -21884,7 +21949,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 this._layout = null, this.__nodePositionMap = {};
             }
         }, l.inherits(p, n), l.inherits(p, t), e("../chart").define("force", p), p;
-    }), r("echarts/util/shape/HalfSmoothPolygon", [ "require", "zrender/shape/Base", "zrender/shape/util/smoothBezier", "zrender/tool/util", "zrender/shape/Polygon" ], function(e) {
+    }), r("ECharts/util/shape/HalfSmoothPolygon", [ "require", "zrender/shape/Base", "zrender/shape/util/smoothBezier", "zrender/tool/util", "zrender/shape/Polygon" ], function(e) {
         function i(e) {
             t.call(this, e);
         }
@@ -21904,7 +21969,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 return;
             }
         }, r.inherits(i, t), i;
-    }), r("echarts/chart/line", [ "require", "../component/base", "./base", "zrender/shape/BrokenLine", "../util/shape/Icon", "../util/shape/HalfSmoothPolygon", "../component/axis", "../component/grid", "../component/dataZoom", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/color", "../chart" ], function(e) {
+    }), r("ECharts/chart/line", [ "require", "../component/base", "./base", "zrender/shape/BrokenLine", "../util/shape/Icon", "../util/shape/HalfSmoothPolygon", "../component/axis", "../component/grid", "../component/dataZoom", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/color", "../chart" ], function(e) {
         function l(e, r, i, s, o) {
             t.call(this, e, r, i, s, o), n.call(this), this.refresh(s);
         }
@@ -22214,7 +22279,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             }
         }, i.prototype.iconLibrary.legendLineIcon = c, a.inherits(l, n), a.inherits(l, t), 
         e("../chart").define("line", l), l;
-    }), r("echarts/chart/bar", [ "require", "../component/base", "./base", "zrender/shape/Rectangle", "../component/axis", "../component/grid", "../component/dataZoom", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/color", "../chart" ], function(e) {
+    }), r("ECharts/chart/bar", [ "require", "../component/base", "./base", "zrender/shape/Rectangle", "../component/axis", "../component/grid", "../component/dataZoom", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/color", "../chart" ], function(e) {
         function a(e, r, i, s, o) {
             t.call(this, e, r, i, s, o), n.call(this), this.refresh(s);
         }
@@ -22489,7 +22554,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 }
             }
         }, o.inherits(a, n), o.inherits(a, t), e("../chart").define("bar", a), a;
-    }), r("echarts/chart/pie", [ "require", "../component/base", "./base", "zrender/shape/Text", "zrender/shape/Ring", "zrender/shape/Circle", "zrender/shape/Sector", "zrender/shape/BrokenLine", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/math", "zrender/tool/color", "../chart" ], function(e) {
+    }), r("ECharts/chart/pie", [ "require", "../component/base", "./base", "zrender/shape/Text", "zrender/shape/Ring", "zrender/shape/Circle", "zrender/shape/Sector", "zrender/shape/BrokenLine", "../config", "../util/ecData", "zrender/tool/util", "zrender/tool/math", "zrender/tool/color", "../chart" ], function(e) {
         function p(e, r, i, s, o) {
             t.call(this, e, r, i, s, o), n.call(this);
             var u = this;
@@ -22750,10 +22815,10 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 }, this.myChart), this.zr.refresh();
             }
         }, l.inherits(p, n), l.inherits(p, t), e("../chart").define("pie", p), p;
-    }), r("_chart", [ "require", "echarts/chart/gauge", "echarts/chart/funnel", "echarts/chart/scatter", "echarts/chart/k", "echarts/chart/radar", "echarts/chart/chord", "echarts/chart/force", "echarts/chart/line", "echarts/chart/bar", "echarts/chart/pie" ], function(e) {
-        e("echarts/chart/gauge"), e("echarts/chart/funnel"), e("echarts/chart/scatter"), 
-        e("echarts/chart/k"), e("echarts/chart/radar"), e("echarts/chart/chord"), e("echarts/chart/force"), 
-        e("echarts/chart/line"), e("echarts/chart/bar"), e("echarts/chart/pie");
+    }), r("_chart", [ "require", "ECharts/chart/gauge", "ECharts/chart/funnel", "ECharts/chart/scatter", "ECharts/chart/k", "ECharts/chart/radar", "ECharts/chart/chord", "ECharts/chart/force", "ECharts/chart/line", "ECharts/chart/bar", "ECharts/chart/pie" ], function(e) {
+        e("ECharts/chart/gauge"), e("ECharts/chart/funnel"), e("ECharts/chart/scatter"), 
+        e("ECharts/chart/k"), e("ECharts/chart/radar"), e("ECharts/chart/chord"), e("ECharts/chart/force"), 
+        e("ECharts/chart/line"), e("ECharts/chart/bar"), e("ECharts/chart/pie");
     });
     var i = n("zrender");
     i.tool = {
@@ -22769,7 +22834,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
         easing: n("zrender/animation/easing")
     };
     var s = n("echarts");
-    s.config = n("echarts/config"), s.util = {};
+    s.config = n("ECharts/config"), s.util = {};
     var o = n("_chart");
     e.echarts = s, e.zrender = i;
 })(window);
@@ -23256,13 +23321,13 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                                 }
                             }, config.donut || {});
                             if (config.showEdge) {
-                                angular.forEach(conf.radius, function(value, index) {
+                                ng.forEach(conf.radius, function(value, index) {
                                     var currentRadius = parseFloat(value);
                                     var radius1 = currentRadius + (index % 2 ? 4.5 : -4.5) + "%";
                                     var radius2 = currentRadius + (index % 2 ? 5 : -5) + "%";
                                     var edgeConfig = {
                                         type: "pie",
-                                        center: [ "50%", "50%" ],
+                                        center: conf.center,
                                         radius: [ radius1, radius2 ],
                                         data: [ {
                                             name: "",
