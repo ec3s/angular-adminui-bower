@@ -6235,9 +6235,11 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             template: "<span><span" + ' data-ng-repeat="linkage in linkages">' + ' <select class="col-sm-3" data-ntd-chosen' + ' data-placeholder="请选择"' + ' data-disable-search-threshold="10"' + ' data-ng-change="change($index)"' + ' data-ng-model="values[$index]"' + ' data-allow-single-deselect="true"' + ' data-ng-options="option as option.name' + ' for option in linkage">' + ' <option value=""></option>' + "</select></span></span>",
             scope: {
                 source: "=",
-                ngModel: "="
+                ngModel: "=",
+                choseCompleted: "="
             },
             link: function(scope, elem, attrs) {
+                scope.choseCompleted = false;
                 var baseLevels;
                 scope.$watch("source", function(value, oldValue) {
                     if (!ng.isArray(scope.ngModel)) {
@@ -6280,9 +6282,12 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                         scope.values.splice(index + 1, level - index);
                     } else {
                         if (offset.children) {
+                            scope.choseCompleted = false;
                             ng.forEach(offset.children, function(item) {
                                 tmpLevels.push(item);
                             });
+                        } else {
+                            scope.choseCompleted = true;
                         }
                         if (level <= index && tmpLevels.length > 0) {
                             scope.linkages.push(tmpLevels);
