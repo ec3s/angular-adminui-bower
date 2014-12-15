@@ -6280,6 +6280,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                     if (!offset) {
                         scope.linkages.splice(index + 1, level - index);
                         scope.values.splice(index + 1, level - index);
+                        scope.choseCompleted = false;
                     } else {
                         if (offset.children) {
                             scope.choseCompleted = false;
