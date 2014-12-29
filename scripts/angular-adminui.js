@@ -7374,6 +7374,7 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
             require: "ngModel",
             link: function($scope, $element, $attributes, ngModel) {
                 $element.attr("readonly", true);
+                $element.css("cursor", "default");
                 $element.css("background-color", "white");
                 var options = {};
                 options.format = $attributes.format || "YYYY-MM-DD";
