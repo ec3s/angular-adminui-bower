@@ -7531,7 +7531,9 @@ angular.module("ntd.directives").directive("nanoScrollbar", [ "$timeout", functi
                 datepicker.picker.find(".prev").html(prevBtn);
                 datepicker.picker.find(".next").html(nextBtn);
                 scope.$watch("ngModel", function(value, oldValue) {
-                    datepicker.update(value);
+                    if (value && value !== oldValue) {
+                        datepicker.update(value);
+                    }
                 });
                 scope.$watch("minDate", function(value, oldValue) {
                     if (value !== oldValue) {
